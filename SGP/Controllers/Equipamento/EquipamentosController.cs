@@ -80,14 +80,17 @@ namespace SGP.Controllers.Equipamento
         // GET: Equipamentos/Create
         public IActionResult Create()
         {
-            //ViewBag.CategoriaID = new SelectList(_context.Categoria, "CategoriaID", "Nome");
+            
             ViewBag.ClassificacaoID = new SelectList(_context.Classificacao, "ClassificacaoID", "Nome");
             ViewBag.FornecedorID = new SelectList(_context.Fornecedores, "FornecedorID", "Nome");
             ViewBag.SetorID = new SelectList(_context.Setor, "SetorID", "Nome");
             ViewBag.ResponsavelID = new SelectList(_context.Responsavel, "ResponsavelID", "Nome");
-            //ViewBag.Status = new SelectList()
-
+            
             DropdownListCategoria();
+            DropdownListClassificacao();
+            DropdownListFornecedor();
+            DropdownListSetor();
+            DropdownListResponsavel();
             return View();
         }
 
@@ -108,8 +111,11 @@ namespace SGP.Controllers.Equipamento
                 }
             
       
-            DropdownListCategoria();
-            //DropdownListCLassificacao(equipamentos.ClassificacaoID);
+            DropdownListCategoria(equipamentos.ClassificacaoID);
+            DropdownListClassificacao(equipamentos.ClassificacaoID);
+            DropdownListFornecedor(equipamentos.ClassificacaoID);
+            DropdownListSetor(equipamentos.ClassificacaoID);
+            DropdownListResponsavel(equipamentos.ClassificacaoID);
             return View(equipamentos);
         }
 
@@ -130,6 +136,11 @@ namespace SGP.Controllers.Equipamento
                 return NotFound();
             }
             DropdownListCategoria(equipamentos.CategoriaID);
+            DropdownListCategoria(equipamentos.ClassificacaoID);
+            DropdownListClassificacao(equipamentos.ClassificacaoID);
+            DropdownListFornecedor(equipamentos.ClassificacaoID);
+            DropdownListSetor(equipamentos.ClassificacaoID);
+            DropdownListResponsavel(equipamentos.ClassificacaoID);
             return View(equipamentos);
         }
 
@@ -167,18 +178,52 @@ namespace SGP.Controllers.Equipamento
                 return RedirectToAction(nameof(Index));
             }
             DropdownListCategoria(equipamentos.CategoriaID);
+            DropdownListClassificacao(equipamentos.ClassificacaoID);
+            DropdownListFornecedor(equipamentos.ClassificacaoID);
+            DropdownListSetor(equipamentos.ClassificacaoID);
+            DropdownListResponsavel(equipamentos.ClassificacaoID);
             return View(equipamentos);
         }
 
         private void DropdownListCategoria(object listaCategoria = null)
         {
-            var test = _context.Categoria.Select(c => c.Nome).ToList();
+           
+            IQueryable<object> categoriasQuery = from c in _context.Categoria
+                                                 orderby c.Nome
+                                                 select c;
+            ViewBag.CategoriaID = new SelectList(categoriasQuery, "CategoriaID", "Nome", listaCategoria);
+        }
 
-            var categoriasQuery = (from c in _context.Categoria
-                                   orderby c.Nome
-                                 select c);
-           /// ViewBag.CategoriaID = new SelectList(categoriaQuery.AsNoTracking(),"CategoriaID", "Nome", listaCategoria);
-            ViewBag.CategoriaID = new SelectList(test, "CategoriaID", "Nome", listaCategoria);
+        private void DropdownListClassificacao( object listaClassificacao = null)
+        {
+            IQueryable<object> classificacaoQuery = from cl in _context.Classificacao
+                                                    orderby cl.Nome
+                                                    select cl;
+            ViewBag.ClassificacaoID = new SelectList(classificacaoQuery, "ClassificacaoID", "Nome", listaClassificacao);
+        }
+
+        private void DropdownListFornecedor(object listaFornecedor = null)
+        {
+            IQueryable<object> fornecedorQuery = from f in _context.Fornecedores
+                                                    orderby f.Nome
+                                                    select f;
+            ViewBag.FornecedorID = new SelectList(fornecedorQuery, "FornecedorID", "Nome", listaFornecedor);
+        }
+
+        private void DropdownListSetor(object listaSetor = null)
+        {
+            IQueryable<object> setorQuery = from s in _context.Setor
+                                                 orderby s.Nome
+                                                 select s;
+            ViewBag.SetorID = new SelectList(setorQuery, "SetorID", "Nome", listaSetor);
+        }
+
+        private void DropdownListResponsavel(object listaResponsavel = null)
+        {
+            IQueryable<object> responsavelQuery = from r in _context.Responsavel
+                                            orderby r.Nome
+                                            select r;
+            ViewBag.ResponsavelID = new SelectList(responsavelQuery, "ResponsavelID", "Nome", listaResponsavel);
         }
 
         // GET: Equipamentos/Delete/5
