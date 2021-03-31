@@ -34,7 +34,9 @@
                             </div>
                             <div class="form-group">
                                 <label asp-for="SetorID" class="control-label"></label>
-                                @Html.DropDownList("SetorID", (IEnumerable<SelectListItem>)ViewBag.SetorID, new { @class = "form-control" })
+                                <select asp-for="SetorID" class="form-control" asp-items="ViewBag.SetorID">
+                                    <option value="">-- Selecione o Setor --</option>
+                                </select>
                                 <span asp-validation-for="SetorID" class="text-danger"></span>
                             </div>
                         </div>
@@ -63,19 +65,25 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label asp-for="ClassificacaoID" class="control-label"></label>
-                                @Html.DropDownList("ClassificacaoID", (IEnumerable<SelectListItem>)ViewBag.ClassificacaoID, new { @class = "form-control" })
+                                <select asp-for="ClassificacaoID" class="form-control" asp-items="ViewBag.ClassificacaoID">
+                                <option value="">-- Selecione a Classificacao --</option>
+                                </select>
                                 <span asp-validation-for="ClassificacaoID" class="text-danger"></span>
                             </div>
 
                             <div class="form-group">
                                 <label asp-for="FornecedorID" class="control-label"></label>
-                                @Html.DropDownList("FornecedorID", (IEnumerable<SelectListItem>)ViewBag.FornecedorID, new { @class = "form-control" })
+                                <select asp-for="FornecedorID" class="form-control" asp-items="ViewBag.FornecedorID">
+                                    <option value="">-- Selecione o Fornecedor --</option>
+                                </select>
                                 <span asp-validation-for="FornecedorID" class="text-danger"></span>
                             </div>
                             
                             <div class="form-group">
                                 <label asp-for="ResponsavelID" class="control-label"></label>
-                                @Html.DropDownList("ResponsavelID", (IEnumerable<SelectListItem>)ViewBag.ResponsavelID, new { @class = "form-control" })
+                                <select asp-for="ResponsavelID" class="form-control" asp-items="ViewBag.ResponsavelID">
+                                    <option value="">-- Selecione o Responsavel --</option>
+                                </select>
                                 <span asp-validation-for="ResponsavelID" class="text-danger"></span>
                             </div>
                             
