@@ -65,8 +65,6 @@ namespace SGP.Controllers.Equipamento
             }
             
 
-
-
             if (equipamentos == null)
             {
                 return NotFound();
@@ -80,12 +78,6 @@ namespace SGP.Controllers.Equipamento
         // GET: Equipamentos/Create
         public IActionResult Create()
         {
-            
-            ViewBag.ClassificacaoID = new SelectList(_context.Classificacao, "ClassificacaoID", "Nome");
-            ViewBag.FornecedorID = new SelectList(_context.Fornecedores, "FornecedorID", "Nome");
-            ViewBag.SetorID = new SelectList(_context.Setor, "SetorID", "Nome");
-            ViewBag.ResponsavelID = new SelectList(_context.Responsavel, "ResponsavelID", "Nome");
-            
             DropdownListCategoria();
             DropdownListClassificacao();
             DropdownListFornecedor();

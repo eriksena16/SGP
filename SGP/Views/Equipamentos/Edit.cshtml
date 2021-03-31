@@ -34,16 +34,20 @@
                             </div>
                             <div class="form-group">
                                 <label asp-for="SetorID" class="control-label"></label>
-                                <input asp-for="SetorID" class="form-control" />
+                                <select asp-for="SetorID" class="form-control" asp-items="ViewBag.SetorID">
+                                    <option value="">-- Selecione o Setor --</option>
+                                </select>
                                 <span asp-validation-for="SetorID" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
+                                <label asp-for="Categoria" class="control-label"></label>
+                                <select asp-for="CategoriaID" class="form-control" asp-items="ViewBag.CategoriaID">
+                                    <option value="">-- Select Category --</option>
+                                </select>
+                                <span asp-validation-for="CategoriaID" class="text-danger" />
 
-                                <label asp-for="CategoriaID" class="control-label"></label>
-                                <input asp-for="CategoriaID" class="form-control" />
-                                <span asp-validation-for="CategoriaID" class="text-danger"></span>
                             </div>
                             <div class="form-group">
                                 <label asp-for="Serie" class="control-label"></label>
@@ -55,28 +59,34 @@
                                 <input asp-for="Status" class="form-control" />
                                 <span asp-validation-for="Status" class="text-danger"></span>
                             </div>
-                            
+
                         </div>
 
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label asp-for="ClassificacaoID" class="control-label"></label>
-                                <input asp-for="ClassificacaoID" class="form-control" />
+                                <select asp-for="ClassificacaoID" class="form-control" asp-items="ViewBag.ClassificacaoID">
+                                    <option value="">-- Selecione a Classificacao --</option>
+                                </select>
                                 <span asp-validation-for="ClassificacaoID" class="text-danger"></span>
                             </div>
 
                             <div class="form-group">
                                 <label asp-for="FornecedorID" class="control-label"></label>
-                                <input asp-for="FornecedorID" class="form-control" />
+                                <select asp-for="FornecedorID" class="form-control" asp-items="ViewBag.FornecedorID">
+                                    <option value="">-- Selecione o Fornecedor --</option>
+                                </select>
                                 <span asp-validation-for="FornecedorID" class="text-danger"></span>
                             </div>
-                            
+
                             <div class="form-group">
                                 <label asp-for="ResponsavelID" class="control-label"></label>
-                                <input asp-for="ResponsavelID" class="form-control" />
+                                <select asp-for="ResponsavelID" class="form-control" asp-items="ViewBag.ResponsavelID">
+                                    <option value="">-- Selecione o Responsavel --</option>
+                                </select>
                                 <span asp-validation-for="ResponsavelID" class="text-danger"></span>
                             </div>
-                            
+
                         </div>
 
                     </div>
@@ -136,9 +146,9 @@
                     Info
                 </div>
             </div>
-            <hr /> 
+            <hr />
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Edit" class="btn btn-primary" />
             </div>
         </form>
     </div>
