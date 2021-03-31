@@ -7,7 +7,6 @@
   <ItemGroup>
     <Folder Include="Controllers\Manutencao\" />
     <Folder Include="Funcoes\" />
-    <Folder Include="Migrations\" />
     <Folder Include="Models\ModeloEquipamento\" />
   </ItemGroup>
 

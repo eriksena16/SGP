@@ -10,8 +10,8 @@ using SGP.Data;
 namespace SGP.Migrations
 {
     [DbContext(typeof(SGPContext))]
-    [Migration("20210317011328_ValorAtual")]
-    partial class ValorAtual
+    [Migration("20210331230713_ClassificacaoVidaUtil")]
+    partial class ClassificacaoVidaUtil
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -46,6 +46,9 @@ namespace SGP.Migrations
                     b.Property<string>("Nome")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("VidaUtil")
+                        .HasColumnType("int");
+
                     b.Property<int>("taxa")
                         .HasColumnType("int");
 
@@ -68,10 +71,13 @@ namespace SGP.Migrations
                     b.Property<DateTime>("DataDeCompra")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("EstadoDeConservacao")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("EstadoDeConservacao")
+                        .HasColumnType("int");
 
                     b.Property<int>("FornecedorID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Idade")
                         .HasColumnType("int");
 
                     b.Property<string>("Modelo")
@@ -92,14 +98,14 @@ namespace SGP.Migrations
                     b.Property<int>("SetorID")
                         .HasColumnType("int");
 
-                    b.Property<string>("Status")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("Status")
+                        .HasColumnType("int");
 
-                    b.Property<double>("ValorAtual")
-                        .HasColumnType("float");
+                    b.Property<decimal>("ValorAtual")
+                        .HasColumnType("money");
 
-                    b.Property<double>("ValorDeCompra")
-                        .HasColumnType("float");
+                    b.Property<decimal>("ValorDeCompra")
+                        .HasColumnType("money");
 
                     b.HasKey("EquipamentoID");
 

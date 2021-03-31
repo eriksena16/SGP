@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SGP.Migrations
 {
-    public partial class ValorAtual : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -82,18 +82,19 @@ namespace SGP.Migrations
                 {
                     EquipamentoID = table.Column<int>(type: "int", nullable: false),
                     CategoriaID = table.Column<int>(type: "int", nullable: false),
+                    Idade = table.Column<int>(type: "int", nullable: false),
                     ClassificacaoID = table.Column<int>(type: "int", nullable: false),
                     Nota = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ValorDeCompra = table.Column<double>(type: "float", nullable: false),
-                    ValorAtual = table.Column<double>(type: "float", nullable: false),
+                    ValorDeCompra = table.Column<decimal>(type: "money", nullable: false),
+                    ValorAtual = table.Column<decimal>(type: "money", nullable: false),
                     DataDeCompra = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Modelo = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     FornecedorID = table.Column<int>(type: "int", nullable: false),
                     Serie = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Status = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Status = table.Column<int>(type: "int", nullable: true),
                     ResponsavelID = table.Column<int>(type: "int", nullable: false),
                     SetorID = table.Column<int>(type: "int", nullable: false),
-                    EstadoDeConservacao = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    EstadoDeConservacao = table.Column<int>(type: "int", nullable: true),
                     Observacao = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>

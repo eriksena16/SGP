@@ -32,7 +32,7 @@ namespace SGP.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Equipamento>().ToTable("Equipamentos").Property( e => e.ValorDeCompra).HasColumnType("Decimal").HasPrecision(18,2);
+            modelBuilder.Entity<Equipamento>().ToTable("Equipamentos");
             modelBuilder.Entity<Setor>().ToTable("Setores");
             modelBuilder.Entity<Categoria>().ToTable("Categorias");
             modelBuilder.Entity<Classificacao>().ToTable("Classificacoes");

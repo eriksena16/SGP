@@ -35,6 +35,7 @@ namespace SGP.Models.Equipamentos
         public decimal ValorDeCompra { get; set; }
 
         [Display(Name = "Valor Atual")]
+        [Column(TypeName = "money")]
         public decimal ValorAtual { get; set; }
 
         [DataType(DataType.Date)]

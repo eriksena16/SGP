@@ -10,6 +10,7 @@ namespace SGP.Models.Classificacoes
         public int ClassificacaoID { get; set; }
         public string Nome { get; set; }
         public int taxa { get; set; }
+        public int VidaUtil { get; set; }
 
         public ICollection<Equipamentos.Equipamento> Equipamentos { get; set; }
     }

@@ -54,7 +54,7 @@ namespace SGP.Controllers.Classificacao
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ClassificacaoID,Nome,taxa")]Models.Classificacoes.Classificacao classificacao)
+        public async Task<IActionResult> Create([Bind("ClassificacaoID,Nome,taxa,VidaUtil")]Models.Classificacoes.Classificacao classificacao)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace SGP.Controllers.Classificacao
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ClassificacaoID,Nome,taxa")] Models.Classificacoes.Classificacao classificacao)
+        public async Task<IActionResult> Edit(int id, [Bind("ClassificacaoID,Nome,taxa,VidaUtil")] Models.Classificacoes.Classificacao classificacao)
         {
             if (id != classificacao.ClassificacaoID)
             {
