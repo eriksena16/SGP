@@ -116,7 +116,7 @@ namespace SGP.Controllers.Equipamento
         {
             if (id == null)
             {
-                return NotFound();
+                return View();
             }
 
             var equipamentos = await _context.Equipamentos

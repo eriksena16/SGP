@@ -26,6 +26,7 @@ namespace SGP.Models.Equipamentos
 
         [Display(Name = "Classificação")]
         public int ClassificacaoID { get; set; }
+        [Display(Name ="Nota Fiscal")]
         public string Nota { get; set; }
 
        
@@ -42,8 +43,9 @@ namespace SGP.Models.Equipamentos
         [Display(Name = "Data de Compra")]
         public DateTime DataDeCompra { get; set; }
         public string Modelo { get; set; }
-        [Display(Name = "Fornecedor")]
+        [Display(Name = "Fabricante")]
         public int FornecedorID { get; set; }
+        [Display(Name = "Número de série")]
         public string Serie { get; set; }
         public Status? Status { get; set; }
         [Display(Name = "Responsavel")]
@@ -59,13 +61,14 @@ namespace SGP.Models.Equipamentos
         public Fornecedor Fornecedor { get; set; }
         public Responsavel Responsavel { get; set; }
         public Setor Setor { get; set; }
-
+        
         public decimal CalcularValorAtual(int idade)
         {
             this.Idade = idade;
             var percentual = Convert.ToDecimal(this.Classificacao.taxa) / 100; // 0,2
             decimal vt = this.ValorDeCompra * percentual; // 3200 * 0,2 = 640
-             return this.ValorAtual = this.ValorDeCompra - (vt * this.Idade);// 3200 - (640*3) = 1920
+
+            return this.ValorAtual = this.ValorDeCompra - (vt * this.Idade);// 3200 - (640*3) = 1920
 
         }
     }
