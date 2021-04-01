@@ -1,0 +1,544 @@
+warn: 01/04/2021 15:35:10.285 CoreEventId.SensitiveDataLoggingEnabledWarning[10400] (Microsoft.EntityFrameworkCore.Infrastructure) 
+      Sensitive data logging is enabled. Log entries and exception messages may include sensitive application data; this mode should only be enabled during development.
+info: 01/04/2021 15:35:10.919 CoreEventId.ContextInitialized[10403] (Microsoft.EntityFrameworkCore.Infrastructure) 
+      Entity Framework Core 5.0.4 initialized 'SGPContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: SensitiveDataLoggingEnabled 
+dbug: 01/04/2021 15:35:11.860 RelationalEventId.ConnectionOpening[20000] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Opening connection to database 'SGPContext-ab765f04-fd5e-42b6-a560-d05fd02049f3' on server '(localdb)\mssqllocaldb'.
+dbug: 01/04/2021 15:35:50.801 RelationalEventId.ConnectionOpened[20001] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Opened connection to database 'SGPContext-ab765f04-fd5e-42b6-a560-d05fd02049f3' on server '(localdb)\mssqllocaldb'.
+dbug: 01/04/2021 15:35:50.893 RelationalEventId.CommandCreating[20103] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Creating DbCommand for 'ExecuteNonQuery'.
+dbug: 01/04/2021 15:35:50.922 RelationalEventId.CommandCreated[20104] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Created DbCommand for 'ExecuteNonQuery' (60ms).
+dbug: 01/04/2021 15:35:50.957 RelationalEventId.CommandExecuting[20100] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT 1
+info: 01/04/2021 15:35:51.043 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (83ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT 1
+dbug: 01/04/2021 15:35:51.046 RelationalEventId.ConnectionClosing[20002] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Closing connection to database 'SGPContext-ab765f04-fd5e-42b6-a560-d05fd02049f3' on server '(localdb)\mssqllocaldb'.
+dbug: 01/04/2021 15:35:51.050 RelationalEventId.ConnectionClosed[20003] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Closed connection to database 'SGPContext-ab765f04-fd5e-42b6-a560-d05fd02049f3' on server '(localdb)\mssqllocaldb'.
+dbug: 01/04/2021 15:35:51.051 RelationalEventId.CommandCreating[20103] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Creating DbCommand for 'ExecuteScalar'.
+dbug: 01/04/2021 15:35:51.051 RelationalEventId.CommandCreated[20104] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Created DbCommand for 'ExecuteScalar' (0ms).
+dbug: 01/04/2021 15:35:51.051 RelationalEventId.ConnectionOpening[20000] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Opening connection to database 'SGPContext-ab765f04-fd5e-42b6-a560-d05fd02049f3' on server '(localdb)\mssqllocaldb'.
+dbug: 01/04/2021 15:35:51.053 RelationalEventId.ConnectionOpened[20001] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Opened connection to database 'SGPContext-ab765f04-fd5e-42b6-a560-d05fd02049f3' on server '(localdb)\mssqllocaldb'.
+dbug: 01/04/2021 15:35:51.053 RelationalEventId.CommandExecuting[20100] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='30']
+      
+      IF EXISTS
+          (SELECT *
+           FROM [sys].[objects] o
+           WHERE [o].[type] = 'U'
+           AND [o].[is_ms_shipped] = 0
+           AND NOT EXISTS (SELECT *
+               FROM [sys].[extended_properties] AS [ep]
+               WHERE [ep].[major_id] = [o].[object_id]
+                   AND [ep].[minor_id] = 0
+                   AND [ep].[class] = 1
+                   AND [ep].[name] = N'microsoft_database_tools_support'
+          )
+      )
+      SELECT 1 ELSE SELECT 0
+info: 01/04/2021 15:35:51.978 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (925ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      
+      IF EXISTS
+          (SELECT *
+           FROM [sys].[objects] o
+           WHERE [o].[type] = 'U'
+           AND [o].[is_ms_shipped] = 0
+           AND NOT EXISTS (SELECT *
+               FROM [sys].[extended_properties] AS [ep]
+               WHERE [ep].[major_id] = [o].[object_id]
+                   AND [ep].[minor_id] = 0
+                   AND [ep].[class] = 1
+                   AND [ep].[name] = N'microsoft_database_tools_support'
+          )
+      )
+      SELECT 1 ELSE SELECT 0
+dbug: 01/04/2021 15:35:51.978 RelationalEventId.ConnectionClosing[20002] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Closing connection to database 'SGPContext-ab765f04-fd5e-42b6-a560-d05fd02049f3' on server '(localdb)\mssqllocaldb'.
+dbug: 01/04/2021 15:35:51.978 RelationalEventId.ConnectionClosed[20003] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Closed connection to database 'SGPContext-ab765f04-fd5e-42b6-a560-d05fd02049f3' on server '(localdb)\mssqllocaldb'.
+dbug: 01/04/2021 15:35:52.313 CoreEventId.QueryCompilationStarting[10111] (Microsoft.EntityFrameworkCore.Query) 
+      Compiling query expression: 
+      'DbSet<Categoria>()
+          .Any()'
+dbug: 01/04/2021 15:35:52.532 CoreEventId.QueryExecutionPlanned[10107] (Microsoft.EntityFrameworkCore.Query) 
+      Generated query execution expression: 
+      'queryContext => new SingleQueryingEnumerable<bool>(
+          (RelationalQueryContext)queryContext, 
+          RelationalCommandCache.SelectExpression(
+              Projection Mapping:
+                  EmptyProjectionMember -> 0
+              SELECT EXISTS (
+                  Projection Mapping:
+                  SELECT 1
+                  FROM Categorias AS c)), 
+          Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, bool>, 
+          SGP.Data.SGPContext, 
+          False, 
+          False
+      )
+          .Single()'
+dbug: 01/04/2021 15:35:52.591 RelationalEventId.CommandCreating[20103] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Creating DbCommand for 'ExecuteReader'.
+dbug: 01/04/2021 15:35:52.591 RelationalEventId.CommandCreated[20104] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Created DbCommand for 'ExecuteReader' (0ms).
+dbug: 01/04/2021 15:35:52.591 RelationalEventId.ConnectionOpening[20000] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Opening connection to database 'SGPContext-ab765f04-fd5e-42b6-a560-d05fd02049f3' on server '(localdb)\mssqllocaldb'.
+dbug: 01/04/2021 15:35:52.591 RelationalEventId.ConnectionOpened[20001] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Opened connection to database 'SGPContext-ab765f04-fd5e-42b6-a560-d05fd02049f3' on server '(localdb)\mssqllocaldb'.
+dbug: 01/04/2021 15:35:52.591 RelationalEventId.CommandExecuting[20100] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT CASE
+          WHEN EXISTS (
+              SELECT 1
+              FROM [Categorias] AS [c]) THEN CAST(1 AS bit)
+          ELSE CAST(0 AS bit)
+      END
+info: 01/04/2021 15:35:52.659 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (67ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT CASE
+          WHEN EXISTS (
+              SELECT 1
+              FROM [Categorias] AS [c]) THEN CAST(1 AS bit)
+          ELSE CAST(0 AS bit)
+      END
+dbug: 01/04/2021 15:35:52.661 RelationalEventId.DataReaderDisposing[20300] (Microsoft.EntityFrameworkCore.Database.Command) 
+      A data reader was disposed.
+dbug: 01/04/2021 15:35:52.662 RelationalEventId.ConnectionClosing[20002] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Closing connection to database 'SGPContext-ab765f04-fd5e-42b6-a560-d05fd02049f3' on server '(localdb)\mssqllocaldb'.
+dbug: 01/04/2021 15:35:52.662 RelationalEventId.ConnectionClosed[20003] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Closed connection to database 'SGPContext-ab765f04-fd5e-42b6-a560-d05fd02049f3' on server '(localdb)\mssqllocaldb'.
+dbug: 01/04/2021 15:35:52.663 CoreEventId.ContextDisposed[10407] (Microsoft.EntityFrameworkCore.Infrastructure) 
+      'SGPContext' disposed.
+info: 01/04/2021 15:36:42.239 CoreEventId.ContextInitialized[10403] (Microsoft.EntityFrameworkCore.Infrastructure) 
+      Entity Framework Core 5.0.4 initialized 'SGPContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: SensitiveDataLoggingEnabled 
+dbug: 01/04/2021 15:36:42.253 CoreEventId.QueryCompilationStarting[10111] (Microsoft.EntityFrameworkCore.Query) 
+      Compiling query expression: 
+      'DbSet<Equipamento>()
+          .Include(c => c.Categoria)
+          .Include(cl => cl.Classificacao)
+          .Include(f => f.Fornecedor)
+          .Include(r => r.Responsavel)
+          .Include(s => s.Setor)
+          .AsNoTracking()'
+dbug: 01/04/2021 15:36:42.284 CoreEventId.NavigationBaseIncluded[10112] (Microsoft.EntityFrameworkCore.Query) 
+      Including navigation: 'Equipamento.Categoria'.
+dbug: 01/04/2021 15:36:42.285 CoreEventId.NavigationBaseIncluded[10112] (Microsoft.EntityFrameworkCore.Query) 
+      Including navigation: 'Equipamento.Classificacao'.
+dbug: 01/04/2021 15:36:42.286 CoreEventId.NavigationBaseIncluded[10112] (Microsoft.EntityFrameworkCore.Query) 
+      Including navigation: 'Equipamento.Fornecedor'.
+dbug: 01/04/2021 15:36:42.287 CoreEventId.NavigationBaseIncluded[10112] (Microsoft.EntityFrameworkCore.Query) 
+      Including navigation: 'Equipamento.Responsavel'.
+dbug: 01/04/2021 15:36:42.288 CoreEventId.NavigationBaseIncluded[10112] (Microsoft.EntityFrameworkCore.Query) 
+      Including navigation: 'Equipamento.Setor'.
+dbug: 01/04/2021 15:36:42.446 CoreEventId.QueryExecutionPlanned[10107] (Microsoft.EntityFrameworkCore.Query) 
+      Generated query execution expression: 
+      'queryContext => new SingleQueryingEnumerable<Equipamento>(
+          (RelationalQueryContext)queryContext, 
+          RelationalCommandCache.SelectExpression(
+              Projection Mapping:
+              SELECT e.EquipamentoID, e.CategoriaID, e.ClassificacaoID, e.DataDeCompra, e.EstadoDeConservacao, e.FornecedorID, e.Idade, e.Modelo, e.Nota, e.Observacao, e.ResponsavelID, e.Serie, e.SetorID, e.Status, e.ValorAtual, e.ValorDeCompra, c.CategoriaID, c.Nome, c0.ClassificacaoID, c0.Nome, c0.VidaUtil, c0.taxa, f.FornecedorID, f.Cnpj, f.Endereco, f.Nome, f.Telefone, r.ResponsavelID, r.Nome, s.SetorID, s.Nome
+              FROM Equipamentos AS e
+              INNER JOIN Categorias AS c ON e.CategoriaID == c.CategoriaID
+              INNER JOIN Classificacoes AS c0 ON e.ClassificacaoID == c0.ClassificacaoID
+              INNER JOIN Fornecedores AS f ON e.FornecedorID == f.FornecedorID
+              INNER JOIN Responsaveis AS r ON e.ResponsavelID == r.ResponsavelID
+              INNER JOIN Setores AS s ON e.SetorID == s.SetorID), 
+          Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, Equipamento>, 
+          SGP.Data.SGPContext, 
+          False, 
+          False
+      )'
+dbug: 01/04/2021 15:36:42.456 RelationalEventId.CommandCreating[20103] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Creating DbCommand for 'ExecuteReader'.
+dbug: 01/04/2021 15:36:42.456 RelationalEventId.CommandCreated[20104] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Created DbCommand for 'ExecuteReader' (0ms).
+dbug: 01/04/2021 15:36:42.458 RelationalEventId.ConnectionOpening[20000] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Opening connection to database 'SGPContext-ab765f04-fd5e-42b6-a560-d05fd02049f3' on server '(localdb)\mssqllocaldb'.
+dbug: 01/04/2021 15:36:42.460 RelationalEventId.ConnectionOpened[20001] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Opened connection to database 'SGPContext-ab765f04-fd5e-42b6-a560-d05fd02049f3' on server '(localdb)\mssqllocaldb'.
+dbug: 01/04/2021 15:36:42.460 RelationalEventId.CommandExecuting[20100] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [e].[EquipamentoID], [e].[CategoriaID], [e].[ClassificacaoID], [e].[DataDeCompra], [e].[EstadoDeConservacao], [e].[FornecedorID], [e].[Idade], [e].[Modelo], [e].[Nota], [e].[Observacao], [e].[ResponsavelID], [e].[Serie], [e].[SetorID], [e].[Status], [e].[ValorAtual], [e].[ValorDeCompra], [c].[CategoriaID], [c].[Nome], [c0].[ClassificacaoID], [c0].[Nome], [c0].[VidaUtil], [c0].[taxa], [f].[FornecedorID], [f].[Cnpj], [f].[Endereco], [f].[Nome], [f].[Telefone], [r].[ResponsavelID], [r].[Nome], [s].[SetorID], [s].[Nome]
+      FROM [Equipamentos] AS [e]
+      INNER JOIN [Categorias] AS [c] ON [e].[CategoriaID] = [c].[CategoriaID]
+      INNER JOIN [Classificacoes] AS [c0] ON [e].[ClassificacaoID] = [c0].[ClassificacaoID]
+      INNER JOIN [Fornecedores] AS [f] ON [e].[FornecedorID] = [f].[FornecedorID]
+      INNER JOIN [Responsaveis] AS [r] ON [e].[ResponsavelID] = [r].[ResponsavelID]
+      INNER JOIN [Setores] AS [s] ON [e].[SetorID] = [s].[SetorID]
+info: 01/04/2021 15:36:43.144 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (684ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [e].[EquipamentoID], [e].[CategoriaID], [e].[ClassificacaoID], [e].[DataDeCompra], [e].[EstadoDeConservacao], [e].[FornecedorID], [e].[Idade], [e].[Modelo], [e].[Nota], [e].[Observacao], [e].[ResponsavelID], [e].[Serie], [e].[SetorID], [e].[Status], [e].[ValorAtual], [e].[ValorDeCompra], [c].[CategoriaID], [c].[Nome], [c0].[ClassificacaoID], [c0].[Nome], [c0].[VidaUtil], [c0].[taxa], [f].[FornecedorID], [f].[Cnpj], [f].[Endereco], [f].[Nome], [f].[Telefone], [r].[ResponsavelID], [r].[Nome], [s].[SetorID], [s].[Nome]
+      FROM [Equipamentos] AS [e]
+      INNER JOIN [Categorias] AS [c] ON [e].[CategoriaID] = [c].[CategoriaID]
+      INNER JOIN [Classificacoes] AS [c0] ON [e].[ClassificacaoID] = [c0].[ClassificacaoID]
+      INNER JOIN [Fornecedores] AS [f] ON [e].[FornecedorID] = [f].[FornecedorID]
+      INNER JOIN [Responsaveis] AS [r] ON [e].[ResponsavelID] = [r].[ResponsavelID]
+      INNER JOIN [Setores] AS [s] ON [e].[SetorID] = [s].[SetorID]
+dbug: 01/04/2021 15:36:43.159 RelationalEventId.DataReaderDisposing[20300] (Microsoft.EntityFrameworkCore.Database.Command) 
+      A data reader was disposed.
+dbug: 01/04/2021 15:36:43.175 RelationalEventId.ConnectionClosing[20002] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Closing connection to database 'SGPContext-ab765f04-fd5e-42b6-a560-d05fd02049f3' on server '(localdb)\mssqllocaldb'.
+dbug: 01/04/2021 15:36:43.175 RelationalEventId.ConnectionClosed[20003] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Closed connection to database 'SGPContext-ab765f04-fd5e-42b6-a560-d05fd02049f3' on server '(localdb)\mssqllocaldb'.
+dbug: 01/04/2021 15:36:43.295 CoreEventId.ContextDisposed[10407] (Microsoft.EntityFrameworkCore.Infrastructure) 
+      'SGPContext' disposed.
+info: 01/04/2021 15:36:52.230 CoreEventId.ContextInitialized[10403] (Microsoft.EntityFrameworkCore.Infrastructure) 
+      Entity Framework Core 5.0.4 initialized 'SGPContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: SensitiveDataLoggingEnabled 
+dbug: 01/04/2021 15:36:52.692 CoreEventId.QueryCompilationStarting[10111] (Microsoft.EntityFrameworkCore.Query) 
+      Compiling query expression: 
+      'DbSet<Setor>()
+          .OrderBy(s => s.Nome)'
+dbug: 01/04/2021 15:36:52.700 CoreEventId.QueryExecutionPlanned[10107] (Microsoft.EntityFrameworkCore.Query) 
+      Generated query execution expression: 
+      'queryContext => new SingleQueryingEnumerable<Setor>(
+          (RelationalQueryContext)queryContext, 
+          RelationalCommandCache.SelectExpression(
+              Projection Mapping:
+                  EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: Setor.SetorID (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: Setor.Nome (string), 1], }
+              SELECT s.SetorID, s.Nome
+              FROM Setores AS s
+              ORDER BY s.Nome ASC), 
+          Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, Setor>, 
+          SGP.Data.SGPContext, 
+          False, 
+          False
+      )'
+dbug: 01/04/2021 15:36:52.702 RelationalEventId.CommandCreating[20103] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Creating DbCommand for 'ExecuteReader'.
+dbug: 01/04/2021 15:36:52.702 RelationalEventId.CommandCreated[20104] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Created DbCommand for 'ExecuteReader' (0ms).
+dbug: 01/04/2021 15:36:52.702 RelationalEventId.ConnectionOpening[20000] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Opening connection to database 'SGPContext-ab765f04-fd5e-42b6-a560-d05fd02049f3' on server '(localdb)\mssqllocaldb'.
+dbug: 01/04/2021 15:36:52.703 RelationalEventId.ConnectionOpened[20001] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Opened connection to database 'SGPContext-ab765f04-fd5e-42b6-a560-d05fd02049f3' on server '(localdb)\mssqllocaldb'.
+dbug: 01/04/2021 15:36:52.703 RelationalEventId.CommandExecuting[20100] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [s].[SetorID], [s].[Nome]
+      FROM [Setores] AS [s]
+      ORDER BY [s].[Nome]
+info: 01/04/2021 15:36:52.898 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (196ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [s].[SetorID], [s].[Nome]
+      FROM [Setores] AS [s]
+      ORDER BY [s].[Nome]
+dbug: 01/04/2021 15:36:52.935 CoreEventId.StartedTracking[10806] (Microsoft.EntityFrameworkCore.ChangeTracking) 
+      Context 'SGPContext' started tracking 'Setor' entity with key '{SetorID: 3}'.
+dbug: 01/04/2021 15:36:52.952 CoreEventId.StartedTracking[10806] (Microsoft.EntityFrameworkCore.ChangeTracking) 
+      Context 'SGPContext' started tracking 'Setor' entity with key '{SetorID: 1}'.
+dbug: 01/04/2021 15:36:52.952 CoreEventId.StartedTracking[10806] (Microsoft.EntityFrameworkCore.ChangeTracking) 
+      Context 'SGPContext' started tracking 'Setor' entity with key '{SetorID: 2}'.
+dbug: 01/04/2021 15:36:52.952 RelationalEventId.DataReaderDisposing[20300] (Microsoft.EntityFrameworkCore.Database.Command) 
+      A data reader was disposed.
+dbug: 01/04/2021 15:36:52.952 RelationalEventId.ConnectionClosing[20002] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Closing connection to database 'SGPContext-ab765f04-fd5e-42b6-a560-d05fd02049f3' on server '(localdb)\mssqllocaldb'.
+dbug: 01/04/2021 15:36:52.952 RelationalEventId.ConnectionClosed[20003] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Closed connection to database 'SGPContext-ab765f04-fd5e-42b6-a560-d05fd02049f3' on server '(localdb)\mssqllocaldb'.
+dbug: 01/04/2021 15:36:52.957 CoreEventId.QueryCompilationStarting[10111] (Microsoft.EntityFrameworkCore.Query) 
+      Compiling query expression: 
+      'DbSet<Categoria>()
+          .OrderBy(c => c.Nome)'
+dbug: 01/04/2021 15:36:52.959 CoreEventId.QueryExecutionPlanned[10107] (Microsoft.EntityFrameworkCore.Query) 
+      Generated query execution expression: 
+      'queryContext => new SingleQueryingEnumerable<Categoria>(
+          (RelationalQueryContext)queryContext, 
+          RelationalCommandCache.SelectExpression(
+              Projection Mapping:
+                  EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: Categoria.CategoriaID (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: Categoria.Nome (string), 1], }
+              SELECT c.CategoriaID, c.Nome
+              FROM Categorias AS c
+              ORDER BY c.Nome ASC), 
+          Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, Categoria>, 
+          SGP.Data.SGPContext, 
+          False, 
+          False
+      )'
+dbug: 01/04/2021 15:36:52.959 RelationalEventId.CommandCreating[20103] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Creating DbCommand for 'ExecuteReader'.
+dbug: 01/04/2021 15:36:52.959 RelationalEventId.CommandCreated[20104] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Created DbCommand for 'ExecuteReader' (0ms).
+dbug: 01/04/2021 15:36:52.959 RelationalEventId.ConnectionOpening[20000] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Opening connection to database 'SGPContext-ab765f04-fd5e-42b6-a560-d05fd02049f3' on server '(localdb)\mssqllocaldb'.
+dbug: 01/04/2021 15:36:52.959 RelationalEventId.ConnectionOpened[20001] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Opened connection to database 'SGPContext-ab765f04-fd5e-42b6-a560-d05fd02049f3' on server '(localdb)\mssqllocaldb'.
+dbug: 01/04/2021 15:36:52.959 RelationalEventId.CommandExecuting[20100] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [c].[CategoriaID], [c].[Nome]
+      FROM [Categorias] AS [c]
+      ORDER BY [c].[Nome]
+info: 01/04/2021 15:36:52.960 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [c].[CategoriaID], [c].[Nome]
+      FROM [Categorias] AS [c]
+      ORDER BY [c].[Nome]
+dbug: 01/04/2021 15:36:52.963 CoreEventId.StartedTracking[10806] (Microsoft.EntityFrameworkCore.ChangeTracking) 
+      Context 'SGPContext' started tracking 'Categoria' entity with key '{CategoriaID: 1}'.
+dbug: 01/04/2021 15:36:52.965 CoreEventId.StartedTracking[10806] (Microsoft.EntityFrameworkCore.ChangeTracking) 
+      Context 'SGPContext' started tracking 'Categoria' entity with key '{CategoriaID: 2}'.
+dbug: 01/04/2021 15:36:52.965 RelationalEventId.DataReaderDisposing[20300] (Microsoft.EntityFrameworkCore.Database.Command) 
+      A data reader was disposed.
+dbug: 01/04/2021 15:36:52.965 RelationalEventId.ConnectionClosing[20002] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Closing connection to database 'SGPContext-ab765f04-fd5e-42b6-a560-d05fd02049f3' on server '(localdb)\mssqllocaldb'.
+dbug: 01/04/2021 15:36:52.965 RelationalEventId.ConnectionClosed[20003] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Closed connection to database 'SGPContext-ab765f04-fd5e-42b6-a560-d05fd02049f3' on server '(localdb)\mssqllocaldb'.
+dbug: 01/04/2021 15:36:52.974 CoreEventId.QueryCompilationStarting[10111] (Microsoft.EntityFrameworkCore.Query) 
+      Compiling query expression: 
+      'DbSet<Classificacao>()
+          .OrderBy(cl => cl.Nome)'
+dbug: 01/04/2021 15:36:52.976 CoreEventId.QueryExecutionPlanned[10107] (Microsoft.EntityFrameworkCore.Query) 
+      Generated query execution expression: 
+      'queryContext => new SingleQueryingEnumerable<Classificacao>(
+          (RelationalQueryContext)queryContext, 
+          RelationalCommandCache.SelectExpression(
+              Projection Mapping:
+                  EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: Classificacao.ClassificacaoID (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: Classificacao.Nome (string), 1], [Property: Classificacao.VidaUtil (int) Required, 2], [Property: Classificacao.taxa (int) Required, 3], }
+              SELECT c.ClassificacaoID, c.Nome, c.VidaUtil, c.taxa
+              FROM Classificacoes AS c
+              ORDER BY c.Nome ASC), 
+          Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, Classificacao>, 
+          SGP.Data.SGPContext, 
+          False, 
+          False
+      )'
+dbug: 01/04/2021 15:36:52.976 RelationalEventId.CommandCreating[20103] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Creating DbCommand for 'ExecuteReader'.
+dbug: 01/04/2021 15:36:52.976 RelationalEventId.CommandCreated[20104] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Created DbCommand for 'ExecuteReader' (0ms).
+dbug: 01/04/2021 15:36:52.976 RelationalEventId.ConnectionOpening[20000] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Opening connection to database 'SGPContext-ab765f04-fd5e-42b6-a560-d05fd02049f3' on server '(localdb)\mssqllocaldb'.
+dbug: 01/04/2021 15:36:52.976 RelationalEventId.ConnectionOpened[20001] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Opened connection to database 'SGPContext-ab765f04-fd5e-42b6-a560-d05fd02049f3' on server '(localdb)\mssqllocaldb'.
+dbug: 01/04/2021 15:36:52.976 RelationalEventId.CommandExecuting[20100] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [c].[ClassificacaoID], [c].[Nome], [c].[VidaUtil], [c].[taxa]
+      FROM [Classificacoes] AS [c]
+      ORDER BY [c].[Nome]
+info: 01/04/2021 15:36:52.977 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [c].[ClassificacaoID], [c].[Nome], [c].[VidaUtil], [c].[taxa]
+      FROM [Classificacoes] AS [c]
+      ORDER BY [c].[Nome]
+dbug: 01/04/2021 15:36:52.981 CoreEventId.StartedTracking[10806] (Microsoft.EntityFrameworkCore.ChangeTracking) 
+      Context 'SGPContext' started tracking 'Classificacao' entity with key '{ClassificacaoID: 2}'.
+dbug: 01/04/2021 15:36:52.985 CoreEventId.StartedTracking[10806] (Microsoft.EntityFrameworkCore.ChangeTracking) 
+      Context 'SGPContext' started tracking 'Classificacao' entity with key '{ClassificacaoID: 1}'.
+dbug: 01/04/2021 15:36:52.985 RelationalEventId.DataReaderDisposing[20300] (Microsoft.EntityFrameworkCore.Database.Command) 
+      A data reader was disposed.
+dbug: 01/04/2021 15:36:52.985 RelationalEventId.ConnectionClosing[20002] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Closing connection to database 'SGPContext-ab765f04-fd5e-42b6-a560-d05fd02049f3' on server '(localdb)\mssqllocaldb'.
+dbug: 01/04/2021 15:36:52.985 RelationalEventId.ConnectionClosed[20003] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Closed connection to database 'SGPContext-ab765f04-fd5e-42b6-a560-d05fd02049f3' on server '(localdb)\mssqllocaldb'.
+dbug: 01/04/2021 15:36:52.988 CoreEventId.QueryCompilationStarting[10111] (Microsoft.EntityFrameworkCore.Query) 
+      Compiling query expression: 
+      'DbSet<Fornecedor>()
+          .OrderBy(f => f.Nome)'
+dbug: 01/04/2021 15:36:52.990 CoreEventId.QueryExecutionPlanned[10107] (Microsoft.EntityFrameworkCore.Query) 
+      Generated query execution expression: 
+      'queryContext => new SingleQueryingEnumerable<Fornecedor>(
+          (RelationalQueryContext)queryContext, 
+          RelationalCommandCache.SelectExpression(
+              Projection Mapping:
+                  EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: Fornecedor.FornecedorID (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: Fornecedor.Cnpj (string), 1], [Property: Fornecedor.Endereco (string), 2], [Property: Fornecedor.Nome (string), 3], [Property: Fornecedor.Telefone (string), 4], }
+              SELECT f.FornecedorID, f.Cnpj, f.Endereco, f.Nome, f.Telefone
+              FROM Fornecedores AS f
+              ORDER BY f.Nome ASC), 
+          Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, Fornecedor>, 
+          SGP.Data.SGPContext, 
+          False, 
+          False
+      )'
+dbug: 01/04/2021 15:36:52.990 RelationalEventId.CommandCreating[20103] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Creating DbCommand for 'ExecuteReader'.
+dbug: 01/04/2021 15:36:52.990 RelationalEventId.CommandCreated[20104] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Created DbCommand for 'ExecuteReader' (0ms).
+dbug: 01/04/2021 15:36:52.990 RelationalEventId.ConnectionOpening[20000] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Opening connection to database 'SGPContext-ab765f04-fd5e-42b6-a560-d05fd02049f3' on server '(localdb)\mssqllocaldb'.
+dbug: 01/04/2021 15:36:52.991 RelationalEventId.ConnectionOpened[20001] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Opened connection to database 'SGPContext-ab765f04-fd5e-42b6-a560-d05fd02049f3' on server '(localdb)\mssqllocaldb'.
+dbug: 01/04/2021 15:36:52.991 RelationalEventId.CommandExecuting[20100] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [f].[FornecedorID], [f].[Cnpj], [f].[Endereco], [f].[Nome], [f].[Telefone]
+      FROM [Fornecedores] AS [f]
+      ORDER BY [f].[Nome]
+info: 01/04/2021 15:36:53.002 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (11ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [f].[FornecedorID], [f].[Cnpj], [f].[Endereco], [f].[Nome], [f].[Telefone]
+      FROM [Fornecedores] AS [f]
+      ORDER BY [f].[Nome]
+dbug: 01/04/2021 15:36:53.005 CoreEventId.StartedTracking[10806] (Microsoft.EntityFrameworkCore.ChangeTracking) 
+      Context 'SGPContext' started tracking 'Fornecedor' entity with key '{FornecedorID: 1}'.
+dbug: 01/04/2021 15:36:53.010 CoreEventId.StartedTracking[10806] (Microsoft.EntityFrameworkCore.ChangeTracking) 
+      Context 'SGPContext' started tracking 'Fornecedor' entity with key '{FornecedorID: 2}'.
+dbug: 01/04/2021 15:36:53.010 RelationalEventId.DataReaderDisposing[20300] (Microsoft.EntityFrameworkCore.Database.Command) 
+      A data reader was disposed.
+dbug: 01/04/2021 15:36:53.010 RelationalEventId.ConnectionClosing[20002] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Closing connection to database 'SGPContext-ab765f04-fd5e-42b6-a560-d05fd02049f3' on server '(localdb)\mssqllocaldb'.
+dbug: 01/04/2021 15:36:53.011 RelationalEventId.ConnectionClosed[20003] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Closed connection to database 'SGPContext-ab765f04-fd5e-42b6-a560-d05fd02049f3' on server '(localdb)\mssqllocaldb'.
+dbug: 01/04/2021 15:36:53.014 CoreEventId.QueryCompilationStarting[10111] (Microsoft.EntityFrameworkCore.Query) 
+      Compiling query expression: 
+      'DbSet<Responsavel>()
+          .OrderBy(r => r.Nome)'
+dbug: 01/04/2021 15:36:53.017 CoreEventId.QueryExecutionPlanned[10107] (Microsoft.EntityFrameworkCore.Query) 
+      Generated query execution expression: 
+      'queryContext => new SingleQueryingEnumerable<Responsavel>(
+          (RelationalQueryContext)queryContext, 
+          RelationalCommandCache.SelectExpression(
+              Projection Mapping:
+                  EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: Responsavel.ResponsavelID (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: Responsavel.Nome (string), 1], }
+              SELECT r.ResponsavelID, r.Nome
+              FROM Responsaveis AS r
+              ORDER BY r.Nome ASC), 
+          Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, Responsavel>, 
+          SGP.Data.SGPContext, 
+          False, 
+          False
+      )'
+dbug: 01/04/2021 15:36:53.017 RelationalEventId.CommandCreating[20103] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Creating DbCommand for 'ExecuteReader'.
+dbug: 01/04/2021 15:36:53.017 RelationalEventId.CommandCreated[20104] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Created DbCommand for 'ExecuteReader' (0ms).
+dbug: 01/04/2021 15:36:53.017 RelationalEventId.ConnectionOpening[20000] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Opening connection to database 'SGPContext-ab765f04-fd5e-42b6-a560-d05fd02049f3' on server '(localdb)\mssqllocaldb'.
+dbug: 01/04/2021 15:36:53.017 RelationalEventId.ConnectionOpened[20001] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Opened connection to database 'SGPContext-ab765f04-fd5e-42b6-a560-d05fd02049f3' on server '(localdb)\mssqllocaldb'.
+dbug: 01/04/2021 15:36:53.017 RelationalEventId.CommandExecuting[20100] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [r].[ResponsavelID], [r].[Nome]
+      FROM [Responsaveis] AS [r]
+      ORDER BY [r].[Nome]
+info: 01/04/2021 15:36:53.018 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [r].[ResponsavelID], [r].[Nome]
+      FROM [Responsaveis] AS [r]
+      ORDER BY [r].[Nome]
+dbug: 01/04/2021 15:36:53.021 CoreEventId.StartedTracking[10806] (Microsoft.EntityFrameworkCore.ChangeTracking) 
+      Context 'SGPContext' started tracking 'Responsavel' entity with key '{ResponsavelID: 1}'.
+dbug: 01/04/2021 15:36:53.023 RelationalEventId.DataReaderDisposing[20300] (Microsoft.EntityFrameworkCore.Database.Command) 
+      A data reader was disposed.
+dbug: 01/04/2021 15:36:53.023 RelationalEventId.ConnectionClosing[20002] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Closing connection to database 'SGPContext-ab765f04-fd5e-42b6-a560-d05fd02049f3' on server '(localdb)\mssqllocaldb'.
+dbug: 01/04/2021 15:36:53.023 RelationalEventId.ConnectionClosed[20003] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Closed connection to database 'SGPContext-ab765f04-fd5e-42b6-a560-d05fd02049f3' on server '(localdb)\mssqllocaldb'.
+dbug: 01/04/2021 15:36:53.178 CoreEventId.ContextDisposed[10407] (Microsoft.EntityFrameworkCore.Infrastructure) 
+      'SGPContext' disposed.
+info: 01/04/2021 15:39:22.057 CoreEventId.ContextInitialized[10403] (Microsoft.EntityFrameworkCore.Infrastructure) 
+      Entity Framework Core 5.0.4 initialized 'SGPContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: SensitiveDataLoggingEnabled 
+dbug: 01/04/2021 15:39:22.071 CoreEventId.ValueGenerated[10808] (Microsoft.EntityFrameworkCore.ChangeTracking) 
+      'SGPContext' generated temporary value '-2147482647' for the property 'SetorID.Setor'.
+dbug: 01/04/2021 15:39:22.079 CoreEventId.StartedTracking[10806] (Microsoft.EntityFrameworkCore.ChangeTracking) 
+      Context 'SGPContext' started tracking 'Setor' entity with key '{SetorID: -2147482647}'.
+dbug: 01/04/2021 15:39:22.081 CoreEventId.SaveChangesStarting[10004] (Microsoft.EntityFrameworkCore.Update) 
+      SaveChanges starting for 'SGPContext'.
+dbug: 01/04/2021 15:39:22.083 CoreEventId.DetectChangesStarting[10800] (Microsoft.EntityFrameworkCore.ChangeTracking) 
+      DetectChanges starting for 'SGPContext'.
+dbug: 01/04/2021 15:39:22.089 CoreEventId.DetectChangesCompleted[10801] (Microsoft.EntityFrameworkCore.ChangeTracking) 
+      DetectChanges completed for 'SGPContext'.
+dbug: 01/04/2021 15:39:22.130 RelationalEventId.ConnectionOpening[20000] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Opening connection to database 'SGPContext-ab765f04-fd5e-42b6-a560-d05fd02049f3' on server '(localdb)\mssqllocaldb'.
+dbug: 01/04/2021 15:39:22.130 RelationalEventId.ConnectionOpened[20001] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Opened connection to database 'SGPContext-ab765f04-fd5e-42b6-a560-d05fd02049f3' on server '(localdb)\mssqllocaldb'.
+dbug: 01/04/2021 15:39:22.131 RelationalEventId.TransactionStarting[20209] (Microsoft.EntityFrameworkCore.Database.Transaction) 
+      Beginning transaction with isolation level 'Unspecified'.
+dbug: 01/04/2021 15:39:22.383 RelationalEventId.TransactionStarted[20200] (Microsoft.EntityFrameworkCore.Database.Transaction) 
+      Began transaction with isolation level 'ReadCommitted'.
+dbug: 01/04/2021 15:39:22.468 RelationalEventId.CommandCreating[20103] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Creating DbCommand for 'ExecuteReader'.
+dbug: 01/04/2021 15:39:22.468 RelationalEventId.CommandCreated[20104] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Created DbCommand for 'ExecuteReader' (0ms).
+dbug: 01/04/2021 15:39:22.514 RelationalEventId.CommandExecuting[20100] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executing DbCommand [Parameters=[@p0='ADMINISTRACÃO' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SET NOCOUNT ON;
+      INSERT INTO [Setores] ([Nome])
+      VALUES (@p0);
+      SELECT [SetorID]
+      FROM [Setores]
+      WHERE @@ROWCOUNT = 1 AND [SetorID] = scope_identity();
+info: 01/04/2021 15:39:22.941 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (455ms) [Parameters=[@p0='ADMINISTRACÃO' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SET NOCOUNT ON;
+      INSERT INTO [Setores] ([Nome])
+      VALUES (@p0);
+      SELECT [SetorID]
+      FROM [Setores]
+      WHERE @@ROWCOUNT = 1 AND [SetorID] = scope_identity();
+dbug: 01/04/2021 15:39:22.956 CoreEventId.ForeignKeyChangeDetected[10803] (Microsoft.EntityFrameworkCore.ChangeTracking) 
+      The foreign key property 'Setor.SetorID' was detected as changed from '-2147482647' to '4' for entity with key '{SetorID: 4}'.
+dbug: 01/04/2021 15:39:22.968 RelationalEventId.DataReaderDisposing[20300] (Microsoft.EntityFrameworkCore.Database.Command) 
+      A data reader was disposed.
+dbug: 01/04/2021 15:39:22.971 RelationalEventId.TransactionCommitting[20210] (Microsoft.EntityFrameworkCore.Database.Transaction) 
+      Committing transaction.
+dbug: 01/04/2021 15:39:22.975 RelationalEventId.TransactionCommitted[20202] (Microsoft.EntityFrameworkCore.Database.Transaction) 
+      Committed transaction.
+dbug: 01/04/2021 15:39:22.977 RelationalEventId.ConnectionClosing[20002] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Closing connection to database 'SGPContext-ab765f04-fd5e-42b6-a560-d05fd02049f3' on server '(localdb)\mssqllocaldb'.
+dbug: 01/04/2021 15:39:22.997 RelationalEventId.ConnectionClosed[20003] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Closed connection to database 'SGPContext-ab765f04-fd5e-42b6-a560-d05fd02049f3' on server '(localdb)\mssqllocaldb'.
+dbug: 01/04/2021 15:39:22.999 RelationalEventId.TransactionDisposed[20204] (Microsoft.EntityFrameworkCore.Database.Transaction) 
+      Disposing transaction.
+dbug: 01/04/2021 15:39:23.005 CoreEventId.StateChanged[10807] (Microsoft.EntityFrameworkCore.ChangeTracking) 
+      The 'Setor' entity with key '{SetorID: 4}' tracked by 'SGPContext' changed state from 'Added' to 'Unchanged'.
+dbug: 01/04/2021 15:39:23.007 CoreEventId.SaveChangesCompleted[10005] (Microsoft.EntityFrameworkCore.Update) 
+      SaveChanges completed for 'SGPContext' with 1 entities written to the database.
+dbug: 01/04/2021 15:39:23.026 CoreEventId.ContextDisposed[10407] (Microsoft.EntityFrameworkCore.Infrastructure) 
+      'SGPContext' disposed.
+info: 01/04/2021 15:39:23.268 CoreEventId.ContextInitialized[10403] (Microsoft.EntityFrameworkCore.Infrastructure) 
+      Entity Framework Core 5.0.4 initialized 'SGPContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: SensitiveDataLoggingEnabled 
+dbug: 01/04/2021 15:39:23.269 CoreEventId.QueryCompilationStarting[10111] (Microsoft.EntityFrameworkCore.Query) 
+      Compiling query expression: 
+      'DbSet<Setor>()'
+dbug: 01/04/2021 15:39:23.270 CoreEventId.QueryExecutionPlanned[10107] (Microsoft.EntityFrameworkCore.Query) 
+      Generated query execution expression: 
+      'queryContext => new SingleQueryingEnumerable<Setor>(
+          (RelationalQueryContext)queryContext, 
+          RelationalCommandCache.SelectExpression(
+              Projection Mapping:
+                  EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: Setor.SetorID (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: Setor.Nome (string), 1], }
+              SELECT s.SetorID, s.Nome
+              FROM Setores AS s), 
+          Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, Setor>, 
+          SGP.Data.SGPContext, 
+          False, 
+          False
+      )'
+dbug: 01/04/2021 15:39:23.271 RelationalEventId.CommandCreating[20103] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Creating DbCommand for 'ExecuteReader'.
+dbug: 01/04/2021 15:39:23.271 RelationalEventId.CommandCreated[20104] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Created DbCommand for 'ExecuteReader' (0ms).
+dbug: 01/04/2021 15:39:23.271 RelationalEventId.ConnectionOpening[20000] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Opening connection to database 'SGPContext-ab765f04-fd5e-42b6-a560-d05fd02049f3' on server '(localdb)\mssqllocaldb'.
+dbug: 01/04/2021 15:39:23.271 RelationalEventId.ConnectionOpened[20001] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Opened connection to database 'SGPContext-ab765f04-fd5e-42b6-a560-d05fd02049f3' on server '(localdb)\mssqllocaldb'.
+dbug: 01/04/2021 15:39:23.271 RelationalEventId.CommandExecuting[20100] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [s].[SetorID], [s].[Nome]
+      FROM [Setores] AS [s]
+info: 01/04/2021 15:39:23.275 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [s].[SetorID], [s].[Nome]
+      FROM [Setores] AS [s]
+dbug: 01/04/2021 15:39:23.275 CoreEventId.StartedTracking[10806] (Microsoft.EntityFrameworkCore.ChangeTracking) 
+      Context 'SGPContext' started tracking 'Setor' entity with key '{SetorID: 1}'.
+dbug: 01/04/2021 15:39:23.275 CoreEventId.StartedTracking[10806] (Microsoft.EntityFrameworkCore.ChangeTracking) 
+      Context 'SGPContext' started tracking 'Setor' entity with key '{SetorID: 2}'.
+dbug: 01/04/2021 15:39:23.275 CoreEventId.StartedTracking[10806] (Microsoft.EntityFrameworkCore.ChangeTracking) 
+      Context 'SGPContext' started tracking 'Setor' entity with key '{SetorID: 3}'.
+dbug: 01/04/2021 15:39:23.275 CoreEventId.StartedTracking[10806] (Microsoft.EntityFrameworkCore.ChangeTracking) 
+      Context 'SGPContext' started tracking 'Setor' entity with key '{SetorID: 4}'.
+dbug: 01/04/2021 15:39:23.276 RelationalEventId.DataReaderDisposing[20300] (Microsoft.EntityFrameworkCore.Database.Command) 
+      A data reader was disposed.
+dbug: 01/04/2021 15:39:23.276 RelationalEventId.ConnectionClosing[20002] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Closing connection to database 'SGPContext-ab765f04-fd5e-42b6-a560-d05fd02049f3' on server '(localdb)\mssqllocaldb'.
+dbug: 01/04/2021 15:39:23.276 RelationalEventId.ConnectionClosed[20003] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Closed connection to database 'SGPContext-ab765f04-fd5e-42b6-a560-d05fd02049f3' on server '(localdb)\mssqllocaldb'.
+dbug: 01/04/2021 15:39:23.292 CoreEventId.ContextDisposed[10407] (Microsoft.EntityFrameworkCore.Infrastructure) 
+      'SGPContext' disposed.

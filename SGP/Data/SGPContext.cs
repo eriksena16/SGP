@@ -9,6 +9,7 @@ using SGP.Models.Categorias;
 using SGP.Models.Fornecedores;
 using SGP.Models.Responsaveis;
 using SGP.Models.Classificacoes;
+using System.IO;
 
 namespace SGP.Data
 {
@@ -17,6 +18,22 @@ namespace SGP.Data
         public SGPContext(DbContextOptions<SGPContext> options)
             : base(options)
         {
+        }
+        private readonly StreamWriter _logStream = new StreamWriter("mylog.txt", append: true);
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+            => optionsBuilder.LogTo(_logStream.WriteLine).EnableSensitiveDataLogging();
+
+        public override void Dispose()
+        {
+            base.Dispose();
+            _logStream.Dispose();
+        }
+
+        public override async ValueTask DisposeAsync()
+        {
+            await base.DisposeAsync();
+            await _logStream.DisposeAsync();
         }
 
         public DbSet<SGP.Models.Equipamentos.Equipamento> Equipamentos { get; set; }

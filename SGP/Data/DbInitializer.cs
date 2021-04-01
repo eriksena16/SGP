@@ -80,12 +80,12 @@ namespace SGP.Data
 
             var equipamentos = new Equipamento[]
             {
-                new Equipamento{EquipamentoID =1, CategoriaID=1,ClassificacaoID=2,Nota="402563", ValorDeCompra = 30, DataDeCompra=DateTime.Parse("2020-09-01"),
-                    EstadoDeConservacao = EstadoDeConservacao.Bom , Modelo = "Vostro", FornecedorID = 1, Serie = "15355", Status = Status.Ativo, SetorID = 1, ResponsavelID = 1 },
-                new Equipamento{EquipamentoID =2, CategoriaID=2,ClassificacaoID=1,Nota="402564", ValorDeCompra = 45, DataDeCompra=DateTime.Parse("2020-04-30"),
-                    EstadoDeConservacao = EstadoDeConservacao.Ruim, Modelo = "Ispiron", FornecedorID = 1, Serie = "153554", Status = Status.Inativo, SetorID = 2, ResponsavelID = 2 },
-                new Equipamento{EquipamentoID =3, CategoriaID=1,ClassificacaoID=1,Nota="402563", ValorDeCompra = 30, DataDeCompra=DateTime.Parse("2020-09-01"),
-                    EstadoDeConservacao = EstadoDeConservacao.Otimo, Modelo = "Vostro", FornecedorID = 1, Serie = "1535547", Status = Status.Ativo, SetorID = 1, ResponsavelID = 1 }
+                new Equipamento{EquipamentoID =1, CategoriaID=1,ClassificacaoID=2,Nota="402563", ValorDeCompra = 30, DataDeCompra=DateTime.Parse("2020-09-01"),Modelo = "Vostro", FornecedorID = 1,
+                     Serie = "15355", Status = Status.Ativo, ResponsavelID = 1,SetorID = 1, EstadoDeConservacao = EstadoDeConservacao.Bom  },
+                new Equipamento{EquipamentoID =3, CategoriaID=1,ClassificacaoID=2,Nota="402d563", ValorDeCompra = 60, DataDeCompra=DateTime.Parse("2020-09-01"),Modelo = "Vostro", FornecedorID = 1,
+                     Serie = "69854", Status = Status.Inativo, ResponsavelID = 1,SetorID = 1, EstadoDeConservacao = EstadoDeConservacao.Bom  },
+                new Equipamento{EquipamentoID =1, CategoriaID=1,ClassificacaoID=2,Nota="402563", ValorDeCompra = 30, DataDeCompra=DateTime.Parse("2020-09-01"),Modelo = "Vostro", FornecedorID = 1,
+                     Serie = "15ss355", Status = Status.Ativo, ResponsavelID = 1,SetorID = 1, EstadoDeConservacao = EstadoDeConservacao.Bom  },
             };
             foreach (Equipamento e in equipamentos)
             {
