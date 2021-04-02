@@ -19,7 +19,7 @@ namespace SGP.Data
             : base(options)
         {
         }
-        private readonly StreamWriter _logStream = new StreamWriter("mylog.txt", append: true);
+       /* private readonly StreamWriter _logStream = new StreamWriter("mylog.txt", append: true);
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
             => optionsBuilder.LogTo(_logStream.WriteLine).EnableSensitiveDataLogging();
@@ -34,7 +34,7 @@ namespace SGP.Data
         {
             await base.DisposeAsync();
             await _logStream.DisposeAsync();
-        }
+        }*/
 
         public DbSet<SGP.Models.Equipamentos.Equipamento> Equipamentos { get; set; }
 

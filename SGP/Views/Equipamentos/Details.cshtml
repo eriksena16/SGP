@@ -38,11 +38,11 @@
                 var valorCompra = Model.ValorDeCompra;
                 string specifier;
                 System.Globalization.CultureInfo culture;
-                specifier = "N";
+                specifier = "C2";
                 culture = System.Globalization.CultureInfo.CreateSpecificCulture("pt-BR");
 
             }
-           R$ @Html.Raw(valorCompra.ToString(specifier, culture))
+            @Html.Raw(valorCompra.ToString(specifier, culture))
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.ValorAtual)
@@ -53,7 +53,7 @@
                 
 
             }
-          R$ @Html.Raw(valorAtual.ToString(specifier, culture))
+           @Html.Raw(valorAtual.ToString(specifier, culture))
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Idade)

@@ -63,6 +63,8 @@ namespace SGP.Controllers.Equipamento
                 equipamentos.Idade -= 1;
                 equipamentos.ValorAtual = equipamentos.CalcularValorAtual(equipamentos.Idade);
             }
+
+            var ano = 3 +2;
             
 
             if (equipamentos == null)
