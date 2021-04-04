@@ -39,7 +39,8 @@
                         <tr>
                             
                             <td>@Html.DisplayFor(modelItem => item.Nome)</td>
-                            <td>@Html.DisplayFor(modelItem => item.taxa)%</td>
+                            <td>
+                            @Html.DisplayFor(modelItem => item.taxa)%</td>
                             <td>@Html.DisplayFor(modelItem => item.VidaUtil) Anos</td>
                             <td>
                                 <a asp-action="Edit" asp-route-id="@item.ClassificacaoID">Edit</a> |
