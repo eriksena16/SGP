@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SGP.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class Inicial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -27,7 +27,8 @@ namespace SGP.Migrations
                     ClassificacaoID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nome = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    taxa = table.Column<int>(type: "int", nullable: false)
+                    taxa = table.Column<int>(type: "int", nullable: false),
+                    VidaUtil = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -35,10 +36,10 @@ namespace SGP.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Fornecedores",
+                name: "Marcas",
                 columns: table => new
                 {
-                    FornecedorID = table.Column<int>(type: "int", nullable: false)
+                    MarcaID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nome = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Cnpj = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -47,7 +48,7 @@ namespace SGP.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Fornecedores", x => x.FornecedorID);
+                    table.PrimaryKey("PK_Marcas", x => x.MarcaID);
                 });
 
             migrationBuilder.CreateTable(
@@ -89,7 +90,7 @@ namespace SGP.Migrations
                     ValorAtual = table.Column<decimal>(type: "money", nullable: false),
                     DataDeCompra = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Modelo = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    FornecedorID = table.Column<int>(type: "int", nullable: false),
+                    MarcaID = table.Column<int>(type: "int", nullable: false),
                     Serie = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Status = table.Column<int>(type: "int", nullable: true),
                     ResponsavelID = table.Column<int>(type: "int", nullable: false),
@@ -113,10 +114,10 @@ namespace SGP.Migrations
                         principalColumn: "ClassificacaoID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Equipamentos_Fornecedores_FornecedorID",
-                        column: x => x.FornecedorID,
-                        principalTable: "Fornecedores",
-                        principalColumn: "FornecedorID",
+                        name: "FK_Equipamentos_Marcas_MarcaID",
+                        column: x => x.MarcaID,
+                        principalTable: "Marcas",
+                        principalColumn: "MarcaID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Equipamentos_Responsaveis_ResponsavelID",
@@ -143,9 +144,9 @@ namespace SGP.Migrations
                 column: "ClassificacaoID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Equipamentos_FornecedorID",
+                name: "IX_Equipamentos_MarcaID",
                 table: "Equipamentos",
-                column: "FornecedorID");
+                column: "MarcaID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Equipamentos_ResponsavelID",
@@ -170,7 +171,7 @@ namespace SGP.Migrations
                 name: "Classificacoes");
 
             migrationBuilder.DropTable(
-                name: "Fornecedores");
+                name: "Marcas");
 
             migrationBuilder.DropTable(
                 name: "Responsaveis");

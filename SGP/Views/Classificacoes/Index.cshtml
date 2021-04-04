@@ -4,38 +4,54 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1 class="mt-4">Tabela de Depreciação</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Nome)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.taxa)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.taxa)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ClassificacaoID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ClassificacaoID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ClassificacaoID">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item"><a asp-action="Create">Adicionar</a></li>
+    <li class="breadcrumb-item active">Tabela de Depreciação</li>
+</ol>
+
+<div class="card mb-4">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.Nome)</th>
+                        <th>@Html.DisplayNameFor(model => model.taxa)</th>
+                        <th>@Html.DisplayNameFor(model => model.VidaUtil)</th>
+                        <th>Ação</th>
+                        
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.Nome)</th>
+                        <th>@Html.DisplayNameFor(model => model.taxa)</th>
+                        <th>@Html.DisplayNameFor(model => model.VidaUtil)</th>
+                        <th>Ação</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            
+                            <td>@Html.DisplayFor(modelItem => item.Nome)</td>
+                            <td>@Html.DisplayFor(modelItem => item.taxa)%</td>
+                            <td>@Html.DisplayFor(modelItem => item.VidaUtil) Anos</td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.ClassificacaoID">Edit</a> |
+                                <a asp-action="Details" asp-route-id="@item.ClassificacaoID">Details</a> |
+                                <a asp-action="Delete" asp-route-id="@item.ClassificacaoID">Delete</a>
+                            </td>
+                            
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -72,10 +72,10 @@ namespace SGP.Migrations
                     b.Property<int?>("EstadoDeConservacao")
                         .HasColumnType("int");
 
-                    b.Property<int>("FornecedorID")
+                    b.Property<int>("Idade")
                         .HasColumnType("int");
 
-                    b.Property<int>("Idade")
+                    b.Property<int>("MarcaID")
                         .HasColumnType("int");
 
                     b.Property<string>("Modelo")
@@ -111,7 +111,7 @@ namespace SGP.Migrations
 
                     b.HasIndex("ClassificacaoID");
 
-                    b.HasIndex("FornecedorID");
+                    b.HasIndex("MarcaID");
 
                     b.HasIndex("ResponsavelID");
 
@@ -120,9 +120,9 @@ namespace SGP.Migrations
                     b.ToTable("Equipamentos");
                 });
 
-            modelBuilder.Entity("SGP.Models.Fornecedores.Fornecedor", b =>
+            modelBuilder.Entity("SGP.Models.Marcas.Marca", b =>
                 {
-                    b.Property<int>("FornecedorID")
+                    b.Property<int>("MarcaID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -139,9 +139,9 @@ namespace SGP.Migrations
                     b.Property<string>("Telefone")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("FornecedorID");
+                    b.HasKey("MarcaID");
 
-                    b.ToTable("Fornecedores");
+                    b.ToTable("Marcas");
                 });
 
             modelBuilder.Entity("SGP.Models.Responsaveis.Responsavel", b =>
@@ -188,9 +188,9 @@ namespace SGP.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("SGP.Models.Fornecedores.Fornecedor", "Fornecedor")
+                    b.HasOne("SGP.Models.Marcas.Marca", "Marca")
                         .WithMany("Equipamentos")
-                        .HasForeignKey("FornecedorID")
+                        .HasForeignKey("MarcaID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -210,7 +210,7 @@ namespace SGP.Migrations
 
                     b.Navigation("Classificacao");
 
-                    b.Navigation("Fornecedor");
+                    b.Navigation("Marca");
 
                     b.Navigation("Responsavel");
 
@@ -227,7 +227,7 @@ namespace SGP.Migrations
                     b.Navigation("Equipamentos");
                 });
 
-            modelBuilder.Entity("SGP.Models.Fornecedores.Fornecedor", b =>
+            modelBuilder.Entity("SGP.Models.Marcas.Marca", b =>
                 {
                     b.Navigation("Equipamentos");
                 });

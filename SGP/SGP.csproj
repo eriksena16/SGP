@@ -5,9 +5,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Funcoes\**" />
+    <Compile Remove="Models\ModeloEquipamento\**" />
+    <Content Remove="Funcoes\**" />
+    <Content Remove="Models\ModeloEquipamento\**" />
+    <EmbeddedResource Remove="Funcoes\**" />
+    <EmbeddedResource Remove="Models\ModeloEquipamento\**" />
+    <None Remove="Funcoes\**" />
+    <None Remove="Models\ModeloEquipamento\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Controllers\Manutencao\" />
-    <Folder Include="Funcoes\" />
-    <Folder Include="Models\ModeloEquipamento\" />
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
   <ItemGroup>

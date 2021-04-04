@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SGP.Models.Fornecedores
+namespace SGP.Models.Marcas
 {
-    public class Fornecedor
+    public class Marca
     {
-        public int FornecedorID { get; set; }
+        public int MarcaID { get; set; }
         public string Nome { get; set; }
         public string Cnpj { get; set; }
         public string Endereco { get; set; }

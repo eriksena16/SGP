@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SGP.Data;
-using SGP.Models.Categorias;
 using System.Linq;
 
 namespace SGP.Controllers.Equipamento
@@ -26,7 +24,7 @@ namespace SGP.Controllers.Equipamento
             var equipamentos = await _context.Equipamentos
                  .Include(c => c.Categoria)
                  .Include(cl => cl.Classificacao)
-                 .Include(f => f.Fornecedor)
+                 .Include(f => f.Marca)
                  .Include(r => r.Responsavel)
                  .Include(s => s.Setor)
                  .AsNoTracking()
@@ -45,7 +43,7 @@ namespace SGP.Controllers.Equipamento
             var equipamentos = await _context.Equipamentos
                 .Include(c => c.Categoria)
                 .Include(cl => cl.Classificacao)
-                .Include(f => f.Fornecedor)
+                .Include(f => f.Marca)
                 .Include(r => r.Responsavel)
                 .Include(s => s.Setor)
                 .AsNoTracking()
@@ -64,7 +62,6 @@ namespace SGP.Controllers.Equipamento
                 equipamentos.ValorAtual = equipamentos.CalcularValorAtual(equipamentos.Idade);
             }
 
-            var ano = 3 +2;
             
 
             if (equipamentos == null)
@@ -82,7 +79,7 @@ namespace SGP.Controllers.Equipamento
         {
             DropdownListCategoria();
             DropdownListClassificacao();
-            DropdownListFornecedor();
+            DropdownListMarca();
             DropdownListSetor();
             DropdownListResponsavel();
             return View();
@@ -107,7 +104,7 @@ namespace SGP.Controllers.Equipamento
       
             DropdownListCategoria(equipamentos.ClassificacaoID);
             DropdownListClassificacao(equipamentos.ClassificacaoID);
-            DropdownListFornecedor(equipamentos.ClassificacaoID);
+            DropdownListMarca(equipamentos.ClassificacaoID);
             DropdownListSetor(equipamentos.ClassificacaoID);
             DropdownListResponsavel(equipamentos.ClassificacaoID);
             return View(equipamentos);
@@ -132,7 +129,7 @@ namespace SGP.Controllers.Equipamento
             DropdownListCategoria(equipamentos.CategoriaID);
             DropdownListCategoria(equipamentos.ClassificacaoID);
             DropdownListClassificacao(equipamentos.ClassificacaoID);
-            DropdownListFornecedor(equipamentos.ClassificacaoID);
+            DropdownListMarca(equipamentos.ClassificacaoID);
             DropdownListSetor(equipamentos.ClassificacaoID);
             DropdownListResponsavel(equipamentos.ClassificacaoID);
             return View(equipamentos);
@@ -143,7 +140,7 @@ namespace SGP.Controllers.Equipamento
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("EquipamentoID,CategoriaID,ClassificacaoID,Nota,ValorDeCompra,DataDeCompra,Modelo,FornecedorID,Serie,Status,ResponsavelID,SetorID,EstadoDeConservacao,Observacao")] Models.Equipamentos.Equipamento equipamentos)
+        public async Task<IActionResult> Edit(int id, [Bind("EquipamentoID,CategoriaID,ClassificacaoID,Nota,ValorDeCompra,DataDeCompra,Modelo,MarcaID,Serie,Status,ResponsavelID,SetorID,EstadoDeConservacao,Observacao")] Models.Equipamentos.Equipamento equipamentos)
         {
 
             if (id != equipamentos.EquipamentoID)
@@ -173,7 +170,7 @@ namespace SGP.Controllers.Equipamento
             }
             DropdownListCategoria(equipamentos.CategoriaID);
             DropdownListClassificacao(equipamentos.ClassificacaoID);
-            DropdownListFornecedor(equipamentos.ClassificacaoID);
+            DropdownListMarca(equipamentos.ClassificacaoID);
             DropdownListSetor(equipamentos.ClassificacaoID);
             DropdownListResponsavel(equipamentos.ClassificacaoID);
             return View(equipamentos);
@@ -196,12 +193,12 @@ namespace SGP.Controllers.Equipamento
             ViewBag.ClassificacaoID = new SelectList(classificacaoQuery, "ClassificacaoID", "Nome", listaClassificacao);
         }
 
-        private void DropdownListFornecedor(object listaFornecedor = null)
+        private void DropdownListMarca(object listaMarca = null)
         {
-            IQueryable<object> fornecedorQuery = from f in _context.Fornecedores
+            IQueryable<object> fornecedorQuery = from f in _context.Marcas
                                                     orderby f.Nome
                                                     select f;
-            ViewBag.FornecedorID = new SelectList(fornecedorQuery, "FornecedorID", "Nome", listaFornecedor);
+            ViewBag.MarcaID = new SelectList(fornecedorQuery, "MarcaID", "Nome", listaMarca);
         }
 
         private void DropdownListSetor(object listaSetor = null)
@@ -236,7 +233,7 @@ namespace SGP.Controllers.Equipamento
             var equipamentos = await _context.Equipamentos
                 .Include(c => c.Categoria)
                 .Include(cl => cl.Classificacao)
-                .Include(f => f.Fornecedor)
+                .Include(f => f.Marca)
                 .Include(r => r.Responsavel)
                 .Include(s => s.Setor)
                 .AsNoTracking()

@@ -1,4 +1,4 @@
-﻿@model SGP.Models.Fornecedores.Fornecedor
+﻿@model SGP.Models.Marcas.Marca
 
 @{
     ViewData["Title"] = "Edit";
@@ -6,13 +6,13 @@
 
 <h1>Edit</h1>
 
-<h4>Fornecedor</h4>
+<h4>Marca</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="FornecedorID" />
+            <input type="hidden" asp-for="MarcaID" />
             <div class="form-group">
                 <label asp-for="Nome" class="control-label"></label>
                 <input asp-for="Nome" class="form-control" />

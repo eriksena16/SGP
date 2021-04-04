@@ -1,6 +1,6 @@
 ﻿using SGP.Models.Categorias;
 using SGP.Models.Classificacoes;
-using SGP.Models.Fornecedores;
+using SGP.Models.Marcas;
 using SGP.Models.Responsaveis;
 using SGP.Models.Setores;
 using System;
@@ -44,7 +44,7 @@ namespace SGP.Models.Equipamentos
         public DateTime DataDeCompra { get; set; }
         public string Modelo { get; set; }
         [Display(Name = "Fabricante")]
-        public int FornecedorID { get; set; }
+        public int MarcaID { get; set; }
         [Display(Name = "Número de série")]
         public string Serie { get; set; }
         public Status? Status { get; set; }
@@ -58,7 +58,7 @@ namespace SGP.Models.Equipamentos
 
         public Categoria Categoria { get; set; }
         public Classificacao Classificacao { get; set; }
-        public Fornecedor Fornecedor { get; set; }
+        public Marca Marca { get; set; }
         public Responsavel Responsavel { get; set; }
         public Setor Setor { get; set; }
         
