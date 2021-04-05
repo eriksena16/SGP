@@ -22,24 +22,7 @@ namespace SGP.Controllers.Categoria
         // GET: Categorias
         public async Task<IActionResult> Index( string sortOrder)
         {
-            ViewData["NameSortParm"] = sortOrder == "Nome" ? "name_desc" : "Nome";
-            var categorias = from c in _context.Categoria select c;
             
-            switch (sortOrder)
-            {
-                case "Nome":
-                    categorias = categorias.OrderBy(c => c.Nome);
-                    break;
-
-                case "name_desc":
-                    categorias = categorias.OrderByDescending(c => c.Nome);
-                    break;
-
-                default:
-                    categorias = categorias.OrderBy(c => c.Nome);
-                    break;
-            }
-
             return View(await _context.Categoria.AsNoTracking().ToListAsync());
         }
 

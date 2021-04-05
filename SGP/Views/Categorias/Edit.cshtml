@@ -17,6 +17,8 @@
                 <div class="card-header"><h3 class="text-center font-weight-light my-4">Atualizar</h3></div>
                 <div class="card-body">
                     <form asp-action="Edit">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="CategoriaID" />
                         <div class="form-group">
                             <label asp-for="Nome" class="control-label"></label>
                             <input asp-for="Nome" class="form-control" />
