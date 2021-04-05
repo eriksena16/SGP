@@ -56,7 +56,11 @@ namespace SGP.Data
                 new Modelo{Nome = "Vostro"},
                 new Modelo{Nome = "Ispiron 3647"}
             };
-
+            foreach(Modelo m in modelos)
+            {
+                context.Modelo.Add(m);
+            }
+            context.SaveChanges();
             var marcas = new Marca[]
             {
                 new Marca{Nome = "Sena Corp", Cnpj ="06414576506", Endereco ="Travessa Portugal, 23", Telefone ="71992257224"},
