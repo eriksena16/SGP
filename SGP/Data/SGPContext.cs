@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using SGP.Models.Equipamentos;
 using SGP.Models.Setores;
 using SGP.Models.Categorias;
+using SGP.Models.Modelos;
 using SGP.Models.Marcas;
 using SGP.Models.Responsaveis;
 using SGP.Models.Classificacoes;
-using System.IO;
 
 namespace SGP.Data
 {
@@ -42,6 +38,7 @@ namespace SGP.Data
 
         public DbSet<SGP.Models.Categorias.Categoria> Categoria { get; set; }
         public DbSet<SGP.Models.Classificacoes.Classificacao> Classificacao { get; set; }
+        public DbSet<SGP.Models.Modelos.Modelo> Modelo { get; set; }
 
         public DbSet<SGP.Models.Marcas.Marca> Marcas { get; set; }
 
@@ -53,6 +50,7 @@ namespace SGP.Data
             modelBuilder.Entity<Setor>().ToTable("Setores");
             modelBuilder.Entity<Categoria>().ToTable("Categorias");
             modelBuilder.Entity<Classificacao>().ToTable("Classificacoes");
+            modelBuilder.Entity<Modelo>().ToTable("Modelos");
             modelBuilder.Entity<Marca>().ToTable("Marcas");
             modelBuilder.Entity<Responsavel>().ToTable("Responsaveis");
 

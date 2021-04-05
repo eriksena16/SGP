@@ -1,5 +1,6 @@
 ﻿using SGP.Models.Categorias;
 using SGP.Models.Classificacoes;
+using SGP.Models.Modelos;
 using SGP.Models.Marcas;
 using SGP.Models.Responsaveis;
 using SGP.Models.Setores;
@@ -42,7 +43,8 @@ namespace SGP.Models.Equipamentos
         [DataType(DataType.Date)]
         [Display(Name = "Data de Compra")]
         public DateTime DataDeCompra { get; set; }
-        public string Modelo { get; set; }
+        [Display(Name ="Modelo")]
+        public int ModeloID { get; set; }
         [Display(Name = "Fabricante")]
         public int MarcaID { get; set; }
         [Display(Name = "Número de série")]
@@ -58,6 +60,7 @@ namespace SGP.Models.Equipamentos
 
         public Categoria Categoria { get; set; }
         public Classificacao Classificacao { get; set; }
+        public Modelo Modelo { get; set; }
         public Marca Marca { get; set; }
         public Responsavel Responsavel { get; set; }
         public Setor Setor { get; set; }

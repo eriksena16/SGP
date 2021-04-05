@@ -24,6 +24,7 @@ namespace SGP.Controllers.Equipamento
             var equipamentos = await _context.Equipamentos
                  .Include(c => c.Categoria)
                  .Include(cl => cl.Classificacao)
+                 .Include(m => m.Modelo)
                  .Include(f => f.Marca)
                  .Include(r => r.Responsavel)
                  .Include(s => s.Setor)
@@ -43,6 +44,7 @@ namespace SGP.Controllers.Equipamento
             var equipamentos = await _context.Equipamentos
                 .Include(c => c.Categoria)
                 .Include(cl => cl.Classificacao)
+                .Include(m => m.Modelo)
                 .Include(f => f.Marca)
                 .Include(r => r.Responsavel)
                 .Include(s => s.Setor)
@@ -79,6 +81,7 @@ namespace SGP.Controllers.Equipamento
         {
             DropdownListCategoria();
             DropdownListClassificacao();
+            DropdownListModelo();
             DropdownListMarca();
             DropdownListSetor();
             DropdownListResponsavel();
@@ -90,7 +93,7 @@ namespace SGP.Controllers.Equipamento
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("EquipamentoID,CategoriaID,ClassificacaoID,Nota,ValorDeCompra,DataDeCompra,Modelo,FornecedorID,Serie,Status,ResponsavelID,SetorID,EstadoDeConservacao,Observacao")] Models.Equipamentos.Equipamento equipamentos)
+        public async Task<IActionResult> Create([Bind("EquipamentoID,CategoriaID,ClassificacaoID,Nota,ValorDeCompra,DataDeCompra,ModeloID,MarcaID,Serie,Status,ResponsavelID,SetorID,EstadoDeConservacao,Observacao")] Models.Equipamentos.Equipamento equipamentos)
         {
          
            
@@ -104,6 +107,7 @@ namespace SGP.Controllers.Equipamento
       
             DropdownListCategoria(equipamentos.ClassificacaoID);
             DropdownListClassificacao(equipamentos.ClassificacaoID);
+            DropdownListModelo(equipamentos.ModeloID);
             DropdownListMarca(equipamentos.ClassificacaoID);
             DropdownListSetor(equipamentos.ClassificacaoID);
             DropdownListResponsavel(equipamentos.ClassificacaoID);
@@ -129,18 +133,20 @@ namespace SGP.Controllers.Equipamento
             DropdownListCategoria(equipamentos.CategoriaID);
             DropdownListCategoria(equipamentos.ClassificacaoID);
             DropdownListClassificacao(equipamentos.ClassificacaoID);
+            DropdownListModelo(equipamentos.ModeloID);
             DropdownListMarca(equipamentos.ClassificacaoID);
             DropdownListSetor(equipamentos.ClassificacaoID);
             DropdownListResponsavel(equipamentos.ClassificacaoID);
             return View(equipamentos);
         }
 
+
         // POST: Equipamentos/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("EquipamentoID,CategoriaID,ClassificacaoID,Nota,ValorDeCompra,DataDeCompra,Modelo,MarcaID,Serie,Status,ResponsavelID,SetorID,EstadoDeConservacao,Observacao")] Models.Equipamentos.Equipamento equipamentos)
+        public async Task<IActionResult> Edit(int id, [Bind("EquipamentoID,CategoriaID,ClassificacaoID,Nota,ValorDeCompra,DataDeCompra,ModeloID,MarcaID,Serie,Status,ResponsavelID,SetorID,EstadoDeConservacao,Observacao")] Models.Equipamentos.Equipamento equipamentos)
         {
 
             if (id != equipamentos.EquipamentoID)
@@ -170,6 +176,7 @@ namespace SGP.Controllers.Equipamento
             }
             DropdownListCategoria(equipamentos.CategoriaID);
             DropdownListClassificacao(equipamentos.ClassificacaoID);
+            DropdownListModelo(equipamentos.ModeloID);
             DropdownListMarca(equipamentos.ClassificacaoID);
             DropdownListSetor(equipamentos.ClassificacaoID);
             DropdownListResponsavel(equipamentos.ClassificacaoID);
@@ -191,6 +198,13 @@ namespace SGP.Controllers.Equipamento
                                                     orderby cl.Nome
                                                     select cl;
             ViewBag.ClassificacaoID = new SelectList(classificacaoQuery, "ClassificacaoID", "Nome", listaClassificacao);
+        }
+        private void DropdownListModelo(object listaModelo = null)
+        {
+            IQueryable<object> modeloQuery = from m in _context.Modelo
+                                                 orderby m.Nome
+                                                 select m;
+            ViewBag.ModeloID = new SelectList(modeloQuery, "ModeloID", "Nome", listaModelo);
         }
 
         private void DropdownListMarca(object listaMarca = null)
@@ -233,6 +247,7 @@ namespace SGP.Controllers.Equipamento
             var equipamentos = await _context.Equipamentos
                 .Include(c => c.Categoria)
                 .Include(cl => cl.Classificacao)
+                .Include(m => m.Modelo)
                 .Include(f => f.Marca)
                 .Include(r => r.Responsavel)
                 .Include(s => s.Setor)

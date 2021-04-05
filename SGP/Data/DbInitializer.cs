@@ -8,6 +8,7 @@ using SGP.Models.Categorias;
 using SGP.Models.Classificacoes;
 using SGP.Models.Marcas;
 using SGP.Models.Responsaveis;
+using SGP.Models.Modelos;
 
 namespace SGP.Data
 {
@@ -50,6 +51,12 @@ namespace SGP.Data
             }
             context.SaveChanges();
 
+            var modelos = new Modelo[]
+            {
+                new Modelo{Nome = "Vostro"},
+                new Modelo{Nome = "Ispiron 3647"}
+            };
+
             var marcas = new Marca[]
             {
                 new Marca{Nome = "Sena Corp", Cnpj ="06414576506", Endereco ="Travessa Portugal, 23", Telefone ="71992257224"},
@@ -82,23 +89,7 @@ namespace SGP.Data
             }
             context.SaveChanges();
 
-            var equipamentos = new Equipamento[]
-            {
-                new Equipamento{EquipamentoID =1, CategoriaID=1,ClassificacaoID=2,Nota="402563", ValorDeCompra = 30, DataDeCompra=DateTime.Parse("2020-09-01"),Modelo = "Vostro", MarcaID = 1,
-                     Serie = "15355", Status = Status.Ativo, ResponsavelID = 1,SetorID = 1, EstadoDeConservacao = EstadoDeConservacao.Bom  },
-                new Equipamento{EquipamentoID =3, CategoriaID=1,ClassificacaoID=2,Nota="402d563", ValorDeCompra = 60, DataDeCompra=DateTime.Parse("2020-09-01"),Modelo = "Vostro", MarcaID = 1,
-                     Serie = "69854", Status = Status.Inativo, ResponsavelID = 1,SetorID = 1, EstadoDeConservacao = EstadoDeConservacao.Bom  },
-                new Equipamento{EquipamentoID =1, CategoriaID=1,ClassificacaoID=2,Nota="402563", ValorDeCompra = 30, DataDeCompra=DateTime.Parse("2020-09-01"),Modelo = "Vostro", MarcaID = 1,
-                     Serie = "15ss355", Status = Status.Ativo, ResponsavelID = 1,SetorID = 1, EstadoDeConservacao = EstadoDeConservacao.Bom  },
-            };
-            foreach (Equipamento e in equipamentos)
-            {
-                context.Equipamentos.Add(e);
-            }
-            context.SaveChanges();
-
-
-
+           
 
         }
 
