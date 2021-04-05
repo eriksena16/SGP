@@ -134,6 +134,19 @@
                             </div>
                         </div>
                         <hr />
+                        <div class="col-md-12">
+                            <div class="input-group">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="inputGroupFile04" accept=".pdf" aria-describedby="inputGroupFileAddon04">
+                                    <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
+                                </div>
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Button</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <hr />
                         <div class="col-md-12 ">
                             <div class="mb-3">
                                 <label asp-for="Observacao" class="control-label"></label>
@@ -163,3 +176,8 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+<script type="text/javascript">
+        $('.custom-file-input').on('change', function () {
+            let fileName = $(this).val().split('\\').pop();
+            $(this).next('.custom-file-label').addClass("selected").html(fileName);
+        });</script>
