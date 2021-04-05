@@ -5,22 +5,25 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Controllers\Manutencao\**" />
     <Compile Remove="Funcoes\**" />
     <Compile Remove="Models\ModeloEquipamento\**" />
     <Compile Remove="wwwroot\startbootstrap\src\pug\**" />
+    <Content Remove="Controllers\Manutencao\**" />
     <Content Remove="Funcoes\**" />
     <Content Remove="Models\ModeloEquipamento\**" />
     <Content Remove="wwwroot\startbootstrap\src\pug\**" />
+    <EmbeddedResource Remove="Controllers\Manutencao\**" />
     <EmbeddedResource Remove="Funcoes\**" />
     <EmbeddedResource Remove="Models\ModeloEquipamento\**" />
     <EmbeddedResource Remove="wwwroot\startbootstrap\src\pug\**" />
+    <None Remove="Controllers\Manutencao\**" />
     <None Remove="Funcoes\**" />
     <None Remove="Models\ModeloEquipamento\**" />
     <None Remove="wwwroot\startbootstrap\src\pug\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\Manutencao\" />
     <Folder Include="Migrations\" />
   </ItemGroup>
 
