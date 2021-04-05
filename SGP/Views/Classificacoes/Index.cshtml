@@ -43,9 +43,9 @@
                             @Html.DisplayFor(modelItem => item.taxa)%</td>
                             <td>@Html.DisplayFor(modelItem => item.VidaUtil) Anos</td>
                             <td>
-                                <a asp-action="Edit" asp-route-id="@item.ClassificacaoID">Edit</a> |
-                                <a asp-action="Details" asp-route-id="@item.ClassificacaoID">Details</a> |
-                                <a asp-action="Delete" asp-route-id="@item.ClassificacaoID">Delete</a>
+                                <a asp-action="Edit" asp-route-id="@item.ClassificacaoID"><i class="fas fa-edit fa-2x" title="Editar"></i></a> |
+                                <a asp-action="Details" asp-route-id="@item.ClassificacaoID"><i class="fas fa-info fa-2x" title="Deletar"></i></a> |
+                                <a asp-action="Delete" asp-route-id="@item.ClassificacaoID"><i class="fas fa-trash-alt fa-2x" title="Deletar"></i></a>
                             </td>
                             
                         </tr>
