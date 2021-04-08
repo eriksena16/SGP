@@ -52,6 +52,19 @@ namespace SGP.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Modelos",
+                columns: table => new
+                {
+                    ModeloID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nome = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Modelos", x => x.ModeloID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Responsaveis",
                 columns: table => new
                 {
@@ -85,11 +98,11 @@ namespace SGP.Migrations
                     CategoriaID = table.Column<int>(type: "int", nullable: false),
                     Idade = table.Column<int>(type: "int", nullable: false),
                     ClassificacaoID = table.Column<int>(type: "int", nullable: false),
-                    Nota = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    NotaFiscalUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ValorDeCompra = table.Column<decimal>(type: "money", nullable: false),
                     ValorAtual = table.Column<decimal>(type: "money", nullable: false),
                     DataDeCompra = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Modelo = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ModeloID = table.Column<int>(type: "int", nullable: false),
                     MarcaID = table.Column<int>(type: "int", nullable: false),
                     Serie = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Status = table.Column<int>(type: "int", nullable: true),
@@ -118,6 +131,12 @@ namespace SGP.Migrations
                         column: x => x.MarcaID,
                         principalTable: "Marcas",
                         principalColumn: "MarcaID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Equipamentos_Modelos_ModeloID",
+                        column: x => x.ModeloID,
+                        principalTable: "Modelos",
+                        principalColumn: "ModeloID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Equipamentos_Responsaveis_ResponsavelID",
@@ -149,6 +168,11 @@ namespace SGP.Migrations
                 column: "MarcaID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Equipamentos_ModeloID",
+                table: "Equipamentos",
+                column: "ModeloID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Equipamentos_ResponsavelID",
                 table: "Equipamentos",
                 column: "ResponsavelID");
@@ -172,6 +196,9 @@ namespace SGP.Migrations
 
             migrationBuilder.DropTable(
                 name: "Marcas");
+
+            migrationBuilder.DropTable(
+                name: "Modelos");
 
             migrationBuilder.DropTable(
                 name: "Responsaveis");

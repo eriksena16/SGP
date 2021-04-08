@@ -5,16 +5,21 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SGP.Data;
 using System.Linq;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Hosting;
+using System.IO;
 
 namespace SGP.Controllers.Equipamento
 {
     public class EquipamentosController : Controller
     {
         private readonly SGPContext _context;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public EquipamentosController(SGPContext context)
+        public EquipamentosController(SGPContext context, IWebHostEnvironment webHostEnvironment)
         {
             _context = context;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         // GET: Equipamentos
@@ -93,7 +98,7 @@ namespace SGP.Controllers.Equipamento
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("EquipamentoID,CategoriaID,ClassificacaoID,Nota,ValorDeCompra,DataDeCompra,ModeloID,MarcaID,Serie,Status,ResponsavelID,SetorID,EstadoDeConservacao,Observacao")] Models.Equipamentos.Equipamento equipamentos)
+        public async Task<IActionResult> Create(Models.Equipamentos.Equipamento equipamentos)
         {
          
            
@@ -103,6 +108,11 @@ namespace SGP.Controllers.Equipamento
                     await _context.SaveChangesAsync();
                     return RedirectToAction(nameof(Index));
                 }
+            if (equipamentos.NotaFiscal != null)
+            {
+                string folder = "notas/";
+                equipamentos.NotaFiscalUrl = await Upload(folder, equipamentos.NotaFiscal);
+            }
             
       
             DropdownListCategoria(equipamentos.ClassificacaoID);
@@ -112,6 +122,14 @@ namespace SGP.Controllers.Equipamento
             DropdownListSetor(equipamentos.ClassificacaoID);
             DropdownListResponsavel(equipamentos.ClassificacaoID);
             return View(equipamentos);
+        }
+
+        private async Task<string> Upload(string folderPath, IFormFile file)
+        {
+            folderPath += Guid.NewGuid().ToString() + "_" + file.FileName;
+            string serverFolder = Path.Combine(_webHostEnvironment.WebRootPath, folderPath);
+            await file.CopyToAsync(new FileStream(serverFolder, FileMode.Create));
+            return $"/{folderPath}";
         }
 
         // GET: Equipamentos/Edit/5

@@ -4,6 +4,7 @@ using SGP.Models.Modelos;
 using SGP.Models.Marcas;
 using SGP.Models.Responsaveis;
 using SGP.Models.Setores;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -27,8 +28,11 @@ namespace SGP.Models.Equipamentos
 
         [Display(Name = "Classificação")]
         public int ClassificacaoID { get; set; }
+
         [Display(Name ="Nota Fiscal")]
-        public string Nota { get; set; }
+        [NotMapped]
+        public IFormFile NotaFiscal { get; set; }
+        public string NotaFiscalUrl { get; set; }
 
        
         [Display(Name = "Valor de Compra")]        

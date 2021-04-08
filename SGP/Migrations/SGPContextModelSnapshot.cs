@@ -81,7 +81,7 @@ namespace SGP.Migrations
                     b.Property<int>("ModeloID")
                         .HasColumnType("int");
 
-                    b.Property<string>("Nota")
+                    b.Property<string>("NotaFiscalUrl")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Observacao")
