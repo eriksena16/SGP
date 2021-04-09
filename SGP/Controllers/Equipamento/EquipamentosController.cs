@@ -105,14 +105,15 @@ namespace SGP.Controllers.Equipamento
                 if (ModelState.IsValid)
                 {
                     _context.Add(equipamentos);
-                    await _context.SaveChangesAsync();
+                if (equipamentos.NotaFiscal != null)
+                {
+                    string folder = "~/uploads/";
+                    equipamentos.NotaFiscalUrl = await Upload(folder, equipamentos.NotaFiscal);
+                }
+                await _context.SaveChangesAsync();
                     return RedirectToAction(nameof(Index));
                 }
-            if (equipamentos.NotaFiscal != null)
-            {
-                string folder = "notas/";
-                equipamentos.NotaFiscalUrl = await Upload(folder, equipamentos.NotaFiscal);
-            }
+            
             
       
             DropdownListCategoria(equipamentos.ClassificacaoID);
