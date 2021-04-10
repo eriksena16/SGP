@@ -80,6 +80,7 @@ namespace SGP.Controllers.Equipamento
         // GET: Equipamentos/Create
         public IActionResult Create()
         {
+            
             DropdownListCategoria();
             DropdownListClassificacao();
             DropdownListModelo();
@@ -114,11 +115,7 @@ namespace SGP.Controllers.Equipamento
                    return RedirectToAction(nameof(Index));
                 }
            
-            
-
-
-
-
+       
             DropdownListCategoria(equipamentos.ClassificacaoID);
             DropdownListClassificacao(equipamentos.ClassificacaoID);
             DropdownListModelo(equipamentos.ModeloID);
@@ -147,11 +144,13 @@ namespace SGP.Controllers.Equipamento
             var equipamentos = await _context.Equipamentos
                 .AsNoTracking()
                 .FirstOrDefaultAsync(m => m.EquipamentoID == id);
+            
             if (equipamentos == null)
 
             {
                 return NotFound();
             }
+
             DropdownListCategoria(equipamentos.CategoriaID);
             DropdownListCategoria(equipamentos.ClassificacaoID);
             DropdownListClassificacao(equipamentos.ClassificacaoID);
@@ -168,7 +167,7 @@ namespace SGP.Controllers.Equipamento
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("EquipamentoID,CategoriaID,ClassificacaoID,Nota,ValorDeCompra,DataDeCompra,ModeloID,MarcaID,Serie,Status,ResponsavelID,SetorID,EstadoDeConservacao,Observacao")] Models.Equipamentos.Equipamento equipamentos)
+        public async Task<IActionResult> Edit(int id, Models.Equipamentos.Equipamento equipamentos)
         {
 
             if (id != equipamentos.EquipamentoID)
@@ -178,8 +177,16 @@ namespace SGP.Controllers.Equipamento
 
             if (ModelState.IsValid)
             {
+                
                 try
                 {
+                    if (equipamentos.NotaFiscal.Length > 0)
+                    {
+                        string folder = "uploads/notas/";
+                        equipamentos.NotaFiscalUrl = await Upload(folder, equipamentos.NotaFiscal);
+
+
+                    }
                     _context.Update(equipamentos);
                     await _context.SaveChangesAsync();
                 }
@@ -252,6 +259,7 @@ namespace SGP.Controllers.Equipamento
                                             select r;
             ViewBag.ResponsavelID = new SelectList(responsavelQuery, "ResponsavelID", "Nome", listaResponsavel);
         }
+
 
         // GET: Equipamentos/Delete/5
         public async Task<IActionResult> Delete(int? id)
