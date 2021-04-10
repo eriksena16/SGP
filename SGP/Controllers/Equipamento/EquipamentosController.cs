@@ -8,6 +8,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
+using System.Web;
 
 namespace SGP.Controllers.Equipamento
 {
@@ -57,6 +58,8 @@ namespace SGP.Controllers.Equipamento
                 .FirstOrDefaultAsync(m => m.EquipamentoID == id);
           
             equipamentos.Idade = DateTime.Now.Year - equipamentos.DataDeCompra.Year;
+            //equipamentos.NotaFiscalUrl = "https://localhost:44304/uploads/salvador-escolas-redes.pdf";
+            //tentando entender porque aquele botão puxa o endereço errado, sendo que no banco vem /uploads/....
 
             if (DateTime.Now.Month >= equipamentos.DataDeCompra.Month && DateTime.Now.Day >= equipamentos.DataDeCompra.Day)
             {
@@ -67,13 +70,6 @@ namespace SGP.Controllers.Equipamento
             {
                 equipamentos.Idade -= 1;
                 equipamentos.ValorAtual = equipamentos.CalcularValorAtual(equipamentos.Idade);
-            }
-
-            
-
-            if (equipamentos == null)
-            {
-                return NotFound();
             }
 
             return View(equipamentos);
@@ -104,18 +100,25 @@ namespace SGP.Controllers.Equipamento
            
                 if (ModelState.IsValid)
                 {
-                    _context.Add(equipamentos);
-                if (equipamentos.NotaFiscal != null)
+
+                if (equipamentos.NotaFiscal.Length > 0)
                 {
-                    string folder = "~/uploads/";
+                    string folder = "uploads/";
                     equipamentos.NotaFiscalUrl = await Upload(folder, equipamentos.NotaFiscal);
+
+                    
                 }
+               
+                _context.Add(equipamentos);
                 await _context.SaveChangesAsync();
-                    return RedirectToAction(nameof(Index));
+                   return RedirectToAction(nameof(Index));
                 }
+           
             
-            
-      
+
+
+
+
             DropdownListCategoria(equipamentos.ClassificacaoID);
             DropdownListClassificacao(equipamentos.ClassificacaoID);
             DropdownListModelo(equipamentos.ModeloID);
@@ -130,7 +133,7 @@ namespace SGP.Controllers.Equipamento
             folderPath += Guid.NewGuid().ToString() + "_" + file.FileName;
             string serverFolder = Path.Combine(_webHostEnvironment.WebRootPath, folderPath);
             await file.CopyToAsync(new FileStream(serverFolder, FileMode.Create));
-            return $"/{folderPath}";
+            return $"/" + folderPath;
         }
 
         // GET: Equipamentos/Edit/5

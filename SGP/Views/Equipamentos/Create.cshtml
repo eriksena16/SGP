@@ -13,7 +13,7 @@
 </ol>
 <div class="card mb-4">
     <div class="card-body">
-        <form asp-action="Create">
+        <form asp-action="Create" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="card">
                 <div class="card-header">
@@ -121,15 +121,26 @@
 
                         <div class="col-md-6">
 
-                            <div class="input-group">
-                                <label asp-for="NotaFiscal" class="control-label"></label>
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="inputGroupFile04" accept=".pdf" aria-describedby="inputGroupFileAddon04">
-                                    <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
-                                    <span asp-validation-for="NotaFiscal" class="text-danger"></span>
-                                </div>
-                            </div>
+                            <!--<div class="input-group">
 
+        <div class="custom-file">
+            <label asp-for="NotaFiscal" class="control-label"></label>
+            <input type="file" class="custom-file-input" id="inputGroupFile04" accept=".pdf" aria-describedby="inputGroupFileAddon04">
+            <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
+            <span asp-validation-for="NotaFiscal" class="text-danger"></span>
+        </div>
+    </div>
+                           <div class="input-group mb-3">
+                               <div class="input-group-prepend">
+                                   <span class="input-group-text" id="NotaFiscal">Upload</span>
+                               </div>
+                               <div class="custom-file">
+                                   <input asp-for="NotaFiscal" type="file" class="custom-file-input" accept=".pdf" id="NotaFiscal" aria-describedby="NotaFiscal">
+                                   <label class="custom-file-label" for="NotaFiscal">Choose file</label>
+                                   <span asp-validation-for="NotaFiscal" class="text-danger"></span>
+                               </div>
+                           </div>-->
+                            <input asp-for="NotaFiscal" id="NotaFiscal" type="file" accept=".pdf" />
                             <div class="form-group">
                                 <label asp-for="EstadoDeConservacao" class="control-label"></label>
                                 <input asp-for="EstadoDeConservacao" class="form-control" />
