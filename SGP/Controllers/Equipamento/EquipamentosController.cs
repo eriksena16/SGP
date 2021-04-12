@@ -104,7 +104,7 @@ namespace SGP.Controllers.Equipamento
 
                 if (equipamentos.NotaFiscal.Length > 0)
                 {
-                    string folder = "uploads/";
+                    string folder = "uploads/notas/";
                     equipamentos.NotaFiscalUrl = await Upload(folder, equipamentos.NotaFiscal);
 
                     
@@ -114,14 +114,13 @@ namespace SGP.Controllers.Equipamento
                 await _context.SaveChangesAsync();
                    return RedirectToAction(nameof(Index));
                 }
-           
-       
-            DropdownListCategoria(equipamentos.ClassificacaoID);
-            DropdownListClassificacao(equipamentos.ClassificacaoID);
-            DropdownListModelo(equipamentos.ModeloID);
-            DropdownListMarca(equipamentos.ClassificacaoID);
-            DropdownListSetor(equipamentos.ClassificacaoID);
-            DropdownListResponsavel(equipamentos.ClassificacaoID);
+            
+                DropdownListCategoria(equipamentos.ClassificacaoID);
+                DropdownListClassificacao(equipamentos.ClassificacaoID);
+                DropdownListModelo(equipamentos.ModeloID);
+                DropdownListMarca(equipamentos.ClassificacaoID);
+                DropdownListSetor(equipamentos.ClassificacaoID);
+                DropdownListResponsavel(equipamentos.ClassificacaoID);
             return View(equipamentos);
         }
 

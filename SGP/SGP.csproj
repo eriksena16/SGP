@@ -25,7 +25,7 @@
 
   <ItemGroup>
     <Folder Include="Migrations\" />
-    <Folder Include="wwwroot\uploads\" />
+    <Folder Include="wwwroot\uploads\notas\" />
   </ItemGroup>
 
   <ItemGroup>
