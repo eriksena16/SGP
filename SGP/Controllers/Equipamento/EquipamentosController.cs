@@ -8,7 +8,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
-using System.Web;
+
 
 namespace SGP.Controllers.Equipamento
 {
@@ -46,7 +46,7 @@ namespace SGP.Controllers.Equipamento
             {
                 return NotFound();
             }
-
+ 
             var equipamentos = await _context.Equipamentos
                 .Include(c => c.Categoria)
                 .Include(cl => cl.Classificacao)
@@ -58,8 +58,7 @@ namespace SGP.Controllers.Equipamento
                 .FirstOrDefaultAsync(m => m.EquipamentoID == id);
           
             equipamentos.Idade = DateTime.Now.Year - equipamentos.DataDeCompra.Year;
-            //equipamentos.NotaFiscalUrl = "https://localhost:44304/uploads/salvador-escolas-redes.pdf";
-            //tentando entender porque aquele botão puxa o endereço errado, sendo que no banco vem /uploads/....
+            
 
             if (DateTime.Now.Month >= equipamentos.DataDeCompra.Month && DateTime.Now.Day >= equipamentos.DataDeCompra.Day)
             {
@@ -75,12 +74,12 @@ namespace SGP.Controllers.Equipamento
             return View(equipamentos);
         }
 
-       
+      
 
         // GET: Equipamentos/Create
         public IActionResult Create()
         {
-            
+          
             DropdownListCategoria();
             DropdownListClassificacao();
             DropdownListModelo();
@@ -106,15 +105,14 @@ namespace SGP.Controllers.Equipamento
                 {
                     string folder = "uploads/notas/";
                     equipamentos.NotaFiscalUrl = await Upload(folder, equipamentos.NotaFiscal);
-
-                    
+ 
                 }
                
                 _context.Add(equipamentos);
                 await _context.SaveChangesAsync();
                    return RedirectToAction(nameof(Index));
                 }
-            
+                        
                 DropdownListCategoria(equipamentos.ClassificacaoID);
                 DropdownListClassificacao(equipamentos.ClassificacaoID);
                 DropdownListModelo(equipamentos.ModeloID);
@@ -128,8 +126,15 @@ namespace SGP.Controllers.Equipamento
         {
             folderPath += Guid.NewGuid().ToString() + "_" + file.FileName;
             string serverFolder = Path.Combine(_webHostEnvironment.WebRootPath, folderPath);
-            await file.CopyToAsync(new FileStream(serverFolder, FileMode.Create));
+            await file. (new FileStream(serverFolder, FileMode.Create));
             return $"/" + folderPath;
+        }
+
+        private string GetFile(string filename, string path)
+        {
+            FileStream s2 = new FileStream(filename, FileMode.Open, FileAccess.Read, FileShare.Read);
+            string serverFolder = Path.Combine(_webHostEnvironment.WebRootPath +"", filename);
+            return serverFolder;
         }
 
         // GET: Equipamentos/Edit/5
@@ -148,6 +153,14 @@ namespace SGP.Controllers.Equipamento
 
             {
                 return NotFound();
+            }
+            string folder = "uploads/notas/";
+            ViewBag.Nota = GetFile(equipamentos.NotaFiscalUrl, folder);
+            if (equipamentos.NotaFiscal != null)
+            {
+
+                equipamentos.NotaFiscalUrl = equipamentos.NotaFiscalUrl;
+
             }
 
             DropdownListCategoria(equipamentos.CategoriaID);
@@ -186,6 +199,7 @@ namespace SGP.Controllers.Equipamento
 
 
                     }
+
                     _context.Update(equipamentos);
                     await _context.SaveChangesAsync();
                 }
@@ -258,6 +272,8 @@ namespace SGP.Controllers.Equipamento
                                             select r;
             ViewBag.ResponsavelID = new SelectList(responsavelQuery, "ResponsavelID", "Nome", listaResponsavel);
         }
+
+        
 
 
         // GET: Equipamentos/Delete/5

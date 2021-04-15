@@ -13,8 +13,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SGP.Models.Equipamentos
 {
-    public enum StatusT{Ativo = 1, Inativo = 2}
-    public enum EstadoDeConservacaoT { Otimo = 1, Bom = 2, Ruim = 3}
+    public enum Status{Ativo, Inativo}
+    public enum EstadoDeConservacao { Otimo, Bom, Ruim}
     public class Equipamento
     {
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
@@ -53,13 +53,13 @@ namespace SGP.Models.Equipamentos
         public int MarcaID { get; set; }
         [Display(Name = "Número de série")]
         public string Serie { get; set; }
-        public StatusT Status { get; set; }
+        public Status Status { get; set; }
         [Display(Name = "Responsavel")]
         public int ResponsavelID { get; set; }
         [Display(Name = "Setor")]
         public int SetorID { get; set; }
         [Display(Name = "Estado")]
-        public EstadoDeConservacaoT EstadoDeConservacao { get; set; }
+        public EstadoDeConservacao EstadoDeConservacao { get; set; }
         public string Observacao { get; set; }
 
         public Categoria Categoria { get; set; }
