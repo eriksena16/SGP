@@ -8,7 +8,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
-
+using System.Collections.Generic;
 
 namespace SGP.Controllers.Equipamento
 {
@@ -126,17 +126,30 @@ namespace SGP.Controllers.Equipamento
         {
             folderPath += Guid.NewGuid().ToString() + "_" + file.FileName;
             string serverFolder = Path.Combine(_webHostEnvironment.WebRootPath, folderPath);
-            await file. (new FileStream(serverFolder, FileMode.Create));
+            await file.CopyToAsync(new FileStream(serverFolder, FileMode.Create));
             return $"/" + folderPath;
         }
 
-        private string GetFile(string filename, string path)
+        public List<Models.Equipamentos.Equipamento> ListaArquivos()
         {
-            FileStream s2 = new FileStream(filename, FileMode.Open, FileAccess.Read, FileShare.Read);
-            string serverFolder = Path.Combine(_webHostEnvironment.WebRootPath +"", filename);
-            return serverFolder;
+            string folder = "uploads/notas/";
+            List<Models.Equipamentos.Equipamento> lstArquivos = new List<Models.Equipamentos.Equipamento>();
+            DirectoryInfo dirInfo = new DirectoryInfo(folder);
+            int i = 0;
+            foreach(  var intem in dirInfo.GetFiles())
+            {
+                lstArquivos.Add(new Models.Equipamentos.Equipamento()
+                {
+
+                }
+                );
+            }
+            
+
+            return lstArquivos;
         }
 
+       
         // GET: Equipamentos/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -154,13 +167,12 @@ namespace SGP.Controllers.Equipamento
             {
                 return NotFound();
             }
-            string folder = "uploads/notas/";
-            ViewBag.Nota = GetFile(equipamentos.NotaFiscalUrl, folder);
+                       
             if (equipamentos.NotaFiscal != null)
             {
-
+                
                 equipamentos.NotaFiscalUrl = equipamentos.NotaFiscalUrl;
-
+        
             }
 
             DropdownListCategoria(equipamentos.CategoriaID);
