@@ -40,7 +40,7 @@ namespace SGP.Data
         public DbSet<SGP.Models.Classificacoes.Classificacao> Classificacao { get; set; }
         public DbSet<SGP.Models.Modelos.Modelo> Modelo { get; set; }
 
-        public DbSet<SGP.Models.Marcas.Marca> Marcas { get; set; }
+        public DbSet<SGP.Models.Marcas.Empresa> Marcas { get; set; }
 
         public DbSet<SGP.Models.Responsaveis.Responsavel> Responsavel { get; set; }
 
@@ -51,7 +51,7 @@ namespace SGP.Data
             modelBuilder.Entity<Categoria>().ToTable("Categorias");
             modelBuilder.Entity<Classificacao>().ToTable("Classificacoes");
             modelBuilder.Entity<Modelo>().ToTable("Modelos");
-            modelBuilder.Entity<Marca>().ToTable("Marcas");
+            modelBuilder.Entity<Empresa>().ToTable("Marcas");
             modelBuilder.Entity<Responsavel>().ToTable("Responsaveis");
 
         }

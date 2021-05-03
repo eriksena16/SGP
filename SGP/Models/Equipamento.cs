@@ -1,17 +1,11 @@
-﻿using SGP.Models.Categorias;
-using SGP.Models.Classificacoes;
-using SGP.Models.Modelos;
-using SGP.Models.Marcas;
-using SGP.Models.Responsaveis;
-using SGP.Models.Setores;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 
 
-namespace SGP.Models.Equipamentos
+namespace SGP.Models
 {
     public enum Status{Ativo, Inativo}
     public enum EstadoDeConservacao { Otimo, Bom, Ruim}
@@ -65,7 +59,7 @@ namespace SGP.Models.Equipamentos
         public Categoria Categoria { get; set; }
         public Classificacao Classificacao { get; set; }
         public Modelo Modelo { get; set; }
-        public Marca Marca { get; set; }
+        public Empresa Marca { get; set; }
         public Responsavel Responsavel { get; set; }
         public Setor Setor { get; set; }
         

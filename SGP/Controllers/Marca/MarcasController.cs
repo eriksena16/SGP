@@ -54,7 +54,7 @@ namespace SGP.Controllers.Marca
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MarcaID,Nome,Cnpj,Endereco,Telefone")]  Models.Marcas.Marca marca)
+        public async Task<IActionResult> Create([Bind("MarcaID,Nome,Cnpj,Endereco,Telefone")]  Models.Marcas.Empresa marca)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace SGP.Controllers.Marca
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("MarcaID,Nome,Cnpj,Endereco,Telefone")] Models.Marcas.Marca marca)
+        public async Task<IActionResult> Edit(int id, [Bind("MarcaID,Nome,Cnpj,Endereco,Telefone")] Models.Marcas.Empresa marca)
         {
             if (id != marca.MarcaID)
             {

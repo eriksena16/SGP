@@ -61,12 +61,12 @@ namespace SGP.Data
                 context.Modelo.Add(m);
             }
             context.SaveChanges();
-            var marcas = new Marca[]
+            var marcas = new Empresa[]
             {
-                new Marca{Nome = "Sena Corp", Cnpj ="06414576506", Endereco ="Travessa Portugal, 23", Telefone ="71992257224"},
-                new Marca{Nome = "Culinaria Brandão", Cnpj = "72629878520", Endereco ="Rua cirilo Barbosa, 34", Telefone = "7188516589"}
+                new Empresa{Nome = "Sena Corp", Cnpj ="06414576506", Endereco ="Travessa Portugal, 23", Telefone ="71992257224"},
+                new Empresa{Nome = "Culinaria Brandão", Cnpj = "72629878520", Endereco ="Rua cirilo Barbosa, 34", Telefone = "7188516589"}
             };
-            foreach (Marca m in marcas)
+            foreach (Empresa m in marcas)
             {
                 context.Marcas.Add(m);
             }
