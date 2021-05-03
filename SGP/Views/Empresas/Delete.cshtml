@@ -1,14 +1,15 @@
-﻿@model SGP.Models.Marcas.Marca
+﻿@model SGP.Models.Empresa
 
 @{
     ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_LayoutPrincipal.cshtml";
 }
 
 <h1>Delete</h1>
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>Marca</h4>
+    <h4>Empresa</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -38,7 +39,7 @@
     </dl>
     
     <form asp-action="Delete">
-        <input type="hidden" asp-for="MarcaID" />
+        <input type="hidden" asp-for="EmpresaID" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |
         <a asp-action="Index">Back to List</a>
     </form>

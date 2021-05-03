@@ -9,8 +9,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
 using System.Collections.Generic;
+using SGP.Models;
 
-namespace SGP.Controllers.Equipamento
+namespace SGP.Controllers
 {
     public class EquipamentosController : Controller
     {
@@ -94,7 +95,7 @@ namespace SGP.Controllers.Equipamento
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Models.Equipamentos.Equipamento equipamentos)
+        public async Task<IActionResult> Create(Equipamento equipamentos)
         {
          
            
@@ -130,15 +131,15 @@ namespace SGP.Controllers.Equipamento
             return $"/" + folderPath;
         }
 
-        public List<Models.Equipamentos.Equipamento> ListaArquivos()
+       /* public List<Models.Equipamento> ListaArquivos()
         {
             string folder = "uploads/notas/";
-            List<Models.Equipamentos.Equipamento> lstArquivos = new List<Models.Equipamentos.Equipamento>();
+            List<Models.Equipamento> lstArquivos = new List<Models.Equipamento>();
             DirectoryInfo dirInfo = new DirectoryInfo(folder);
             int i = 0;
             foreach(  var intem in dirInfo.GetFiles())
             {
-                lstArquivos.Add(new Models.Equipamentos.Equipamento()
+                lstArquivos.Add(new Models.Equipamento()
                 {
 
                 }
@@ -147,7 +148,7 @@ namespace SGP.Controllers.Equipamento
             
 
             return lstArquivos;
-        }
+        }*/
 
        
         // GET: Equipamentos/Edit/5
@@ -191,7 +192,7 @@ namespace SGP.Controllers.Equipamento
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, Models.Equipamentos.Equipamento equipamentos)
+        public async Task<IActionResult> Edit(int id, Equipamento equipamentos)
         {
 
             if (id != equipamentos.EquipamentoID)
@@ -263,10 +264,10 @@ namespace SGP.Controllers.Equipamento
 
         private void DropdownListMarca(object listaMarca = null)
         {
-            IQueryable<object> fornecedorQuery = from f in _context.Marcas
+            IQueryable<object> fornecedorQuery = from f in _context.Empresa
                                                     orderby f.Nome
                                                     select f;
-            ViewBag.MarcaID = new SelectList(fornecedorQuery, "MarcaID", "Nome", listaMarca);
+            ViewBag.MarcaID = new SelectList(fornecedorQuery, "EmpresaID", "Nome", listaMarca);
         }
 
         private void DropdownListSetor(object listaSetor = null)

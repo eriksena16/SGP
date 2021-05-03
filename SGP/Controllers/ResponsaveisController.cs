@@ -6,26 +6,27 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SGP.Data;
-using SGP.Models.Marcas;
+using SGP.Models;
 
-namespace SGP.Controllers.Marca
+
+namespace SGP.Controllers
 {
-    public class MarcasController : Controller
+    public class ResponsaveisController : Controller
     {
         private readonly SGPContext _context;
 
-        public MarcasController(SGPContext context)
+        public ResponsaveisController(SGPContext context)
         {
             _context = context;
         }
 
-        // GET: Marcas
+        // GET: Responsaveis
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Marcas.ToListAsync());
+            return View(await _context.Responsavel.ToListAsync());
         }
 
-        // GET: Marcas/Details/5
+        // GET: Responsaveis/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,39 +34,39 @@ namespace SGP.Controllers.Marca
                 return NotFound();
             }
 
-            var marca = await _context.Marcas
-                .FirstOrDefaultAsync(m => m.MarcaID == id);
-            if (marca == null)
+            var responsavel = await _context.Responsavel
+                .FirstOrDefaultAsync(m => m.ResponsavelID == id);
+            if (responsavel == null)
             {
                 return NotFound();
             }
 
-            return View(marca);
+            return View(responsavel);
         }
 
-        // GET: Marcas/Create
+        // GET: Responsaveis/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Marcas/Create
+        // POST: Responsaveis/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MarcaID,Nome,Cnpj,Endereco,Telefone")]  Models.Marcas.Empresa marca)
+        public async Task<IActionResult> Create([Bind("ResponsavelID,Nome")] Responsavel responsavel)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(marca);
+                _context.Add(responsavel);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(marca);
+            return View(responsavel);
         }
 
-        // GET: Marcas/Edit/5
+        // GET: Responsaveis/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,22 +74,22 @@ namespace SGP.Controllers.Marca
                 return NotFound();
             }
 
-            var marca = await _context.Marcas.FindAsync(id);
-            if (marca == null)
+            var responsavel = await _context.Responsavel.FindAsync(id);
+            if (responsavel == null)
             {
                 return NotFound();
             }
-            return View(marca);
+            return View(responsavel);
         }
 
-        // POST: Marcas/Edit/5
+        // POST: Responsaveis/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("MarcaID,Nome,Cnpj,Endereco,Telefone")] Models.Marcas.Empresa marca)
+        public async Task<IActionResult> Edit(int id, [Bind("ResponsavelID,Nome")] Responsavel responsavel)
         {
-            if (id != marca.MarcaID)
+            if (id != responsavel.ResponsavelID)
             {
                 return NotFound();
             }
@@ -97,12 +98,12 @@ namespace SGP.Controllers.Marca
             {
                 try
                 {
-                    _context.Update(marca);
+                    _context.Update(responsavel);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!MarcaExists(marca.MarcaID))
+                    if (!ResponsavelExists(responsavel.ResponsavelID))
                     {
                         return NotFound();
                     }
@@ -113,10 +114,10 @@ namespace SGP.Controllers.Marca
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(marca);
+            return View(responsavel);
         }
 
-        // GET: Marcas/Delete/5
+        // GET: Responsaveis/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,30 +125,30 @@ namespace SGP.Controllers.Marca
                 return NotFound();
             }
 
-            var marca = await _context.Marcas
-                .FirstOrDefaultAsync(m => m.MarcaID == id);
-            if (marca == null)
+            var responsavel = await _context.Responsavel
+                .FirstOrDefaultAsync(m => m.ResponsavelID == id);
+            if (responsavel == null)
             {
                 return NotFound();
             }
 
-            return View(marca);
+            return View(responsavel);
         }
 
-        // POST: Marcas/Delete/5
+        // POST: Responsaveis/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var marca = await _context.Marcas.FindAsync(id);
-            _context.Marcas.Remove(marca);
+            var responsavel = await _context.Responsavel.FindAsync(id);
+            _context.Responsavel.Remove(responsavel);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool MarcaExists(int id)
+        private bool ResponsavelExists(int id)
         {
-            return _context.Marcas.Any(e => e.MarcaID == id);
+            return _context.Responsavel.Any(e => e.ResponsavelID == id);
         }
     }
 }

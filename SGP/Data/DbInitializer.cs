@@ -2,13 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using SGP.Models.Equipamentos;
-using SGP.Models.Setores;
-using SGP.Models.Categorias;
-using SGP.Models.Classificacoes;
-using SGP.Models.Marcas;
-using SGP.Models.Responsaveis;
-using SGP.Models.Modelos;
+using SGP.Models;
+
 
 namespace SGP.Data
 {
@@ -37,12 +32,12 @@ namespace SGP.Data
 
             var classificacao = new Classificacao[]
             {
-                new Classificacao{Nome = "Informática e Comunicação", taxa = 20, VidaUtil = 5},
-                new Classificacao{Nome = "Móveis e utensílios", taxa = 10, VidaUtil = 10},
-                new Classificacao{Nome = "Imoveis", taxa = 4, VidaUtil = 25},
-                new Classificacao{Nome = "Instalaçoes", taxa = 10, VidaUtil = 10},
-                new Classificacao{Nome = "Veiculos leves", taxa = 20, VidaUtil = 5},
-                new Classificacao{Nome = "Veiculos pesados", taxa = 25, VidaUtil = 4},
+                new Classificacao{Nome = "Informática e Comunicação", Taxa = 20, VidaUtil = 5},
+                new Classificacao{Nome = "Móveis e utensílios", Taxa = 10, VidaUtil = 10},
+                new Classificacao{Nome = "Imoveis", Taxa = 4, VidaUtil = 25},
+                new Classificacao{Nome = "Instalaçoes", Taxa = 10, VidaUtil = 10},
+                new Classificacao{Nome = "Veiculos leves", Taxa = 20, VidaUtil = 5},
+                new Classificacao{Nome = "Veiculos pesados", Taxa = 25, VidaUtil = 4},
 
             };
             foreach (Classificacao cl in classificacao)
@@ -61,14 +56,14 @@ namespace SGP.Data
                 context.Modelo.Add(m);
             }
             context.SaveChanges();
-            var marcas = new Empresa[]
+            var empresas = new Empresa[]
             {
                 new Empresa{Nome = "Sena Corp", Cnpj ="06414576506", Endereco ="Travessa Portugal, 23", Telefone ="71992257224"},
                 new Empresa{Nome = "Culinaria Brandão", Cnpj = "72629878520", Endereco ="Rua cirilo Barbosa, 34", Telefone = "7188516589"}
             };
-            foreach (Empresa m in marcas)
+            foreach (Empresa e in empresas)
             {
-                context.Marcas.Add(m);
+                context.Empresa.Add(e);
             }
             context.SaveChanges();
 

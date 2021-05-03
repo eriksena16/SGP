@@ -6,9 +6,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SGP.Data;
-using SGP.Models.Setores;
+using SGP.Models;
 
-namespace SGP.Controllers.Setor
+
+namespace SGP.Controllers
 {
     public class SetoresController : Controller
     {
@@ -54,7 +55,7 @@ namespace SGP.Controllers.Setor
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("SetorID,Nome")] Models.Setores.Setor setor)
+        public async Task<IActionResult> Create([Bind("SetorID,Nome")] Setor setor)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +87,7 @@ namespace SGP.Controllers.Setor
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("SetorID,Nome")] Models.Setores.Setor setor)
+        public async Task<IActionResult> Edit(int id, [Bind("SetorID,Nome")] Setor setor)
         {
             if (id != setor.SetorID)
             {

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SGP.Models.Classificacoes.Classificacao>
+﻿@model IEnumerable<SGP.Models.Classificacao>
 
 @{
     ViewData["Title"] = "Index";
@@ -18,7 +18,7 @@
                 <thead>
                     <tr>
                         <th>@Html.DisplayNameFor(model => model.Nome)</th>
-                        <th>@Html.DisplayNameFor(model => model.taxa)</th>
+                        <th>@Html.DisplayNameFor(model => model.Taxa)</th>
                         <th>@Html.DisplayNameFor(model => model.VidaUtil)</th>
                         <th>Ação</th>
                         
@@ -27,7 +27,7 @@
                 <tfoot>
                     <tr>
                         <th>@Html.DisplayNameFor(model => model.Nome)</th>
-                        <th>@Html.DisplayNameFor(model => model.taxa)</th>
+                        <th>@Html.DisplayNameFor(model => model.Taxa)</th>
                         <th>@Html.DisplayNameFor(model => model.VidaUtil)</th>
                         <th>Ação</th>
                     </tr>
@@ -40,7 +40,7 @@
                             
                             <td>@Html.DisplayFor(modelItem => item.Nome)</td>
                             <td>
-                            @Html.DisplayFor(modelItem => item.taxa)%</td>
+                            @Html.DisplayFor(modelItem => item.Taxa)%</td>
                             <td>@Html.DisplayFor(modelItem => item.VidaUtil) Anos</td>
                             <td>
                                 <a asp-action="Edit" asp-route-id="@item.ClassificacaoID"><i class="fas fa-edit fa-2x" title="Editar"></i></a> |

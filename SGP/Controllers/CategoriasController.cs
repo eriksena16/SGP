@@ -1,31 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SGP.Data;
-using SGP.Models.Classificacoes;
+using SGP.Models;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace SGP.Controllers.Classificacao
+
+namespace SGP.Controllers
 {
-    public class ClassificacoesController : Controller
+    public class CategoriasController : Controller
     {
         private readonly SGPContext _context;
 
-        public ClassificacoesController(SGPContext context)
+        public CategoriasController(SGPContext context)
         {
             _context = context;
         }
 
-        // GET: Classificacoes
+        // GET: Categorias
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Classificacao.ToListAsync());
+            
+            return View(await _context.Categoria.AsNoTracking().ToListAsync());
         }
 
-        // GET: Classificacoes/Details/5
+        // GET: Categorias/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,39 +32,39 @@ namespace SGP.Controllers.Classificacao
                 return NotFound();
             }
 
-            var classificacao = await _context.Classificacao
-                .FirstOrDefaultAsync(m => m.ClassificacaoID == id);
-            if (classificacao == null)
+            var categoria = await _context.Categoria
+                .FirstOrDefaultAsync(m => m.CategoriaID == id);
+            if (categoria == null)
             {
                 return NotFound();
             }
 
-            return View(classificacao);
+            return View(categoria);
         }
 
-        // GET: Classificacoes/Create
+        // GET: Categorias/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Classificacoes/Create
+        // POST: Categorias/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ClassificacaoID,Nome,taxa,VidaUtil")]Models.Classificacoes.Classificacao classificacao)
+        public async Task<IActionResult> Create([Bind("CategoriaID,Nome")] Categoria categoria)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(classificacao);
+                _context.Add(categoria);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(classificacao);
+            return View(categoria);
         }
 
-        // GET: Classificacoes/Edit/5
+        // GET: Categorias/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,22 +72,22 @@ namespace SGP.Controllers.Classificacao
                 return NotFound();
             }
 
-            var classificacao = await _context.Classificacao.FindAsync(id);
-            if (classificacao == null)
+            var categoria = await _context.Categoria.FindAsync(id);
+            if (categoria == null)
             {
                 return NotFound();
             }
-            return View(classificacao);
+            return View(categoria);
         }
 
-        // POST: Classificacoes/Edit/5
+        // POST: Categorias/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ClassificacaoID,Nome,taxa,VidaUtil")] Models.Classificacoes.Classificacao classificacao)
+        public async Task<IActionResult> Edit(int id, [Bind("CategoriaID,Nome")] Categoria categoria)
         {
-            if (id != classificacao.ClassificacaoID)
+            if (id != categoria.CategoriaID)
             {
                 return NotFound();
             }
@@ -97,12 +96,12 @@ namespace SGP.Controllers.Classificacao
             {
                 try
                 {
-                    _context.Update(classificacao);
+                    _context.Update(categoria);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ClassificacaoExists(classificacao.ClassificacaoID))
+                    if (!CategoriaExists(categoria.CategoriaID))
                     {
                         return NotFound();
                     }
@@ -113,10 +112,10 @@ namespace SGP.Controllers.Classificacao
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(classificacao);
+            return View(categoria);
         }
 
-        // GET: Classificacoes/Delete/5
+        // GET: Categorias/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,30 +123,30 @@ namespace SGP.Controllers.Classificacao
                 return NotFound();
             }
 
-            var classificacao = await _context.Classificacao
-                .FirstOrDefaultAsync(m => m.ClassificacaoID == id);
-            if (classificacao == null)
+            var categoria = await _context.Categoria
+                .FirstOrDefaultAsync(m => m.CategoriaID == id);
+            if (categoria == null)
             {
                 return NotFound();
             }
 
-            return View(classificacao);
+            return View(categoria);
         }
 
-        // POST: Classificacoes/Delete/5
+        // POST: Categorias/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var classificacao = await _context.Classificacao.FindAsync(id);
-            _context.Classificacao.Remove(classificacao);
+            var categoria = await _context.Categoria.FindAsync(id);
+            _context.Categoria.Remove(categoria);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ClassificacaoExists(int id)
+        private bool CategoriaExists(int id)
         {
-            return _context.Classificacao.Any(e => e.ClassificacaoID == id);
+            return _context.Categoria.Any(e => e.CategoriaID == id);
         }
     }
 }

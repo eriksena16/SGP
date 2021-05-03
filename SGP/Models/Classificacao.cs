@@ -11,10 +11,10 @@ namespace SGP.Models
         public int ClassificacaoID { get; set; }
         public string Nome { get; set; }
         [Display(Name ="Taxa de depreciação")]
-        public int taxa { get; set; }
+        public int Taxa { get; set; }
         [Display(Name ="Vida Útil")]
         public int VidaUtil { get; set; }
 
-        public ICollection<Equipamentos.Equipamento> Equipamentos { get; set; }
+        public ICollection<Equipamento> Equipamentos { get; set; }
     }
 }

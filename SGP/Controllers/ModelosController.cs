@@ -6,27 +6,27 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SGP.Data;
-using SGP.Models.Categorias;
+using SGP.Models;
 
-namespace SGP.Controllers.Categoria
+
+namespace SGP.Controllers
 {
-    public class CategoriasController : Controller
+    public class ModelosController : Controller
     {
         private readonly SGPContext _context;
 
-        public CategoriasController(SGPContext context)
+        public ModelosController(SGPContext context)
         {
             _context = context;
         }
 
-        // GET: Categorias
-        public async Task<IActionResult> Index( string sortOrder)
+        // GET: Modelos
+        public async Task<IActionResult> Index()
         {
-            
-            return View(await _context.Categoria.AsNoTracking().ToListAsync());
+            return View(await _context.Modelo.ToListAsync());
         }
 
-        // GET: Categorias/Details/5
+        // GET: Modelos/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -34,39 +34,39 @@ namespace SGP.Controllers.Categoria
                 return NotFound();
             }
 
-            var categoria = await _context.Categoria
-                .FirstOrDefaultAsync(m => m.CategoriaID == id);
-            if (categoria == null)
+            var modelo = await _context.Modelo
+                .FirstOrDefaultAsync(m => m.ModeloID == id);
+            if (modelo == null)
             {
                 return NotFound();
             }
 
-            return View(categoria);
+            return View(modelo);
         }
 
-        // GET: Categorias/Create
+        // GET: Modelos/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Categorias/Create
+        // POST: Modelos/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CategoriaID,Nome")] Models.Categorias.Categoria categoria)
+        public async Task<IActionResult> Create([Bind("ModeloID,Nome")] Modelo modelo)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(categoria);
+                _context.Add(modelo);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(categoria);
+            return View(modelo);
         }
 
-        // GET: Categorias/Edit/5
+        // GET: Modelos/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -74,22 +74,22 @@ namespace SGP.Controllers.Categoria
                 return NotFound();
             }
 
-            var categoria = await _context.Categoria.FindAsync(id);
-            if (categoria == null)
+            var modelo = await _context.Modelo.FindAsync(id);
+            if (modelo == null)
             {
                 return NotFound();
             }
-            return View(categoria);
+            return View(modelo);
         }
 
-        // POST: Categorias/Edit/5
+        // POST: Modelos/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CategoriaID,Nome")] Models.Categorias.Categoria categoria)
+        public async Task<IActionResult> Edit(int id, [Bind("ModeloID,Nome")] Modelo modelo)
         {
-            if (id != categoria.CategoriaID)
+            if (id != modelo.ModeloID)
             {
                 return NotFound();
             }
@@ -98,12 +98,12 @@ namespace SGP.Controllers.Categoria
             {
                 try
                 {
-                    _context.Update(categoria);
+                    _context.Update(modelo);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CategoriaExists(categoria.CategoriaID))
+                    if (!ModeloExists(modelo.ModeloID))
                     {
                         return NotFound();
                     }
@@ -114,10 +114,10 @@ namespace SGP.Controllers.Categoria
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(categoria);
+            return View(modelo);
         }
 
-        // GET: Categorias/Delete/5
+        // GET: Modelos/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -125,30 +125,30 @@ namespace SGP.Controllers.Categoria
                 return NotFound();
             }
 
-            var categoria = await _context.Categoria
-                .FirstOrDefaultAsync(m => m.CategoriaID == id);
-            if (categoria == null)
+            var modelo = await _context.Modelo
+                .FirstOrDefaultAsync(m => m.ModeloID == id);
+            if (modelo == null)
             {
                 return NotFound();
             }
 
-            return View(categoria);
+            return View(modelo);
         }
 
-        // POST: Categorias/Delete/5
+        // POST: Modelos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var categoria = await _context.Categoria.FindAsync(id);
-            _context.Categoria.Remove(categoria);
+            var modelo = await _context.Modelo.FindAsync(id);
+            _context.Modelo.Remove(modelo);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CategoriaExists(int id)
+        private bool ModeloExists(int id)
         {
-            return _context.Categoria.Any(e => e.CategoriaID == id);
+            return _context.Modelo.Any(e => e.ModeloID == id);
         }
     }
 }

@@ -10,7 +10,7 @@ namespace SGP.Models
         public int ModeloID { get; set; }
         public string Nome { get; set; }
 
-        public ICollection<Equipamentos.Equipamento> Equipamentos { get; set; }
+        public ICollection<Equipamento> Equipamentos { get; set; }
 
     }
 }

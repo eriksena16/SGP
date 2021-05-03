@@ -66,7 +66,7 @@ namespace SGP.Models
         public decimal CalcularValorAtual(int idade)
         {
             this.Idade = idade;
-            var percentual = Convert.ToDecimal(this.Classificacao.taxa) / 100; // 0,2
+            var percentual = Convert.ToDecimal(this.Classificacao.Taxa) / 100; // 0,2
             decimal vt = this.ValorDeCompra * percentual; // 3200 * 0,2 = 640
 
             return this.ValorAtual = this.ValorDeCompra - (vt * this.Idade);// 3200 - (640*3) = 1920

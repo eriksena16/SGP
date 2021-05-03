@@ -1,7 +1,8 @@
-﻿@model IEnumerable<SGP.Models.Marcas.Marca>
+﻿@model IEnumerable<SGP.Models.Empresa>
 
 @{
     ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutPrincipal.cshtml";
 }
 
 <h1>Index</h1>
@@ -43,9 +44,9 @@
                 @Html.DisplayFor(modelItem => item.Telefone)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.MarcaID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.MarcaID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.MarcaID">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.EmpresaID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.EmpresaID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.EmpresaID">Delete</a>
             </td>
         </tr>
 }
