@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SGP.Models.Marcas
+namespace SGP.Models
 {
-    public class Marca
+    public class Empresa
     {
-        public int MarcaID { get; set; }
+        public int EmpresaId { get; set; }
         public string Nome { get; set; }
         public string Cnpj { get; set; }
         public string Endereco { get; set; }
         public string Telefone { get; set; }
 
-        public ICollection<Equipamentos.Equipamento> Equipamentos { get; set; }
+        public ICollection<Equipamento> Equipamentos { get; set; }
     }
 }
