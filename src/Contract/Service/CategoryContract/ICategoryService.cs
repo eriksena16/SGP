@@ -11,5 +11,6 @@ namespace SGP.CategoryContract
         Task<List<Category>> Get();
         Task<Category> Create();
         Task<Category> Update();
+        Task<Category> Delete();
     }
 }
