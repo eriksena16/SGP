@@ -29,17 +29,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service", "Service", "{CB0E
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{71FDE559-2990-4762-8D26-CFF838F0D484}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SectorService", "..\Sector\Service\SectorService\SectorService.csproj", "{27F3BAFA-4FB8-4392-B514-C6DE6921CF45}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SectorService", "..\Sector\Service\SectorService\SectorService.csproj", "{27F3BAFA-4FB8-4392-B514-C6DE6921CF45}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SectorRepository", "..\Sector\Repository\SectorRepository\SectorRepository.csproj", "{7DCD027D-4E45-4FB3-8ADF-C8434D8007CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SectorRepository", "..\Sector\Repository\SectorRepository\SectorRepository.csproj", "{7DCD027D-4E45-4FB3-8ADF-C8434D8007CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CategoryService", "..\Category\Service\CategoryService\CategoryService.csproj", "{F2C0D029-E93D-4A1B-94AA-776CC560445D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CategoryService", "..\Category\Service\CategoryService\CategoryService.csproj", "{F2C0D029-E93D-4A1B-94AA-776CC560445D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CategoryRepository", "..\Category\Repository\CategoryRepository\CategoryRepository.csproj", "{AFB08980-BA1C-4E9F-A00D-487846C4724F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CategoryRepository", "..\Category\Repository\CategoryRepository\CategoryRepository.csproj", "{AFB08980-BA1C-4E9F-A00D-487846C4724F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CategoryContract", "..\Contract\Service\CategoryContract\CategoryContract.csproj", "{ED76099F-057F-4FCE-B08C-558948A77A1E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CategoryContract", "..\Contract\Service\CategoryContract\CategoryContract.csproj", "{ED76099F-057F-4FCE-B08C-558948A77A1E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SectorContract", "..\Contract\Service\SectorContract\SectorContract.csproj", "{E1D89D91-BAAA-4E0B-A758-AED2D64E1EC8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entity", "..\Model\Entity\Entity.csproj", "{AB6A5B0C-6512-4CA5-A7D6-E4F00F45B247}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,6 +77,10 @@ Global
 		{E1D89D91-BAAA-4E0B-A758-AED2D64E1EC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E1D89D91-BAAA-4E0B-A758-AED2D64E1EC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E1D89D91-BAAA-4E0B-A758-AED2D64E1EC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB6A5B0C-6512-4CA5-A7D6-E4F00F45B247}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB6A5B0C-6512-4CA5-A7D6-E4F00F45B247}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB6A5B0C-6512-4CA5-A7D6-E4F00F45B247}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB6A5B0C-6512-4CA5-A7D6-E4F00F45B247}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -94,6 +100,7 @@ Global
 		{AFB08980-BA1C-4E9F-A00D-487846C4724F} = {F109EB33-62C6-4558-A059-78A9EBB1E0D2}
 		{ED76099F-057F-4FCE-B08C-558948A77A1E} = {A2BCBCB5-F842-4726-ACDB-1269C66E45AE}
 		{E1D89D91-BAAA-4E0B-A758-AED2D64E1EC8} = {A2BCBCB5-F842-4726-ACDB-1269C66E45AE}
+		{AB6A5B0C-6512-4CA5-A7D6-E4F00F45B247} = {8FF581D1-CBF9-47B0-A67A-8E79C4DF4E9B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FC2073FE-6138-48FA-8AF7-416164B858EB}

@@ -6,4 +6,9 @@
     <RootNamespace>SGP.CategoryService</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Contract\Service\CategoryContract\CategoryContract.csproj" />
+    <ProjectReference Include="..\..\..\Model\Entity\Entity.csproj" />
+  </ItemGroup>
+
 </Project>

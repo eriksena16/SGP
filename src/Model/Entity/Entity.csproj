@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>SGP.Entity</AssemblyName>
+    <RootNamespace>SGP.Entity</RootNamespace>
+  </PropertyGroup>
+
+</Project>

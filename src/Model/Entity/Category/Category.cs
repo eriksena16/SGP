@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SGP.Models
+namespace SGP.Entity
 
 {
-    public class Categoria
+    public class Category
     {
         public int CategoriaID { get; set; }
         public string Nome { get; set; }
