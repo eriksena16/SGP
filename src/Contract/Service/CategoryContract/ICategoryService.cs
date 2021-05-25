@@ -9,5 +9,7 @@ namespace SGP.CategoryContract
    public interface ICategoryService
     {
         Task<List<Category>> Get();
+        Task<Category> Create();
+        Task<Category> Update();
     }
 }
