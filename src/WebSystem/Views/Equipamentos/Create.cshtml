@@ -1,4 +1,5 @@
-﻿@model SGP.Models.Equipamentos.Equipamento
+﻿@using SGP.Models
+@model SGP.Models.Equipamento
 
 @{
     Layout = "_LayoutPrincipal";
@@ -58,7 +59,9 @@
                             </div>
                             <div class="form-group">
                                 <label asp-for="Status" class="control-label"></label>
-                                <input asp-for="Status" class="form-control" />
+                                <select asp-for="Status" class="form-control" asp-items="Html.GetEnumSelectList<Status>()">
+                                    <option value="">-- Selecione o Status --</option>
+                                </select>
                                 <span asp-validation-for="Status" class="text-danger"></span>
                             </div>
                             
@@ -113,43 +116,37 @@
                             </div>
                             <div class="form-group">
                                 <label asp-for="ValorDeCompra" class="control-label"></label>
-
                                 <input asp-for="ValorDeCompra" class="form-control" />
                                 <span asp-validation-for="ValorDeCompra" class="text-danger"></span>
                             </div>
                         </div>
 
                         <div class="col-md-6">
-
-                            <!--<div class="input-group">
-
-        <div class="custom-file">
-            <label asp-for="NotaFiscal" class="control-label"></label>
-            <input type="file" class="custom-file-input" id="inputGroupFile04" accept=".pdf" aria-describedby="inputGroupFileAddon04">
-            <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
-            <span asp-validation-for="NotaFiscal" class="text-danger"></span>
-        </div>
-    </div>
-                           <div class="input-group mb-3">
-                               <div class="input-group-prepend">
-                                   <span class="input-group-text" id="NotaFiscal">Upload</span>
-                               </div>
-                               <div class="custom-file">
-                                   <input asp-for="NotaFiscal" type="file" class="custom-file-input" accept=".pdf" id="NotaFiscal" aria-describedby="NotaFiscal">
-                                   <label class="custom-file-label" for="NotaFiscal">Choose file</label>
+                            <div class="form-group">
+                                <label asp-for="NotaFiscal" class="control-label"></label>
+                                <div class="custom-file">
+                                  <input type="file" asp-for="NotaFiscal" class="custom-file-input" id="NotaFiscal" accept=".pdf" />
+                                  <label class="custom-file-label" for="customFileLang">Selecione um arquivo pdf</label>
                                    <span asp-validation-for="NotaFiscal" class="text-danger"></span>
-                               </div>
-                           </div>-->
-                            <input asp-for="NotaFiscal" id="NotaFiscal" type="file" accept=".pdf" />
+                                </div>
+ 
+                            </div>
+                            
                             <div class="form-group">
                                 <label asp-for="EstadoDeConservacao" class="control-label"></label>
-                                <input asp-for="EstadoDeConservacao" class="form-control" />
+                                <select asp-for="EstadoDeConservacao" class="form-control" asp-items="Html.GetEnumSelectList<EstadoDeConservacao>()">
+                                    <option value="">-- Selecione o Estado --</option>
+                                </select>
                                 <span asp-validation-for="EstadoDeConservacao" class="text-danger"></span>
                             </div>
                         </div>
                         <hr />
                         <div class="col-md-12">
-                            
+                            <div class="mb-3">
+                                <label asp-for="Observacao" class="control-label"></label>
+                                <textarea asp-for ="Observacao" class="form-control">   </textarea>
+                                <span asp-validation-for="Observacao" class="text-danger"></span>
+                            </div>
                         </div>
        
                     </div>

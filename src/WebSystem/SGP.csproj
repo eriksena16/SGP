@@ -8,27 +8,24 @@
     <Compile Remove="Controllers\Manutencao\**" />
     <Compile Remove="Funcoes\**" />
     <Compile Remove="Models\ModeloEquipamento\**" />
-    <Compile Remove="wwwroot\startbootstrap\src\pug\**" />
     <Content Remove="Controllers\Manutencao\**" />
     <Content Remove="Funcoes\**" />
     <Content Remove="Models\ModeloEquipamento\**" />
-    <Content Remove="wwwroot\startbootstrap\src\pug\**" />
     <EmbeddedResource Remove="Controllers\Manutencao\**" />
     <EmbeddedResource Remove="Funcoes\**" />
     <EmbeddedResource Remove="Models\ModeloEquipamento\**" />
-    <EmbeddedResource Remove="wwwroot\startbootstrap\src\pug\**" />
     <None Remove="Controllers\Manutencao\**" />
     <None Remove="Funcoes\**" />
     <None Remove="Models\ModeloEquipamento\**" />
-    <None Remove="wwwroot\startbootstrap\src\pug\**" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Migrations\" />
-    <Folder Include="wwwroot\uploads\" />
+    <Folder Include="wwwroot\uploads\notas\" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.2.7" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="5.0.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.4" />

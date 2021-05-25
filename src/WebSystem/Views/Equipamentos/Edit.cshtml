@@ -1,4 +1,5 @@
-﻿@model SGP.Models.Equipamentos.Equipamento
+﻿@using SGP.Models
+@model SGP.Models.Equipamento
 
 @{
     ViewData["Title"] = "Edit";
@@ -12,7 +13,7 @@
 </ol>
 <div class="card mb-4">
     <div class="card-body">
-        <form asp-action="Edit">
+        <form asp-action="Edit" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="card">
                 <div class="card-header">
@@ -55,10 +56,12 @@
                                 <input asp-for="Serie" class="form-control" />
                                 <span asp-validation-for="Serie" class="text-danger"></span>
                             </div>
-                           
+
                             <div class="form-group">
                                 <label asp-for="Status" class="control-label"></label>
-                                <input asp-for="Status" class="form-control" />
+                                <select asp-for="Status" class="form-control" asp-items="Html.GetEnumSelectList<Status>()">
+                                    <option value="">-- Selecione o Status --</option>
+                                </select>
                                 <span asp-validation-for="Status" class="text-danger"></span>
                             </div>
 
@@ -123,7 +126,7 @@
 
                             <div class="form-group">
                                 <label asp-for="NotaFiscal" class="control-label"></label>
-                                <input asp-for="NotaFiscal" class="form-control" />
+                                <input src ="@Model.NotaFiscalUrl" asp-for="NotaFiscal" class="form-control" />
                                 <span asp-validation-for="NotaFiscal" class="text-danger"></span>
                             </div>
 

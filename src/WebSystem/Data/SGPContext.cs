@@ -1,11 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SGP.Models.Equipamentos;
-using SGP.Models.Setores;
-using SGP.Models.Categorias;
-using SGP.Models.Modelos;
-using SGP.Models.Marcas;
-using SGP.Models.Responsaveis;
-using SGP.Models.Classificacoes;
+using SGP.Models;
+
 
 namespace SGP.Data
 {
@@ -32,17 +27,17 @@ namespace SGP.Data
             await _logStream.DisposeAsync();
         }*/
 
-        public DbSet<SGP.Models.Equipamentos.Equipamento> Equipamentos { get; set; }
+        public DbSet<Equipamento> Equipamentos { get; set; }
 
-        public DbSet<SGP.Models.Setores.Setor> Setor { get; set; }
+        public DbSet<Setor> Setor { get; set; }
 
-        public DbSet<SGP.Models.Categorias.Categoria> Categoria { get; set; }
-        public DbSet<SGP.Models.Classificacoes.Classificacao> Classificacao { get; set; }
-        public DbSet<SGP.Models.Modelos.Modelo> Modelo { get; set; }
+        public DbSet<Categoria> Categoria { get; set; }
+        public DbSet<Classificacao> Classificacao { get; set; }
+        public DbSet<Modelo> Modelo { get; set; }
 
-        public DbSet<SGP.Models.Marcas.Marca> Marcas { get; set; }
+        public DbSet<Empresa> Empresa { get; set; }
 
-        public DbSet<SGP.Models.Responsaveis.Responsavel> Responsavel { get; set; }
+        public DbSet<Responsavel> Responsavel { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -51,7 +46,7 @@ namespace SGP.Data
             modelBuilder.Entity<Categoria>().ToTable("Categorias");
             modelBuilder.Entity<Classificacao>().ToTable("Classificacoes");
             modelBuilder.Entity<Modelo>().ToTable("Modelos");
-            modelBuilder.Entity<Marca>().ToTable("Marcas");
+            modelBuilder.Entity<Empresa>().ToTable("Empresas");
             modelBuilder.Entity<Responsavel>().ToTable("Responsaveis");
 
         }
