@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SGP.Contract.GenericContract;
 using SGP.Entity;
 
-namespace SGP.CategoryContract
+namespace SGP.Contract.CategoryContract
 {
-   public interface ICategoryService
+    public interface ICategoryService 
     {
-        Task<List<Category>> Get();
-        Task<Category> Create();
-        Task<Category> Update();
-        Task<Category> Delete();
     }
 }

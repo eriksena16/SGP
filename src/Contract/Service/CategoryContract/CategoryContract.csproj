@@ -2,12 +2,13 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <AssemblyName>SGP.CategoryContract</AssemblyName>
-    <RootNamespace>SGP.CategoryContract</RootNamespace>
+    <AssemblyName>SGP.Contract.CategoryContract</AssemblyName>
+    <RootNamespace>SGP.Contract.CategoryContract</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Model\Entity\Entity.csproj" />
+    <ProjectReference Include="..\GenericContract\GenericContract.csproj" />
   </ItemGroup>
 
 </Project>
