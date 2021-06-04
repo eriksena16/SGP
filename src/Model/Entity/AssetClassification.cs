@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SGP.Models
 {
-    public class Classificacao
+    public class AssetClassification
     {
         public int ClassificacaoID { get; set; }
         public string Nome { get; set; }
@@ -15,6 +15,6 @@ namespace SGP.Models
         [Display(Name ="Vida Útil")]
         public int VidaUtil { get; set; }
 
-        public ICollection<Equipamento> Equipamentos { get; set; }
+        public ICollection<Equipment> Equipamentos { get; set; }
     }
 }

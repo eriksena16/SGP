@@ -7,9 +7,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SGP.Models
 {
-    public enum Status{Ativo, Inativo}
-    public enum EstadoDeConservacao { Otimo, Bom, Ruim}
-    public class Equipamento
+    
+    public class Equipment
     {
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [Display(Name = "Nº do Patrimonio")]
@@ -57,11 +56,11 @@ namespace SGP.Models
         public string Observacao { get; set; }
 
         public Categoria Categoria { get; set; }
-        public Classificacao Classificacao { get; set; }
-        public Modelo Modelo { get; set; }
+        public AssetClassification Classificacao { get; set; }
+        public EquipmentModel Modelo { get; set; }
         public Empresa Marca { get; set; }
-        public Responsavel Responsavel { get; set; }
-        public Setor Setor { get; set; }
+        public Responsible Responsavel { get; set; }
+        public Sector Setor { get; set; }
         
         public decimal CalcularValorAtual(int idade)
         {

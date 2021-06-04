@@ -5,12 +5,11 @@ using System.Threading.Tasks;
 
 namespace SGP.Models
 {
-    public class Modelo
+    public class Responsible
     {
-        public int ModeloID { get; set; }
+        public int ResponsavelID { get; set; }
         public string Nome { get; set; }
-
-        public ICollection<Equipamento> Equipamentos { get; set; }
-
+     
+        public ICollection<Equipment> Equipamentos { get; set; }
     }
 }
