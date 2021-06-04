@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>SGP.Contract.Service.PatrimonyContract</AssemblyName>
+    <RootNamespace>SGP.Contract.Service.PatrimonyContract</RootNamespace>
   </PropertyGroup>
 
 </Project>

@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 
 
-namespace SGP.Models
+namespace SGP.Model.Entity
 {
     
     public class Equipment

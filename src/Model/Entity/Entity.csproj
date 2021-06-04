@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <AssemblyName>SGP.Entity</AssemblyName>
-    <RootNamespace>SGP.Entity</RootNamespace>
+    <AssemblyName>SGP.Model.Entity</AssemblyName>
+    <RootNamespace>SGP.Model.Entity</RootNamespace>
   </PropertyGroup>
 
 </Project>
