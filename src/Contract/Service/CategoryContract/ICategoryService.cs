@@ -3,7 +3,7 @@ using SGP.Entity;
 
 namespace SGP.Contract.CategoryContract
 {
-    public interface ICategoryService 
+    public interface ICategoryService : IGenericService<Category>
     {
     }
 }

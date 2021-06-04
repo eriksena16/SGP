@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <AssemblyName>SGP.Contract.GenericContract</AssemblyName>
-    <RootNamespace>SGP.Contract.GenericContract</RootNamespace>
+    <AssemblyName>SGP.Contract.Service.GenericContract</AssemblyName>
+    <RootNamespace>SGP.Contract.Service.GenericContract</RootNamespace>
   </PropertyGroup>
 
 </Project>
