@@ -2,8 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <AssemblyName>SGP.SectorRepository</AssemblyName>
-    <RootNamespace>SGP.SectorRepository</RootNamespace>
   </PropertyGroup>
 
 </Project>
