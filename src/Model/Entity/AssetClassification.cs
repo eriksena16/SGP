@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SGP.Models
+namespace SGP.Model.Entity
 {
     public class AssetClassification
     {

@@ -8,8 +8,8 @@ namespace SGP.Model.Entity
 {
     public class ItemCategory
     {
-        public int CategoriaID { get; set; }
-        public string Nome { get; set; }
-        public ICollection<Equipamento> Equipamentos { get; set; }
+        public int CategoryId { get; set; }
+        public string Name { get; set; }
+        public ICollection<Equipment> Equipment { get; set; }
     }
 }

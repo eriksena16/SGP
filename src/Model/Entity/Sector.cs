@@ -7,7 +7,7 @@ namespace SGP.Model.Entity
 {
     public class Sector
     {
-        public int SetorID { get; set; }
+        public int SectorId { get; set; }
         public string Nome { get; set; }
 
         public ICollection<Equipment> Equipamentos { get; set; }

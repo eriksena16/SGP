@@ -6,4 +6,8 @@
     <RootNamespace>SGP.Contract.Service.PatrimonyContract</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Model\Entity\Entity.csproj" />
+  </ItemGroup>
+
 </Project>

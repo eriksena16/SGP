@@ -5,7 +5,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using SGP.Data;
+using SGP.Infrastructure.GatewayLocator;
+using SGP.Patrimony.Infrastructure.PatrimonyLocator;
+using SGP.Patrimony.Repository.PatrimonyRepository;
 using System.Collections.Generic;
 using System.Globalization;
 
@@ -24,7 +26,8 @@ namespace SGP
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-
+            services.ConfigurePatrimonyService();
+            services.ConfigureGatewayService();
             services.AddDbContext<SGPContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("SGPContext")));
 

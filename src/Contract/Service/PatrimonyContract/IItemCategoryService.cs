@@ -1,9 +1,9 @@
-﻿using SGP.Contract.GenericContract;
-using SGP.Entity;
+﻿
+using SGP.Model.Entity;
 
-namespace SGP.Contract.CategoryContract
+namespace SGP.Contract.Service.PatrimonyContract
 {
-    public interface IItemCategoryService : IGenericService<Category>
+    public interface IItemCategoryService : IGenericService<ItemCategory>
     {
     }
 }

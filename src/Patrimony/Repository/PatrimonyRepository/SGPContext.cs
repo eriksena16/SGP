@@ -1,8 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SGP.Models;
+using SGP.Model.Entity;
 
-
-namespace SGP.Data
+namespace SGP.Patrimony.Repository.PatrimonyRepository
 {
     public class SGPContext : DbContext
     {
@@ -27,27 +26,27 @@ namespace SGP.Data
             await _logStream.DisposeAsync();
         }*/
 
-        public DbSet<Equipamento> Equipamentos { get; set; }
+        public DbSet<Equipment> Equipment { get; set; }
 
-        public DbSet<Setor> Setor { get; set; }
+        public DbSet<Sector> Sector { get; set; }
 
-        public DbSet<Categoria> Categoria { get; set; }
-        public DbSet<Classificacao> Classificacao { get; set; }
-        public DbSet<Modelo> Modelo { get; set; }
+        public DbSet<ItemCategory> ItemCategory { get; set; }
+        public DbSet<AssetClassification> AssetClassification { get; set; }
+        public DbSet<EquipmentModel> EquipmentModel { get; set; }
 
-        public DbSet<Empresa> Empresa { get; set; }
+        public DbSet<Company> Company { get; set; }
 
-        public DbSet<Responsavel> Responsavel { get; set; }
+        public DbSet<Responsible> Responsible { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Equipamento>().ToTable("Equipamentos");
+           /* modelBuilder.Entity<Equipamento>().ToTable("Equipamentos");
             modelBuilder.Entity<Setor>().ToTable("Setores");
             modelBuilder.Entity<Categoria>().ToTable("Categorias");
             modelBuilder.Entity<Classificacao>().ToTable("Classificacoes");
             modelBuilder.Entity<Modelo>().ToTable("Modelos");
             modelBuilder.Entity<Empresa>().ToTable("Empresas");
-            modelBuilder.Entity<Responsavel>().ToTable("Responsaveis");
+            modelBuilder.Entity<Responsavel>().ToTable("Responsaveis");*/
 
         }
 

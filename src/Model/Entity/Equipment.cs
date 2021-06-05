@@ -4,16 +4,15 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 
-
 namespace SGP.Model.Entity
 {
     
     public class Equipment
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        [Display(Name = "Nº do Patrimonio")]
-        public int EquipamentoID { get; set; }
         
+        public long EquipamentoID { get; set; }
+        [Display(Name = "Nº do patrimônio")]
+        public long PatrimonyNumber { get; set; }
         [Display(Name = "Categoria")]
         public int CategoriaID { get; set; }
         [Display(Name ="Tempo em anos")]
@@ -55,12 +54,12 @@ namespace SGP.Model.Entity
         public EstadoDeConservacao EstadoDeConservacao { get; set; }
         public string Observacao { get; set; }
 
-        public Categoria Categoria { get; set; }
+        public ItemCategory ItemCategory { get; set; }
         public AssetClassification Classificacao { get; set; }
         public EquipmentModel Modelo { get; set; }
-        public Empresa Marca { get; set; }
-        public Responsible Responsavel { get; set; }
-        public Sector Setor { get; set; }
+        public Company Company { get; set; }
+        public Responsible Responsible { get; set; }
+        public Sector Sector { get; set; }
         
         public decimal CalcularValorAtual(int idade)
         {

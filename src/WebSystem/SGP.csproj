@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
@@ -35,6 +35,17 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Contract\Service\GatewayContract\GatewayContract.csproj" />
+    <ProjectReference Include="..\Contract\Service\PatrimonyContract\PatrimonyContract.csproj" />
+    <ProjectReference Include="..\Gateway\Infrastructure\GatewayLocator\GatewayLocator.csproj" />
+    <ProjectReference Include="..\Gateway\Service\GatewayService\GatewayService.csproj" />
+    <ProjectReference Include="..\Model\Entity\Entity.csproj" />
+    <ProjectReference Include="..\Patrimony\Infrastructure\PatrimonyLocator\PatrimonyLocator.csproj" />
+    <ProjectReference Include="..\Patrimony\Repository\PatrimonyRepository\PatrimonyRepository.csproj" />
+    <ProjectReference Include="..\Patrimony\Service\PatrimonyService\PatrimonyService.csproj" />
   </ItemGroup>
 
 </Project>

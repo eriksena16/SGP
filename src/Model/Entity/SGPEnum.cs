@@ -4,8 +4,7 @@ using System.Text;
 
 namespace SGP.Model.Entity
 {
-    class SGPEnum
-    {
+   
         public enum Status
         {
             Ativo = 1,
@@ -17,5 +16,5 @@ namespace SGP.Model.Entity
             Bom = 2,
             Ruim = 3
         }
-    }
+    
 }

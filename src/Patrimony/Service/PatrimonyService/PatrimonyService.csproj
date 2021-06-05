@@ -1,7 +1,15 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <AssemblyName>SGP.Patrimony.Service.PatrimonyService</AssemblyName>
+    <RootNamespace>SGP.Patrimony.Service.PatrimonyService</RootNamespace>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Contract\Service\PatrimonyContract\PatrimonyContract.csproj" />
+    <ProjectReference Include="..\..\..\Model\Entity\Entity.csproj" />
+    <ProjectReference Include="..\..\Repository\PatrimonyRepository\PatrimonyRepository.csproj" />
+  </ItemGroup>
 
 </Project>

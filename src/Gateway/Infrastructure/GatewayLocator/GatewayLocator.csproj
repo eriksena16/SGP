@@ -6,4 +6,9 @@
     <RootNamespace>SGP.Infrastructure.GatewayLocator</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Contract\Service\GatewayContract\GatewayContract.csproj" />
+    <ProjectReference Include="..\..\Service\GatewayService\GatewayService.csproj" />
+  </ItemGroup>
+
 </Project>
