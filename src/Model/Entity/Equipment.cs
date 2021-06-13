@@ -55,7 +55,7 @@ namespace SGP.Model.Entity
         public string Observacao { get; set; }
 
         public ItemCategory ItemCategory { get; set; }
-        public AssetClassification Classificacao { get; set; }
+        public AssetClassification AssetClassification { get; set; }
         public EquipmentModel Modelo { get; set; }
         public Company Company { get; set; }
         public Responsible Responsible { get; set; }

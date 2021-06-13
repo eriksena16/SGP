@@ -1,20 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace SGP.Model.Entity
 {
     public class AssetClassification
     {
-        public int ClassificacaoID { get; set; }
-        public string Nome { get; set; }
+        public int AssetClassificationId { get; set; }
+        public string Name { get; set; }
         [Display(Name ="Taxa de depreciação")]
-        public int Taxa { get; set; }
+        public int DepreciationRate { get; set; }
         [Display(Name ="Vida Útil")]
-        public int VidaUtil { get; set; }
+        public int LifeSpan { get; set; }
 
-        public ICollection<Equipment> Equipamentos { get; set; }
+        public ICollection<Equipment> Equipment { get; set; }
     }
 }

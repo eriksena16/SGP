@@ -4,14 +4,15 @@ using SGP.Model.Entity;
 using SGP.Patrimony.Repository.PatrimonyRepository;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace SGP.Patrimony.Service.PatrimonyService
 {
-    public class ItemCategoryServices :  IItemCategoryService
+    public class ItemCategoryService :  IItemCategoryService
     {
         private readonly SGPContext context;
-        public ItemCategoryServices(SGPContext context) => this.context = context;
+        public ItemCategoryService(SGPContext context) => this.context = context;
 
         public async Task<ItemCategory> Create(ItemCategory obj)
         {
@@ -23,10 +24,9 @@ namespace SGP.Patrimony.Service.PatrimonyService
 
         public async Task<ItemCategory> Delete(int? id)
         {
-            ItemCategory ItemCategory = await context.ItemCategory
-               .FirstOrDefaultAsync(m => m.CategoryId == id);
+            ItemCategory ItemCategory = new ItemCategory();
 
-            return ItemCategory;
+            return await this.Details(ItemCategory.CategoryId);
         }
 
         public async Task<ItemCategory> DeleteConfirmed(int id)
@@ -54,11 +54,6 @@ namespace SGP.Patrimony.Service.PatrimonyService
             return ItemCategory;
         }
 
-        public Task<ItemCategory> GetId(int id)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<ItemCategory> Update(int id, ItemCategory obj)
         {
             context.Update(obj);
@@ -73,9 +68,9 @@ namespace SGP.Patrimony.Service.PatrimonyService
             return itemCategory;
         }
 
-       /* public Task<ItemCategory>  EntityExists(int id)
+        public async Task< bool> Exists(int id)
         {
-            return context.ItemCategory.Any(e => e.CategoryId == id);
-        }*/
+            return await Task.FromResult( context.ItemCategory.Any(e => e.CategoryId == id));
+        }
     }
 }

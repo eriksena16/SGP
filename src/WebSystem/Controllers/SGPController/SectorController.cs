@@ -9,14 +9,13 @@ using System.Threading.Tasks;
 
 namespace SGP.Controllers
 {
-    public class ItemCategoryController : ApplicationController
+    public class SectorController : ApplicationController
     {
-
         public async Task<IActionResult> Index()
         {
-            List<ItemCategory> ItemCategory = await this.GatewayServiceProvider.Get<IItemCategoryService>().GetAll();
-            
-            return View(ItemCategory);
+            List<Sector> sector = await this.GatewayServiceProvider.Get<ISectorService>().GetAll();
+
+            return View(sector);
         }
 
         public async Task<IActionResult> Details(int? id)
@@ -26,32 +25,32 @@ namespace SGP.Controllers
                 return NotFound();
             }
 
-            var ItemCategory = await this.GatewayServiceProvider.Get<IItemCategoryService>().Details(id);
-            if (ItemCategory == null)
+            var sector = await this.GatewayServiceProvider.Get<ISectorService>().Details(id);
+            if (sector == null)
             {
                 return NotFound();
             }
 
-            return View(ItemCategory);
+            return View(sector);
         }
 
-       
+
         public IActionResult Create()
         {
             return View();
         }
 
-        
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(ItemCategory itemCategory)
+        public async Task<IActionResult> Create(Sector sector)
         {
             if (ModelState.IsValid)
             {
-                ItemCategory ItemCategory = await this.GatewayServiceProvider.Get<IItemCategoryService>().Create(itemCategory);
+                Sector Sector = await this.GatewayServiceProvider.Get<ISectorService>().Create(sector);
                 return RedirectToAction(nameof(Index));
             }
-            return View(itemCategory);
+            return View(sector);
         }
 
         public async Task<IActionResult> Edit(int? id)
@@ -61,21 +60,21 @@ namespace SGP.Controllers
                 return NotFound();
             }
 
-            ItemCategory itemCategory = await GatewayServiceProvider.Get<IItemCategoryService>().GetUpdate(id.Value);
+            Sector sector = await GatewayServiceProvider.Get<ISectorService>().GetUpdate(id.Value);
 
-            if (itemCategory == null)
+            if (sector == null)
             {
                 return NotFound();
             }
-            return View(itemCategory);
+            return View(sector);
         }
 
-        
+
         [HttpPatch]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, ItemCategory itemCategory)
+        public async Task<IActionResult> Edit(int id, Sector sector)
         {
-            if (id != itemCategory.CategoryId)
+            if (id != sector.SectorId)
             {
                 return NotFound();
             }
@@ -84,12 +83,12 @@ namespace SGP.Controllers
             {
                 try
                 {
-                    ItemCategory ItemCategory = await GatewayServiceProvider.Get<IItemCategoryService>().Update(id, itemCategory);
+                    Sector Sector = await GatewayServiceProvider.Get<ISectorService>().Update(id, sector);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
 
-                    if (!await Exists(itemCategory.CategoryId))
+                    if (!await Exists(sector.SectorId))
                     {
                         return NotFound();
                     }
@@ -100,10 +99,9 @@ namespace SGP.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(itemCategory);
+            return View(sector);
         }
 
-        // GET: Categorias/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -111,27 +109,27 @@ namespace SGP.Controllers
                 return NotFound();
             }
 
-            var ItemCategory = await this.GatewayServiceProvider.Get<IItemCategoryService>().Delete(id);
-            if (ItemCategory == null)
+            var sector = await this.GatewayServiceProvider.Get<ISectorService>().Delete(id);
+            if (sector == null)
             {
                 return NotFound();
             }
 
-            return View(ItemCategory);
+            return View(sector);
         }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var ItemCategory = await this.GatewayServiceProvider.Get<IItemCategoryService>().DeleteConfirmed(id);
+            var sector = await this.GatewayServiceProvider.Get<ISectorService>().DeleteConfirmed(id);
 
             return RedirectToAction(nameof(Index));
         }
 
-       private async Task< bool> Exists(int id)
+        private async Task<bool> Exists(int id)
         {
-            var exists = await this.GatewayServiceProvider.Get<IItemCategoryService>().Exists(id);
+            var exists = await this.GatewayServiceProvider.Get<ISectorService>().Exists(id);
             return exists;
         }
     }

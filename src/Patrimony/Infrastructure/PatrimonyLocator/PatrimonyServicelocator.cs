@@ -8,7 +8,7 @@ namespace SGP.Patrimony.Infrastructure.PatrimonyLocator
     {
         public static void ConfigurePatrimonyService( this IServiceCollection services)
         {
-            services.AddScoped<IItemCategoryService, ItemCategoryServices>();
+            services.AddScoped<IItemCategoryService, ItemCategoryService>();
         }
     }
 }
