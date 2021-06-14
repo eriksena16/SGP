@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SGP.Patrimony.Service.PatrimonyService
 {
-    class SectorService : ISectorService
+    public class SectorService : ISectorService
     {
         private readonly SGPContext context;
 
@@ -26,7 +26,7 @@ namespace SGP.Patrimony.Service.PatrimonyService
         {
             Sector sector = new Sector();
 
-            return await this.Details(sector.SectorId);
+            return await this.Details(sector.Id);
         }
 
         public async Task<Sector> DeleteConfirmed(int id)
@@ -38,17 +38,17 @@ namespace SGP.Patrimony.Service.PatrimonyService
             return sector;
         }
 
-        public async Task<Sector> Details(int? id)
+        public async Task<Sector> Details(long? id)
         {
             Sector sector = await context.Sector
-               .FirstOrDefaultAsync(m => m.SectorId == id);
+               .FirstOrDefaultAsync(m => m.Id == id);
 
             return sector;
         }
 
-        public async Task<bool> Exists(int id)
+        public async Task<bool> Exists(long id)
         {
-            return await Task.FromResult(context.Sector.Any(e => e.SectorId == id));
+            return await Task.FromResult(context.Sector.Any(e => e.Id == id));
         }
 
         public async Task<List<Sector>> GetAll()
@@ -66,7 +66,7 @@ namespace SGP.Patrimony.Service.PatrimonyService
             return sector;
         }
 
-        public async Task<Sector> Update(int id, Sector obj)
+        public async Task<Sector> Update(long id, Sector obj)
         {
             context.Update(obj);
             await context.SaveChangesAsync();

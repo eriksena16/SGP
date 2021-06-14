@@ -2,7 +2,6 @@
 using SGP.Contract.Service.PatrimonyContract;
 using SGP.Model.Entity;
 using SGP.Patrimony.Repository.PatrimonyRepository;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -26,7 +25,7 @@ namespace SGP.Patrimony.Service.PatrimonyService
         {
             ItemCategory ItemCategory = new ItemCategory();
 
-            return await this.Details(ItemCategory.CategoryId);
+            return await this.Details(ItemCategory.Id);
         }
 
         public async Task<ItemCategory> DeleteConfirmed(int id)
@@ -38,10 +37,10 @@ namespace SGP.Patrimony.Service.PatrimonyService
             return itemCategory;
         }
 
-        public async Task<ItemCategory> Details(int? id)
+        public async Task<ItemCategory> Details(long? id)
         {
             ItemCategory ItemCategory = await context.ItemCategory
-               .FirstOrDefaultAsync(m => m.CategoryId == id);
+               .FirstOrDefaultAsync(m => m.Id == id);
 
             return ItemCategory;
 
@@ -54,7 +53,7 @@ namespace SGP.Patrimony.Service.PatrimonyService
             return ItemCategory;
         }
 
-        public async Task<ItemCategory> Update(int id, ItemCategory obj)
+        public async Task<ItemCategory> Update(long id, ItemCategory obj)
         {
             context.Update(obj);
             await context.SaveChangesAsync();
@@ -68,9 +67,9 @@ namespace SGP.Patrimony.Service.PatrimonyService
             return itemCategory;
         }
 
-        public async Task< bool> Exists(int id)
+        public async Task< bool> Exists(long id)
         {
-            return await Task.FromResult( context.ItemCategory.Any(e => e.CategoryId == id));
+            return await Task.FromResult( context.ItemCategory.Any(e => e.Id == id));
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace SGP.Model.Entity
 {
-    class Group
+    class Group : GenericEntity
     {
         public ICollection<User_> User_ { get; set; }
     }

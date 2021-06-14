@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Data\" />
     <Folder Include="Migrations\" />
     <Folder Include="wwwroot\uploads\notas\" />
   </ItemGroup>

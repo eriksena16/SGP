@@ -11,7 +11,6 @@ namespace SGP.Patrimony.Service.PatrimonyService
     public class AssetClassificationService : IAssetClassificationService
     {
         private readonly SGPContext context;
-        private readonly AssetClassification assetClassification = new AssetClassification();
         public AssetClassificationService(SGPContext context) => this.context = context;
 
         public async Task<AssetClassification> Create(AssetClassification obj)
@@ -24,7 +23,8 @@ namespace SGP.Patrimony.Service.PatrimonyService
 
         public async Task<AssetClassification> Delete(int? id)
         {
-            return await this.Details(assetClassification.AssetClassificationId);
+            AssetClassification assetClassification = new AssetClassification();
+            return await this.Details(assetClassification.Id);
         }
 
         public async Task<AssetClassification> DeleteConfirmed(int id)
@@ -37,17 +37,17 @@ namespace SGP.Patrimony.Service.PatrimonyService
             return assetClassification;
         }
 
-        public async Task<AssetClassification> Details(int? id)
+        public async Task<AssetClassification> Details(long? id)
         {
             AssetClassification assetClassification = await context.AssetClassification
-               .FirstOrDefaultAsync(m => m.AssetClassificationId == id);
+               .FirstOrDefaultAsync(m => m.Id == id);
 
             return assetClassification;
         }
 
-        public async Task<bool> Exists(int id)
+        public async Task<bool> Exists(long id)
         {
-            return await Task.FromResult(context.AssetClassification.Any(e => e.AssetClassificationId == id));
+            return await Task.FromResult(context.AssetClassification.Any(e => e.Id == id));
         }
 
         public async Task<List<AssetClassification>> GetAll()
@@ -64,7 +64,7 @@ namespace SGP.Patrimony.Service.PatrimonyService
             return assetClassification;
         }
 
-        public async Task<AssetClassification> Update(int id, AssetClassification obj)
+        public async Task<AssetClassification> Update(long id, AssetClassification obj)
         {
             context.Update(obj);
             await context.SaveChangesAsync();

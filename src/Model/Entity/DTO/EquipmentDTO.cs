@@ -7,7 +7,6 @@ namespace SGP.Model.Entity.DTO
         public long EquipmentId { get; set; }
         public long PatrimonyNumber { get; set; }
         public int ItemCategoryId { get; set; }
-        public int? Age { get; set; }
         public int AssetClassificationId { get; set; }
         public string NotaFiscalUrl { get; set; }
         public decimal ValorDeCompra { get; set; }

@@ -26,7 +26,7 @@ namespace SGP.Patrimony.Service.PatrimonyService
         {
             EquipmentModel equipmentModel = new EquipmentModel();
 
-            return await this.Details(equipmentModel.EquipmentModelId);
+            return await this.Details(equipmentModel.Id);
         }
 
         public async Task<EquipmentModel> DeleteConfirmed(int id)
@@ -39,17 +39,17 @@ namespace SGP.Patrimony.Service.PatrimonyService
             return equipmentModel;
         }
 
-        public async Task<EquipmentModel> Details(int? id)
+        public async Task<EquipmentModel> Details(long? id)
         {
             EquipmentModel equipmentModel = await context.EquipmentModel
-               .FirstOrDefaultAsync(m => m.EquipmentModelId == id);
+               .FirstOrDefaultAsync(m => m.Id == id);
 
             return equipmentModel;
         }
 
-        public async Task<bool> Exists(int id)
+        public async Task<bool> Exists(long id)
         {
-            return await Task.FromResult(context.EquipmentModel.Any(e => e.EquipmentModelId == id));
+            return await Task.FromResult(context.EquipmentModel.Any(e => e.Id == id));
         }
 
         public async Task<List<EquipmentModel>> GetAll()
@@ -66,7 +66,7 @@ namespace SGP.Patrimony.Service.PatrimonyService
             return equipmentModel;
         }
 
-        public async Task<EquipmentModel> Update(int id, EquipmentModel obj)
+        public async Task<EquipmentModel> Update(long id, EquipmentModel obj)
         {
             context.Update(obj);
             await context.SaveChangesAsync();

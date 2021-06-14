@@ -2,11 +2,8 @@
 
 namespace SGP.Model.Entity
 {
-    public class Sector
+    public class Sector : GenericEntity
     {
-        public int SectorId { get; set; }
-        public string Name { get; set; }
-
         public ICollection<Equipment> Equipment { get; set; }
     }
 }

@@ -3,10 +3,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SGP.Model.Entity
 {
-    public class AssetClassification
+    public class AssetClassification : GenericEntity
     {
-        public int AssetClassificationId { get; set; }
-        public string Name { get; set; }
+        
         [Display(Name ="Taxa de depreciação")]
         public int DepreciationRate { get; set; }
         [Display(Name ="Vida Útil")]
