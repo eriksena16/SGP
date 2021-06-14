@@ -11,12 +11,11 @@ namespace SGP.Patrimony.Service.PatrimonyService
     public class AssetClassificationService : IAssetClassificationService
     {
         private readonly SGPContext context;
+        private readonly AssetClassification assetClassification = new AssetClassification();
         public AssetClassificationService(SGPContext context) => this.context = context;
 
         public async Task<AssetClassification> Create(AssetClassification obj)
         {
-            AssetClassification assetClassification = new AssetClassification();
-
             context.Add(obj);
             await context.SaveChangesAsync();
 
@@ -25,8 +24,6 @@ namespace SGP.Patrimony.Service.PatrimonyService
 
         public async Task<AssetClassification> Delete(int? id)
         {
-            AssetClassification assetClassification = new AssetClassification();
-
             return await this.Details(assetClassification.AssetClassificationId);
         }
 

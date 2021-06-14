@@ -1,51 +1,77 @@
-﻿using SGP.Contract.Service.PatrimonyContract;
+﻿using Microsoft.EntityFrameworkCore;
+using SGP.Contract.Service.PatrimonyContract;
 using SGP.Model.Entity;
-using System;
+using SGP.Patrimony.Repository.PatrimonyRepository;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace SGP.Patrimony.Service.PatrimonyService
 {
     public class EquipmentModelService : IEquipmentModelService
     {
-        public Task<EquipmentModel> Create(EquipmentModel obj)
+        private readonly SGPContext context;
+       
+        public EquipmentModelService(SGPContext context) => this.context = context;
+
+        public async Task<EquipmentModel> Create(EquipmentModel obj)
         {
-            throw new NotImplementedException();
+            context.Add(obj);
+            await context.SaveChangesAsync();
+
+            return obj;
         }
 
-        public Task<EquipmentModel> Delete(int? id)
+        public async Task<EquipmentModel> Delete(int? id)
         {
-            throw new NotImplementedException();
+            EquipmentModel equipmentModel = new EquipmentModel();
+
+            return await this.Details(equipmentModel.EquipmentModelId);
         }
 
-        public Task<EquipmentModel> DeleteConfirmed(int id)
+        public async Task<EquipmentModel> DeleteConfirmed(int id)
         {
-            throw new NotImplementedException();
+            EquipmentModel equipmentModel = await context.EquipmentModel.FindAsync(id);
+
+            context.EquipmentModel.Remove(equipmentModel);
+            await context.SaveChangesAsync();
+
+            return equipmentModel;
         }
 
-        public Task<EquipmentModel> Details(int? id)
+        public async Task<EquipmentModel> Details(int? id)
         {
-            throw new NotImplementedException();
+            EquipmentModel equipmentModel = await context.EquipmentModel
+               .FirstOrDefaultAsync(m => m.EquipmentModelId == id);
+
+            return equipmentModel;
         }
 
-        public Task<bool> Exists(int id)
+        public async Task<bool> Exists(int id)
         {
-            throw new NotImplementedException();
+            return await Task.FromResult(context.EquipmentModel.Any(e => e.EquipmentModelId == id));
         }
 
-        public Task<List<EquipmentModel>> GetAll()
+        public async Task<List<EquipmentModel>> GetAll()
         {
-            throw new NotImplementedException();
+            List<EquipmentModel> equipmentModel = await context.EquipmentModel.ToListAsync();
+
+            return equipmentModel;
         }
 
-        public Task<EquipmentModel> GetUpdate(int id)
+        public async Task<EquipmentModel> GetUpdate(int id)
         {
-            throw new NotImplementedException();
+            EquipmentModel equipmentModel = await context.EquipmentModel.FindAsync(id);
+
+            return equipmentModel;
         }
 
-        public Task<EquipmentModel> Update(int id, EquipmentModel obj)
+        public async Task<EquipmentModel> Update(int id, EquipmentModel obj)
         {
-            throw new NotImplementedException();
+            context.Update(obj);
+            await context.SaveChangesAsync();
+
+            return obj;
         }
     }
 }
