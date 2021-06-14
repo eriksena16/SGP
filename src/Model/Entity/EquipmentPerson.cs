@@ -2,12 +2,8 @@
 
 namespace SGP.Model.Entity
 {
-    public class EquipmentModel
+    public class EquipmentPerson : User_
     {
-        public int EquipmentModelId { get; set; }
-        public string Name { get; set; }
-
         public ICollection<Equipment> Equipment { get; set; }
-
     }
 }

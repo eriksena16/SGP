@@ -10,7 +10,7 @@ namespace SGP.Model.Entity
             Ativo = 1,
             Inativo = 2
         }
-        public enum EstadoDeConservacao
+        public enum ConservationState
         {
             Otimo = 1,
             Bom = 2,

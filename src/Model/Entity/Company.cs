@@ -1,18 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace SGP.Model.Entity
 {
-    public class Company
+    public abstract class Company
     {
-        public int EmpresaID { get; set; }
-        public string Nome { get; set; }
+        public int CompanyId { get; set; }
+        [Display(Name = "Nome")]
+        public string Name { get; set; }
         public string Cnpj { get; set; }
-        public string Endereco { get; set; }
-        public string Telefone { get; set; }
+        public int Cep { get; set; }
+        [Display(Name = "Endereço")]
+        public string Address { get; set; }
+        [Display(Name = "Cidade")]
+        public string City { get; set; }
+        [Display(Name = "Telefone")]
+        public string Phone { get; set; }
+        [Display(Name = "E-mail")]
+        public string Email { get; set; }
 
-        public ICollection<Equipment> Equipamentos { get; set; }
     }
 }

@@ -27,16 +27,12 @@ namespace SGP.Patrimony.Repository.PatrimonyRepository
         }*/
 
         public DbSet<Equipment> Equipment { get; set; }
-
         public DbSet<Sector> Sector { get; set; }
-
         public DbSet<ItemCategory> ItemCategory { get; set; }
         public DbSet<AssetClassification> AssetClassification { get; set; }
         public DbSet<EquipmentModel> EquipmentModel { get; set; }
-
-        public DbSet<Company> Company { get; set; }
-
-        public DbSet<Responsible> Responsible { get; set; }
+        public DbSet<Manufacturer> Manufacturer { get; set; }
+        public DbSet<EquipmentPerson> EquipmentPerson { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
