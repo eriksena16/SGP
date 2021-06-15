@@ -3,14 +3,14 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SGP.Model.Entity
 {
-    public class AssetClassification : GenericEntity
+    public class ClassificacaoDeAtivos : GenericEntity
     {
         
         [Display(Name ="Taxa de depreciação")]
-        public int DepreciationRate { get; set; }
+        public int TaxaDeDepreciação { get; set; }
         [Display(Name ="Vida Útil")]
-        public int LifeSpan { get; set; }
+        public int VidaUtil { get; set; }
 
-        public ICollection<Equipment> Equipment { get; set; }
+        public ICollection<Equipamento> Equipment { get; set; }
     }
 }

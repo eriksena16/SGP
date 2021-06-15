@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 namespace SGP.Model.Entity
 
 {
-    public class ItemCategory : GenericEntity
+    public class CategoriaDoItem : GenericEntity
     {
-        public ICollection<Equipment> Equipment { get; set; }
+        public ICollection<Equipamento> Equipment { get; set; }
     }
 }

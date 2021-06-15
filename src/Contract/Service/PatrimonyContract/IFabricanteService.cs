@@ -2,7 +2,7 @@
 
 namespace SGP.Contract.Service.PatrimonyContract
 {
-    public interface ISectorService : IGenericService<Sector>
+    public interface IFabricanteService : IGenericService<Fabricante>
     {
     }
 }

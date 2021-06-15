@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace SGP.Model.Entity
 {
     
-    public class Equipment
+    public class Equipamento
     {
         
         public long EquipmentId { get; set; }
@@ -16,11 +16,11 @@ namespace SGP.Model.Entity
 
         [Display(Name = "Categoria do Equipamento")]
         public int ItemCategoryId { get; set; }
-        public ItemCategory ItemCategory { get; set; }
+        public CategoriaDoItem ItemCategory { get; set; }
 
         [Display(Name = "Classificação do Ativo")]
         public int AssetClassificationId { get; set; }
-        public AssetClassification AssetClassification { get; set; }
+        public ClassificacaoDeAtivos AssetClassification { get; set; }
 
         [Display(Name ="Nota Fiscal")]
         [NotMapped]
@@ -41,21 +41,21 @@ namespace SGP.Model.Entity
         public DateTime DataDeCompra { get; set; }
         [Display(Name ="Modelo")]
         public int EquipmentModelId { get; set; }
-        public EquipmentModel EquipmentModel { get; set; }
+        public ModeloDeEquipamento EquipmentModel { get; set; }
         [Display(Name = "Fabricante")]
         public int ManufacturerId { get; set; }
-        public Manufacturer Manufacturer { get; set; }
+        public Fabricante Manufacturer { get; set; }
 
         [Display(Name = "Número de série")]
-        public string Serialnumber { get; set; }
+        public string SerialNumber { get; set; }
 
         public Status Status { get; set; }
         [Display(Name = "Responsavel do Equipamento")]
         public int EquipmentPersonId { get; set; }
-        public EquipmentPerson EquipmentPerson { get; set; }
+        public ResponsavelDoEquipamento EquipmentPerson { get; set; }
         [Display(Name = "Setor")]
         public int SectorId { get; set; }
-        public Sector Sector { get; set; }
+        public Setor Sector { get; set; }
         [Display(Name = "Estado")]
         public ConservationState ConservationState { get; set; }
         public string Observation { get; set; }

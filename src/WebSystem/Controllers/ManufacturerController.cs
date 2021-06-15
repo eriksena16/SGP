@@ -14,7 +14,7 @@ namespace SGP.Controllers
 
         public async Task<IActionResult> Index()
         {
-            List<Manufacturer> manufacturer = await this.GatewayServiceProvider.Get<IManufacturerService>().GetAll();
+            List<Fabricante> manufacturer = await this.GatewayServiceProvider.Get<IFabricanteService>().GetAll();
 
             return View(manufacturer);
         }
@@ -26,7 +26,7 @@ namespace SGP.Controllers
                 return NotFound();
             }
 
-            var manufacturer = await this.GatewayServiceProvider.Get<IManufacturerService>().Details(id);
+            var manufacturer = await this.GatewayServiceProvider.Get<IFabricanteService>().Details(id);
             if (manufacturer == null)
             {
                 return NotFound();
@@ -44,11 +44,11 @@ namespace SGP.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Manufacturer manufacturer)
+        public async Task<IActionResult> Create(Fabricante manufacturer)
         {
             if (ModelState.IsValid)
             {
-                Manufacturer Manufacturer = await this.GatewayServiceProvider.Get<IManufacturerService>().Create(manufacturer);
+                Fabricante Manufacturer = await this.GatewayServiceProvider.Get<IFabricanteService>().Create(manufacturer);
                 return RedirectToAction(nameof(Index));
             }
             return View(manufacturer);
@@ -61,7 +61,7 @@ namespace SGP.Controllers
                 return NotFound();
             }
 
-            Manufacturer manufacturer = await GatewayServiceProvider.Get<IManufacturerService>().GetUpdate(id.Value);
+            Fabricante manufacturer = await GatewayServiceProvider.Get<IFabricanteService>().GetUpdate(id.Value);
 
             if (manufacturer == null)
             {
@@ -73,7 +73,7 @@ namespace SGP.Controllers
 
         [HttpPatch]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(long id, Manufacturer manufacturer)
+        public async Task<IActionResult> Edit(long id, Fabricante manufacturer)
         {
             if (id != manufacturer.Id)
             {
@@ -84,7 +84,7 @@ namespace SGP.Controllers
             {
                 try
                 {
-                    Manufacturer AssetClassification = await GatewayServiceProvider.Get<IManufacturerService>().Update(id, manufacturer);
+                    Fabricante AssetClassification = await GatewayServiceProvider.Get<IFabricanteService>().Update(id, manufacturer);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -110,7 +110,7 @@ namespace SGP.Controllers
                 return NotFound();
             }
 
-            Manufacturer manufacturer = await this.GatewayServiceProvider.Get<IManufacturerService>().Delete(id);
+            Fabricante manufacturer = await this.GatewayServiceProvider.Get<IFabricanteService>().Delete(id);
             if (manufacturer == null)
             {
                 return NotFound();
@@ -123,14 +123,14 @@ namespace SGP.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            Manufacturer manufacturer = await this.GatewayServiceProvider.Get<IManufacturerService>().DeleteConfirmed(id);
+            Fabricante manufacturer = await this.GatewayServiceProvider.Get<IFabricanteService>().DeleteConfirmed(id);
 
             return RedirectToAction(nameof(Index));
         }
 
         private async Task<bool> Exists(long id)
         {
-            bool exists = await this.GatewayServiceProvider.Get<IManufacturerService>().Exists(id);
+            bool exists = await this.GatewayServiceProvider.Get<IFabricanteService>().Exists(id);
             return exists;
         }
     }

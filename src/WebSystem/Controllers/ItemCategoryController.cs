@@ -14,7 +14,7 @@ namespace SGP.Controllers
 
         public async Task<IActionResult> Index()
         {
-            List<ItemCategory> ItemCategory = await this.GatewayServiceProvider.Get<IItemCategoryService>().GetAll();
+            List<CategoriaDoItem> ItemCategory = await this.GatewayServiceProvider.Get<ICategoriaDoItemService>().GetAll();
             
             return View(ItemCategory);
         }
@@ -26,7 +26,7 @@ namespace SGP.Controllers
                 return NotFound();
             }
 
-            var ItemCategory = await this.GatewayServiceProvider.Get<IItemCategoryService>().Details(id);
+            var ItemCategory = await this.GatewayServiceProvider.Get<ICategoriaDoItemService>().Details(id);
             if (ItemCategory == null)
             {
                 return NotFound();
@@ -44,11 +44,11 @@ namespace SGP.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(ItemCategory itemCategory)
+        public async Task<IActionResult> Create(CategoriaDoItem itemCategory)
         {
             if (ModelState.IsValid)
             {
-                ItemCategory ItemCategory = await this.GatewayServiceProvider.Get<IItemCategoryService>().Create(itemCategory);
+                CategoriaDoItem ItemCategory = await this.GatewayServiceProvider.Get<ICategoriaDoItemService>().Create(itemCategory);
                 return RedirectToAction(nameof(Index));
             }
             return View(itemCategory);
@@ -61,7 +61,7 @@ namespace SGP.Controllers
                 return NotFound();
             }
 
-            ItemCategory itemCategory = await GatewayServiceProvider.Get<IItemCategoryService>().GetUpdate(id.Value);
+            CategoriaDoItem itemCategory = await GatewayServiceProvider.Get<ICategoriaDoItemService>().GetUpdate(id.Value);
 
             if (itemCategory == null)
             {
@@ -73,7 +73,7 @@ namespace SGP.Controllers
         
         [HttpPatch]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, ItemCategory itemCategory)
+        public async Task<IActionResult> Edit(int id, CategoriaDoItem itemCategory)
         {
             if (id != itemCategory.CategoryId)
             {
@@ -84,7 +84,7 @@ namespace SGP.Controllers
             {
                 try
                 {
-                    ItemCategory ItemCategory = await GatewayServiceProvider.Get<IItemCategoryService>().Update(id, itemCategory);
+                    CategoriaDoItem ItemCategory = await GatewayServiceProvider.Get<ICategoriaDoItemService>().Update(id, itemCategory);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -111,7 +111,7 @@ namespace SGP.Controllers
                 return NotFound();
             }
 
-            var ItemCategory = await this.GatewayServiceProvider.Get<IItemCategoryService>().Delete(id);
+            var ItemCategory = await this.GatewayServiceProvider.Get<ICategoriaDoItemService>().Delete(id);
             if (ItemCategory == null)
             {
                 return NotFound();
@@ -124,14 +124,14 @@ namespace SGP.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var ItemCategory = await this.GatewayServiceProvider.Get<IItemCategoryService>().DeleteConfirmed(id);
+            var ItemCategory = await this.GatewayServiceProvider.Get<ICategoriaDoItemService>().DeleteConfirmed(id);
 
             return RedirectToAction(nameof(Index));
         }
 
        private async Task< bool> Exists(int id)
         {
-            var exists = await this.GatewayServiceProvider.Get<IItemCategoryService>().Exists(id);
+            var exists = await this.GatewayServiceProvider.Get<ICategoriaDoItemService>().Exists(id);
             return exists;
         }
     }

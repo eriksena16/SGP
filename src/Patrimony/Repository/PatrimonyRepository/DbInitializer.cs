@@ -10,77 +10,77 @@ namespace SGP.Patrimony.Repository.PatrimonyRepository
         {
             context.Database.EnsureCreated();
 
-            if (context.ItemCategory.Any())
+            if (context.Categoria.Any())
             {
                 return;
             }
 
-            var itemCategories = new ItemCategory[]
+            var itemCategories = new CategoriaDoItem[]
             {
-                new ItemCategory{Name = "Computador"},
-                new ItemCategory{Name = "Impressora"}
+                new CategoriaDoItem{Nome = "Computador"},
+                new CategoriaDoItem{Nome = "Impressora"}
             };
 
-            foreach (ItemCategory itemCategory in itemCategories)
+            foreach (CategoriaDoItem itemCategory in itemCategories)
             {
-                context.ItemCategory.Add(itemCategory);
+                context.Categoria.Add(itemCategory);
             }
             context.SaveChanges();
 
-            var assetClassifications = new AssetClassification[]
+            var assetClassifications = new ClassificacaoDeAtivos[]
             {
-                new AssetClassification{Name = "Informática e Comunicação", DepreciationRate = 20, LifeSpan = 5},
-                new AssetClassification{Name = "Móveis e utensílios", DepreciationRate = 10, LifeSpan = 10},
-                new AssetClassification{Name = "Imoveis", DepreciationRate = 4, LifeSpan = 25},
-                new AssetClassification{Name = "Instalaçoes", DepreciationRate = 10, LifeSpan = 10},
-                new AssetClassification{Name = "Veiculos leves", DepreciationRate = 20, LifeSpan = 5},
-                new AssetClassification{Name = "Veiculos pesados", DepreciationRate = 25, LifeSpan = 4},
+                new ClassificacaoDeAtivos{Nome = "Informática e Comunicação", TaxaDeDepreciação = 20, VidaUtil = 5},
+                new ClassificacaoDeAtivos{Nome = "Móveis e utensílios", TaxaDeDepreciação = 10, VidaUtil = 10},
+                new ClassificacaoDeAtivos{Nome = "Imoveis", TaxaDeDepreciação = 4, VidaUtil = 25},
+                new ClassificacaoDeAtivos{Nome = "Instalaçoes", TaxaDeDepreciação = 10, VidaUtil = 10},
+                new ClassificacaoDeAtivos{Nome = "Veiculos leves", TaxaDeDepreciação = 20, VidaUtil = 5},
+                new ClassificacaoDeAtivos{Nome = "Veiculos pesados", TaxaDeDepreciação = 25, VidaUtil = 4},
 
             };
-            foreach (AssetClassification assetClassification in assetClassifications)
+            foreach (ClassificacaoDeAtivos assetClassification in assetClassifications)
             {
-                context.AssetClassification.Add(assetClassification);
+                context.Classificacao.Add(assetClassification);
             }
             context.SaveChanges();
 
-            var equipmentModels = new EquipmentModel[]
+            var equipmentModels = new ModeloDeEquipamento[]
             {
-                new EquipmentModel{Name = "Vostro"},
-                new EquipmentModel{Name = "Ispiron 3647"}
+                new ModeloDeEquipamento{Nome = "Vostro"},
+                new ModeloDeEquipamento{Nome = "Ispiron 3647"}
             };
-            foreach(EquipmentModel equipmentModel in equipmentModels)
+            foreach(ModeloDeEquipamento equipmentModel in equipmentModels)
             {
-                context.EquipmentModel.Add(equipmentModel);
+                context.ModeloDeEquipamento.Add(equipmentModel);
             }
             context.SaveChanges();
 
-            var manufacturers = new Manufacturer[]
+            var manufacturers = new Fabricante[]
             {
-                new Manufacturer{Name = "Sena Corp", Cnpj ="06414576506", Cep = 40270440, Address ="Travessa Portugal, 23", City = "Salvador", UF = "BA", Phone ="71992257224", Email = "eriksena16@gmail.com"},
-                new Manufacturer{Name = "Culinaria Brandão", Cnpj ="72629878520", Cep = 40270440, Address ="Rua cirilo Barbosa, 34", City = "Salvador", UF = "BA", Phone ="7188516589", Email = "culinaria@gmail.com"}
+                new Fabricante{Nome = "Sena Corp", Cnpj ="06414576506", Cep = 40270440, Endereco ="Travessa Portugal, 23", Cidade = "Salvador", UF = "BA", Telefone ="71992257224", Email = "eriksena16@gmail.com"},
+                new Fabricante{Nome = "Culinaria Brandão", Cnpj ="72629878520", Cep = 40270440, Endereco ="Rua cirilo Barbosa, 34", Cidade = "Salvador", UF = "BA", Telefone ="7188516589", Email = "culinaria@gmail.com"}
             };
-            foreach (Manufacturer manufacturer in manufacturers)
+            foreach (Fabricante manufacturer in manufacturers)
             {
-                context.Manufacturer.Add(manufacturer);
+                context.Fabricante.Add(manufacturer);
             }
             context.SaveChanges();
 
-            var sectors = new Sector[]
+            var sectors = new Setor[]
             {
-                new Sector{Name ="T.I"},
-                new Sector{Name ="RH"}
+                new Setor{Nome ="T.I"},
+                new Setor{Nome ="RH"}
             };
-            foreach (Sector s in sectors)
+            foreach (Setor s in sectors)
             {
-                context.Sector.Add(s);
+                context.Setor.Add(s);
             }
             context.SaveChanges();
 
-            var responsaveis = new EquipmentPerson[]
+            var responsaveis = new ResponsavelDoEquipamento[]
             {
-                new EquipmentPerson{Name = "Erik", Surname = "Sena"}
+                new ResponsavelDoEquipamento{Nome = "Erik", Sobrenome = "Sena"}
             };
-            foreach (EquipmentPerson equipmentPerson in responsaveis)
+            foreach (ResponsavelDoEquipamento equipmentPerson in responsaveis)
             {
                 context.EquipmentPerson.Add(equipmentPerson);
             }

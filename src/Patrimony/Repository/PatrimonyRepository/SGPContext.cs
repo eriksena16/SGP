@@ -26,13 +26,13 @@ namespace SGP.Patrimony.Repository.PatrimonyRepository
             await _logStream.DisposeAsync();
         }*/
 
-        public DbSet<Equipment> Equipment { get; set; }
-        public DbSet<Sector> Sector { get; set; }
-        public DbSet<ItemCategory> ItemCategory { get; set; }
-        public DbSet<AssetClassification> AssetClassification { get; set; }
-        public DbSet<EquipmentModel> EquipmentModel { get; set; }
-        public DbSet<Manufacturer> Manufacturer { get; set; }
-        public DbSet<EquipmentPerson> EquipmentPerson { get; set; }
+        public DbSet<Equipamento> Equipamento { get; set; }
+        public DbSet<Setor> Setor { get; set; }
+        public DbSet<CategoriaDoItem> Categoria { get; set; }
+        public DbSet<ClassificacaoDeAtivos> Classificacao { get; set; }
+        public DbSet<ModeloDeEquipamento> ModeloDeEquipamento { get; set; }
+        public DbSet<Fabricante> Fabricante { get; set; }
+        public DbSet<ResponsavelDoEquipamento> ResponsavelDoEquipamento { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

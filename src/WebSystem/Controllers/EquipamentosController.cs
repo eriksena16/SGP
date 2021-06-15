@@ -1,4 +1,4 @@
-﻿/*using System;
+﻿using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -148,7 +148,7 @@ namespace SGP.Controllers
             
 
             return lstArquivos;
-        }
+        }*/
 
        
         // GET: Equipamentos/Edit/5
@@ -335,4 +335,4 @@ namespace SGP.Controllers
             return _context.Equipamentos.Any(e => e.EquipamentoID == id);
         }
     }
-}*/
+}

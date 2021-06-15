@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 
 namespace SGP.Controllers
 {
-    public class SectorController : ApplicationController
+    public class SetorController : ApplicationController
     {
         public async Task<IActionResult> Index()
         {
-            List<Sector> sector = await this.GatewayServiceProvider.Get<ISectorService>().GetAll();
+            List<Setor> setor = await this.GatewayServiceProvider.Get<ISetorService>().GetAll();
 
-            return View(sector);
+            return View(setor);
         }
 
         public async Task<IActionResult> Details(int? id)
@@ -25,13 +25,13 @@ namespace SGP.Controllers
                 return NotFound();
             }
 
-            var sector = await this.GatewayServiceProvider.Get<ISectorService>().Details(id);
-            if (sector == null)
+            var setor = await this.GatewayServiceProvider.Get<ISetorService>().Details(id);
+            if (setor == null)
             {
                 return NotFound();
             }
 
-            return View(sector);
+            return View(setor);
         }
 
 
@@ -43,14 +43,14 @@ namespace SGP.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Sector sector)
+        public async Task<IActionResult> Create(Setor setor)
         {
             if (ModelState.IsValid)
             {
-                Sector Sector = await this.GatewayServiceProvider.Get<ISectorService>().Create(sector);
+                Setor Sector = await this.GatewayServiceProvider.Get<ISetorService>().Create(setor);
                 return RedirectToAction(nameof(Index));
             }
-            return View(sector);
+            return View(setor);
         }
 
         public async Task<IActionResult> Edit(int? id)
@@ -60,21 +60,21 @@ namespace SGP.Controllers
                 return NotFound();
             }
 
-            Sector sector = await GatewayServiceProvider.Get<ISectorService>().GetUpdate(id.Value);
+            Setor setor = await GatewayServiceProvider.Get<ISetorService>().GetUpdate(id.Value);
 
-            if (sector == null)
+            if (setor == null)
             {
                 return NotFound();
             }
-            return View(sector);
+            return View(setor);
         }
 
 
         [HttpPatch]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, Sector sector)
+        public async Task<IActionResult> Edit(long id, Setor setor)
         {
-            if (id != sector.SectorId)
+            if (id != setor.Id)
             {
                 return NotFound();
             }
@@ -83,12 +83,12 @@ namespace SGP.Controllers
             {
                 try
                 {
-                    Sector Sector = await GatewayServiceProvider.Get<ISectorService>().Update(id, sector);
+                    Setor Sector = await GatewayServiceProvider.Get<ISetorService>().Update(id, setor);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
 
-                    if (!await Exists(sector.SectorId))
+                    if (!await Exists(setor.Id))
                     {
                         return NotFound();
                     }
@@ -99,7 +99,7 @@ namespace SGP.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(sector);
+            return View(setor);
         }
 
         public async Task<IActionResult> Delete(int? id)
@@ -109,27 +109,27 @@ namespace SGP.Controllers
                 return NotFound();
             }
 
-            var sector = await this.GatewayServiceProvider.Get<ISectorService>().Delete(id);
-            if (sector == null)
+            var setor = await this.GatewayServiceProvider.Get<ISetorService>().Delete(id);
+            if (setor == null)
             {
                 return NotFound();
             }
 
-            return View(sector);
+            return View(setor);
         }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var sector = await this.GatewayServiceProvider.Get<ISectorService>().DeleteConfirmed(id);
+            var setor = await this.GatewayServiceProvider.Get<ISetorService>().DeleteConfirmed(id);
 
             return RedirectToAction(nameof(Index));
         }
 
-        private async Task<bool> Exists(int id)
+        private async Task<bool> Exists(long id)
         {
-            var exists = await this.GatewayServiceProvider.Get<ISectorService>().Exists(id);
+            var exists = await this.GatewayServiceProvider.Get<ISetorService>().Exists(id);
             return exists;
         }
     }

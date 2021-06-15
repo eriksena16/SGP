@@ -14,7 +14,7 @@ namespace SGP.Controllers
 
         public async Task<IActionResult> Index()
         {
-            List<AssetClassification> assetClassification = await this.GatewayServiceProvider.Get<IAssetClassificationService>().GetAll();
+            List<ClassificacaoDeAtivos> assetClassification = await this.GatewayServiceProvider.Get<IClassificacaoDeAtivosService>().GetAll();
 
             return View(assetClassification);
         }
@@ -26,7 +26,7 @@ namespace SGP.Controllers
                 return NotFound();
             }
 
-            var assetClassification = await this.GatewayServiceProvider.Get<IAssetClassificationService>().Details(id);
+            var assetClassification = await this.GatewayServiceProvider.Get<IClassificacaoDeAtivosService>().Details(id);
             if (assetClassification == null)
             {
                 return NotFound();
@@ -44,11 +44,11 @@ namespace SGP.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(AssetClassification assetClassification)
+        public async Task<IActionResult> Create(ClassificacaoDeAtivos assetClassification)
         {
             if (ModelState.IsValid)
             {
-                AssetClassification AssetClassification = await this.GatewayServiceProvider.Get<IAssetClassificationService>().Create(assetClassification);
+                ClassificacaoDeAtivos AssetClassification = await this.GatewayServiceProvider.Get<IClassificacaoDeAtivosService>().Create(assetClassification);
                 return RedirectToAction(nameof(Index));
             }
             return View(assetClassification);
@@ -61,7 +61,7 @@ namespace SGP.Controllers
                 return NotFound();
             }
 
-            AssetClassification assetClassification = await GatewayServiceProvider.Get<IAssetClassificationService>().GetUpdate(id.Value);
+            ClassificacaoDeAtivos assetClassification = await GatewayServiceProvider.Get<IClassificacaoDeAtivosService>().GetUpdate(id.Value);
 
             if (assetClassification == null)
             {
@@ -73,7 +73,7 @@ namespace SGP.Controllers
 
         [HttpPatch]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, AssetClassification assetClassification)
+        public async Task<IActionResult> Edit(int id, ClassificacaoDeAtivos assetClassification)
         {
             if (id != assetClassification.AssetClassificationId)
             {
@@ -84,7 +84,7 @@ namespace SGP.Controllers
             {
                 try
                 {
-                    AssetClassification AssetClassification = await GatewayServiceProvider.Get<IAssetClassificationService>().Update(id, assetClassification);
+                    ClassificacaoDeAtivos AssetClassification = await GatewayServiceProvider.Get<IClassificacaoDeAtivosService>().Update(id, assetClassification);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -110,7 +110,7 @@ namespace SGP.Controllers
                 return NotFound();
             }
 
-            var assetClassification = await this.GatewayServiceProvider.Get<IAssetClassificationService>().Delete(id);
+            var assetClassification = await this.GatewayServiceProvider.Get<IClassificacaoDeAtivosService>().Delete(id);
             if (assetClassification == null)
             {
                 return NotFound();
@@ -123,14 +123,14 @@ namespace SGP.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var assetClassification = await this.GatewayServiceProvider.Get<IAssetClassificationService>().DeleteConfirmed(id);
+            var assetClassification = await this.GatewayServiceProvider.Get<IClassificacaoDeAtivosService>().DeleteConfirmed(id);
 
             return RedirectToAction(nameof(Index));
         }
 
         private async Task<bool> Exists(int id)
         {
-            var exists = await this.GatewayServiceProvider.Get<IAssetClassificationService>().Exists(id);
+            var exists = await this.GatewayServiceProvider.Get<IClassificacaoDeAtivosService>().Exists(id);
             return exists;
         }
     }

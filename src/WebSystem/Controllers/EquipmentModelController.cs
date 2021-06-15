@@ -14,7 +14,7 @@ namespace SGP.Controllers
 
         public async Task<IActionResult> Index()
         {
-            List<EquipmentModel> equipmentModel = await this.GatewayServiceProvider.Get<IEquipmentModelService>().GetAll();
+            List<ModeloDeEquipamento> equipmentModel = await this.GatewayServiceProvider.Get<IModeloDeEquipamentoService>().GetAll();
 
             return View(equipmentModel);
         }
@@ -26,7 +26,7 @@ namespace SGP.Controllers
                 return NotFound();
             }
 
-            EquipmentModel equipmentModel = await this.GatewayServiceProvider.Get<IEquipmentModelService>().Details(id);
+            ModeloDeEquipamento equipmentModel = await this.GatewayServiceProvider.Get<IModeloDeEquipamentoService>().Details(id);
             if (equipmentModel == null)
             {
                 return NotFound();
@@ -44,11 +44,11 @@ namespace SGP.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(EquipmentModel equipmentModel)
+        public async Task<IActionResult> Create(ModeloDeEquipamento equipmentModel)
         {
             if (ModelState.IsValid)
             {
-                EquipmentModel AssetClassification = await this.GatewayServiceProvider.Get<IEquipmentModelService>().Create(equipmentModel);
+                ModeloDeEquipamento AssetClassification = await this.GatewayServiceProvider.Get<IModeloDeEquipamentoService>().Create(equipmentModel);
                 return RedirectToAction(nameof(Index));
             }
             return View(equipmentModel);
@@ -61,7 +61,7 @@ namespace SGP.Controllers
                 return NotFound();
             }
 
-            EquipmentModel equipmentModel = await GatewayServiceProvider.Get<IEquipmentModelService>().GetUpdate(id.Value);
+            ModeloDeEquipamento equipmentModel = await GatewayServiceProvider.Get<IModeloDeEquipamentoService>().GetUpdate(id.Value);
 
             if (equipmentModel == null)
             {
@@ -73,9 +73,9 @@ namespace SGP.Controllers
 
         [HttpPatch]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, EquipmentModel equipmentModel)
+        public async Task<IActionResult> Edit(long id, ModeloDeEquipamento equipmentModel)
         {
-            if (id != equipmentModel.EquipmentModelId)
+            if (id != equipmentModel.Id)
             {
                 return NotFound();
             }
@@ -84,12 +84,12 @@ namespace SGP.Controllers
             {
                 try
                 {
-                    EquipmentModel EquipmentModel = await GatewayServiceProvider.Get<IEquipmentModelService>().Update(id, equipmentModel);
+                    ModeloDeEquipamento EquipmentModel = await GatewayServiceProvider.Get<IModeloDeEquipamentoService>().Update(id, equipmentModel);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
 
-                    if (!await Exists(equipmentModel.EquipmentModelId))
+                    if (!await Exists(equipmentModel.Id))
                     {
                         return NotFound();
                     }
@@ -110,7 +110,7 @@ namespace SGP.Controllers
                 return NotFound();
             }
 
-            EquipmentModel equipmentModel = await this.GatewayServiceProvider.Get<IEquipmentModelService>().Delete(id);
+            ModeloDeEquipamento equipmentModel = await this.GatewayServiceProvider.Get<IModeloDeEquipamentoService>().Delete(id);
             if (equipmentModel == null)
             {
                 return NotFound();
@@ -123,14 +123,14 @@ namespace SGP.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            EquipmentModel equipmentModel = await this.GatewayServiceProvider.Get<IEquipmentModelService>().DeleteConfirmed(id);
+            ModeloDeEquipamento equipmentModel = await this.GatewayServiceProvider.Get<IModeloDeEquipamentoService>().DeleteConfirmed(id);
 
             return RedirectToAction(nameof(Index));
         }
 
-        private async Task<bool> Exists(int id)
+        private async Task<bool> Exists(long id)
         {
-            var exists = await this.GatewayServiceProvider.Get<IEquipmentModelService>().Exists(id);
+            var exists = await this.GatewayServiceProvider.Get<IModeloDeEquipamentoService>().Exists(id);
             return exists;
         }
     }

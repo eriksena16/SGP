@@ -8,11 +8,11 @@ namespace SGP.Patrimony.Infrastructure.PatrimonyLocator
     {
         public static void ConfigurePatrimonyService( this IServiceCollection services)
         {
-            services.AddScoped<IItemCategoryService, ItemCategoryService>();
-            services.AddScoped<IAssetClassificationService, AssetClassificationService>();
-            services.AddScoped<IEquipmentModelService, EquipmentModelService>();
-            services.AddScoped<ISectorService, SectorService>();
-            services.AddScoped<IManufacturerService, ManufacturerService>();
+            services.AddScoped<ICategoriaDoItemService, CategoriaDoItemService>();
+            services.AddScoped<IClassificacaoDeAtivosService, ClassificacaoDeAtivosService>();
+            services.AddScoped<IModeloDeEquipamentoService, ModeloDeEquipamentoService>();
+            services.AddScoped<ISetorService, SetorService>();
+            services.AddScoped<IFabricanteService, FabricanteService>();
 
         }
     }

@@ -6,6 +6,6 @@ namespace SGP.Model.Entity
     {
         public long Id { get; set; }
         [Display(Name = "Nome")]
-        public string Name { get; set; }
+        public string Nome { get; set; }
     }
 }
