@@ -10,16 +10,16 @@ namespace SGP.Model.Entity
     public class Equipamento
     {
         
-        public long EquipmentId { get; set; }
+        public long EquipamentoID { get; set; }
         [Display(Name = "Nº do patrimônio")]
-        public long PatrimonyNumber { get; set; }
+        public long NumeroDePatrmonio { get; set; }
 
         [Display(Name = "Categoria do Equipamento")]
-        public int ItemCategoryId { get; set; }
-        public CategoriaDoItem ItemCategory { get; set; }
+        public int CategoriaDoItemId { get; set; }
+        public CategoriaDoItem CategoriaDoItem { get; set; }
 
         [Display(Name = "Classificação do Ativo")]
-        public int AssetClassificationId { get; set; }
+        public int ClassificacaoDeAtivosID { get; set; }
         public ClassificacaoDeAtivos AssetClassification { get; set; }
 
         [Display(Name ="Nota Fiscal")]
@@ -40,25 +40,25 @@ namespace SGP.Model.Entity
         [Display(Name = "Data de Compra")]
         public DateTime DataDeCompra { get; set; }
         [Display(Name ="Modelo")]
-        public int EquipmentModelId { get; set; }
-        public ModeloDeEquipamento EquipmentModel { get; set; }
+        public int ModeloDeEquipamentoID { get; set; }
+        public ModeloDeEquipamento ModeloDeEquipamento { get; set; }
         [Display(Name = "Fabricante")]
-        public int ManufacturerId { get; set; }
-        public Fabricante Manufacturer { get; set; }
+        public int FabricanteID { get; set; }
+        public Fabricante Fabricante { get; set; }
 
         [Display(Name = "Número de série")]
-        public string SerialNumber { get; set; }
+        public string NumeroDeSerie { get; set; }
 
-        public Status Status { get; set; }
+        public EquipamentoStatus Status { get; set; }
         [Display(Name = "Responsavel do Equipamento")]
-        public int EquipmentPersonId { get; set; }
-        public ResponsavelDoEquipamento EquipmentPerson { get; set; }
+        public int ResponsavelDoEquipamentoID { get; set; }
+        public ResponsavelDoEquipamento ResponsavelDoEquipamento { get; set; }
         [Display(Name = "Setor")]
-        public int SectorId { get; set; }
-        public Setor Sector { get; set; }
+        public int SetorID { get; set; }
+        public Setor Setor { get; set; }
         [Display(Name = "Estado")]
-        public ConservationState ConservationState { get; set; }
-        public string Observation { get; set; }
+        public EstadoDeConservacao EstadoDeConservacao { get; set; }
+        public string Observacao { get; set; }
         
         
        /* public decimal CalcularValorAtual(int idade)

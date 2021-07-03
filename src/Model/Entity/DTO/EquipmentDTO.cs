@@ -18,7 +18,7 @@ namespace SGP.Model.Entity.DTO
         public Status Status { get; set; }
         public int EquipmentPersonId { get; set; }
         public int SectorId { get; set; }
-        public ConservationState ConservationState { get; set; }
+        public EstadoDeConservacao ConservationState { get; set; }
         public string Observation { get; set; }
     }
 }
