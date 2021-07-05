@@ -9,13 +9,14 @@ using System.Threading.Tasks;
 
 namespace SGP.Controllers
 {
-    public class SetorController : ApplicationController
+    public class ModeloDoEquipamentoController : ApplicationController
     {
+
         public async Task<IActionResult> Index()
         {
-            List<Setor> setor = await this.GatewayServiceProvider.Get<ISetorService>().GetAll();
+            List<ModeloDeEquipamento> modeloDeEquipamento = await this.GatewayServiceProvider.Get<IModeloDeEquipamentoService>().GetAll();
 
-            return View(setor);
+            return View(modeloDeEquipamento);
         }
 
         public async Task<IActionResult> Details(int? id)
@@ -25,13 +26,13 @@ namespace SGP.Controllers
                 return NotFound();
             }
 
-            Setor setor = await this.GatewayServiceProvider.Get<ISetorService>().Details(id);
-            if (setor == null)
+            ModeloDeEquipamento modeloDeEquipamento = await this.GatewayServiceProvider.Get<IModeloDeEquipamentoService>().Details(id);
+            if (modeloDeEquipamento == null)
             {
                 return NotFound();
             }
 
-            return View(setor);
+            return View(modeloDeEquipamento);
         }
 
 
@@ -43,14 +44,14 @@ namespace SGP.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Setor setor)
+        public async Task<IActionResult> Create(ModeloDeEquipamento modeloDeEquipamento)
         {
             if (ModelState.IsValid)
             {
-                Setor Sector = await this.GatewayServiceProvider.Get<ISetorService>().Create(setor);
+                ModeloDeEquipamento modeloDeEquipamento1 = await this.GatewayServiceProvider.Get<IModeloDeEquipamentoService>().Create(modeloDeEquipamento);
                 return RedirectToAction(nameof(Index));
             }
-            return View(setor);
+            return View(modeloDeEquipamento);
         }
 
         public async Task<IActionResult> Edit(int? id)
@@ -60,21 +61,21 @@ namespace SGP.Controllers
                 return NotFound();
             }
 
-            Setor setor = await GatewayServiceProvider.Get<ISetorService>().GetUpdate(id.Value);
+            ModeloDeEquipamento modeloDeEquipamento = await GatewayServiceProvider.Get<IModeloDeEquipamentoService>().GetUpdate(id.Value);
 
-            if (setor == null)
+            if (modeloDeEquipamento == null)
             {
                 return NotFound();
             }
-            return View(setor);
+            return View(modeloDeEquipamento);
         }
 
 
         [HttpPatch]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(long id, Setor setor)
+        public async Task<IActionResult> Edit(long id, ModeloDeEquipamento modeloDeEquipamento)
         {
-            if (id != setor.Id)
+            if (id != modeloDeEquipamento.Id)
             {
                 return NotFound();
             }
@@ -83,12 +84,12 @@ namespace SGP.Controllers
             {
                 try
                 {
-                    Setor Sector = await GatewayServiceProvider.Get<ISetorService>().Update(id, setor);
+                    ModeloDeEquipamento ModeloDeEquipamento = await GatewayServiceProvider.Get<IModeloDeEquipamentoService>().Update(id, modeloDeEquipamento);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
 
-                    if (!await Exists(setor.Id))
+                    if (!await Exists(modeloDeEquipamento.Id))
                     {
                         return NotFound();
                     }
@@ -99,7 +100,7 @@ namespace SGP.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(setor);
+            return View(modeloDeEquipamento);
         }
 
         public async Task<IActionResult> Delete(int? id)
@@ -109,27 +110,27 @@ namespace SGP.Controllers
                 return NotFound();
             }
 
-            var setor = await this.GatewayServiceProvider.Get<ISetorService>().Delete(id);
-            if (setor == null)
+            ModeloDeEquipamento modeloDeEquipamento = await this.GatewayServiceProvider.Get<IModeloDeEquipamentoService>().Delete(id);
+            if (modeloDeEquipamento == null)
             {
                 return NotFound();
             }
 
-            return View(setor);
+            return View(modeloDeEquipamento);
         }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var setor = await this.GatewayServiceProvider.Get<ISetorService>().DeleteConfirmed(id);
+            ModeloDeEquipamento modeloDeEquipamento = await this.GatewayServiceProvider.Get<IModeloDeEquipamentoService>().DeleteConfirmed(id);
 
             return RedirectToAction(nameof(Index));
         }
 
         private async Task<bool> Exists(long id)
         {
-            var exists = await this.GatewayServiceProvider.Get<ISetorService>().Exists(id);
+            var exists = await this.GatewayServiceProvider.Get<IModeloDeEquipamentoService>().Exists(id);
             return exists;
         }
     }

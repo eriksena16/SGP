@@ -28,6 +28,7 @@ namespace SGP
             services.AddControllersWithViews();
             services.ConfigurePatrimonyService();
             services.ConfigureGatewayService();
+            services.AddHttpContextAccessor();
             services.AddDbContext<SGPContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("SGPContext")));
 

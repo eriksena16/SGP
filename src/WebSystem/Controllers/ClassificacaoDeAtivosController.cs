@@ -9,13 +9,14 @@ using System.Threading.Tasks;
 
 namespace SGP.Controllers
 {
-    public class SetorController : ApplicationController
+    public class ClassificacaoDeAtivosController : ApplicationController
     {
+
         public async Task<IActionResult> Index()
         {
-            List<Setor> setor = await this.GatewayServiceProvider.Get<ISetorService>().GetAll();
+            List<ClassificacaoDeAtivos> assetClassification = await this.GatewayServiceProvider.Get<IClassificacaoDeAtivosService>().GetAll();
 
-            return View(setor);
+            return View(assetClassification);
         }
 
         public async Task<IActionResult> Details(int? id)
@@ -25,13 +26,13 @@ namespace SGP.Controllers
                 return NotFound();
             }
 
-            Setor setor = await this.GatewayServiceProvider.Get<ISetorService>().Details(id);
-            if (setor == null)
+            var assetClassification = await this.GatewayServiceProvider.Get<IClassificacaoDeAtivosService>().Details(id);
+            if (assetClassification == null)
             {
                 return NotFound();
             }
 
-            return View(setor);
+            return View(assetClassification);
         }
 
 
@@ -43,14 +44,14 @@ namespace SGP.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Setor setor)
+        public async Task<IActionResult> Create(ClassificacaoDeAtivos classificacaoDeAtivos)
         {
             if (ModelState.IsValid)
             {
-                Setor Sector = await this.GatewayServiceProvider.Get<ISetorService>().Create(setor);
+                ClassificacaoDeAtivos ClassificacaoDeAtivo = await this.GatewayServiceProvider.Get<IClassificacaoDeAtivosService>().Create(classificacaoDeAtivos);
                 return RedirectToAction(nameof(Index));
             }
-            return View(setor);
+            return View(classificacaoDeAtivos);
         }
 
         public async Task<IActionResult> Edit(int? id)
@@ -60,21 +61,21 @@ namespace SGP.Controllers
                 return NotFound();
             }
 
-            Setor setor = await GatewayServiceProvider.Get<ISetorService>().GetUpdate(id.Value);
+            ClassificacaoDeAtivos assetClassification = await GatewayServiceProvider.Get<IClassificacaoDeAtivosService>().GetUpdate(id.Value);
 
-            if (setor == null)
+            if (assetClassification == null)
             {
                 return NotFound();
             }
-            return View(setor);
+            return View(assetClassification);
         }
 
 
         [HttpPatch]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(long id, Setor setor)
+        public async Task<IActionResult> Edit(long id, ClassificacaoDeAtivos classificacaoDeAtivos)
         {
-            if (id != setor.Id)
+            if (id != classificacaoDeAtivos.Id)
             {
                 return NotFound();
             }
@@ -83,12 +84,13 @@ namespace SGP.Controllers
             {
                 try
                 {
-                    Setor Sector = await GatewayServiceProvider.Get<ISetorService>().Update(id, setor);
+                    ClassificacaoDeAtivos ClassificacaoDeAtivo = await GatewayServiceProvider.Get<IClassificacaoDeAtivosService>()
+                        .Update(id, classificacaoDeAtivos);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
 
-                    if (!await Exists(setor.Id))
+                    if (!await Exists(classificacaoDeAtivos.Id))
                     {
                         return NotFound();
                     }
@@ -99,7 +101,7 @@ namespace SGP.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(setor);
+            return View(classificacaoDeAtivos);
         }
 
         public async Task<IActionResult> Delete(int? id)
@@ -109,27 +111,27 @@ namespace SGP.Controllers
                 return NotFound();
             }
 
-            var setor = await this.GatewayServiceProvider.Get<ISetorService>().Delete(id);
-            if (setor == null)
+            var classificacaoDeAtivos = await this.GatewayServiceProvider.Get<IClassificacaoDeAtivosService>().Delete(id);
+            if (classificacaoDeAtivos == null)
             {
                 return NotFound();
             }
 
-            return View(setor);
+            return View(classificacaoDeAtivos);
         }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var setor = await this.GatewayServiceProvider.Get<ISetorService>().DeleteConfirmed(id);
+            var classificacaoDeAtivos = await this.GatewayServiceProvider.Get<IClassificacaoDeAtivosService>().DeleteConfirmed(id);
 
             return RedirectToAction(nameof(Index));
         }
 
         private async Task<bool> Exists(long id)
         {
-            var exists = await this.GatewayServiceProvider.Get<ISetorService>().Exists(id);
+            var exists = await this.GatewayServiceProvider.Get<IClassificacaoDeAtivosService>().Exists(id);
             return exists;
         }
     }

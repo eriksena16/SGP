@@ -7,10 +7,10 @@ namespace SGP.Model.Entity
     {
         
         [Display(Name ="Taxa de depreciação")]
-        public int TaxaDeDepreciação { get; set; }
+        public int TaxaDeDepreciacao { get; set; }
         [Display(Name ="Vida Útil")]
         public int VidaUtil { get; set; }
 
-        public ICollection<Equipamento> Equipment { get; set; }
+        public ICollection<Equipamento> Equipamento { get; set; }
     }
 }

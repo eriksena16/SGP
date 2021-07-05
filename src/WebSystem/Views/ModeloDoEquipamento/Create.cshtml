@@ -1,14 +1,14 @@
-﻿@model SGP.Model.Entity.Setor
+﻿@model SGP.Model.Entity.ModeloDeEquipamento
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Create";
 }
 
-<h1 class="mt-4">Setor</h1>
+<h1 class="mt-4">Modelo</h1>
 
 <ol class="breadcrumb mb-4">
     <li class="breadcrumb-item"><a asp-action="Index">Voltar</a></li>
-    <li class="breadcrumb-item active">Lista Setores</li>
+    <li class="breadcrumb-item active">Listar Modelos</li>
 </ol>
 <div class="container">
     <div class="row justify-content-center">
@@ -16,9 +16,8 @@
             <div class="card shadow-lg border-0 rounded-lg mt-5">
                 <div class="card-header"><h3 class="text-center font-weight-light my-4">Adicionar</h3></div>
                 <div class="card-body">
-                    <form asp-action="Edit">
+                    <form asp-action="Create">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                        <input type="hidden" asp-for="Id" />
                         <div class="form-group">
                             <label asp-for="Nome" class="control-label"></label>
                             <input asp-for="Nome" class="form-control" />

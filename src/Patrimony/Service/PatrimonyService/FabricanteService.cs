@@ -24,26 +24,26 @@ namespace SGP.Patrimony.Service.PatrimonyService
 
         public async Task<Fabricante> Delete(int? id)
         {
-            Fabricante manufacturer = new Fabricante();
+            Fabricante fabricante = new Fabricante();
 
-            return await this.Details(manufacturer.Id);
+            return await this.Details(fabricante.Id);
         }
 
         public async Task<Fabricante> DeleteConfirmed(int id)
         {
-            Fabricante manufacturer = await context.Fabricante.FindAsync(id);
-            context.Fabricante.Remove(manufacturer);
+            Fabricante fabricante = await context.Fabricante.FindAsync(id);
+            context.Fabricante.Remove(fabricante);
             await context.SaveChangesAsync();
 
-            return manufacturer;
+            return fabricante;
         }
 
         public async Task<Fabricante> Details(long? id)
         {
-            Fabricante manufacturer = await context.Fabricante
+            Fabricante fabricante = await context.Fabricante
                .FirstOrDefaultAsync(m => m.Id == id);
 
-            return manufacturer;
+            return fabricante;
         }
 
         public async Task<bool> Exists(long id)
@@ -53,16 +53,16 @@ namespace SGP.Patrimony.Service.PatrimonyService
 
         public async Task<List<Fabricante>> GetAll()
         {
-            List<Fabricante> manufacturer = await context.Fabricante.ToListAsync();
+            List<Fabricante> fabricante = await context.Fabricante.ToListAsync();
 
-            return manufacturer;
+            return fabricante;
         }
 
         public async Task<Fabricante> GetUpdate(int id)
         {
-            Fabricante manufacturer = await context.Fabricante.FindAsync(id);
+            Fabricante fabricante = await context.Fabricante.FindAsync(id);
 
-            return manufacturer;
+            return fabricante;
         }
 
         public async Task<Fabricante> Update(long id, Fabricante obj)

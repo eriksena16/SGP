@@ -3,27 +3,21 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-
-namespace SGP.Model.Entity
+namespace SGP.Model.Entity.DTO
 {
-    
-    public class Equipamento
+   public class EquipamentoDTO
     {
-
         public long EquipamentoID { get; set; }
         [Display(Name = "Nº do patrimônio")]
         public long NumeroDePatrmonio { get; set; }
 
         [Display(Name = "Categoria do Equipamento")]
-        public long CategoriaDoItemId{ get; set; }
+        public int CategoriaDoItemId { get; set; }
         public CategoriaDoItem CategoriaDoItem { get; set; }
-
-        [Display(Name = "Idade")]
-        [NotMapped]
-        public int? Idade { get; set; }
+        public int Idade { get; set; }
 
         [Display(Name = "Classificação do Ativo")]
-        public long ClassificacaoDeAtivosId { get; set; }
+        public int ClassificacaoDeAtivosID { get; set; }
         public ClassificacaoDeAtivos ClassificacaoDeAtivos { get; set; }
 
         [Display(Name = "Nota Fiscal")]
@@ -44,25 +38,24 @@ namespace SGP.Model.Entity
         [Display(Name = "Data de Compra")]
         public DateTime DataDeCompra { get; set; }
         [Display(Name = "Modelo")]
-        public long ModeloDeEquipamentoId { get; set; }
+        public int ModeloDeEquipamentoID { get; set; }
         public ModeloDeEquipamento ModeloDeEquipamento { get; set; }
         [Display(Name = "Fabricante")]
-        public long FabricanteId { get; set; }
+        public int FabricanteID { get; set; }
         public Fabricante Fabricante { get; set; }
 
         [Display(Name = "Número de série")]
         public string NumeroDeSerie { get; set; }
-        [Display(Name = "Status")]
-        public EquipamentoStatus EquipamentoStatus { get; set; }
+
+        public EquipamentoStatus Status { get; set; }
         [Display(Name = "Responsavel do Equipamento")]
-        public long ResponsavelDoEquipamentoId { get; set; }
+        public int ResponsavelDoEquipamentoID { get; set; }
         public ResponsavelDoEquipamento ResponsavelDoEquipamento { get; set; }
         [Display(Name = "Setor")]
-        public long SetorId { get; set; }
+        public int SetorID { get; set; }
         public Setor Setor { get; set; }
         [Display(Name = "Estado")]
         public EstadoDeConservacao EstadoDeConservacao { get; set; }
         public string Observacao { get; set; }
-
     }
 }

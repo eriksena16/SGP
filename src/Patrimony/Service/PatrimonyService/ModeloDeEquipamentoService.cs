@@ -24,27 +24,27 @@ namespace SGP.Patrimony.Service.PatrimonyService
 
         public async Task<ModeloDeEquipamento> Delete(int? id)
         {
-            ModeloDeEquipamento equipmentModel = new ModeloDeEquipamento();
+            ModeloDeEquipamento modeloDeEquipamento = new ModeloDeEquipamento();
 
-            return await this.Details(equipmentModel.Id);
+            return await this.Details(modeloDeEquipamento.Id);
         }
 
         public async Task<ModeloDeEquipamento> DeleteConfirmed(int id)
         {
-            ModeloDeEquipamento equipmentModel = await context.ModeloDeEquipamento.FindAsync(id);
+            ModeloDeEquipamento modeloDeEquipamento = await context.ModeloDeEquipamento.FindAsync(id);
 
-            context.ModeloDeEquipamento.Remove(equipmentModel);
+            context.ModeloDeEquipamento.Remove(modeloDeEquipamento);
             await context.SaveChangesAsync();
 
-            return equipmentModel;
+            return modeloDeEquipamento;
         }
 
         public async Task<ModeloDeEquipamento> Details(long? id)
         {
-            ModeloDeEquipamento equipmentModel = await context.ModeloDeEquipamento
+            ModeloDeEquipamento modeloDeEquipamento = await context.ModeloDeEquipamento
                .FirstOrDefaultAsync(m => m.Id == id);
 
-            return equipmentModel;
+            return modeloDeEquipamento;
         }
 
         public async Task<bool> Exists(long id)
@@ -54,16 +54,16 @@ namespace SGP.Patrimony.Service.PatrimonyService
 
         public async Task<List<ModeloDeEquipamento>> GetAll()
         {
-            List<ModeloDeEquipamento> equipmentModel = await context.ModeloDeEquipamento.ToListAsync();
+            List<ModeloDeEquipamento> modeloDeEquipamento = await context.ModeloDeEquipamento.ToListAsync();
 
-            return equipmentModel;
+            return modeloDeEquipamento;
         }
 
         public async Task<ModeloDeEquipamento> GetUpdate(int id)
         {
-            ModeloDeEquipamento equipmentModel = await context.ModeloDeEquipamento.FindAsync(id);
+            ModeloDeEquipamento modeloDeEquipamento = await context.ModeloDeEquipamento.FindAsync(id);
 
-            return equipmentModel;
+            return modeloDeEquipamento;
         }
 
         public async Task<ModeloDeEquipamento> Update(long id, ModeloDeEquipamento obj)

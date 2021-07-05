@@ -29,12 +29,12 @@ namespace SGP.Patrimony.Repository.PatrimonyRepository
 
             var assetClassifications = new ClassificacaoDeAtivos[]
             {
-                new ClassificacaoDeAtivos{Nome = "Informática e Comunicação", TaxaDeDepreciação = 20, VidaUtil = 5},
-                new ClassificacaoDeAtivos{Nome = "Móveis e utensílios", TaxaDeDepreciação = 10, VidaUtil = 10},
-                new ClassificacaoDeAtivos{Nome = "Imoveis", TaxaDeDepreciação = 4, VidaUtil = 25},
-                new ClassificacaoDeAtivos{Nome = "Instalaçoes", TaxaDeDepreciação = 10, VidaUtil = 10},
-                new ClassificacaoDeAtivos{Nome = "Veiculos leves", TaxaDeDepreciação = 20, VidaUtil = 5},
-                new ClassificacaoDeAtivos{Nome = "Veiculos pesados", TaxaDeDepreciação = 25, VidaUtil = 4},
+                new ClassificacaoDeAtivos{Nome = "Informática e Comunicação", TaxaDeDepreciacao = 20, VidaUtil = 5},
+                new ClassificacaoDeAtivos{Nome = "Móveis e utensílios", TaxaDeDepreciacao = 10, VidaUtil = 10},
+                new ClassificacaoDeAtivos{Nome = "Imoveis", TaxaDeDepreciacao = 4, VidaUtil = 25},
+                new ClassificacaoDeAtivos{Nome = "Instalaçoes", TaxaDeDepreciacao = 10, VidaUtil = 10},
+                new ClassificacaoDeAtivos{Nome = "Veiculos leves", TaxaDeDepreciacao = 20, VidaUtil = 5},
+                new ClassificacaoDeAtivos{Nome = "Veiculos pesados", TaxaDeDepreciacao = 25, VidaUtil = 4},
 
             };
             foreach (ClassificacaoDeAtivos assetClassification in assetClassifications)
@@ -82,7 +82,7 @@ namespace SGP.Patrimony.Repository.PatrimonyRepository
             };
             foreach (ResponsavelDoEquipamento equipmentPerson in responsaveis)
             {
-                context.EquipmentPerson.Add(equipmentPerson);
+                context.ResponsavelDoEquipamento.Add(equipmentPerson);
             }
             context.SaveChanges();
 

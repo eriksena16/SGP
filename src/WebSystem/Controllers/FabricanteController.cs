@@ -9,13 +9,14 @@ using System.Threading.Tasks;
 
 namespace SGP.Controllers
 {
-    public class SetorController : ApplicationController
+    public class FabricanteController : ApplicationController
     {
+
         public async Task<IActionResult> Index()
         {
-            List<Setor> setor = await this.GatewayServiceProvider.Get<ISetorService>().GetAll();
+            List<Fabricante> fabricante = await this.GatewayServiceProvider.Get<IFabricanteService>().GetAll();
 
-            return View(setor);
+            return View(fabricante);
         }
 
         public async Task<IActionResult> Details(int? id)
@@ -25,13 +26,13 @@ namespace SGP.Controllers
                 return NotFound();
             }
 
-            Setor setor = await this.GatewayServiceProvider.Get<ISetorService>().Details(id);
-            if (setor == null)
+            var fabricante = await this.GatewayServiceProvider.Get<IFabricanteService>().Details(id);
+            if (fabricante == null)
             {
                 return NotFound();
             }
 
-            return View(setor);
+            return View(fabricante);
         }
 
 
@@ -43,14 +44,14 @@ namespace SGP.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Setor setor)
+        public async Task<IActionResult> Create(Fabricante fabricante)
         {
             if (ModelState.IsValid)
             {
-                Setor Sector = await this.GatewayServiceProvider.Get<ISetorService>().Create(setor);
+                Fabricante fabricantes = await this.GatewayServiceProvider.Get<IFabricanteService>().Create(fabricante);
                 return RedirectToAction(nameof(Index));
             }
-            return View(setor);
+            return View(fabricante);
         }
 
         public async Task<IActionResult> Edit(int? id)
@@ -60,21 +61,21 @@ namespace SGP.Controllers
                 return NotFound();
             }
 
-            Setor setor = await GatewayServiceProvider.Get<ISetorService>().GetUpdate(id.Value);
+            Fabricante fabricantes = await GatewayServiceProvider.Get<IFabricanteService>().GetUpdate(id.Value);
 
-            if (setor == null)
+            if (fabricantes == null)
             {
                 return NotFound();
             }
-            return View(setor);
+            return View(fabricantes);
         }
 
 
         [HttpPatch]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(long id, Setor setor)
+        public async Task<IActionResult> Edit(long id, Fabricante fabricante)
         {
-            if (id != setor.Id)
+            if (id != fabricante.Id)
             {
                 return NotFound();
             }
@@ -83,12 +84,12 @@ namespace SGP.Controllers
             {
                 try
                 {
-                    Setor Sector = await GatewayServiceProvider.Get<ISetorService>().Update(id, setor);
+                    Fabricante fabricantes = await GatewayServiceProvider.Get<IFabricanteService>().Update(id, fabricante);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
 
-                    if (!await Exists(setor.Id))
+                    if (!await Exists(fabricante.Id))
                     {
                         return NotFound();
                     }
@@ -99,7 +100,7 @@ namespace SGP.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(setor);
+            return View(fabricante);
         }
 
         public async Task<IActionResult> Delete(int? id)
@@ -109,27 +110,27 @@ namespace SGP.Controllers
                 return NotFound();
             }
 
-            var setor = await this.GatewayServiceProvider.Get<ISetorService>().Delete(id);
-            if (setor == null)
+            Fabricante fabricante = await this.GatewayServiceProvider.Get<IFabricanteService>().Delete(id);
+            if (fabricante == null)
             {
                 return NotFound();
             }
 
-            return View(setor);
+            return View(fabricante);
         }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var setor = await this.GatewayServiceProvider.Get<ISetorService>().DeleteConfirmed(id);
+            Fabricante fabricante = await this.GatewayServiceProvider.Get<IFabricanteService>().DeleteConfirmed(id);
 
             return RedirectToAction(nameof(Index));
         }
 
         private async Task<bool> Exists(long id)
         {
-            var exists = await this.GatewayServiceProvider.Get<ISetorService>().Exists(id);
+            bool exists = await this.GatewayServiceProvider.Get<IFabricanteService>().Exists(id);
             return exists;
         }
     }
