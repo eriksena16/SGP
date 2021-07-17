@@ -22,14 +22,14 @@ namespace SGP.Patrimony.Service.PatrimonyService
             return obj;
         }
 
-        public async Task<Fabricante> Delete(int? id)
+        public async Task<Fabricante> Delete(long? id)
         {
             Fabricante fabricante = new Fabricante();
 
-            return await this.Details(fabricante.Id);
+            return await this.Details(fabricante.ID);
         }
 
-        public async Task<Fabricante> DeleteConfirmed(int id)
+        public async Task<Fabricante> DeleteConfirmed(long id)
         {
             Fabricante fabricante = await context.Fabricante.FindAsync(id);
             context.Fabricante.Remove(fabricante);
@@ -41,14 +41,14 @@ namespace SGP.Patrimony.Service.PatrimonyService
         public async Task<Fabricante> Details(long? id)
         {
             Fabricante fabricante = await context.Fabricante
-               .FirstOrDefaultAsync(m => m.Id == id);
+               .FirstOrDefaultAsync(m => m.ID == id);
 
             return fabricante;
         }
 
         public async Task<bool> Exists(long id)
         {
-            return await Task.FromResult(context.Fabricante.Any(e => e.Id == id));
+            return await Task.FromResult(context.Fabricante.Any(e => e.ID == id));
         }
 
         public async Task<List<Fabricante>> GetAll()
@@ -58,7 +58,7 @@ namespace SGP.Patrimony.Service.PatrimonyService
             return fabricante;
         }
 
-        public async Task<Fabricante> GetUpdate(int id)
+        public async Task<Fabricante> GetUpdate(long id)
         {
             Fabricante fabricante = await context.Fabricante.FindAsync(id);
 

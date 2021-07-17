@@ -21,14 +21,14 @@ namespace SGP.Patrimony.Service.PatrimonyService
             return obj;
         }
 
-        public async Task<Setor> Delete(int? id)
+        public async Task<Setor> Delete(long? id)
         {
             Setor setor = new Setor();
 
-            return await this.Details(setor.Id);
+            return await this.Details(setor.ID);
         }
 
-        public async Task<Setor> DeleteConfirmed(int id)
+        public async Task<Setor> DeleteConfirmed(long id)
         {
             Setor setor = await context.Setor.FindAsync(id);
             context.Setor.Remove(setor);
@@ -40,14 +40,14 @@ namespace SGP.Patrimony.Service.PatrimonyService
         public async Task<Setor> Details(long? id)
         {
             Setor setor = await context.Setor
-               .FirstOrDefaultAsync(m => m.Id == id);
+               .FirstOrDefaultAsync(m => m.ID == id);
 
             return setor;
         }
 
         public async Task<bool> Exists(long id)
         {
-            return await Task.FromResult(context.Setor.Any(e => e.Id == id));
+            return await Task.FromResult(context.Setor.Any(e => e.ID == id));
         }
 
         public async Task<List<Setor>> GetAll()
@@ -58,7 +58,7 @@ namespace SGP.Patrimony.Service.PatrimonyService
         }
 
 
-        public async Task<Setor> GetUpdate(int id)
+        public async Task<Setor> GetUpdate(long id)
         {
             Setor sector = await context.Setor.FindAsync(id);
 

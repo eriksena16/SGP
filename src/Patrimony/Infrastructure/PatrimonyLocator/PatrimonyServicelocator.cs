@@ -13,6 +13,7 @@ namespace SGP.Patrimony.Infrastructure.PatrimonyLocator
             services.AddScoped<IModeloDeEquipamentoService, ModeloDeEquipamentoService>();
             services.AddScoped<ISetorService, SetorService>();
             services.AddScoped<IFabricanteService, FabricanteService>();
+            services.AddScoped<IEquipamentoService, EquipamentoService>();
 
         }
     }

@@ -7,10 +7,10 @@ namespace SGP.Model.Entity
     {
 
         [Display(Name = "Fabricante")]
-        public int FabricanteId { get; set; }
+        public long FabricanteID { get; set; }
         public Fabricante Fabricante { get; set; }
 
-        public ICollection<Equipamento> Equipment { get; set; }
+        public ICollection<Equipamento> Equipamento { get; set; }
 
     }
 }

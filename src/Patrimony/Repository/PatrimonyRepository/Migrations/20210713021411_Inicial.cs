@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SGP.Patrimony.Repository.PatrimonyRepository.Migrations
 {
-    public partial class Atualizacao : Migration
+    public partial class Inicial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -11,20 +11,20 @@ namespace SGP.Patrimony.Repository.PatrimonyRepository.Migrations
                 name: "Categoria",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
+                    ID = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nome = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Categoria", x => x.Id);
+                    table.PrimaryKey("PK_Categoria", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Classificacao",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
+                    ID = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     TaxaDeDepreciacao = table.Column<int>(type: "int", nullable: false),
                     VidaUtil = table.Column<int>(type: "int", nullable: false),
@@ -32,14 +32,14 @@ namespace SGP.Patrimony.Repository.PatrimonyRepository.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Classificacao", x => x.Id);
+                    table.PrimaryKey("PK_Classificacao", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Fabricante",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
+                    ID = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nome = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Cnpj = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -52,27 +52,27 @@ namespace SGP.Patrimony.Repository.PatrimonyRepository.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Fabricante", x => x.Id);
+                    table.PrimaryKey("PK_Fabricante", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Setor",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
+                    ID = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nome = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Setor", x => x.Id);
+                    table.PrimaryKey("PK_Setor", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
                 name: "User",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
+                    ID = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nome = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Username = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -80,28 +80,27 @@ namespace SGP.Patrimony.Repository.PatrimonyRepository.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_User", x => x.Id);
+                    table.PrimaryKey("PK_User", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
                 name: "ModeloDeEquipamento",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
+                    ID = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    FabricanteId = table.Column<int>(type: "int", nullable: false),
-                    FabricanteId1 = table.Column<long>(type: "bigint", nullable: true),
+                    FabricanteID = table.Column<long>(type: "bigint", nullable: false),
                     Nome = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ModeloDeEquipamento", x => x.Id);
+                    table.PrimaryKey("PK_ModeloDeEquipamento", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_ModeloDeEquipamento_Fabricante_FabricanteId1",
-                        column: x => x.FabricanteId1,
+                        name: "FK_ModeloDeEquipamento_Fabricante_FabricanteID",
+                        column: x => x.FabricanteID,
                         principalTable: "Fabricante",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -111,24 +110,18 @@ namespace SGP.Patrimony.Repository.PatrimonyRepository.Migrations
                     EquipamentoID = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     NumeroDePatrmonio = table.Column<long>(type: "bigint", nullable: false),
-                    CategoriaDoItemID = table.Column<int>(type: "int", nullable: false),
-                    CategoriaDoItemId = table.Column<long>(type: "bigint", nullable: true),
-                    ClassificacaoDeAtivosID = table.Column<int>(type: "int", nullable: false),
-                    ClassificacaoDeAtivosId = table.Column<long>(type: "bigint", nullable: true),
+                    CategoriaDoItemID = table.Column<long>(type: "bigint", nullable: false),
+                    ClassificacaoDeAtivosID = table.Column<long>(type: "bigint", nullable: false),
                     NotaFiscalUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ValorDeCompra = table.Column<decimal>(type: "money", nullable: false),
                     ValorAtual = table.Column<decimal>(type: "money", nullable: false),
                     DataDeCompra = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ModeloDeEquipamentoID = table.Column<int>(type: "int", nullable: false),
-                    ModeloDeEquipamentoId = table.Column<long>(type: "bigint", nullable: true),
-                    FabricanteID = table.Column<int>(type: "int", nullable: false),
-                    FabricanteId = table.Column<long>(type: "bigint", nullable: true),
+                    ModeloDeEquipamentoID = table.Column<long>(type: "bigint", nullable: false),
+                    FabricanteID = table.Column<long>(type: "bigint", nullable: false),
                     NumeroDeSerie = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     EquipamentoStatus = table.Column<int>(type: "int", nullable: false),
-                    ResponsavelDoEquipamentoID = table.Column<int>(type: "int", nullable: false),
-                    ResponsavelDoEquipamentoId = table.Column<long>(type: "bigint", nullable: true),
-                    SetorID = table.Column<int>(type: "int", nullable: false),
-                    SetorId = table.Column<long>(type: "bigint", nullable: true),
+                    ResponsavelDoEquipamentoID = table.Column<long>(type: "bigint", nullable: false),
+                    SetorID = table.Column<long>(type: "bigint", nullable: false),
                     EstadoDeConservacao = table.Column<int>(type: "int", nullable: false),
                     Observacao = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
@@ -136,77 +129,77 @@ namespace SGP.Patrimony.Repository.PatrimonyRepository.Migrations
                 {
                     table.PrimaryKey("PK_Equipamento", x => x.EquipamentoID);
                     table.ForeignKey(
-                        name: "FK_Equipamento_Categoria_CategoriaDoItemId",
-                        column: x => x.CategoriaDoItemId,
+                        name: "FK_Equipamento_Categoria_CategoriaDoItemID",
+                        column: x => x.CategoriaDoItemID,
                         principalTable: "Categoria",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Equipamento_Classificacao_ClassificacaoDeAtivosId",
-                        column: x => x.ClassificacaoDeAtivosId,
+                        name: "FK_Equipamento_Classificacao_ClassificacaoDeAtivosID",
+                        column: x => x.ClassificacaoDeAtivosID,
                         principalTable: "Classificacao",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Equipamento_Fabricante_FabricanteId",
-                        column: x => x.FabricanteId,
+                        name: "FK_Equipamento_Fabricante_FabricanteID",
+                        column: x => x.FabricanteID,
                         principalTable: "Fabricante",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Equipamento_ModeloDeEquipamento_ModeloDeEquipamentoId",
-                        column: x => x.ModeloDeEquipamentoId,
+                        name: "FK_Equipamento_ModeloDeEquipamento_ModeloDeEquipamentoID",
+                        column: x => x.ModeloDeEquipamentoID,
                         principalTable: "ModeloDeEquipamento",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
-                        name: "FK_Equipamento_Setor_SetorId",
-                        column: x => x.SetorId,
+                        name: "FK_Equipamento_Setor_SetorID",
+                        column: x => x.SetorID,
                         principalTable: "Setor",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Equipamento_User_ResponsavelDoEquipamentoId",
-                        column: x => x.ResponsavelDoEquipamentoId,
+                        name: "FK_Equipamento_User_ResponsavelDoEquipamentoID",
+                        column: x => x.ResponsavelDoEquipamentoID,
                         principalTable: "User",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Equipamento_CategoriaDoItemId",
+                name: "IX_Equipamento_CategoriaDoItemID",
                 table: "Equipamento",
-                column: "CategoriaDoItemId");
+                column: "CategoriaDoItemID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Equipamento_ClassificacaoDeAtivosId",
+                name: "IX_Equipamento_ClassificacaoDeAtivosID",
                 table: "Equipamento",
-                column: "ClassificacaoDeAtivosId");
+                column: "ClassificacaoDeAtivosID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Equipamento_FabricanteId",
+                name: "IX_Equipamento_FabricanteID",
                 table: "Equipamento",
-                column: "FabricanteId");
+                column: "FabricanteID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Equipamento_ModeloDeEquipamentoId",
+                name: "IX_Equipamento_ModeloDeEquipamentoID",
                 table: "Equipamento",
-                column: "ModeloDeEquipamentoId");
+                column: "ModeloDeEquipamentoID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Equipamento_ResponsavelDoEquipamentoId",
+                name: "IX_Equipamento_ResponsavelDoEquipamentoID",
                 table: "Equipamento",
-                column: "ResponsavelDoEquipamentoId");
+                column: "ResponsavelDoEquipamentoID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Equipamento_SetorId",
+                name: "IX_Equipamento_SetorID",
                 table: "Equipamento",
-                column: "SetorId");
+                column: "SetorID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ModeloDeEquipamento_FabricanteId1",
+                name: "IX_ModeloDeEquipamento_FabricanteID",
                 table: "ModeloDeEquipamento",
-                column: "FabricanteId1");
+                column: "FabricanteID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

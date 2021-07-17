@@ -45,8 +45,8 @@ namespace SGP.Patrimony.Repository.PatrimonyRepository
 
             var equipmentModels = new ModeloDeEquipamento[]
             {
-                new ModeloDeEquipamento{Nome = "Vostro"},
-                new ModeloDeEquipamento{Nome = "Ispiron 3647"}
+                new ModeloDeEquipamento{FabricanteID = 1, Nome = "Vostro"},
+                new ModeloDeEquipamento{FabricanteID = 1, Nome = "Ispiron 3647"}
             };
             foreach(ModeloDeEquipamento equipmentModel in equipmentModels)
             {

@@ -15,7 +15,7 @@ namespace SGP.Model.Entity
         public long NumeroDePatrmonio { get; set; }
 
         [Display(Name = "Categoria do Equipamento")]
-        public long CategoriaDoItemId{ get; set; }
+        public long CategoriaDoItemID{ get; set; }
         public CategoriaDoItem CategoriaDoItem { get; set; }
 
         [Display(Name = "Idade")]
@@ -23,7 +23,7 @@ namespace SGP.Model.Entity
         public int? Idade { get; set; }
 
         [Display(Name = "Classificação do Ativo")]
-        public long ClassificacaoDeAtivosId { get; set; }
+        public long ClassificacaoDeAtivosID { get; set; }
         public ClassificacaoDeAtivos ClassificacaoDeAtivos { get; set; }
 
         [Display(Name = "Nota Fiscal")]
@@ -44,10 +44,10 @@ namespace SGP.Model.Entity
         [Display(Name = "Data de Compra")]
         public DateTime DataDeCompra { get; set; }
         [Display(Name = "Modelo")]
-        public long ModeloDeEquipamentoId { get; set; }
+        public long ModeloDeEquipamentoID { get; set; }
         public ModeloDeEquipamento ModeloDeEquipamento { get; set; }
         [Display(Name = "Fabricante")]
-        public long FabricanteId { get; set; }
+        public long FabricanteID { get; set; }
         public Fabricante Fabricante { get; set; }
 
         [Display(Name = "Número de série")]
@@ -55,10 +55,10 @@ namespace SGP.Model.Entity
         [Display(Name = "Status")]
         public EquipamentoStatus EquipamentoStatus { get; set; }
         [Display(Name = "Responsavel do Equipamento")]
-        public long ResponsavelDoEquipamentoId { get; set; }
+        public long ResponsavelDoEquipamentoID { get; set; }
         public ResponsavelDoEquipamento ResponsavelDoEquipamento { get; set; }
         [Display(Name = "Setor")]
-        public long SetorId { get; set; }
+        public long SetorID { get; set; }
         public Setor Setor { get; set; }
         [Display(Name = "Estado")]
         public EstadoDeConservacao EstadoDeConservacao { get; set; }

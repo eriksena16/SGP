@@ -4,6 +4,6 @@ namespace SGP.Model.Entity
 {
     public class ResponsavelDoEquipamento : Usuario
     {
-        public ICollection<Equipamento> Equipment { get; set; }
+        public ICollection<Equipamento> Equipamento { get; set; }
     }
 }

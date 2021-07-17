@@ -1,16 +1,15 @@
 ﻿using SGP.Model.Entity;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+using System.Linq;
 
 namespace SGP.Contract.Service.PatrimonyContract
 {
     public interface IEquipamentoService : IGenericService<Equipamento>
     {
-        IEnumerable<object> DropdownListCategoriaDoItem();
-        IEnumerable<object> DropdownListClassificacaoDeAtivos();
-        IEnumerable<object> DropdownListModeloDeEquipamento();
-        IEnumerable<object> DropdownListFabricante();
-        IEnumerable<object> DropdownListSetor();
-        IEnumerable<object> DropdownListResponsavelDoEquipamento();
+        IQueryable<object> DropdownListCategoriaDoItem();
+        IQueryable<object> DropdownListClassificacaoDeAtivos();
+        IQueryable<object> DropdownListModeloDeEquipamento();
+        IQueryable<object> DropdownListFabricante();
+        IQueryable<object> DropdownListSetor();
+        IQueryable<object> DropdownListResponsavelDoEquipamento();
     }
 }

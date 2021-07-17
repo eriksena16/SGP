@@ -20,14 +20,14 @@ namespace SGP.Patrimony.Service.PatrimonyService
             return obj;
         }
 
-        public async Task<CategoriaDoItem> Delete(int? id)
+        public async Task<CategoriaDoItem> Delete(long? id)
         {
             CategoriaDoItem ItemCategory = new CategoriaDoItem();
 
-            return await this.Details(ItemCategory.Id);
+            return await this.Details(ItemCategory.ID);
         }
 
-        public async Task<CategoriaDoItem> DeleteConfirmed(int id)
+        public async Task<CategoriaDoItem> DeleteConfirmed(long id)
         {
             CategoriaDoItem itemCategory = await context.Categoria.FindAsync(id);
             context.Categoria.Remove(itemCategory);
@@ -39,7 +39,7 @@ namespace SGP.Patrimony.Service.PatrimonyService
         public async Task<CategoriaDoItem> Details(long? id)
         {
             CategoriaDoItem ItemCategory = await context.Categoria
-               .FirstOrDefaultAsync(m => m.Id == id);
+               .FirstOrDefaultAsync(m => m.ID == id);
 
             return ItemCategory;
 
@@ -59,7 +59,7 @@ namespace SGP.Patrimony.Service.PatrimonyService
 
             return obj;
         } 
-        public async Task<CategoriaDoItem> GetUpdate(int id)
+        public async Task<CategoriaDoItem> GetUpdate(long id)
         {
             var itemCategory = await context.Categoria.FindAsync(id);
 
@@ -68,7 +68,7 @@ namespace SGP.Patrimony.Service.PatrimonyService
 
         public async Task< bool> Exists(long id)
         {
-            return await Task.FromResult( context.Categoria.Any(e => e.Id == id));
+            return await Task.FromResult( context.Categoria.Any(e => e.ID == id));
         }
     }
 }

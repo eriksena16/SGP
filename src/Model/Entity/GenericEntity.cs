@@ -4,7 +4,7 @@ namespace SGP.Model.Entity
 {
     public class GenericEntity
     {
-        public long Id { get; set; }
+        public long ID { get; set; }
         [Display(Name = "Nome")]
         public string Nome { get; set; }
     }

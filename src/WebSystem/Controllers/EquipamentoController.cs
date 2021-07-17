@@ -9,6 +9,7 @@ using SGP.Model.Entity;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace SGP.Controllers
@@ -89,12 +90,12 @@ namespace SGP.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            DropdownListCategoriaDoItem(equipamentos.CategoriaDoItemId);
-            DropdownListClassificacaoDeAtivos(equipamentos.ClassificacaoDeAtivosId);
-            DropdownListModeloDeEquipamento(equipamentos.ModeloDeEquipamentoId);
-            DropdownListFabricante(equipamentos.FabricanteId);
-            DropdownListSetor(equipamentos.SetorId);
-            DropdownListResponsavelDoEquipamento(equipamentos.ResponsavelDoEquipamentoId);
+            DropdownListCategoriaDoItem(equipamentos.CategoriaDoItemID);
+            DropdownListClassificacaoDeAtivos(equipamentos.ClassificacaoDeAtivosID);
+            DropdownListModeloDeEquipamento(equipamentos.ModeloDeEquipamentoID);
+            DropdownListFabricante(equipamentos.FabricanteID);
+            DropdownListSetor(equipamentos.SetorID);
+            DropdownListResponsavelDoEquipamento(equipamentos.ResponsavelDoEquipamentoID);
             return View(equipamentos);
         }
 
@@ -124,12 +125,12 @@ namespace SGP.Controllers
 
             }
 
-            DropdownListCategoriaDoItem(equipamentos.CategoriaDoItemId);
-            DropdownListClassificacaoDeAtivos(equipamentos.ClassificacaoDeAtivosId);
-            DropdownListModeloDeEquipamento(equipamentos.ModeloDeEquipamentoId);
-            DropdownListFabricante(equipamentos.FabricanteId);
-            DropdownListSetor(equipamentos.SetorId);
-            DropdownListResponsavelDoEquipamento(equipamentos.ResponsavelDoEquipamentoId);
+            DropdownListCategoriaDoItem(equipamentos.CategoriaDoItemID);
+            DropdownListClassificacaoDeAtivos(equipamentos.ClassificacaoDeAtivosID);
+            DropdownListModeloDeEquipamento(equipamentos.ModeloDeEquipamentoID);
+            DropdownListFabricante(equipamentos.FabricanteID);
+            DropdownListSetor(equipamentos.SetorID);
+            DropdownListResponsavelDoEquipamento(equipamentos.ResponsavelDoEquipamentoID);
             return View(equipamentos);
         }
 
@@ -173,12 +174,12 @@ namespace SGP.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            DropdownListCategoriaDoItem(equipamentos.CategoriaDoItemId);
-            DropdownListClassificacaoDeAtivos(equipamentos.ClassificacaoDeAtivosId);
-            DropdownListModeloDeEquipamento(equipamentos.ModeloDeEquipamentoId);
-            DropdownListFabricante(equipamentos.FabricanteId);
-            DropdownListSetor(equipamentos.SetorId);
-            DropdownListResponsavelDoEquipamento(equipamentos.ResponsavelDoEquipamentoId);
+            DropdownListCategoriaDoItem(equipamentos.CategoriaDoItemID);
+            DropdownListClassificacaoDeAtivos(equipamentos.ClassificacaoDeAtivosID);
+            DropdownListModeloDeEquipamento(equipamentos.ModeloDeEquipamentoID);
+            DropdownListFabricante(equipamentos.FabricanteID);
+            DropdownListSetor(equipamentos.SetorID);
+            DropdownListResponsavelDoEquipamento(equipamentos.ResponsavelDoEquipamentoID);
             return View(equipamentos);
         }
 
@@ -229,35 +230,37 @@ namespace SGP.Controllers
 
         private void DropdownListCategoriaDoItem(object listaCategoria = null)
         {
-            IEnumerable<object> lista = this.GatewayServiceProvider.Get<IEquipamentoService>().DropdownListCategoriaDoItem();
-            ViewBag.CategoriaDoItemId = new SelectList(lista, "CategoriaDoItemId", "Nome", listaCategoria);
+            IQueryable<object> lista = this.GatewayServiceProvider.Get<IEquipamentoService>().DropdownListCategoriaDoItem();
+            ViewBag.CategoriaDoItemID = new SelectList(lista, "CategoriaDoItemID", "Nome", listaCategoria);
         }
 
         private void DropdownListClassificacaoDeAtivos(object listaClassificacao = null)
         {
-            IEnumerable<object> lista = this.GatewayServiceProvider.Get<IEquipamentoService>().DropdownListClassificacaoDeAtivos();
-            ViewBag.ClassificacaoDeAtivosId = new SelectList(lista, "ClassificacaoDeAtivosId", "Nome", listaClassificacao);
+            IQueryable<object> lista = this.GatewayServiceProvider.Get<IEquipamentoService>().DropdownListClassificacaoDeAtivos();
+            ViewBag.ClassificacaoDeAtivosID = new SelectList(lista, "ClassificacaoDeAtivosID", "Nome", listaClassificacao);
         }
 
         private void DropdownListModeloDeEquipamento(object listaModelo = null)
         {
-            IEnumerable<object> lista = this.GatewayServiceProvider.Get<IEquipamentoService>().DropdownListModeloDeEquipamento();
-            ViewBag.ModeloDeEquipamentoId = new SelectList(lista, "ModeloDeEquipamentoId", "Nome", listaModelo);
+            var lista = this.GatewayServiceProvider.Get<IEquipamentoService>().DropdownListModeloDeEquipamento();
+            ViewBag.ModeloDeEquipamentoID = new SelectList(lista, "ModeloDeEquipamentoID", "Nome", listaModelo);
         }
         private void DropdownListFabricante(object listaFabricante = null)
         {
-            IEnumerable<object> lista = this.GatewayServiceProvider.Get<IEquipamentoService>().DropdownListFabricante();
-            ViewBag.FabricanteId = new SelectList(lista, "FabricanteId", "Nome", listaFabricante);
+
+            IQueryable<object> lista = this.GatewayServiceProvider.Get<IEquipamentoService>().DropdownListFabricante();
+
+            ViewBag.FabricanteID = new SelectList(lista, "FabricanteID", "Nome", listaFabricante);
         }
         private void DropdownListSetor(object listaSetor = null)
         {
-            IEnumerable<object> lista = this.GatewayServiceProvider.Get<IEquipamentoService>().DropdownListSetor();
-            ViewBag.SetorId = new SelectList(lista, "SetorId", "Nome", listaSetor);
+            IQueryable<object> lista = this.GatewayServiceProvider.Get<IEquipamentoService>().DropdownListSetor();
+            ViewBag.SetorID = new SelectList(lista, "SetorID", "Nome", listaSetor);
         }
         private void DropdownListResponsavelDoEquipamento(object listaResponsavel = null)
         {
-            IEnumerable<object> lista = this.GatewayServiceProvider.Get<IEquipamentoService>().DropdownListResponsavelDoEquipamento();
-            ViewBag.ResponsavelDoEquipamentoId = new SelectList(lista, "ResponsavelDoEquipamentoId", "Nome", listaResponsavel);
+            IQueryable<object> lista = this.GatewayServiceProvider.Get<IEquipamentoService>().DropdownListResponsavelDoEquipamento();
+            ViewBag.ResponsavelDoEquipamentoID = new SelectList(lista, "ResponsavelDoEquipamentoID", "Nome", listaResponsavel);
         }
     }
 }

@@ -75,7 +75,7 @@ namespace SGP.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(long id, CategoriaDoItem categoriaDoItem)
         {
-            if (id != categoriaDoItem.Id)
+            if (id != categoriaDoItem.ID)
             {
                 return NotFound();
             }
@@ -89,7 +89,7 @@ namespace SGP.Controllers
                 catch (DbUpdateConcurrencyException)
                 {
 
-                    if (!await Exists(categoriaDoItem.Id))
+                    if (!await Exists(categoriaDoItem.ID))
                     {
                         return NotFound();
                     }

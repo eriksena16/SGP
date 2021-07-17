@@ -21,14 +21,14 @@ namespace SGP.Patrimony.Service.PatrimonyService
             return obj;
         }
 
-        public async Task<Equipamento> Delete(int? id)
+        public async Task<Equipamento> Delete(long? id)
         {
             Equipamento equipamento = new Equipamento();
 
             return await this.Details(equipamento.EquipamentoID);
         }
 
-        public async Task<Equipamento> DeleteConfirmed(int id)
+        public async Task<Equipamento> DeleteConfirmed(long id)
         {
             Equipamento equipamento = await context.Equipamento.FindAsync(id);
             context.Equipamento.Remove(equipamento);
@@ -79,7 +79,7 @@ namespace SGP.Patrimony.Service.PatrimonyService
         }
 
 
-        public async Task<Equipamento> GetUpdate(int id)
+        public async Task<Equipamento> GetUpdate(long id)
         {
             Equipamento equipamento = await context.Equipamento.FindAsync(id);
 
@@ -95,7 +95,7 @@ namespace SGP.Patrimony.Service.PatrimonyService
         }
 
 
-        public IEnumerable<object> DropdownListCategoriaDoItem()
+        public IQueryable<object> DropdownListCategoriaDoItem()
         {
             IQueryable<object> categoriasQuery = from _ in context.Categoria
                                                  orderby _.Nome
@@ -103,24 +103,24 @@ namespace SGP.Patrimony.Service.PatrimonyService
             return categoriasQuery;
         }
 
-        public IEnumerable<object> DropdownListClassificacaoDeAtivos()
+        public IQueryable<object> DropdownListClassificacaoDeAtivos()
         {
-            var classificacaoQuery = from _ in context.Classificacao
+            IQueryable<object> classificacaoQuery = from _ in context.Classificacao
                                      orderby _.Nome
                                      select _;
-
             return classificacaoQuery;
+           
         }
 
-        public IEnumerable<object> DropdownListModeloDeEquipamento()
+        public IQueryable<object> DropdownListModeloDeEquipamento()
         {
             IQueryable<object> modeloDeEquipamentoQuery = from _ in context.ModeloDeEquipamento
-                                                 orderby _.Nome
                                                  select _;
-            return modeloDeEquipamentoQuery;
+           //modeloDeEquipamentoQuery = modeloDeEquipamentoQuery.OrderBy<List<ModeloDeEquipamento>>(_=>_)
+            return  modeloDeEquipamentoQuery;
         }
-
-        public IEnumerable<object> DropdownListFabricante()
+        
+        public IQueryable<object> DropdownListFabricante()
         {
             IQueryable<object> fabricanteQuery = from _ in context.Fabricante
                                                  orderby _.Nome
@@ -128,7 +128,7 @@ namespace SGP.Patrimony.Service.PatrimonyService
             return fabricanteQuery;
         }
 
-        public IEnumerable<object> DropdownListSetor()
+        public IQueryable<object> DropdownListSetor()
         {
             IQueryable<object> setorQuery = from _ in context.Setor
                                             orderby _.Nome
@@ -136,7 +136,7 @@ namespace SGP.Patrimony.Service.PatrimonyService
             return setorQuery;
         }
 
-        public IEnumerable<object> DropdownListResponsavelDoEquipamento()
+        public IQueryable<object> DropdownListResponsavelDoEquipamento()
         {
             IQueryable<object> responsavelQuery = from _ in context.ResponsavelDoEquipamento
                                                   orderby _.Nome
