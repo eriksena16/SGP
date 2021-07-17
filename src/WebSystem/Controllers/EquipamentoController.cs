@@ -74,7 +74,7 @@ namespace SGP.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Equipamento equipamentos)
         {
-
+            
 
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace SGP.Controllers
 
                 }
 
-                Equipamento equipamento = await this.GatewayServiceProvider.Get<IEquipamentoService>().Create(equipamentos);
+                equipamentos = await this.GatewayServiceProvider.Get<IEquipamentoService>().Create(equipamentos);
                 return RedirectToAction(nameof(Index));
             }
 
@@ -99,7 +99,7 @@ namespace SGP.Controllers
             return View(equipamentos);
         }
 
-        
+
 
 
         // GET: Equipamentos/Edit/5
@@ -230,7 +230,7 @@ namespace SGP.Controllers
 
         private void DropdownListCategoriaDoItem(object listaCategoria = null)
         {
-            IQueryable<object> lista = this.GatewayServiceProvider.Get<IEquipamentoService>().DropdownListCategoriaDoItem();
+            var lista = this.GatewayServiceProvider.Get<IEquipamentoService>().DropdownListCategoriaDoItem();
             ViewBag.CategoriaDoItemID = new SelectList(lista, "CategoriaDoItemID", "Nome", listaCategoria);
         }
 

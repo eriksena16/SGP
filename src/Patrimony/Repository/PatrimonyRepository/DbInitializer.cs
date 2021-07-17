@@ -43,17 +43,6 @@ namespace SGP.Patrimony.Repository.PatrimonyRepository
             }
             context.SaveChanges();
 
-            var equipmentModels = new ModeloDeEquipamento[]
-            {
-                new ModeloDeEquipamento{FabricanteID = 1, Nome = "Vostro"},
-                new ModeloDeEquipamento{FabricanteID = 1, Nome = "Ispiron 3647"}
-            };
-            foreach(ModeloDeEquipamento equipmentModel in equipmentModels)
-            {
-                context.ModeloDeEquipamento.Add(equipmentModel);
-            }
-            context.SaveChanges();
-
             var manufacturers = new Fabricante[]
             {
                 new Fabricante{Nome = "Sena Corp", Cnpj ="06414576506", Cep = 40270440, Endereco ="Travessa Portugal, 23", Cidade = "Salvador", UF = "BA", Telefone ="71992257224", Email = "eriksena16@gmail.com"},
@@ -65,12 +54,23 @@ namespace SGP.Patrimony.Repository.PatrimonyRepository
             }
             context.SaveChanges();
 
-            var sectors = new Setor[]
+            var equipmentModels = new ModeloDeEquipamento[]
+            {
+                new ModeloDeEquipamento{FabricanteID = 1, Nome = "Vostro"},
+                new ModeloDeEquipamento{FabricanteID = 1, Nome = "Ispiron 3647"}
+            };
+            foreach(ModeloDeEquipamento equipmentModel in equipmentModels)
+            {
+                context.ModeloDeEquipamento.Add(equipmentModel);
+            }
+            context.SaveChanges();
+
+            var setores = new Setor[]
             {
                 new Setor{Nome ="T.I"},
                 new Setor{Nome ="RH"}
             };
-            foreach (Setor s in sectors)
+            foreach (Setor s in setores)
             {
                 context.Setor.Add(s);
             }

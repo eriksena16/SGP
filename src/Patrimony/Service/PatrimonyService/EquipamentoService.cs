@@ -18,6 +18,7 @@ namespace SGP.Patrimony.Service.PatrimonyService
         {
             context.Add(obj);
             await context.SaveChangesAsync();
+
             return obj;
         }
 
@@ -95,11 +96,11 @@ namespace SGP.Patrimony.Service.PatrimonyService
         }
 
 
-        public IQueryable<object> DropdownListCategoriaDoItem()
+        public IEnumerable<string> DropdownListCategoriaDoItem()
         {
-            IQueryable<object> categoriasQuery = from _ in context.Categoria
+            var categoriasQuery = from _ in context.Categoria
                                                  orderby _.Nome
-                                                 select _;
+                                                 select _.ToString();
             return categoriasQuery;
         }
 

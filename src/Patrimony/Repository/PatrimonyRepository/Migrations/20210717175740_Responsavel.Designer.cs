@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SGP.Patrimony.Repository.PatrimonyRepository;
 
 namespace SGP.Patrimony.Repository.PatrimonyRepository.Migrations
 {
     [DbContext(typeof(SGPContext))]
-    partial class SGPContextModelSnapshot : ModelSnapshot
+    [Migration("20210717175740_Responsavel")]
+    partial class Responsavel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
