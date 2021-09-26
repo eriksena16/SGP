@@ -12,12 +12,12 @@ namespace SGP.Model.Entity
             if (DateTime.Now.Month >= equipamento.DataDeCompra.Month && DateTime.Now.Day >= equipamento.DataDeCompra.Day)
             {
 
-                equipamento.ValorAtual = CalcularDepreciacao.CalcularValorAtualDoEquipamento(equipamento.Idade.Value);
+                equipamento.ValorAtual = CalcularDepreciacao.CalcularValorAtualDoEquipamento(equipamento.Idade);
             }
             else
             {
                 equipamento.Idade -= 1;
-                equipamento.ValorAtual = CalcularDepreciacao.CalcularValorAtualDoEquipamento(equipamento.Idade.Value);
+                equipamento.ValorAtual = CalcularDepreciacao.CalcularValorAtualDoEquipamento(equipamento.Idade);
             }
             return idade;
         }

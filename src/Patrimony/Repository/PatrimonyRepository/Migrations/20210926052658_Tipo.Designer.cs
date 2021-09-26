@@ -10,8 +10,8 @@ using SGP.Patrimony.Repository.PatrimonyRepository;
 namespace SGP.Patrimony.Repository.PatrimonyRepository.Migrations
 {
     [DbContext(typeof(SGPContext))]
-    [Migration("20210717175740_Responsavel")]
-    partial class Responsavel
+    [Migration("20210926052658_Tipo")]
+    partial class Tipo
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -59,7 +59,7 @@ namespace SGP.Patrimony.Repository.PatrimonyRepository.Migrations
 
             modelBuilder.Entity("SGP.Model.Entity.Equipamento", b =>
                 {
-                    b.Property<long>("EquipamentoId")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -78,9 +78,6 @@ namespace SGP.Patrimony.Repository.PatrimonyRepository.Migrations
 
                     b.Property<int>("EstadoDeConservacao")
                         .HasColumnType("int");
-
-                    b.Property<long>("FabricanteId")
-                        .HasColumnType("bigint");
 
                     b.Property<long>("ModeloDeEquipamentoId")
                         .HasColumnType("bigint");
@@ -104,18 +101,16 @@ namespace SGP.Patrimony.Repository.PatrimonyRepository.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<decimal>("ValorAtual")
-                        .HasColumnType("money");
+                        .HasColumnType("decimal(18,4)");
 
                     b.Property<decimal>("ValorDeCompra")
-                        .HasColumnType("money");
+                        .HasColumnType("decimal(18,4)");
 
-                    b.HasKey("EquipamentoId");
+                    b.HasKey("Id");
 
                     b.HasIndex("CategoriaDoItemId");
 
                     b.HasIndex("ClassificacaoDeAtivosId");
-
-                    b.HasIndex("FabricanteId");
 
                     b.HasIndex("ModeloDeEquipamentoId");
 
@@ -221,7 +216,7 @@ namespace SGP.Patrimony.Repository.PatrimonyRepository.Migrations
             modelBuilder.Entity("SGP.Model.Entity.Equipamento", b =>
                 {
                     b.HasOne("SGP.Model.Entity.CategoriaDoItem", "CategoriaDoItem")
-                        .WithMany("Equipmentoo")
+                        .WithMany("Equipmento")
                         .HasForeignKey("CategoriaDoItemId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -229,12 +224,6 @@ namespace SGP.Patrimony.Repository.PatrimonyRepository.Migrations
                     b.HasOne("SGP.Model.Entity.ClassificacaoDeAtivos", "ClassificacaoDeAtivos")
                         .WithMany("Equipamento")
                         .HasForeignKey("ClassificacaoDeAtivosId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SGP.Model.Entity.Fabricante", "Fabricante")
-                        .WithMany("Equipamento")
-                        .HasForeignKey("FabricanteId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -260,8 +249,6 @@ namespace SGP.Patrimony.Repository.PatrimonyRepository.Migrations
 
                     b.Navigation("ClassificacaoDeAtivos");
 
-                    b.Navigation("Fabricante");
-
                     b.Navigation("ModeloDeEquipamento");
 
                     b.Navigation("ResponsavelDoEquipamento");
@@ -282,7 +269,7 @@ namespace SGP.Patrimony.Repository.PatrimonyRepository.Migrations
 
             modelBuilder.Entity("SGP.Model.Entity.CategoriaDoItem", b =>
                 {
-                    b.Navigation("Equipmentoo");
+                    b.Navigation("Equipmento");
                 });
 
             modelBuilder.Entity("SGP.Model.Entity.ClassificacaoDeAtivos", b =>
@@ -292,8 +279,6 @@ namespace SGP.Patrimony.Repository.PatrimonyRepository.Migrations
 
             modelBuilder.Entity("SGP.Model.Entity.Fabricante", b =>
                 {
-                    b.Navigation("Equipamento");
-
                     b.Navigation("ModeloDeEquipamento");
                 });
 

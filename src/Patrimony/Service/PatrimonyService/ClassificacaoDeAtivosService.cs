@@ -24,6 +24,7 @@ namespace SGP.Patrimony.Service.PatrimonyService
         public async Task<ClassificacaoDeAtivos> Delete(long? id)
         {
             ClassificacaoDeAtivos assetClassification = new ClassificacaoDeAtivos();
+
             return await this.Details(assetClassification.Id);
         }
 

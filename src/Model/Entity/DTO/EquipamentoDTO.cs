@@ -7,7 +7,7 @@ namespace SGP.Model.Entity.DTO
 {
    public class EquipamentoDTO
     {
-        public long EquipamentoId { get; set; }
+        public long Id { get; set; }
         [Display(Name = "Nº do patrimônio")]
         public long NumeroDePatrmonio { get; set; }
 

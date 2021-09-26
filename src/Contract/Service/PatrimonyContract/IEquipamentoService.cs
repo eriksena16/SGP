@@ -6,7 +6,7 @@ namespace SGP.Contract.Service.PatrimonyContract
 {
     public interface IEquipamentoService : IGenericService<Equipamento>
     {
-        IEnumerable<string> DropdownListCategoriaDoItem();
+        IQueryable<object> DropdownListCategoriaDoItem();
         IQueryable<object> DropdownListClassificacaoDeAtivos();
         IQueryable<object> DropdownListModeloDeEquipamento();
         IQueryable<object> DropdownListFabricante();

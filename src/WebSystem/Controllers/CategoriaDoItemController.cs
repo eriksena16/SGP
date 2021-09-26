@@ -70,8 +70,8 @@ namespace SGP.Controllers
             return View(categoriaDoItem);
         }
 
-        
-        [HttpPatch]
+
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(long id, CategoriaDoItem categoriaDoItem)
         {
@@ -112,6 +112,7 @@ namespace SGP.Controllers
             }
 
             var ItemCategory = await this.GatewayServiceProvider.Get<ICategoriaDoItemService>().Delete(id);
+
             if (ItemCategory == null)
             {
                 return NotFound();

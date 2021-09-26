@@ -59,11 +59,6 @@ namespace SGP.Patrimony.Repository.PatrimonyRepository
                 .WithMany(t => t.Equipamento)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            modelBuilder.Entity<Equipamento>()
-               .HasOne(s => s.CategoriaDoItem)
-               .WithMany()
-               .OnDelete(DeleteBehavior.ClientSetNull);
-
 
         }
 

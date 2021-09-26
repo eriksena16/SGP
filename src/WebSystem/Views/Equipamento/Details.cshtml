@@ -22,8 +22,11 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.ClassificacaoDeAtivos.Nome)
         </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.NotaFiscal)
+        </dt>
         <dd class="col-sm-10">
-            <a class="btn btn-outline-primary" href="@Model.NotaFiscalUrl" target="_blank">Visualizar</a>
+            <a href="@Model.NotaFiscalUrl" target="_blank">Visualizar</a>
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.ValorDeCompra)
@@ -70,12 +73,12 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.ModeloDeEquipamento.Nome)
         </dd>
-        @*<dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.FabricanteId)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ModeloDeEquipamentoId)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Fabricante.Nome)
-        </dd*@>
+            @Html.DisplayFor(model => model.ModeloDeEquipamento.Nome)
+        </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.NumeroDeSerie)
         </dt>
@@ -115,7 +118,7 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.EquipamentoId">Edit</a> |
-    <a asp-action="Delete" asp-route-id="@Model.EquipamentoId">Delete</a> |
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Delete" asp-route-id="@Model.Id">Delete</a> |
     <a asp-action="Index">Voltar para Lista</a>
 </div>
