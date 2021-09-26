@@ -2,7 +2,7 @@
 
 namespace SGP.Model.Entity
 {
-    public abstract class CalcularTempoDeUso
+    public static class CalcularTempoDeUso
     {
         public static int CalcularTempoDeUsoDoEquipamento(int idade)
         {

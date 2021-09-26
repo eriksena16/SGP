@@ -26,7 +26,7 @@ namespace SGP.Patrimony.Service.PatrimonyService
         {
             Equipamento equipamento = new Equipamento();
 
-            return await this.Details(equipamento.EquipamentoID);
+            return await this.Details(equipamento.EquipamentoId);
         }
 
         public async Task<Equipamento> DeleteConfirmed(long id)
@@ -45,11 +45,11 @@ namespace SGP.Patrimony.Service.PatrimonyService
                  .Include(e => e.CategoriaDoItem)
                  .Include(e => e.CategoriaDoItem)
                  .Include(e => e.ModeloDeEquipamento)
-                 .Include(e => e.Fabricante)
+                 .ThenInclude(e => e.Fabricante)
                  .Include(e => e.ResponsavelDoEquipamento)
                  .Include(e => e.Setor)
                  .AsNoTracking()
-                 .FirstOrDefaultAsync(m => m.EquipamentoID == id);
+                 .FirstOrDefaultAsync(m => m.EquipamentoId == id);
 
             equipamento.Idade = CalcularTempoDeUso.CalcularTempoDeUsoDoEquipamento(equipamento.Idade.Value);
             equipamento.ValorAtual = CalcularDepreciacao.CalcularValorAtualDoEquipamento(equipamento.Idade.Value);
@@ -59,7 +59,7 @@ namespace SGP.Patrimony.Service.PatrimonyService
 
         public async Task<bool> Exists(long id)
         {
-            return await Task.FromResult(context.Equipamento.Any(e => e.EquipamentoID == id));
+            return await Task.FromResult(context.Equipamento.Any(e => e.EquipamentoId == id));
         }
 
         public async Task<List<Equipamento>> GetAll()
@@ -69,7 +69,7 @@ namespace SGP.Patrimony.Service.PatrimonyService
                  .Include(e => e.CategoriaDoItem)
                  .Include(e => e.CategoriaDoItem)
                  .Include(e => e.ModeloDeEquipamento)
-                 .Include(e => e.Fabricante)
+                 .ThenInclude(e => e.Fabricante)
                  .Include(e => e.ResponsavelDoEquipamento)
                  .Include(e => e.Setor)
                  .AsNoTracking()

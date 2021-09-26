@@ -24,7 +24,7 @@ namespace SGP.Patrimony.Service.PatrimonyService
         {
             CategoriaDoItem ItemCategory = new CategoriaDoItem();
 
-            return await this.Details(ItemCategory.ID);
+            return await this.Details(ItemCategory.Id);
         }
 
         public async Task<CategoriaDoItem> DeleteConfirmed(long id)
@@ -39,7 +39,7 @@ namespace SGP.Patrimony.Service.PatrimonyService
         public async Task<CategoriaDoItem> Details(long? id)
         {
             CategoriaDoItem ItemCategory = await context.Categoria
-               .FirstOrDefaultAsync(m => m.ID == id);
+               .FirstOrDefaultAsync(m => m.Id == id);
 
             return ItemCategory;
 
@@ -68,7 +68,7 @@ namespace SGP.Patrimony.Service.PatrimonyService
 
         public async Task< bool> Exists(long id)
         {
-            return await Task.FromResult( context.Categoria.Any(e => e.ID == id));
+            return await Task.FromResult( context.Categoria.Any(e => e.Id == id));
         }
     }
 }

@@ -90,12 +90,12 @@ namespace SGP.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            DropdownListCategoriaDoItem(equipamentos.CategoriaDoItemID);
-            DropdownListClassificacaoDeAtivos(equipamentos.ClassificacaoDeAtivosID);
-            DropdownListModeloDeEquipamento(equipamentos.ModeloDeEquipamentoID);
-            DropdownListFabricante(equipamentos.FabricanteID);
-            DropdownListSetor(equipamentos.SetorID);
-            DropdownListResponsavelDoEquipamento(equipamentos.ResponsavelDoEquipamentoID);
+            DropdownListCategoriaDoItem(equipamentos.CategoriaDoItemId);
+            DropdownListClassificacaoDeAtivos(equipamentos.ClassificacaoDeAtivosId);
+            DropdownListModeloDeEquipamento(equipamentos.ModeloDeEquipamentoId);
+            DropdownListFabricante(equipamentos.ModeloDeEquipamento.FabricanteId);
+            DropdownListSetor(equipamentos.SetorId);
+            DropdownListResponsavelDoEquipamento(equipamentos.ResponsavelDoEquipamentoId);
             return View(equipamentos);
         }
 
@@ -125,12 +125,12 @@ namespace SGP.Controllers
 
             }
 
-            DropdownListCategoriaDoItem(equipamentos.CategoriaDoItemID);
-            DropdownListClassificacaoDeAtivos(equipamentos.ClassificacaoDeAtivosID);
-            DropdownListModeloDeEquipamento(equipamentos.ModeloDeEquipamentoID);
-            DropdownListFabricante(equipamentos.FabricanteID);
-            DropdownListSetor(equipamentos.SetorID);
-            DropdownListResponsavelDoEquipamento(equipamentos.ResponsavelDoEquipamentoID);
+            DropdownListCategoriaDoItem(equipamentos.CategoriaDoItemId);
+            DropdownListClassificacaoDeAtivos(equipamentos.ClassificacaoDeAtivosId);
+            DropdownListModeloDeEquipamento(equipamentos.ModeloDeEquipamentoId);
+            DropdownListFabricante(equipamentos.ModeloDeEquipamento.FabricanteId);
+            DropdownListSetor(equipamentos.SetorId);
+            DropdownListResponsavelDoEquipamento(equipamentos.ResponsavelDoEquipamentoId);
             return View(equipamentos);
         }
 
@@ -140,7 +140,7 @@ namespace SGP.Controllers
         public async Task<IActionResult> Edit(int id, Equipamento equipamentos)
         {
 
-            if (id != equipamentos.EquipamentoID)
+            if (id != equipamentos.EquipamentoId)
             {
                 return NotFound();
             }
@@ -162,7 +162,7 @@ namespace SGP.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!await Exists(equipamentos.EquipamentoID))
+                    if (!await Exists(equipamentos.EquipamentoId))
                     {
                         return NotFound();
                     }
@@ -174,12 +174,14 @@ namespace SGP.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            DropdownListCategoriaDoItem(equipamentos.CategoriaDoItemID);
-            DropdownListClassificacaoDeAtivos(equipamentos.ClassificacaoDeAtivosID);
-            DropdownListModeloDeEquipamento(equipamentos.ModeloDeEquipamentoID);
-            DropdownListFabricante(equipamentos.FabricanteID);
-            DropdownListSetor(equipamentos.SetorID);
-            DropdownListResponsavelDoEquipamento(equipamentos.ResponsavelDoEquipamentoID);
+            DropdownListCategoriaDoItem(equipamentos.CategoriaDoItemId);
+            DropdownListClassificacaoDeAtivos(equipamentos.ClassificacaoDeAtivosId);
+            DropdownListModeloDeEquipamento(equipamentos.ModeloDeEquipamentoId);
+            DropdownListFabricante(equipamentos.ModeloDeEquipamento.FabricanteId);
+            DropdownListSetor(equipamentos.Setor
+                
+                );
+            DropdownListResponsavelDoEquipamento(equipamentos.ResponsavelDoEquipamentoId);
             return View(equipamentos);
         }
 
@@ -231,36 +233,36 @@ namespace SGP.Controllers
         private void DropdownListCategoriaDoItem(object listaCategoria = null)
         {
             var lista = this.GatewayServiceProvider.Get<IEquipamentoService>().DropdownListCategoriaDoItem();
-            ViewBag.CategoriaDoItemID = new SelectList(lista, "CategoriaDoItemID", "Nome", listaCategoria);
+            ViewBag.CategoriaDoItemId = new SelectList(lista, "CategoriaDoItemId", "Nome", listaCategoria);
         }
 
         private void DropdownListClassificacaoDeAtivos(object listaClassificacao = null)
         {
             IQueryable<object> lista = this.GatewayServiceProvider.Get<IEquipamentoService>().DropdownListClassificacaoDeAtivos();
-            ViewBag.ClassificacaoDeAtivosID = new SelectList(lista, "ClassificacaoDeAtivosID", "Nome", listaClassificacao);
+            ViewBag.ClassificacaoDeAtivosId = new SelectList(lista, "ClassificacaoDeAtivosId", "Nome", listaClassificacao);
         }
 
         private void DropdownListModeloDeEquipamento(object listaModelo = null)
         {
             var lista = this.GatewayServiceProvider.Get<IEquipamentoService>().DropdownListModeloDeEquipamento();
-            ViewBag.ModeloDeEquipamentoID = new SelectList(lista, "ModeloDeEquipamentoID", "Nome", listaModelo);
+            ViewBag.ModeloDeEquipamentoId = new SelectList(lista, "ModeloDeEquipamentoId", "Nome", listaModelo);
         }
         private void DropdownListFabricante(object listaFabricante = null)
         {
 
             IQueryable<object> lista = this.GatewayServiceProvider.Get<IEquipamentoService>().DropdownListFabricante();
 
-            ViewBag.FabricanteID = new SelectList(lista, "FabricanteID", "Nome", listaFabricante);
+            ViewBag.FabricanteId = new SelectList(lista, "FabricanteId", "Nome", listaFabricante);
         }
         private void DropdownListSetor(object listaSetor = null)
         {
             IQueryable<object> lista = this.GatewayServiceProvider.Get<IEquipamentoService>().DropdownListSetor();
-            ViewBag.SetorID = new SelectList(lista, "SetorID", "Nome", listaSetor);
+            ViewBag.SetorId = new SelectList(lista, "SetorId", "Nome", listaSetor);
         }
         private void DropdownListResponsavelDoEquipamento(object listaResponsavel = null)
         {
             IQueryable<object> lista = this.GatewayServiceProvider.Get<IEquipamentoService>().DropdownListResponsavelDoEquipamento();
-            ViewBag.ResponsavelDoEquipamentoID = new SelectList(lista, "ResponsavelDoEquipamentoID", "Nome", listaResponsavel);
+            ViewBag.ResponsavelDoEquipamentoId = new SelectList(lista, "ResponsavelDoEquipamentoId", "Nome", listaResponsavel);
         }
     }
 }

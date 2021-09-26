@@ -24,7 +24,7 @@ namespace SGP.Patrimony.Service.PatrimonyService
         public async Task<ClassificacaoDeAtivos> Delete(long? id)
         {
             ClassificacaoDeAtivos assetClassification = new ClassificacaoDeAtivos();
-            return await this.Details(assetClassification.ID);
+            return await this.Details(assetClassification.Id);
         }
 
         public async Task<ClassificacaoDeAtivos> DeleteConfirmed(long id)
@@ -40,14 +40,14 @@ namespace SGP.Patrimony.Service.PatrimonyService
         public async Task<ClassificacaoDeAtivos> Details(long? id)
         {
             ClassificacaoDeAtivos assetClassification = await context.Classificacao
-               .FirstOrDefaultAsync(m => m.ID == id);
+               .FirstOrDefaultAsync(m => m.Id == id);
 
             return assetClassification;
         }
 
         public async Task<bool> Exists(long id)
         {
-            return await Task.FromResult(context.Classificacao.Any(e => e.ID == id));
+            return await Task.FromResult(context.Classificacao.Any(e => e.Id == id));
         }
 
         public async Task<List<ClassificacaoDeAtivos>> GetAll()

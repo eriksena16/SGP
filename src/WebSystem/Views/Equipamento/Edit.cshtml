@@ -15,7 +15,7 @@
     <div class="card-body">
         <form asp-action="Edit" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="EquipamentoID" />
+            <input type="hidden" asp-for="EquipamentoId" />
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">Patromonio</h3>
@@ -29,27 +29,27 @@
                                 <span asp-validation-for="NumeroDePatrmonio" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="ModeloDeEquipamentoID" class="control-label"></label>
-                                <select asp-for="ModeloDeEquipamentoID" class="form-control" asp-items="ViewBag.ModeloDeEquipamentoId">
+                                <label asp-for="ModeloDeEquipamentoId" class="control-label"></label>
+                                <select asp-for="ModeloDeEquipamentoId" class="form-control" asp-items="ViewBag.ModeloDeEquipamentoId">
                                     <option value="">-- Selecione o Modelo --</option>
                                 </select>
-                                <span asp-validation-for="ModeloDeEquipamentoID" class="text-danger"></span>
+                                <span asp-validation-for="ModeloDeEquipamentoId" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="SetorID" class="control-label"></label>
-                                <select asp-for="SetorID" class="form-control" asp-items="ViewBag.SetorID">
+                                <label asp-for="SetorId" class="control-label"></label>
+                                <select asp-for="SetorId" class="form-control" asp-items="ViewBag.SetorId">
                                     <option value="">-- Selecione o Setor --</option>
                                 </select>
-                                <span asp-validation-for="SetorID" class="text-danger"></span>
+                                <span asp-validation-for="SetorId" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label asp-for="CategoriaDoItemID" class="control-label"></label>
-                                <select asp-for="CategoriaDoItemID" class="form-control" asp-items="ViewBag.CategoriaDoItemId">
+                                <label asp-for="CategoriaDoItemId" class="control-label"></label>
+                                <select asp-for="CategoriaDoItemId" class="form-control" asp-items="ViewBag.CategoriaDoItemId">
                                     <option value="">-- Selecione o Categoria --</option>
                                 </select>
-                                <span asp-validation-for="CategoriaDoItemID" class="text-danger" />
+                                <span asp-validation-for="CategoriaDoItemId" class="text-danger" />
                             </div>
                             <div class="form-group">
                                 <label asp-for="NumeroDeSerie" class="control-label"></label>
@@ -68,27 +68,29 @@
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label asp-for="ClassificacaoDeAtivosID" class="control-label"></label>
-                                <select asp-for="ClassificacaoDeAtivosID" class="form-control" asp-items="ViewBag.ClassificacaoDeAtivosId">
+                                <label asp-for="ClassificacaoDeAtivosId" class="control-label"></label>
+                                <select asp-for="ClassificacaoDeAtivosId" class="form-control" asp-items="ViewBag.ClassificacaoDeAtivosId">
                                     <option value="">-- Selecione a Classificacao --</option>
                                 </select>
-                                <span asp-validation-for="ClassificacaoDeAtivosID" class="text-danger"></span>
+                                <span asp-validation-for="ClassificacaoDeAtivosId" class="text-danger"></span>
                             </div>
 
-                            <div class="form-group">
-                                <label asp-for="FabricanteID" class="control-label"></label>
-                                <select asp-for="FabricanteID" class="form-control" asp-items="ViewBag.FabricanteID">
+                            @*<div class="form-group">
+                                <label asp-for="FabricanteId" class="control-label"></label>
+                                <select asp-for="FabricanteId" class="form-control" asp-items="ViewBag.FabricanteId">
                                     <option value="">-- Selecione o Marca --</option>
                                 </select>
-                                <span asp-validation-for="FabricanteID" class="text-danger"></span>
-                            </div>
+                                <span asp-validation-for="Fabricante
+                                
+                                " class="text-danger"></span>
+                            </div>*@
 
                             <div class="form-group">
-                                <label asp-for="ResponsavelDoEquipamentoID" class="control-label"></label>
-                                <select asp-for="ResponsavelDoEquipamentoID" class="form-control" asp-items="ViewBag.ResponsavelDoEquipamentoID">
+                                <label asp-for="ResponsavelDoEquipamentoId" class="control-label"></label>
+                                <select asp-for="ResponsavelDoEquipamentoId" class="form-control" asp-items="ViewBag.ResponsavelDoEquipamentoId">
                                     <option value="">-- Selecione o Responsavel --</option>
                                 </select>
-                                <span asp-validation-for="ResponsavelDoEquipamentoID" class="text-danger"></span>
+                                <span asp-validation-for="ResponsavelDoEquipamentoId" class="text-danger"></span>
                             </div>
 
                         </div>

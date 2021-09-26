@@ -7,7 +7,7 @@ namespace SGP.Patrimony.Repository.PatrimonyRepository.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_Equipamento_User_ResponsavelDoEquipamentoID",
+                name: "FK_Equipamento_User_ResponsavelDoEquipamentoId",
                 table: "Equipamento");
 
             migrationBuilder.DropPrimaryKey(
@@ -21,21 +21,21 @@ namespace SGP.Patrimony.Repository.PatrimonyRepository.Migrations
             migrationBuilder.AddPrimaryKey(
                 name: "PK_ResponsavelDoEquipamento",
                 table: "ResponsavelDoEquipamento",
-                column: "ID");
+                column: "Id");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Equipamento_ResponsavelDoEquipamento_ResponsavelDoEquipamentoID",
+                name: "FK_Equipamento_ResponsavelDoEquipamento_ResponsavelDoEquipamentoId",
                 table: "Equipamento",
-                column: "ResponsavelDoEquipamentoID",
+                column: "ResponsavelDoEquipamentoId",
                 principalTable: "ResponsavelDoEquipamento",
-                principalColumn: "ID",
+                principalColumn: "Id",
                 onDelete: ReferentialAction.Cascade);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_Equipamento_ResponsavelDoEquipamento_ResponsavelDoEquipamentoID",
+                name: "FK_Equipamento_ResponsavelDoEquipamento_ResponsavelDoEquipamentoId",
                 table: "Equipamento");
 
             migrationBuilder.DropPrimaryKey(
@@ -49,14 +49,14 @@ namespace SGP.Patrimony.Repository.PatrimonyRepository.Migrations
             migrationBuilder.AddPrimaryKey(
                 name: "PK_User",
                 table: "User",
-                column: "ID");
+                column: "Id");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Equipamento_User_ResponsavelDoEquipamentoID",
+                name: "FK_Equipamento_User_ResponsavelDoEquipamentoId",
                 table: "Equipamento",
-                column: "ResponsavelDoEquipamentoID",
+                column: "ResponsavelDoEquipamentoId",
                 principalTable: "User",
-                principalColumn: "ID",
+                principalColumn: "Id",
                 onDelete: ReferentialAction.Cascade);
         }
     }

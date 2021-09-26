@@ -11,13 +11,13 @@
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.CategoriaDoItemID)
+            @Html.DisplayNameFor(model => model.CategoriaDoItemId)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.CategoriaDoItem.Nome)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ClassificacaoDeAtivosID)
+            @Html.DisplayNameFor(model => model.ClassificacaoDeAtivosId)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.ClassificacaoDeAtivos.Nome)
@@ -65,17 +65,17 @@
             @Html.DisplayFor(model => model.DataDeCompra)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ModeloDeEquipamentoID)
+            @Html.DisplayNameFor(model => model.ModeloDeEquipamentoId)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.ModeloDeEquipamento.Nome)
         </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.FabricanteID)
+        @*<dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.FabricanteId)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Fabricante.Nome)
-        </dd>
+        </dd*@>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.NumeroDeSerie)
         </dt>
@@ -89,13 +89,13 @@
             @Html.DisplayFor(model => model.EquipamentoStatus)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ResponsavelDoEquipamentoID)
+            @Html.DisplayNameFor(model => model.ResponsavelDoEquipamentoId)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.ResponsavelDoEquipamento.Nome)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.SetorID)
+            @Html.DisplayNameFor(model => model.SetorId)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Setor.Nome)
@@ -115,7 +115,7 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.EquipamentoID">Edit</a> |
-    <a asp-action="Delete" asp-route-id="@Model.EquipamentoID">Delete</a> |
+    <a asp-action="Edit" asp-route-id="@Model.EquipamentoId">Edit</a> |
+    <a asp-action="Delete" asp-route-id="@Model.EquipamentoId">Delete</a> |
     <a asp-action="Index">Voltar para Lista</a>
 </div>

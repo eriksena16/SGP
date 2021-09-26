@@ -54,14 +54,14 @@ namespace SGP.Patrimony.Repository.PatrimonyRepository
             }
             context.SaveChanges();
 
-            var equipmentModels = new ModeloDeEquipamento[]
+            var EquipmentooModels = new ModeloDeEquipamento[]
             {
-                new ModeloDeEquipamento{FabricanteID = 1, Nome = "Vostro"},
-                new ModeloDeEquipamento{FabricanteID = 1, Nome = "Ispiron 3647"}
+                new ModeloDeEquipamento{FabricanteId = 1, Nome = "Vostro"},
+                new ModeloDeEquipamento{FabricanteId = 1, Nome = "Ispiron 3647"}
             };
-            foreach(ModeloDeEquipamento equipmentModel in equipmentModels)
+            foreach(ModeloDeEquipamento EquipmentooModel in EquipmentooModels)
             {
-                context.ModeloDeEquipamento.Add(equipmentModel);
+                context.ModeloDeEquipamento.Add(EquipmentooModel);
             }
             context.SaveChanges();
 
@@ -80,9 +80,9 @@ namespace SGP.Patrimony.Repository.PatrimonyRepository
             {
                 new ResponsavelDoEquipamento{Nome = "Erik", Sobrenome = "Sena"}
             };
-            foreach (ResponsavelDoEquipamento equipmentPerson in responsaveis)
+            foreach (ResponsavelDoEquipamento EquipmentooPerson in responsaveis)
             {
-                context.ResponsavelDoEquipamento.Add(equipmentPerson);
+                context.ResponsavelDoEquipamento.Add(EquipmentooPerson);
             }
             context.SaveChanges();
 

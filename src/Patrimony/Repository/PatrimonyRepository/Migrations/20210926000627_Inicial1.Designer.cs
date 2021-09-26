@@ -10,8 +10,8 @@ using SGP.Patrimony.Repository.PatrimonyRepository;
 namespace SGP.Patrimony.Repository.PatrimonyRepository.Migrations
 {
     [DbContext(typeof(SGPContext))]
-    [Migration("20210717175740_Responsavel")]
-    partial class Responsavel
+    [Migration("20210926000627_Inicial1")]
+    partial class Inicial1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,40 +21,19 @@ namespace SGP.Patrimony.Repository.PatrimonyRepository.Migrations
                 .HasAnnotation("ProductVersion", "5.0.7")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("SGP.Model.Entity.CategoriaDoItem", b =>
+            modelBuilder.Entity("EquipamentoModeloDeEquipamento", b =>
                 {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<long>("EquipamentosEquipamentoId")
+                        .HasColumnType("bigint");
 
-                    b.Property<string>("Nome")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<long>("ModeloDeEquipamentosId")
+                        .HasColumnType("bigint");
 
-                    b.HasKey("Id");
+                    b.HasKey("EquipamentosEquipamentoId", "ModeloDeEquipamentosId");
 
-                    b.ToTable("Categoria");
-                });
+                    b.HasIndex("ModeloDeEquipamentosId");
 
-            modelBuilder.Entity("SGP.Model.Entity.ClassificacaoDeAtivos", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Nome")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("TaxaDeDepreciacao")
-                        .HasColumnType("int");
-
-                    b.Property<int>("VidaUtil")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Classificacao");
+                    b.ToTable("EquipamentoModeloDeEquipamento");
                 });
 
             modelBuilder.Entity("SGP.Model.Entity.Equipamento", b =>
@@ -67,7 +46,13 @@ namespace SGP.Patrimony.Repository.PatrimonyRepository.Migrations
                     b.Property<long>("CategoriaDoItemId")
                         .HasColumnType("bigint");
 
+                    b.Property<long?>("CategoriaDoItemId1")
+                        .HasColumnType("bigint");
+
                     b.Property<long>("ClassificacaoDeAtivosId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("ClassificacaoDeAtivosId1")
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("DataDeCompra")
@@ -100,7 +85,13 @@ namespace SGP.Patrimony.Repository.PatrimonyRepository.Migrations
                     b.Property<long>("ResponsavelDoEquipamentoId")
                         .HasColumnType("bigint");
 
+                    b.Property<long?>("ResponsavelDoEquipamentoId1")
+                        .HasColumnType("bigint");
+
                     b.Property<long>("SetorId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("SetorId1")
                         .HasColumnType("bigint");
 
                     b.Property<decimal>("ValorAtual")
@@ -113,7 +104,11 @@ namespace SGP.Patrimony.Repository.PatrimonyRepository.Migrations
 
                     b.HasIndex("CategoriaDoItemId");
 
+                    b.HasIndex("CategoriaDoItemId1");
+
                     b.HasIndex("ClassificacaoDeAtivosId");
+
+                    b.HasIndex("ClassificacaoDeAtivosId1");
 
                     b.HasIndex("FabricanteId");
 
@@ -121,7 +116,11 @@ namespace SGP.Patrimony.Repository.PatrimonyRepository.Migrations
 
                     b.HasIndex("ResponsavelDoEquipamentoId");
 
+                    b.HasIndex("ResponsavelDoEquipamentoId1");
+
                     b.HasIndex("SetorId");
+
+                    b.HasIndex("SetorId1");
 
                     b.ToTable("Equipamento");
                 });
@@ -148,6 +147,9 @@ namespace SGP.Patrimony.Repository.PatrimonyRepository.Migrations
                     b.Property<string>("Endereco")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<long?>("EquipamentoId")
+                        .HasColumnType("bigint");
+
                     b.Property<string>("Nome")
                         .HasColumnType("nvarchar(max)");
 
@@ -159,38 +161,67 @@ namespace SGP.Patrimony.Repository.PatrimonyRepository.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("EquipamentoId");
+
                     b.ToTable("Fabricante");
                 });
 
-            modelBuilder.Entity("SGP.Model.Entity.ModeloDeEquipamento", b =>
+            modelBuilder.Entity("SGP.Model.Entity.GenericEntity", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<long>("FabricanteId")
-                        .HasColumnType("bigint");
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Nome")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
+                    b.ToTable("GenericEntity");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("GenericEntity");
+                });
+
+            modelBuilder.Entity("SGP.Model.Entity.CategoriaDoItem", b =>
+                {
+                    b.HasBaseType("SGP.Model.Entity.GenericEntity");
+
+                    b.HasDiscriminator().HasValue("CategoriaDoItem");
+                });
+
+            modelBuilder.Entity("SGP.Model.Entity.ClassificacaoDeAtivos", b =>
+                {
+                    b.HasBaseType("SGP.Model.Entity.GenericEntity");
+
+                    b.Property<int>("TaxaDeDepreciacao")
+                        .HasColumnType("int");
+
+                    b.Property<int>("VidaUtil")
+                        .HasColumnType("int");
+
+                    b.HasDiscriminator().HasValue("ClassificacaoDeAtivos");
+                });
+
+            modelBuilder.Entity("SGP.Model.Entity.ModeloDeEquipamento", b =>
+                {
+                    b.HasBaseType("SGP.Model.Entity.GenericEntity");
+
+                    b.Property<long>("FabricanteId")
+                        .HasColumnType("bigint");
+
                     b.HasIndex("FabricanteId");
 
-                    b.ToTable("ModeloDeEquipamento");
+                    b.HasDiscriminator().HasValue("ModeloDeEquipamento");
                 });
 
             modelBuilder.Entity("SGP.Model.Entity.ResponsavelDoEquipamento", b =>
                 {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Nome")
-                        .HasColumnType("nvarchar(max)");
+                    b.HasBaseType("SGP.Model.Entity.GenericEntity");
 
                     b.Property<string>("Sobrenome")
                         .HasColumnType("nvarchar(max)");
@@ -198,63 +229,84 @@ namespace SGP.Patrimony.Repository.PatrimonyRepository.Migrations
                     b.Property<string>("Username")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
-
-                    b.ToTable("ResponsavelDoEquipamento");
+                    b.HasDiscriminator().HasValue("ResponsavelDoEquipamento");
                 });
 
             modelBuilder.Entity("SGP.Model.Entity.Setor", b =>
                 {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.HasBaseType("SGP.Model.Entity.GenericEntity");
 
-                    b.Property<string>("Nome")
-                        .HasColumnType("nvarchar(max)");
+                    b.HasDiscriminator().HasValue("Setor");
+                });
 
-                    b.HasKey("Id");
+            modelBuilder.Entity("EquipamentoModeloDeEquipamento", b =>
+                {
+                    b.HasOne("SGP.Model.Entity.Equipamento", null)
+                        .WithMany()
+                        .HasForeignKey("EquipamentosEquipamentoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.ToTable("Setor");
+                    b.HasOne("SGP.Model.Entity.ModeloDeEquipamento", null)
+                        .WithMany()
+                        .HasForeignKey("ModeloDeEquipamentosId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("SGP.Model.Entity.Equipamento", b =>
                 {
                     b.HasOne("SGP.Model.Entity.CategoriaDoItem", "CategoriaDoItem")
-                        .WithMany("Equipmentoo")
+                        .WithMany()
                         .HasForeignKey("CategoriaDoItemId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
+
+                    b.HasOne("SGP.Model.Entity.CategoriaDoItem", null)
+                        .WithMany("Equipamento")
+                        .HasForeignKey("CategoriaDoItemId1");
 
                     b.HasOne("SGP.Model.Entity.ClassificacaoDeAtivos", "ClassificacaoDeAtivos")
-                        .WithMany("Equipamento")
+                        .WithMany()
                         .HasForeignKey("ClassificacaoDeAtivosId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("SGP.Model.Entity.Fabricante", "Fabricante")
+                    b.HasOne("SGP.Model.Entity.ClassificacaoDeAtivos", null)
                         .WithMany("Equipamento")
+                        .HasForeignKey("ClassificacaoDeAtivosId1");
+
+                    b.HasOne("SGP.Model.Entity.Fabricante", "Fabricante")
+                        .WithMany()
                         .HasForeignKey("FabricanteId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("SGP.Model.Entity.ModeloDeEquipamento", "ModeloDeEquipamento")
-                        .WithMany("Equipamento")
+                        .WithMany()
                         .HasForeignKey("ModeloDeEquipamentoId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("SGP.Model.Entity.ResponsavelDoEquipamento", "ResponsavelDoEquipamento")
-                        .WithMany("Equipamento")
+                        .WithMany()
                         .HasForeignKey("ResponsavelDoEquipamentoId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("SGP.Model.Entity.Setor", "Setor")
+                    b.HasOne("SGP.Model.Entity.ResponsavelDoEquipamento", null)
                         .WithMany("Equipamento")
+                        .HasForeignKey("ResponsavelDoEquipamentoId1");
+
+                    b.HasOne("SGP.Model.Entity.Setor", "Setor")
+                        .WithMany()
                         .HasForeignKey("SetorId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
+
+                    b.HasOne("SGP.Model.Entity.Setor", null)
+                        .WithMany("Equipamento")
+                        .HasForeignKey("SetorId1");
 
                     b.Navigation("CategoriaDoItem");
 
@@ -269,10 +321,17 @@ namespace SGP.Patrimony.Repository.PatrimonyRepository.Migrations
                     b.Navigation("Setor");
                 });
 
+            modelBuilder.Entity("SGP.Model.Entity.Fabricante", b =>
+                {
+                    b.HasOne("SGP.Model.Entity.Equipamento", null)
+                        .WithMany("Fabricantes")
+                        .HasForeignKey("EquipamentoId");
+                });
+
             modelBuilder.Entity("SGP.Model.Entity.ModeloDeEquipamento", b =>
                 {
                     b.HasOne("SGP.Model.Entity.Fabricante", "Fabricante")
-                        .WithMany("ModeloDeEquipamento")
+                        .WithMany()
                         .HasForeignKey("FabricanteId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -280,24 +339,17 @@ namespace SGP.Patrimony.Repository.PatrimonyRepository.Migrations
                     b.Navigation("Fabricante");
                 });
 
+            modelBuilder.Entity("SGP.Model.Entity.Equipamento", b =>
+                {
+                    b.Navigation("Fabricantes");
+                });
+
             modelBuilder.Entity("SGP.Model.Entity.CategoriaDoItem", b =>
                 {
-                    b.Navigation("Equipmentoo");
+                    b.Navigation("Equipamento");
                 });
 
             modelBuilder.Entity("SGP.Model.Entity.ClassificacaoDeAtivos", b =>
-                {
-                    b.Navigation("Equipamento");
-                });
-
-            modelBuilder.Entity("SGP.Model.Entity.Fabricante", b =>
-                {
-                    b.Navigation("Equipamento");
-
-                    b.Navigation("ModeloDeEquipamento");
-                });
-
-            modelBuilder.Entity("SGP.Model.Entity.ModeloDeEquipamento", b =>
                 {
                     b.Navigation("Equipamento");
                 });

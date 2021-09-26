@@ -3,7 +3,7 @@ using System;
 
 namespace SGP.Model.Entity
 {
-    public abstract class CalcularDepreciacao
+    public static class CalcularDepreciacao
     {
        
         public static decimal CalcularValorAtualDoEquipamento(int idade)

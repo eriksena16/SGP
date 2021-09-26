@@ -36,13 +36,34 @@ namespace SGP.Patrimony.Repository.PatrimonyRepository
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-           /* modelBuilder.Entity<Equipamento>().ToTable("Equipamentos");
-            modelBuilder.Entity<Setor>().ToTable("Setores");
-            modelBuilder.Entity<Categoria>().ToTable("Categorias");
-            modelBuilder.Entity<Classificacao>().ToTable("Classificacoes");
-            modelBuilder.Entity<Modelo>().ToTable("Modelos");
-            modelBuilder.Entity<Empresa>().ToTable("Empresas");
-            modelBuilder.Entity<Responsavel>().ToTable("Responsaveis");*/
+            /* modelBuilder.Entity<Equipamento>().ToTable("Equipamentos");
+             modelBuilder.Entity<Setor>().ToTable("Setores");
+             modelBuilder.Entity<Categoria>().ToTable("Categorias");
+             modelBuilder.Entity<Classificacao>().ToTable("Classificacoes");
+             modelBuilder.Entity<Modelo>().ToTable("Modelos");
+             modelBuilder.Entity<Empresa>().ToTable("Empresas");
+             modelBuilder.Entity<Responsavel>().ToTable("Responsaveis");*/
+
+            modelBuilder.Entity<ModeloDeEquipamento>()
+                .HasOne(s => s.Fabricante)
+                .WithMany(t => t.ModeloDeEquipamento)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Equipamento>()
+                .HasOne(s => s.ModeloDeEquipamento)
+                .WithMany(t => t.Equipamento)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Equipamento>()
+                .HasOne(s => s.ModeloDeEquipamento)
+                .WithMany(t => t.Equipamento)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Equipamento>()
+               .HasOne(s => s.CategoriaDoItem)
+               .WithMany()
+               .OnDelete(DeleteBehavior.ClientSetNull);
+
 
         }
 

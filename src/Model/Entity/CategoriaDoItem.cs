@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace SGP.Model.Entity
 
 {
     public class CategoriaDoItem : GenericEntity
     {
-        public ICollection<Equipamento> Equipment { get; set; }
+        public ICollection<Equipamento> Equipmento { get; set; }
     }
 }
