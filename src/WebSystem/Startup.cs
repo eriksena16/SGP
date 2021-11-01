@@ -80,7 +80,7 @@ namespace SGP
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Equipamento}/{action=Index}/{id?}");
             });
         }
     }

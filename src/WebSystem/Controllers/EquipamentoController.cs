@@ -72,31 +72,40 @@ namespace SGP.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Equipamento equipamentos)
+        public async Task<IActionResult> Create(Equipamento equipamento)
         {
 
 
             if (ModelState.IsValid)
             {
 
-                if (equipamentos.NotaFiscal.Length > 0)
+                try
                 {
-                    string folder = "uploads/notas/";
-                    equipamentos.NotaFiscalUrl = await Upload(folder, equipamentos.NotaFiscal);
+                    if (equipamento.NotaFiscal.Length > 0)
+                    {
+                        string folder = "uploads/notas/";
+                        equipamento.NotaFiscalUrl = await Upload(folder, equipamento.NotaFiscal);
+                    }
 
+                    equipamento = await this.GatewayServiceProvider.Get<IEquipamentoService>().Create(equipamento);
+                }
+                catch (Exception ex)
+                {
+
+                    throw new Exception(ex.Message);
                 }
 
-                equipamentos = await this.GatewayServiceProvider.Get<IEquipamentoService>().Create(equipamentos);
+                          
                 return RedirectToAction(nameof(Index));
             }
 
-            DropdownListCategoriaDoItem(equipamentos.CategoriaDoItemId);
-            DropdownListClassificacaoDeAtivos(equipamentos.ClassificacaoDeAtivosId);
-            DropdownListModeloDeEquipamento(equipamentos.ModeloDeEquipamentoId);
+            DropdownListCategoriaDoItem(equipamento.CategoriaDoItemId);
+            DropdownListClassificacaoDeAtivos(equipamento.ClassificacaoDeAtivosId);
+            DropdownListModeloDeEquipamento(equipamento.ModeloDeEquipamentoId);
             //DropdownListFabricante(equipamentos.ModeloDeEquipamento.FabricanteId);
-            DropdownListSetor(equipamentos.SetorId);
-            DropdownListResponsavelDoEquipamento(equipamentos.ResponsavelDoEquipamentoId);
-            return View(equipamentos);
+            DropdownListSetor(equipamento.SetorId);
+            DropdownListResponsavelDoEquipamento(equipamento.ResponsavelDoEquipamentoId);
+            return View(equipamento);
         }
 
 
