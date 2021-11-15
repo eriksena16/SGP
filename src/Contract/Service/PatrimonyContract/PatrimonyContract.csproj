@@ -1,13 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <AssemblyName>SGP.Contract.Service.PatrimonyContract</AssemblyName>
     <RootNamespace>SGP.Contract.Service.PatrimonyContract</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Model\Entity\Entity.csproj" />
+    <ProjectReference Include="..\..\..\SGPGeneric\SGPGeneric\SGPGeneric.csproj" />
   </ItemGroup>
 
 </Project>
