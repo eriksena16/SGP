@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SGP.Model.Entity;
+using System.Linq;
 
 namespace SGP.Patrimony.Repository.PatrimonyRepository
 {
@@ -9,23 +10,6 @@ namespace SGP.Patrimony.Repository.PatrimonyRepository
             : base(options)
         {
         }
-       /* private readonly StreamWriter _logStream = new StreamWriter("mylog.txt", append: true);
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-            => optionsBuilder.LogTo(_logStream.WriteLine).EnableSensitiveDataLogging();
-
-        public override void Dispose()
-        {
-            base.Dispose();
-            _logStream.Dispose();
-        }
-
-        public override async ValueTask DisposeAsync()
-        {
-            await base.DisposeAsync();
-            await _logStream.DisposeAsync();
-        }*/
-
         public DbSet<Equipamento> Equipamento { get; set; }
         public DbSet<Setor> Setor { get; set; }
         public DbSet<CategoriaDoItem> Categoria { get; set; }
@@ -36,30 +20,24 @@ namespace SGP.Patrimony.Repository.PatrimonyRepository
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            /* modelBuilder.Entity<Equipamento>().ToTable("Equipamentos");
-             modelBuilder.Entity<Setor>().ToTable("Setores");
-             modelBuilder.Entity<Categoria>().ToTable("Categorias");
-             modelBuilder.Entity<Classificacao>().ToTable("Classificacoes");
-             modelBuilder.Entity<Modelo>().ToTable("Modelos");
-             modelBuilder.Entity<Empresa>().ToTable("Empresas");
-             modelBuilder.Entity<Responsavel>().ToTable("Responsaveis");*/
+            foreach (var property in modelBuilder.Model.GetEntityTypes()
+                .SelectMany(e => e.GetProperties()
+                    .Where(p => p.ClrType == typeof(string))))
+                property.SetColumnType("varchar(100)");
+
+            foreach (var property in modelBuilder.Model.GetEntityTypes()
+                .SelectMany(e => e.GetProperties()
+                    .Where(p => p.ClrType == typeof(decimal))))
+                property.SetColumnType("decimal(18,2)");
 
             modelBuilder.Entity<ModeloDeEquipamento>()
                 .HasOne(s => s.Fabricante)
                 .WithMany(t => t.ModeloDeEquipamento)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            modelBuilder.Entity<Equipamento>()
-                .HasOne(s => s.ModeloDeEquipamento)
-                .WithMany(t => t.Equipamento)
-                .OnDelete(DeleteBehavior.Cascade);
+            
 
-            modelBuilder.Entity<Equipamento>()
-                .HasOne(s => s.ModeloDeEquipamento)
-                .WithMany(t => t.Equipamento)
-                .OnDelete(DeleteBehavior.Cascade);
-
-
+            base.OnModelCreating(modelBuilder);
         }
 
         

@@ -26,7 +26,7 @@ namespace SGP.Patrimony.Service.PatrimonyService
         {
             Fabricante fabricante = new Fabricante();
 
-            return await this.Details(fabricante.Id);
+            return await this.Get(fabricante.Id);
         }
 
         public async Task<Fabricante> DeleteConfirmed(long id)
@@ -38,7 +38,7 @@ namespace SGP.Patrimony.Service.PatrimonyService
             return fabricante;
         }
 
-        public async Task<Fabricante> Details(long? id)
+        public async Task<Fabricante> Get(long? id)
         {
             Fabricante fabricante = await context.Fabricante
                .FirstOrDefaultAsync(m => m.Id == id);

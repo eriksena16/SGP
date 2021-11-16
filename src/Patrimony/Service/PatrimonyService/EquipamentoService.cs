@@ -25,7 +25,7 @@ namespace SGP.Patrimony.Service.PatrimonyService
 
         public async Task<Equipamento> Delete(long? id)
         {
-            return await Details(id);
+            return await Get(id);
         }
 
         public async Task<Equipamento> DeleteConfirmed(long id)
@@ -37,7 +37,7 @@ namespace SGP.Patrimony.Service.PatrimonyService
             return equipamento;
         }
 
-        public async Task<Equipamento> Details(long? id)
+        public async Task<Equipamento> Get(long? id)
         {
             
             Equipamento equipamento = await context.Equipamento

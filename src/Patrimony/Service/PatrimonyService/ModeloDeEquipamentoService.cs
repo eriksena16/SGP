@@ -26,7 +26,7 @@ namespace SGP.Patrimony.Service.PatrimonyService
         {
             ModeloDeEquipamento modeloDeEquipamento = new ModeloDeEquipamento();
 
-            return await this.Details(modeloDeEquipamento.Id);
+            return await this.Get(modeloDeEquipamento.Id);
         }
 
         public async Task<ModeloDeEquipamento> DeleteConfirmed(long id)
@@ -39,7 +39,7 @@ namespace SGP.Patrimony.Service.PatrimonyService
             return modeloDeEquipamento;
         }
 
-        public async Task<ModeloDeEquipamento> Details(long? id)
+        public async Task<ModeloDeEquipamento> Get(long? id)
         {
             ModeloDeEquipamento modeloDeEquipamento = await context.ModeloDeEquipamento
                .FirstOrDefaultAsync(m => m.Id == id);

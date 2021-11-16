@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Model\Entity\Entity.csproj" />
-    <ProjectReference Include="..\..\..\SGPGeneric\SGPGeneric\SGPGeneric.csproj" />
   </ItemGroup>
 
 </Project>

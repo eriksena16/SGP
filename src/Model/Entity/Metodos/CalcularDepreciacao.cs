@@ -8,7 +8,7 @@ namespace SGP.Model.Entity
        
         public static decimal CalcularValorAtualDoEquipamento(int idade)
         {
-            EquipamentoDTO equipamento = new EquipamentoDTO
+            EquipamentoViewModel equipamento = new EquipamentoViewModel
             {
                 Idade = idade
             };

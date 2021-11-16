@@ -14,7 +14,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\Contract\Service\PatrimonyContract\PatrimonyContract.csproj" />
     <ProjectReference Include="..\..\..\Model\Entity\Entity.csproj" />
-    <ProjectReference Include="..\..\..\SGPGeneric\SGPGeneric\SGPGeneric.csproj" />
   </ItemGroup>
 
 </Project>

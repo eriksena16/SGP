@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SGP.Model.Entity.DTO
 {
-   public class EquipamentoDTO
+   public class EquipamentoViewModel
     {
         public long Id { get; set; }
         [Display(Name = "Nº do patrimônio")]

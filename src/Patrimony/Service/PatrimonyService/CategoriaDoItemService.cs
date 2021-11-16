@@ -1,72 +1,98 @@
-﻿using Microsoft.EntityFrameworkCore;
-using SGP.Contract.Service.PatrimonyContract;
+﻿using SGP.Contract.Service.PatrimonyContract;
+using SGP.Contract.Service.PatrimonyContract.Repositories;
 using SGP.Model.Entity;
-using SGP.Patrimony.Repository.PatrimonyRepository;
+using SGP.Model.Entity.DTO;
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace SGP.Patrimony.Service.PatrimonyService
 {
-    public class CategoriaDoItemService :  ICategoriaDoItemService
+    public class CategoriaDoItemService : ICategoriaDoItemService
     {
-        private readonly SGPContext _context;
-        public CategoriaDoItemService(SGPContext context) => this._context = context;
+
+        private readonly ICategoriaRepositoy _categoriaRepository;
+
+        public CategoriaDoItemService(ICategoriaRepositoy categoriaRepository)
+        {
+            _categoriaRepository = categoriaRepository;
+        }
 
         public async Task<CategoriaDoItem> Create(CategoriaDoItem obj)
         {
-            _context.Add(obj);
-            await _context.SaveChangesAsync();
+            try
+            {
+                await _categoriaRepository.Create(obj);
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex + "Aconteceu um erro");
+            }
+
+
+            return obj;
+        }
+
+        public async Task Delete(long? id)
+        {
+            var result = Get(id.Value);
+
+            if (result != null)
+            {
+                try
+                {
+                    await _categoriaRepository.Delete(id.Value);
+                }
+                catch (Exception ex)
+                {
+
+                    throw new Exception(ex + "Aconteceu um erro!");
+                }
+            }
+
+        }
+
+        public virtual async Task<CategoriaDoItem> Get(long id)
+        {
+            CategoriaDoItem categoria = await _categoriaRepository.Get(id);
+
+            return categoria;
+
+        }
+
+        public async Task<List<CategoriaDoItem>> Get()
+        {
+            var categorias = await _categoriaRepository.Get();
+
+            return categorias;
+        }
+
+        public async Task<CategoriaDoItem> Update(CategoriaDoItem obj)
+        {
+            if (!await _categoriaRepository.Exists(obj.Id)) return new CategoriaDoItem();
+
+            var result = Get(obj.Id);
+
+            if(result != null)
+            {
+                try
+                {
+                    await _categoriaRepository.Update(obj);
+                }
+                catch (Exception ex)
+                {
+
+                    throw new Exception(ex + "Aconteceu um erro!");
+                }
+            }
+            
             return obj;
         }
 
-        public async Task<CategoriaDoItem> Delete(long? id)
+        public void Dispose()
         {
-            return await this.Details(id);
-        }
-
-        public async Task<CategoriaDoItem> DeleteConfirmed(long id)
-        {
-            CategoriaDoItem itemCategory = await _context.Categoria.FindAsync(id);
-            _context.Categoria.Remove(itemCategory);
-            await _context.SaveChangesAsync();
-
-            return itemCategory;
-        }
-
-        public async Task<CategoriaDoItem> Details(long? id)
-        {
-            CategoriaDoItem ItemCategory = await _context.Categoria
-               .FirstOrDefaultAsync(m => m.Id == id);
-
-            return ItemCategory;
-
-        }
-
-        public async Task<List<CategoriaDoItem>> GetAll()
-        {
-            List<CategoriaDoItem> ItemCategory = await _context.Categoria.ToListAsync();
-
-            return ItemCategory;
-        }
-
-        public async Task<CategoriaDoItem> Update(long id, CategoriaDoItem obj)
-        {
-            _context.Update(obj);
-            await _context.SaveChangesAsync();
-
-            return obj;
-        } 
-        public async Task<CategoriaDoItem> GetUpdate(long id)
-        {
-            var itemCategory = await _context.Categoria.FindAsync(id);
-
-            return itemCategory;
-        }
-
-        public async Task< bool> Exists(long id)
-        {
-            return await Task.FromResult( _context.Categoria.Any(e => e.Id == id));
+            _categoriaRepository?.Dispose();
         }
     }
 }

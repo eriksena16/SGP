@@ -26,7 +26,7 @@ namespace SGP.Controllers
                 return NotFound();
             }
 
-            var categoriaDoItem = await this.GatewayServiceProvider.Get<ICategoriaDoItemService>().Details(id);
+            var categoriaDoItem = await this.GatewayServiceProvider.Get<ICategoriaDoItemService>().Get(id);
             if (categoriaDoItem == null)
             {
                 return NotFound();

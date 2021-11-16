@@ -26,7 +26,7 @@ namespace SGP.Controllers
                 return NotFound();
             }
 
-            var assetClassification = await this.GatewayServiceProvider.Get<IClassificacaoDeAtivosService>().Details(id);
+            var assetClassification = await this.GatewayServiceProvider.Get<IClassificacaoDeAtivosService>().Get(id);
             if (assetClassification == null)
             {
                 return NotFound();

@@ -7,11 +7,26 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.12" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.12" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.12">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Contract\Service\GatewayContract\GatewayContract.csproj" />
+    <ProjectReference Include="..\Contract\Service\PatrimonyContract\PatrimonyContract.csproj" />
+    <ProjectReference Include="..\Gateway\Infrastructure\GatewayLocator\GatewayLocator.csproj" />
+    <ProjectReference Include="..\Gateway\Service\GatewayService\GatewayService.csproj" />
+    <ProjectReference Include="..\Model\Entity\Entity.csproj" />
+    <ProjectReference Include="..\Patrimony\Infrastructure\PatrimonyLocator\PatrimonyLocator.csproj" />
+    <ProjectReference Include="..\Patrimony\Repository\PatrimonyRepository\PatrimonyRepository.csproj" />
+    <ProjectReference Include="..\Patrimony\Service\PatrimonyService\PatrimonyService.csproj" />
   </ItemGroup>
 
 </Project>

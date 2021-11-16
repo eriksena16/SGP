@@ -26,7 +26,7 @@ namespace SGP.Controllers
                 return NotFound();
             }
 
-            var fabricante = await this.GatewayServiceProvider.Get<IFabricanteService>().Details(id);
+            var fabricante = await this.GatewayServiceProvider.Get<IFabricanteService>().Get(id);
             if (fabricante == null)
             {
                 return NotFound();

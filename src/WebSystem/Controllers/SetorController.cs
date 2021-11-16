@@ -25,7 +25,7 @@ namespace SGP.Controllers
                 return NotFound();
             }
 
-            Setor setor = await this.GatewayServiceProvider.Get<ISetorService>().Details(id);
+            Setor setor = await this.GatewayServiceProvider.Get<ISetorService>().Get(id);
             if (setor == null)
             {
                 return NotFound();

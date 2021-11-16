@@ -26,7 +26,7 @@ namespace SGP.Controllers
                 return NotFound();
             }
 
-            ModeloDeEquipamento modeloDeEquipamento = await this.GatewayServiceProvider.Get<IModeloDeEquipamentoService>().Details(id);
+            ModeloDeEquipamento modeloDeEquipamento = await this.GatewayServiceProvider.Get<IModeloDeEquipamentoService>().Get(id);
             if (modeloDeEquipamento == null)
             {
                 return NotFound();

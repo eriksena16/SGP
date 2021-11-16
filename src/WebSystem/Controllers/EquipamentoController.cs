@@ -39,7 +39,7 @@ namespace SGP.Controllers
                 return NotFound();
             }
 
-            Equipamento equipamento = await this.GatewayServiceProvider.Get<IEquipamentoService>().Details(id);
+            Equipamento equipamento = await this.GatewayServiceProvider.Get<IEquipamentoService>().Get(id);
 
             if (equipamento == null)
             {
