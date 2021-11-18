@@ -3,7 +3,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SGP.Model.Entity.DTO
+namespace SGP.Model.Entity.ViewModels
 {
    public class EquipamentoViewModel
     {

@@ -1,76 +1,96 @@
-﻿using Microsoft.EntityFrameworkCore;
-using SGP.Contract.Service.PatrimonyContract;
+﻿using SGP.Contract.Service.PatrimonyContract;
+using SGP.Contract.Service.PatrimonyContract.Repositories;
 using SGP.Model.Entity;
-using SGP.Patrimony.Repository.PatrimonyRepository;
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace SGP.Patrimony.Service.PatrimonyService
 {
     public class SetorService : ISetorService
     {
-        private readonly SGPContext context;
+        private readonly ISetorRepository _setorRepository;
 
-        public SetorService(SGPContext context) => this.context = context;
+        public SetorService(ISetorRepository setorRepository)
+        {
+            _setorRepository = setorRepository;
+        }
 
         public async Task<Setor> Create(Setor obj)
         {
-            context.Add(obj);
-            await context.SaveChangesAsync();
+            try
+            {
+                await _setorRepository.Create(obj);
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex + "Aconteceu um erro");
+            }
+
             return obj;
         }
 
-        public async Task<Setor> Delete(long? id)
+        public async Task Delete(long? id)
         {
-            Setor setor = new Setor();
+            var result = Get(id.Value);
 
-            return await this.Get(setor.Id);
+            if (result != null)
+            {
+                try
+                {
+                    await _setorRepository.Delete(id.Value);
+                }
+                catch (Exception ex)
+                {
+
+                    throw new Exception(ex + "Aconteceu um erro!");
+                }
+            }
         }
 
-        public async Task<Setor> DeleteConfirmed(long id)
+
+        public virtual async Task<Setor> Get(long id)
         {
-            Setor setor = await context.Setor.FindAsync(id);
-            context.Setor.Remove(setor);
-            await context.SaveChangesAsync();
+            Setor setor = await _setorRepository.Get(id);
 
             return setor;
         }
 
-        public async Task<Setor> Get(long? id)
+        public async Task<List<Setor>> Get()
         {
-            Setor setor = await context.Setor
-               .FirstOrDefaultAsync(m => m.Id == id);
+            List<Setor> setor = await _setorRepository.Get();
 
             return setor;
         }
 
-        public async Task<bool> Exists(long id)
+
+        public async Task<Setor> Update(Setor obj)
         {
-            return await Task.FromResult(context.Setor.Any(e => e.Id == id));
-        }
+            if (!await _setorRepository.Exists(obj.Id)) return new Setor();
 
-        public async Task<List<Setor>> GetAll()
-        {
-            List<Setor> sector = await context.Setor.ToListAsync();
+            var result = Get(obj.Id);
 
-            return sector;
-        }
+            if (result != null)
+            {
+                try
+                {
+                    await _setorRepository.Update(obj);
+                }
+                catch (Exception ex)
+                {
 
-
-        public async Task<Setor> GetUpdate(long id)
-        {
-            Setor sector = await context.Setor.FindAsync(id);
-
-            return sector;
-        }
-
-        public async Task<Setor> Update(long id, Setor obj)
-        {
-            context.Update(obj);
-            await context.SaveChangesAsync();
+                    throw new Exception(ex + "Aconteceu um erro!");
+                }
+            }
 
             return obj;
+
+        }
+
+        public void Dispose()
+        {
+            _setorRepository?.Dispose();
         }
     }
 }

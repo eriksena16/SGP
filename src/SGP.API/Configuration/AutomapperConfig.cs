@@ -1,16 +1,18 @@
 ﻿using AutoMapper;
 using SGP.Model.Entity;
-using SGP.Model.Entity.DTO;
+using SGP.Model.Entity.ViewModels;
 
 namespace SGP.API.Configuration
 {
-    public class AutomapperConfig : Profile
+    public class AutoMapperConfig : Profile
     {
-        public AutomapperConfig()
+        public AutoMapperConfig()
         {
             CreateMap<CategoriaDoItem, CategoriaDoItemViewModel>().ReverseMap();
 
             CreateMap<Equipamento, EquipamentoViewModel>().ReverseMap();
+
+            CreateMap<Setor, SetorViewModel>().ReverseMap();
 
         }
     }

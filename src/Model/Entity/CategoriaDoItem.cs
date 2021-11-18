@@ -9,13 +9,8 @@ namespace SGP.Model.Entity
     {
         public string Name { get; set; }
 
-        public CategoriaDoItem(string name)
-        {
-            Name = name;
-        }
-
         [JsonIgnore]
         [NotMapped]
-        public ICollection<Equipamento> Equipmento { get; set; }
+        public ICollection<Equipamento> Equipamento { get; set; }
     }
 }

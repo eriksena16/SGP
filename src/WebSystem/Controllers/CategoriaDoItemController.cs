@@ -111,7 +111,7 @@ namespace SGP.Controllers
                 return NotFound();
             }
 
-            var ItemCategory = await this.GatewayServiceProvider.Get<ICategoriaDoItemService>().Delete(id);
+            var ItemCategory = await this.GatewayServiceProvider.Get<ICategoriaDoItemService>().Delete(id.Value);
 
             if (ItemCategory == null)
             {

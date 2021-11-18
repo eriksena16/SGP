@@ -1,7 +1,6 @@
 ﻿using SGP.Contract.Service.PatrimonyContract;
 using SGP.Contract.Service.PatrimonyContract.Repositories;
 using SGP.Model.Entity;
-using SGP.Model.Entity.DTO;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;

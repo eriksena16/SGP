@@ -1,13 +1,10 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SGP.API.Code;
 using SGP.Contract.Service.PatrimonyContract;
 using SGP.Model.Entity;
-using SGP.Model.Entity.DTO;
-using System;
+using SGP.Model.Entity.ViewModels;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 
@@ -75,7 +72,6 @@ namespace SGP.API.Controllers
 
             return Ok(_mapper.Map<CategoriaDoItemViewModel>(await this.GatewayServiceProvider.Get<ICategoriaDoItemService>().Update(obj)));
         }
-
 
         [HttpDelete("{id:long}")]
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.BadRequest)]
