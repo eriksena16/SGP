@@ -2,7 +2,7 @@
 
 namespace SGP.Contract.Service.PatrimonyContract.Repositories
 {
-    public interface ICategoriaRepositoy : IGenericRepository<CategoriaDoItem>
+    public interface ICategoriaRepository : IGenericRepository<CategoriaDoItem>
     {
     }
 }

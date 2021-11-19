@@ -4,8 +4,8 @@ using SGP.Model.Entity;
 
 namespace SGP.Patrimony.Repository.PatrimonyRepository.Service
 {
-    public class CategoriaRepository : GenericRepository<CategoriaDoItem>, ICategoriaRepository
+    public class FabricanteRepository : GenericRepository<Fabricante>, IFabricanteRepository
     {
-        public CategoriaRepository(DbContext context) : base(context) {}
+        public FabricanteRepository(DbContext context) : base(context) { }
     }
 }

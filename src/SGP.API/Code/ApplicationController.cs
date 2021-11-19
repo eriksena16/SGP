@@ -4,7 +4,7 @@ using SGP.Contract.Service.GatewayContract;
 
 namespace SGP.API.Code
 {
-    public class ApplicationController : Controller
+    public class ApplicationController : ControllerBase
     {
         private IGatewayServiceProvider _gatewayServiceProvider;
 

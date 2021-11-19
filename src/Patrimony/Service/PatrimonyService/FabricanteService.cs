@@ -1,76 +1,97 @@
-﻿using Microsoft.EntityFrameworkCore;
-using SGP.Contract.Service.PatrimonyContract;
+﻿using SGP.Contract.Service.PatrimonyContract;
+using SGP.Contract.Service.PatrimonyContract.Repositories;
 using SGP.Model.Entity;
-using SGP.Patrimony.Repository.PatrimonyRepository;
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace SGP.Patrimony.Service.PatrimonyService
 {
     public class FabricanteService : IFabricanteService
     {
-        private readonly SGPContext context;
 
-        public FabricanteService(SGPContext context) => this.context = context;
+        private readonly IFabricanteRepository _repository;
+
+        public FabricanteService(IFabricanteRepository repository)
+        {
+            _repository = repository;
+        }
 
         public async Task<Fabricante> Create(Fabricante obj)
         {
-            context.Add(obj);
-            await context.SaveChangesAsync();
+            try
+            {
+                await _repository.Create(obj);
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex + "Aconteceu um erro");
+            }
+
 
             return obj;
         }
 
-        public async Task<Fabricante> Delete(long? id)
+        public async Task Delete(long? id)
         {
-            Fabricante fabricante = new Fabricante();
+            var result = Get(id.Value);
 
-            return await this.Get(fabricante.Id);
+            if (result != null)
+            {
+                try
+                {
+                    await _repository.Delete(id.Value);
+                }
+                catch (Exception ex)
+                {
+
+                    throw new Exception(ex + "Aconteceu um erro!");
+                }
+            }
+
         }
 
-        public async Task<Fabricante> DeleteConfirmed(long id)
+        public virtual async Task<Fabricante> Get(long id)
         {
-            Fabricante fabricante = await context.Fabricante.FindAsync(id);
-            context.Fabricante.Remove(fabricante);
-            await context.SaveChangesAsync();
-
-            return fabricante;
-        }
-
-        public async Task<Fabricante> Get(long? id)
-        {
-            Fabricante fabricante = await context.Fabricante
-               .FirstOrDefaultAsync(m => m.Id == id);
-
-            return fabricante;
-        }
-
-        public async Task<bool> Exists(long id)
-        {
-            return await Task.FromResult(context.Fabricante.Any(e => e.Id == id));
-        }
-
-        public async Task<List<Fabricante>> GetAll()
-        {
-            List<Fabricante> fabricante = await context.Fabricante.ToListAsync();
-
-            return fabricante;
-        }
-
-        public async Task<Fabricante> GetUpdate(long id)
-        {
-            Fabricante fabricante = await context.Fabricante.FindAsync(id);
-
-            return fabricante;
-        }
-
-        public async Task<Fabricante> Update(long id, Fabricante obj)
-        {
-            context.Update(obj);
-            await context.SaveChangesAsync();
+            Fabricante obj = await _repository.Get(id);
 
             return obj;
+
+        }
+
+        public async Task<List<Fabricante>> Get()
+        {
+            var objs = await _repository.Get();
+
+            return objs;
+        }
+
+        public async Task<Fabricante> Update(Fabricante obj)
+        {
+            if (!await _repository.Exists(obj.Id)) return new Fabricante();
+
+            var result = Get(obj.Id);
+
+            if (result != null)
+            {
+                try
+                {
+                    await _repository.Update(obj);
+                }
+                catch (Exception ex)
+                {
+
+                    throw new Exception(ex + "Aconteceu um erro!");
+                }
+            }
+
+            return obj;
+        }
+
+        public void Dispose()
+        {
+            _repository?.Dispose();
         }
     }
 }

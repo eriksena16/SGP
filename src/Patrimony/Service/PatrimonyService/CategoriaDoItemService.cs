@@ -10,9 +10,9 @@ namespace SGP.Patrimony.Service.PatrimonyService
     public class CategoriaDoItemService : ICategoriaDoItemService
     {
 
-        private readonly ICategoriaRepositoy _categoriaRepository;
+        private readonly ICategoriaRepository _categoriaRepository;
 
-        public CategoriaDoItemService(ICategoriaRepositoy categoriaRepository)
+        public CategoriaDoItemService(ICategoriaRepository categoriaRepository)
         {
             _categoriaRepository = categoriaRepository;
         }

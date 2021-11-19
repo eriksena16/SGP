@@ -13,6 +13,7 @@ namespace SGP.API.Configuration
             CreateMap<Equipamento, EquipamentoViewModel>().ReverseMap();
 
             CreateMap<Setor, SetorViewModel>().ReverseMap();
+            CreateMap<Fabricante, FabricanteViewModel>().ReverseMap();
 
         }
     }
