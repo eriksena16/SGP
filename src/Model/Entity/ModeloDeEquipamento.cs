@@ -7,7 +7,7 @@ namespace SGP.Model.Entity
 {
     public class ModeloDeEquipamento : GenericEntity
     {
-
+        public string Nome { get; set; }
         [Display(Name = "Fabricante")]
         public long FabricanteId { get; set; }
         public Fabricante Fabricante { get; set; }

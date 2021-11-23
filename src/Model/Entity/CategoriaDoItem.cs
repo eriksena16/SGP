@@ -7,7 +7,7 @@ namespace SGP.Model.Entity
 {
     public class CategoriaDoItem : GenericEntity
     {
-        public string Name { get; set; }
+        public string Nome { get; set; }
 
         [JsonIgnore]
         [NotMapped]

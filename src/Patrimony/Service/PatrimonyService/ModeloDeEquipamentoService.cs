@@ -1,77 +1,77 @@
-﻿using Microsoft.EntityFrameworkCore;
-using SGP.Contract.Service.PatrimonyContract;
-using SGP.Model.Entity;
-using SGP.Patrimony.Repository.PatrimonyRepository;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿//using Microsoft.EntityFrameworkCore;
+//using SGP.Contract.Service.PatrimonyContract;
+//using SGP.Model.Entity;
+//using SGP.Patrimony.Repository.PatrimonyRepository;
+//using System.Collections.Generic;
+//using System.Linq;
+//using System.Threading.Tasks;
 
-namespace SGP.Patrimony.Service.PatrimonyService
-{
-    public class ModeloDeEquipamentoService : IModeloDeEquipamentoService
-    {
-        private readonly SGPContext context;
+//namespace SGP.Patrimony.Service.PatrimonyService
+//{
+//    public class ModeloDeEquipamentoService : IModeloDeEquipamentoService
+//    {
+//        private readonly SGPContext context;
        
-        public ModeloDeEquipamentoService(SGPContext context) => this.context = context;
+//        public ModeloDeEquipamentoService(SGPContext context) => this.context = context;
 
-        public async Task<ModeloDeEquipamento> Create(ModeloDeEquipamento obj)
-        {
-            context.Add(obj);
-            await context.SaveChangesAsync();
+//        public async Task<ModeloDeEquipamento> Create(ModeloDeEquipamento obj)
+//        {
+//            context.Add(obj);
+//            await context.SaveChangesAsync();
 
-            return obj;
-        }
+//            return obj;
+//        }
 
-        public async Task<ModeloDeEquipamento> Delete(long? id)
-        {
-            ModeloDeEquipamento modeloDeEquipamento = new ModeloDeEquipamento();
+//        public async Task<ModeloDeEquipamento> Delete(long? id)
+//        {
+//            ModeloDeEquipamento modeloDeEquipamento = new ModeloDeEquipamento();
 
-            return await this.Get(modeloDeEquipamento.Id);
-        }
+//            return await this.Get(modeloDeEquipamento.Id);
+//        }
 
-        public async Task<ModeloDeEquipamento> DeleteConfirmed(long id)
-        {
-            ModeloDeEquipamento modeloDeEquipamento = await context.ModeloDeEquipamento.FindAsync(id);
+//        public async Task<ModeloDeEquipamento> DeleteConfirmed(long id)
+//        {
+//            ModeloDeEquipamento modeloDeEquipamento = await context.ModeloDeEquipamento.FindAsync(id);
 
-            context.ModeloDeEquipamento.Remove(modeloDeEquipamento);
-            await context.SaveChangesAsync();
+//            context.ModeloDeEquipamento.Remove(modeloDeEquipamento);
+//            await context.SaveChangesAsync();
 
-            return modeloDeEquipamento;
-        }
+//            return modeloDeEquipamento;
+//        }
 
-        public async Task<ModeloDeEquipamento> Get(long? id)
-        {
-            ModeloDeEquipamento modeloDeEquipamento = await context.ModeloDeEquipamento
-               .FirstOrDefaultAsync(m => m.Id == id);
+//        public async Task<ModeloDeEquipamento> Get(long? id)
+//        {
+//            ModeloDeEquipamento modeloDeEquipamento = await context.ModeloDeEquipamento
+//               .FirstOrDefaultAsync(m => m.Id == id);
 
-            return modeloDeEquipamento;
-        }
+//            return modeloDeEquipamento;
+//        }
 
-        public async Task<bool> Exists(long id)
-        {
-            return await Task.FromResult(context.ModeloDeEquipamento.Any(e => e.Id == id));
-        }
+//        public async Task<bool> Exists(long id)
+//        {
+//            return await Task.FromResult(context.ModeloDeEquipamento.Any(e => e.Id == id));
+//        }
 
-        public async Task<List<ModeloDeEquipamento>> GetAll()
-        {
-            List<ModeloDeEquipamento> modeloDeEquipamento = await context.ModeloDeEquipamento.ToListAsync();
+//        public async Task<List<ModeloDeEquipamento>> GetAll()
+//        {
+//            List<ModeloDeEquipamento> modeloDeEquipamento = await context.ModeloDeEquipamento.ToListAsync();
 
-            return modeloDeEquipamento;
-        }
+//            return modeloDeEquipamento;
+//        }
 
-        public async Task<ModeloDeEquipamento> GetUpdate(long id)
-        {
-            ModeloDeEquipamento modeloDeEquipamento = await context.ModeloDeEquipamento.FindAsync(id);
+//        public async Task<ModeloDeEquipamento> GetUpdate(long id)
+//        {
+//            ModeloDeEquipamento modeloDeEquipamento = await context.ModeloDeEquipamento.FindAsync(id);
 
-            return modeloDeEquipamento;
-        }
+//            return modeloDeEquipamento;
+//        }
 
-        public async Task<ModeloDeEquipamento> Update(long id, ModeloDeEquipamento obj)
-        {
-            context.Update(obj);
-            await context.SaveChangesAsync();
+//        public async Task<ModeloDeEquipamento> Update(long id, ModeloDeEquipamento obj)
+//        {
+//            context.Update(obj);
+//            await context.SaveChangesAsync();
 
-            return obj;
-        }
-    }
-}
+//            return obj;
+//        }
+//    }
+//}

@@ -1,4 +1,4 @@
-﻿using SGP.Model.Entity.DTO;
+﻿using SGP.Model.Entity.ViewModels;
 using System;
 
 namespace SGP.Model.Entity

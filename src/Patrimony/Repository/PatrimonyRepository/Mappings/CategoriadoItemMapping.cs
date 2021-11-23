@@ -10,7 +10,7 @@ namespace SGP.Patrimony.Repository.PatrimonyRepository.Mappings
         {
             builder.HasKey(p => p.Id);
 
-            builder.Property(c => c.Name)
+            builder.Property(c => c.Nome)
                 .IsRequired()
                 .HasColumnType("varchar(100)");
         }
