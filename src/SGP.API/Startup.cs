@@ -8,6 +8,9 @@ using Microsoft.OpenApi.Models;
 using SGP.Infrastructure.GatewayLocator;
 using SGP.Patrimony.Infrastructure.PatrimonyLocator;
 using SGP.Patrimony.Repository.PatrimonyRepository;
+using System;
+using System.IO;
+using System.Reflection;
 
 namespace API.SGP
 {
@@ -34,7 +37,10 @@ namespace API.SGP
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "API.SGP", Version = "v1" });
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPatch = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPatch);
+                //c.SwaggerDoc("v1", new OpenApiInfo { Title = "API.SGP", Version = "v1" });
             });
         }
 
@@ -45,7 +51,11 @@ namespace API.SGP
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "API.SGP v1"));
+                app.UseSwaggerUI(c => 
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "API.SGP v1");
+                    c.RoutePrefix = string.Empty;
+                    });
             }
 
             app.UseHttpsRedirection();

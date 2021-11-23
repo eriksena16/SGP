@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SGP.API</name>
+    </assembly>
+    <members>
+        <member name="M:SGP.API.Controllers.CategoriasController.Get(System.Nullable{System.Int32})">
+            <summary>
+            Rota de Requisição da categoria do equipamento por ID
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SGP.API.Controllers.CategoriasController.Post(SGP.Model.Entity.CategoriaDoItem)">
+            <summary>
+            
+            </summary>
+            <param name="categoriaItem"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SGP.API.Controllers.CategoriasController.Patch(SGP.Model.Entity.CategoriaDoItem)">
+            <summary>
+            
+            </summary>
+            <param name="categoriaItem"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SGP.API.Controllers.CategoriasController.Delete(System.Nullable{System.Int64})">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

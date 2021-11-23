@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace SGP.API.Controllers
 {
+
     [ApiController]
     [Route("api/[controller]")]
     public class CategoriasController : ApplicationController
@@ -20,6 +21,7 @@ namespace SGP.API.Controllers
             _mapper = mapper;
         }
 
+        
         [HttpGet]
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.NoContent)]
@@ -32,6 +34,11 @@ namespace SGP.API.Controllers
             return Ok(categoriaDoItems);
         }
 
+        /// <summary>
+        /// Rota de Requisição da categoria do equipamento por ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.NoContent)]
@@ -47,32 +54,47 @@ namespace SGP.API.Controllers
             return Ok(categoria);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="categoriaItem"></param>
+        /// <returns></returns>
         [HttpPost]
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.NoContent)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(List<CategoriaDoItemViewModel>), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> Post([FromBody] CategoriaDoItem obj)
+        public async Task<IActionResult> Post([FromBody] CategoriaDoItem categoriaItem)
         {
-            if (obj is null)
+            if (categoriaItem is null)
                 return BadRequest();
 
-            return Ok(_mapper.Map<CategoriaDoItemViewModel>(await this.GatewayServiceProvider.Get<ICategoriaDoItemService>().Create(obj)));
+            return Ok(_mapper.Map<CategoriaDoItemViewModel>(await this.GatewayServiceProvider.Get<ICategoriaDoItemService>().Create(categoriaItem)));
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="categoriaItem"></param>
+        /// <returns></returns>
         [HttpPatch]
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.NoContent)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(List<CategoriaDoItemViewModel>), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> Patch([FromBody] CategoriaDoItem obj)
+        public async Task<IActionResult> Patch([FromBody] CategoriaDoItem categoriaItem)
         {
-            if (obj is null)
+            if (categoriaItem is null)
                 return BadRequest();
 
-            return Ok(_mapper.Map<CategoriaDoItemViewModel>(await this.GatewayServiceProvider.Get<ICategoriaDoItemService>().Update(obj)));
+            return Ok(_mapper.Map<CategoriaDoItemViewModel>(await this.GatewayServiceProvider.Get<ICategoriaDoItemService>().Update(categoriaItem)));
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id:long}")]
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.NoContent)]
