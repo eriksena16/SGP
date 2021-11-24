@@ -18,14 +18,15 @@
             <param name="categoriaItem"></param>
             <returns></returns>
         </member>
-        <member name="M:SGP.API.Controllers.CategoriasController.Patch(SGP.Model.Entity.CategoriaDoItem)">
+        <member name="M:SGP.API.Controllers.CategoriasController.Patch(System.Int64,SGP.Model.Entity.ViewModels.CategoriaDoItemViewModel)">
             <summary>
             
             </summary>
-            <param name="categoriaItem"></param>
+            <param name="categoriaDoItemViewModel"></param>
+            <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:SGP.API.Controllers.CategoriasController.Delete(System.Nullable{System.Int64})">
+        <member name="M:SGP.API.Controllers.CategoriasController.Delete(System.Int64)">
             <summary>
             
             </summary>

@@ -31,15 +31,15 @@ namespace SGP.Patrimony.Service.PatrimonyService
             return obj;
         }
 
-        public async Task Delete(long? id)
+        public async Task Delete(Setor obj)
         {
-            var result = Get(id.Value);
+            var result = Get(obj.Id);
 
             if (result != null)
             {
                 try
                 {
-                    await _setorRepository.Delete(id.Value);
+                    await _setorRepository.Delete(obj);
                 }
                 catch (Exception ex)
                 {

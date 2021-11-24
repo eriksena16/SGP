@@ -8,28 +8,29 @@ namespace SGP.Patrimony.Repository.PatrimonyRepository.Service
 {
     public abstract class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : GenericEntity, new()
     {
-        protected readonly DbSet<TEntity> entities;
-        protected readonly DbContext Context;
+        protected readonly DbSet<TEntity> DbSet;
+        protected readonly DbContext Db;
         public GenericRepository(DbContext context)
         {
-            Context = context;
-            entities = context.Set<TEntity>();
+            Db = context;
+            DbSet = context.Set<TEntity>();
         }
 
         public virtual async Task Create(TEntity obj)
         {
-            entities.Add(obj);
+            DbSet.Add(obj);
             await SaveChanges();
         }
 
         public virtual async Task<TEntity> Get(long id)
         {
-            return await entities.FirstOrDefaultAsync(s => s.Id == id);
+            return await DbSet.FindAsync(id);
         }
 
-        public virtual async Task Delete(long id)
+        public virtual async Task Delete(TEntity obj)
         {
-            entities.Remove(new TEntity { Id = id });
+            DbSet.Remove(obj);
+
             await SaveChanges();
 
         }
@@ -75,27 +76,27 @@ namespace SGP.Patrimony.Repository.PatrimonyRepository.Service
 
         public virtual async Task Update(TEntity obj)
         {
-            entities.Update(obj);
+            DbSet.Update(obj);
             await SaveChanges();
         }
 
         public virtual Task<List<TEntity>> Get()
         {
-            return entities.ToListAsync();
+            return DbSet.ToListAsync();
         }
 
-        public virtual async Task<int> SaveChanges()
+        public async Task<int> SaveChanges()
         {
-            return await Context.SaveChangesAsync();
+            return await Db.SaveChangesAsync();
         }
 
         public virtual Task<bool> Exists(long id)
         {
-            return entities.AnyAsync(c=> c.Equals(id));
+            return DbSet.AnyAsync(c=> c.Id.Equals(id));
         }
         public void Dispose()
         {
-            Context?.Dispose();
+            Db?.Dispose();
         }
 
         

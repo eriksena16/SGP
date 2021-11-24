@@ -33,23 +33,9 @@ namespace SGP.Patrimony.Service.PatrimonyService
             return obj;
         }
 
-        public async Task Delete(long? id)
+        public async Task Delete(CategoriaDoItem obj)
         {
-            var result = Get(id.Value);
-
-            if (result != null)
-            {
-                try
-                {
-                    await _categoriaRepository.Delete(id.Value);
-                }
-                catch (Exception ex)
-                {
-
-                    throw new Exception(ex + "Aconteceu um erro!");
-                }
-            }
-
+            await _categoriaRepository.Delete(obj);
         }
 
         public virtual async Task<CategoriaDoItem> Get(long id)
@@ -71,13 +57,13 @@ namespace SGP.Patrimony.Service.PatrimonyService
         {
             if (!await _categoriaRepository.Exists(obj.Id)) return new CategoriaDoItem();
 
-            var result = Get(obj.Id);
+            var categoria = await _categoriaRepository.Get(obj.Id);
 
-            if(result != null)
+            if (categoria != null)
             {
                 try
                 {
-                    await _categoriaRepository.Update(obj);
+                    await _categoriaRepository.Update(categoria);
                 }
                 catch (Exception ex)
                 {
@@ -85,7 +71,7 @@ namespace SGP.Patrimony.Service.PatrimonyService
                     throw new Exception(ex + "Aconteceu um erro!");
                 }
             }
-            
+
             return obj;
         }
 

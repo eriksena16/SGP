@@ -33,15 +33,15 @@ namespace SGP.Patrimony.Service.PatrimonyService
             return obj;
         }
 
-        public async Task Delete(long? id)
+        public async Task Delete(Fabricante obj)
         {
-            var result = Get(id.Value);
+            var result = Get(obj.Id);
 
             if (result != null)
             {
                 try
                 {
-                    await _repository.Delete(id.Value);
+                    await _repository.Delete(obj);
                 }
                 catch (Exception ex)
                 {

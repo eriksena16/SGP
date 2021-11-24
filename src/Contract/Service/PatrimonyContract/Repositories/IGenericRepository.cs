@@ -11,7 +11,7 @@ namespace SGP.Contract.Service.PatrimonyContract.Repositories
         Task<TEntity> Get(long id);
         Task<List<TEntity>> Get();
         Task Update( TEntity obj);
-        Task Delete(long id);
+        Task Delete(TEntity obj);
         Task<bool> Exists(long id);
 
     }

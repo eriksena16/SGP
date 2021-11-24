@@ -66,21 +66,17 @@ namespace SGP.API.Controllers
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.NoContent)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(List<SetorViewModel>), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<SetorViewModel>> Delete(long? id)
+        public async Task<ActionResult<SetorViewModel>> Delete(long id)
         {
-            if (id is null)
+
+            var setor = await this.GatewayServiceProvider.Get<ISetorService>().Get(id);
+
+            if (setor is null)
             {
                 return NotFound();
             }
 
-            var categoria = await this.GatewayServiceProvider.Get<ISetorService>().Get(id.Value);
-
-            if (categoria is null)
-            {
-                return NotFound();
-            }
-
-            await this.GatewayServiceProvider.Get<ISetorService>().Delete(id);
+            await this.GatewayServiceProvider.Get<ISetorService>().Delete(setor);
 
             return NoContent();
         }

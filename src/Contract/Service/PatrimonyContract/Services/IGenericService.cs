@@ -10,7 +10,7 @@ namespace SGP.Contract.Service.PatrimonyContract
         Task<List<TEntity>> Get();
         Task<TEntity> Get(long id);
         Task<TEntity> Update(TEntity obj);
-        Task Delete(long? id);
+        Task Delete(TEntity obj);
         //Task<bool> Exists(long id);
 
         //Task<TReturn> Create<TReturn>(T obj);

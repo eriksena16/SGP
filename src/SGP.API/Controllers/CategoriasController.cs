@@ -75,19 +75,25 @@ namespace SGP.API.Controllers
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="categoriaItem"></param>
+        /// <param name="categoriaDoItemViewModel"></param>
+        /// <param name="id"></param>
         /// <returns></returns>
-        [HttpPatch]
+        [HttpPatch("{id:long}")]
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.NoContent)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(List<CategoriaDoItemViewModel>), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> Patch([FromBody] CategoriaDoItem categoriaItem)
+        public async Task<IActionResult> Patch( long id, CategoriaDoItemViewModel categoriaDoItemViewModel)
         {
-            if (categoriaItem is null)
+            if (id != categoriaDoItemViewModel.Id)
                 return BadRequest();
 
-            return Ok(_mapper.Map<CategoriaDoItemViewModel>(await this.GatewayServiceProvider.Get<ICategoriaDoItemService>().Update(categoriaItem)));
+            var categoria = await this.GatewayServiceProvider.Get<ICategoriaDoItemService>().Get(id);
+
+            categoria.Id = categoriaDoItemViewModel.Id;
+            categoria.Nome = categoriaDoItemViewModel.Nome;
+
+            return Ok(_mapper.Map<CategoriaDoItemViewModel>(await this.GatewayServiceProvider.Get<ICategoriaDoItemService>().Update(categoria)));
         }
 
         /// <summary>
@@ -100,21 +106,17 @@ namespace SGP.API.Controllers
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.NoContent)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(List<CategoriaDoItemViewModel>), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<CategoriaDoItemViewModel>> Delete(long? id)
+        public async Task<ActionResult<CategoriaDoItemViewModel>> Delete(long id)
         {
-            if (id is null)
-            {
-                return NotFound();
-            }
 
-            var categoria = await this.GatewayServiceProvider.Get<ICategoriaDoItemService>().Get(id.Value);
+            var categoria = await this.GatewayServiceProvider.Get<ICategoriaDoItemService>().Get(id);
 
             if (categoria is null)
             {
                 return NotFound();
             }
 
-            await this.GatewayServiceProvider.Get<ICategoriaDoItemService>().Delete(id);
+            await this.GatewayServiceProvider.Get<ICategoriaDoItemService>().Delete(categoria);
 
             return NoContent();
         }
