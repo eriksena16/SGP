@@ -1,5 +1,4 @@
-﻿
-using SGP.Model.Entity;
+﻿using SGP.Model.Entity;
 
 namespace SGP.Contract.Service.PatrimonyContract
 {

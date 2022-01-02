@@ -14,6 +14,7 @@ namespace SGP.API.Configuration
 
             CreateMap<Setor, SetorViewModel>().ReverseMap();
             CreateMap<Fabricante, FabricanteViewModel>().ReverseMap();
+            CreateMap<ClassificacaoDeAtivos, ClassificacaoDeAtivosViewModel>().ReverseMap();
 
         }
     }

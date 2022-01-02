@@ -1,76 +1,97 @@
-﻿//using Microsoft.EntityFrameworkCore;
-//using SGP.Contract.Service.PatrimonyContract;
-//using SGP.Model.Entity;
-//using SGP.Patrimony.Repository.PatrimonyRepository;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Threading.Tasks;
+﻿using SGP.Contract.Service.PatrimonyContract;
+using SGP.Contract.Service.PatrimonyContract.Repositories;
+using SGP.Model.Entity;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
-//namespace SGP.Patrimony.Service.PatrimonyService
-//{
-//    public class ClassificacaoDeAtivosService : IClassificacaoDeAtivosService
-//    {
-//        private readonly SGPContext context;
-//        public ClassificacaoDeAtivosService(SGPContext context) => this.context = context;
+namespace SGP.Patrimony.Service.PatrimonyService
+{
+    public class ClassificacaoDeAtivosService : IClassificacaoDeAtivosService
+    {
 
-//        public async Task<ClassificacaoDeAtivos> Create(ClassificacaoDeAtivos obj)
-//        {
-//            context.Add(obj);
-//            await context.SaveChangesAsync();
+        private readonly IClassificacaoDeAtivosRepository _repository;
 
-//            return obj;
-//        }
+        public ClassificacaoDeAtivosService(IClassificacaoDeAtivosRepository repository)
+        {
+            _repository = repository;
+        }
 
-//        public async Task<ClassificacaoDeAtivos> Delete(long? id)
-//        {
-//            ClassificacaoDeAtivos assetClassification = new ClassificacaoDeAtivos();
+        public async Task<ClassificacaoDeAtivos> Create(ClassificacaoDeAtivos obj)
+        {
+            try
+            {
+                await _repository.Create(obj);
+            }
+            catch (Exception ex)
+            {
 
-//            return await this.Get(assetClassification.Id);
-//        }
+                throw new Exception(ex + "Aconteceu um erro");
+            }
 
-//        public async Task<ClassificacaoDeAtivos> DeleteConfirmed(long id)
-//        {
-//            ClassificacaoDeAtivos assetClassification = await context.Classificacao.FindAsync(id);
 
-//            context.Classificacao.Remove(assetClassification);
-//            await context.SaveChangesAsync();
+            return obj;
+        }
 
-//            return assetClassification;
-//        }
+        public async Task Delete(ClassificacaoDeAtivos obj)
+        {
+            var result = Get(obj.Id);
 
-//        public async Task<ClassificacaoDeAtivos> Get(long? id)
-//        {
-//            ClassificacaoDeAtivos assetClassification = await context.Classificacao
-//               .FirstOrDefaultAsync(m => m.Id == id);
+            if (result != null)
+            {
+                try
+                {
+                    await _repository.Delete(obj);
+                }
+                catch (Exception ex)
+                {
 
-//            return assetClassification;
-//        }
+                    throw new Exception(ex + "Aconteceu um erro!");
+                }
+            }
 
-//        public async Task<bool> Exists(long id)
-//        {
-//            return await Task.FromResult(context.Classificacao.Any(e => e.Id == id));
-//        }
+        }
 
-//        public async Task<List<ClassificacaoDeAtivos>> GetAll()
-//        {
-//            List<ClassificacaoDeAtivos> assetClassification = await context.Classificacao.ToListAsync();
+        public virtual async Task<ClassificacaoDeAtivos> Get(long id)
+        {
+            ClassificacaoDeAtivos obj = await _repository.Get(id);
 
-//            return assetClassification;
-//        }
+            return obj;
 
-//        public async Task<ClassificacaoDeAtivos> GetUpdate(long id)
-//        {
-//            ClassificacaoDeAtivos assetClassification = await context.Classificacao.FindAsync(id);
+        }
 
-//            return assetClassification;
-//        }
+        public async Task<List<ClassificacaoDeAtivos>> Get()
+        {
+            var objs = await _repository.Get();
 
-//        public async Task<ClassificacaoDeAtivos> Update(long id, ClassificacaoDeAtivos obj)
-//        {
-//            context.Update(obj);
-//            await context.SaveChangesAsync();
+            return objs;
+        }
 
-//            return obj;
-//        }
-//    }
-//}
+        public async Task<ClassificacaoDeAtivos> Update(ClassificacaoDeAtivos obj)
+        {
+            if (!await _repository.Exists(obj.Id)) return new ClassificacaoDeAtivos();
+
+            var result = Get(obj.Id);
+
+            if (result != null)
+            {
+                try
+                {
+                    await _repository.Update(obj);
+                }
+                catch (Exception ex)
+                {
+
+                    throw new Exception(ex + "Aconteceu um erro!");
+                }
+            }
+
+            return obj;
+        }
+
+        public void Dispose()
+        {
+            _repository?.Dispose();
+        }
+    }
+}

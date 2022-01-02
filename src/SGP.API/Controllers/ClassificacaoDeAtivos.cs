@@ -8,14 +8,14 @@ using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
 
-namespace SGP.API.Controllers
+namespace SGP.Patrimony.Service.PatrimonyService
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class FabricanteController : ApplicationController
+    public class ClassificacaoDeAtivosController : ApplicationController
     {
         private readonly IMapper _mapper;
-        public FabricanteController(IMapper mapper)
+        public ClassificacaoDeAtivosController(IMapper mapper)
         {
             _mapper = mapper;
         }
@@ -24,10 +24,10 @@ namespace SGP.API.Controllers
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.NoContent)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.InternalServerError)]
-        [ProducesResponseType(typeof(List<FabricanteViewModel>), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<IEnumerable<FabricanteViewModel>>> Get()
+        [ProducesResponseType(typeof(List<ClassificacaoDeAtivosViewModel>), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<IEnumerable<ClassificacaoDeAtivosViewModel>>> Get()
         {
-            var objDoItems = _mapper.Map<IEnumerable<FabricanteViewModel>>(await this.GatewayServiceProvider.Get<IFabricanteService>().Get());
+            var objDoItems = _mapper.Map<IEnumerable<ClassificacaoDeAtivosViewModel>>(await this.GatewayServiceProvider.Get<IClassificacaoDeAtivosService>().Get());
 
             return Ok(objDoItems);
         }
@@ -36,10 +36,10 @@ namespace SGP.API.Controllers
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.NoContent)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.InternalServerError)]
-        [ProducesResponseType(typeof(List<FabricanteViewModel>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(List<ClassificacaoDeAtivosViewModel>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> Get(int? id)
         {
-            var obj = _mapper.Map<FabricanteViewModel>(await this.GatewayServiceProvider.Get<IFabricanteService>().Get(id.Value));
+            var obj = _mapper.Map<ClassificacaoDeAtivosViewModel>(await this.GatewayServiceProvider.Get<IClassificacaoDeAtivosService>().Get(id.Value));
 
             if (obj is null)
                 return NotFound();
@@ -51,48 +51,48 @@ namespace SGP.API.Controllers
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.NoContent)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.InternalServerError)]
-        [ProducesResponseType(typeof(List<FabricanteViewModel>), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> Post([FromBody] Fabricante obj)
+        [ProducesResponseType(typeof(List<ClassificacaoDeAtivosViewModel>), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> Post([FromBody] ClassificacaoDeAtivos obj)
         {
             if (obj is null)
                 return BadRequest();
 
-            return Ok(_mapper.Map<FabricanteViewModel>(await this.GatewayServiceProvider.Get<IFabricanteService>().Create(obj)));
+            return Ok(_mapper.Map<ClassificacaoDeAtivosViewModel>(await this.GatewayServiceProvider.Get<IClassificacaoDeAtivosService>().Create(obj)));
         }
 
         [HttpPatch]
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.NoContent)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.InternalServerError)]
-        [ProducesResponseType(typeof(List<FabricanteViewModel>), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> Patch([FromBody] Fabricante obj)
+        [ProducesResponseType(typeof(List<ClassificacaoDeAtivosViewModel>), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> Patch([FromBody] ClassificacaoDeAtivos obj)
         {
             if (obj is null)
                 return BadRequest();
 
-            return Ok(_mapper.Map<FabricanteViewModel>(await this.GatewayServiceProvider.Get<IFabricanteService>().Update(obj)));
+            return Ok(_mapper.Map<ClassificacaoDeAtivosViewModel>(await this.GatewayServiceProvider.Get<IClassificacaoDeAtivosService>().Update(obj)));
         }
 
         [HttpDelete("{id:long}")]
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.NoContent)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.InternalServerError)]
-        [ProducesResponseType(typeof(List<FabricanteViewModel>), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<FabricanteViewModel>> Delete(long? id)
+        [ProducesResponseType(typeof(List<ClassificacaoDeAtivosViewModel>), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<ClassificacaoDeAtivosViewModel>> Delete(long? id)
         {
             if (id is null)
             {
                 return NotFound();
             }
 
-            var obj = await this.GatewayServiceProvider.Get<IFabricanteService>().Get(id.Value);
+            var obj = await this.GatewayServiceProvider.Get<IClassificacaoDeAtivosService>().Get(id.Value);
 
             if (obj is null)
             {
                 return NotFound();
             }
 
-            await this.GatewayServiceProvider.Get<IFabricanteService>().Delete(obj);
+            await this.GatewayServiceProvider.Get<IClassificacaoDeAtivosService>().Delete(obj);
 
             return NoContent();
         }

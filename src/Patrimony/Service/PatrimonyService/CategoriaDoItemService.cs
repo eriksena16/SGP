@@ -10,18 +10,18 @@ namespace SGP.Patrimony.Service.PatrimonyService
     public class CategoriaDoItemService : ICategoriaDoItemService
     {
 
-        private readonly ICategoriaRepository _categoriaRepository;
+        private readonly ICategoriaRepository _repository;
 
-        public CategoriaDoItemService(ICategoriaRepository categoriaRepository)
+        public CategoriaDoItemService(ICategoriaRepository repository)
         {
-            _categoriaRepository = categoriaRepository;
+            _repository = repository;
         }
 
         public async Task<CategoriaDoItem> Create(CategoriaDoItem obj)
         {
             try
             {
-                await _categoriaRepository.Create(obj);
+                await _repository.Create(obj);
             }
             catch (Exception ex)
             {
@@ -33,37 +33,51 @@ namespace SGP.Patrimony.Service.PatrimonyService
             return obj;
         }
 
-        public async Task Delete(CategoriaDoItem obj)
+        public virtual async Task Delete(CategoriaDoItem obj)
         {
-            await _categoriaRepository.Delete(obj);
+            var result = Get(obj.Id);
+
+            if (result != null)
+            {
+                try
+                {
+                    await _repository.Delete(obj);
+                }
+                catch (Exception ex)
+                {
+
+                    throw new Exception(ex + "Aconteceu um erro!");
+                }
+            }
+
         }
 
         public virtual async Task<CategoriaDoItem> Get(long id)
         {
-            CategoriaDoItem categoria = await _categoriaRepository.Get(id);
+            CategoriaDoItem obj = await _repository.Get(id);
 
-            return categoria;
+            return obj;
 
         }
 
         public async Task<List<CategoriaDoItem>> Get()
         {
-            var categorias = await _categoriaRepository.Get();
+            var objs = await _repository.Get();
 
-            return categorias;
+            return objs;
         }
 
         public async Task<CategoriaDoItem> Update(CategoriaDoItem obj)
         {
-            if (!await _categoriaRepository.Exists(obj.Id)) return new CategoriaDoItem();
+            if (!await _repository.Exists(obj.Id)) return new CategoriaDoItem();
 
-            var categoria = await _categoriaRepository.Get(obj.Id);
+            var result = Get(obj.Id);
 
-            if (categoria != null)
+            if (result != null)
             {
                 try
                 {
-                    await _categoriaRepository.Update(categoria);
+                    await _repository.Update(obj);
                 }
                 catch (Exception ex)
                 {
@@ -77,7 +91,7 @@ namespace SGP.Patrimony.Service.PatrimonyService
 
         public void Dispose()
         {
-            _categoriaRepository?.Dispose();
+            _repository?.Dispose();
         }
     }
 }

@@ -18,10 +18,11 @@ namespace SGP.Patrimony.Infrastructure.PatrimonyLocator
             services.AddScoped<ICategoriaRepository, CategoriaRepository>();
             services.AddScoped<IFabricanteRepository, FabricanteRepository>();
             services.AddScoped<ISetorRepository, SetorRepository>();
+            services.AddScoped<IClassificacaoDeAtivosRepository, ClassificacaoDeAtivosRepository>();
 
             //SERVICES
             services.AddScoped<ICategoriaDoItemService, CategoriaDoItemService>();
-            //services.AddScoped<IClassificacaoDeAtivosService, ClassificacaoDeAtivosService>();
+            services.AddScoped<IClassificacaoDeAtivosService, ClassificacaoDeAtivosService>();
             //services.AddScoped<IModeloDeEquipamentoService, ModeloDeEquipamentoService>();
             services.AddScoped<ISetorService, SetorService>();
             services.AddScoped<IFabricanteService, FabricanteService>();
