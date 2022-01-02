@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SGP.Model.Entity
 {
-    public class ClassificacaoDeAtivos : GenericEntity
+    public class ClassificacaoDeAtivos : BaseEntity
     {
         
         [Display(Name ="Taxa de depreciação")]

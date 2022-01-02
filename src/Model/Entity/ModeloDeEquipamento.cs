@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SGP.Model.Entity
 {
-    public class ModeloDeEquipamento : GenericEntity
+    public class ModeloDeEquipamento : BaseEntity
     {
         public string Nome { get; set; }
         [Display(Name = "Fabricante")]

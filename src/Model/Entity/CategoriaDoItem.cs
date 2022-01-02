@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace SGP.Model.Entity
 
 {
-    public class CategoriaDoItem : GenericEntity
+    public class CategoriaDoItem : BaseEntity
     {
         public string Nome { get; set; }
 

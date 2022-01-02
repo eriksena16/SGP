@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace SGP.Contract.Service.PatrimonyContract.Repositories
 {
-    public interface IGenericRepository<TEntity> : IDisposable where TEntity : GenericEntity
+    public interface IGenericRepository<TEntity> : IDisposable where TEntity : BaseEntity
     {
         Task Create(TEntity obj);
         Task<TEntity> Get(long id);

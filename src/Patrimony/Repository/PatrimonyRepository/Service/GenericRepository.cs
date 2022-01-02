@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SGP.Patrimony.Repository.PatrimonyRepository.Service
 {
-    public abstract class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : GenericEntity, new()
+    public abstract class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : BaseEntity, new()
     {
         protected readonly DbSet<TEntity> DbSet;
         protected readonly DbContext Db;
@@ -35,45 +35,6 @@ namespace SGP.Patrimony.Repository.PatrimonyRepository.Service
 
         }
 
-        //public async Task<QueryResult<T>> Get(G filter)
-        //{
-        //    var query = entities.AsQueryable();
-
-        //    return await Get(query, filter);
-        //}
-        //public async Task<QueryResult<T>> Get(IQueryable<T> query, G filter, IQueryable<T> includeQuery = null)
-        //{
-        //    if (filter.Id.Any())
-        //        query = query.Where(c => filter.Id.Contains(c.Id));
-
-        //    if (filter.ExcludeId.Any())
-        //        query = query.Where(c => !filter.ExcludeId.Contains(c.Id));
-
-        //    // Order By
-        //    query = query.ApplyOrdering(filter);
-
-        //    var result = new QueryResult<T>(filter)
-        //    {
-        //        TotalItems = await query.CountAsync()
-        //    };
-
-        //    // Pagination
-        //    if (filter.GetAll != true)
-        //        query = query.ApplyPaging(filter);
-
-        //    result.Items = await query.ToListAsync();
-
-        //    if (filter.IncludeId.Any())
-        //    {
-        //        var alreadyIn = result.Items.Select(c => c.Id).ToList();
-        //        var newQuery = includeQuery ?? entities;
-        //        var included = newQuery.Where(c => filter.IncludeId.Contains(c.Id) && !alreadyIn.Contains(c.Id)).ToList();
-        //        result.Items = result.Items.Concat(included);
-        //    }
-
-        //    return result;
-        //}
-
         public virtual async Task Update(TEntity obj)
         {
             DbSet.Update(obj);
@@ -92,13 +53,13 @@ namespace SGP.Patrimony.Repository.PatrimonyRepository.Service
 
         public virtual Task<bool> Exists(long id)
         {
-            return DbSet.AnyAsync(c=> c.Id.Equals(id));
+            return DbSet.AnyAsync(c => c.Id.Equals(id));
         }
         public void Dispose()
         {
             Db?.Dispose();
         }
 
-        
+
     }
 }

@@ -2,7 +2,7 @@
 
 namespace SGP.Model.Entity
 {
-    public abstract class Empresa : GenericEntity
+    public abstract class Empresa : BaseEntity
     {
         public string Nome { get; set; }
         public string Cnpj { get; set; }

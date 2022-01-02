@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace SGP.Model.Entity
 {
 
-    public class Equipamento : GenericEntity
+    public class Equipamento : BaseEntity
     {
         public long NumeroDePatrmonio { get; set; }
         public long CategoriaDoItemId{ get; set; }

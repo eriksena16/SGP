@@ -2,7 +2,7 @@
 
 namespace SGP.Model.Entity
 {
-    public abstract class EmpresaViewModel : GenericEntity
+    public abstract class EmpresaViewModel : BaseEntity
     {
         public string Nome { get; set; }
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
