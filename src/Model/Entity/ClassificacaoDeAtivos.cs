@@ -1,14 +1,11 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace SGP.Model.Entity
 {
     public class ClassificacaoDeAtivos : BaseEntity
     {
         
-        [Display(Name ="Taxa de depreciação")]
         public int TaxaDeDepreciacao { get; set; }
-        [Display(Name ="Vida Útil")]
         public int VidaUtil { get; set; }
         public string Nome { get; set; }
 
