@@ -50,6 +50,14 @@ namespace SGP.Patrimony.Repository.PatrimonyRepository.Mappings
                 .IsRequired()
                 .HasColumnType("varchar(MAX)");
 
+            builder.Property(p => p.ValorAtual)
+                .IsRequired()
+                .HasColumnType("decimal(18,4)");
+
+            builder.Property(p => p.ValorDeCompra)
+                .IsRequired()
+                .HasColumnType("decimal(18,4)");
+
             builder.HasOne(m => m.ModeloDeEquipamento)
             .WithMany(e => e.Equipamentos)
             .OnDelete(DeleteBehavior.Cascade);

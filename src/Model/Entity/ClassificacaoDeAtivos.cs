@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace SGP.Model.Entity
 {
@@ -9,6 +10,7 @@ namespace SGP.Model.Entity
         public int VidaUtil { get; set; }
         public string Nome { get; set; }
 
+        [JsonIgnore]
         public ICollection<Equipamento> Equipamento { get; set; }
     }
 }

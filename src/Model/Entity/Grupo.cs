@@ -2,8 +2,9 @@
 
 namespace SGP.Model.Entity
 {
-    class Grupo : BaseEntity
+   public class Grupo : BaseEntity
     {
+        public string Nome { get; set; }
         public ICollection<Usuario> Usuario { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SGP.Model.Entity
 {
@@ -6,9 +7,11 @@ namespace SGP.Model.Entity
     public class Usuario : BaseEntity
     {
         public string Nome { get; set; }
-        [Display(Name = "Login")]
         public string Username { get; set; }
-        [Display(Name = "Sobrenome")]
         public string Sobrenome { get; set; }
+        public long GrupoId { get; set; }
+        [JsonIgnore]
+        [ForeignKey("GrupoId")]
+        public Grupo Grupo { get; set; }
     }
 }
