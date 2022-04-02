@@ -1,0 +1,51 @@
+﻿@model IEnumerable<SGP.Model.Entity.Setor>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<<h1 class="mt-4">Lista de Setores</h1>
+
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item"><a asp-action="Create">Adicionar</a></li>
+    <li class="breadcrumb-item active">Lista de Setores</li>
+</ol>
+
+<div class="card mb-4">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.Nome)</th>
+                        <th>Ação</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.Nome)</th>
+                        <th>Ação</th>
+
+                    </tr>
+                </tfoot>
+                <tbody>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+
+                            <td>@Html.DisplayFor(modelItem => item.Nome)</td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.Id"><i class="fas fa-edit fa-2x" title="Editar" data-target="#form"></i></a> |
+                                <a asp-action="Details" asp-route-id="@item.Id"><i class="fas fa-info fa-2x" title="Detalhes"></i></a> |
+                                <a asp-action="Delete" asp-route-id="@item.Id"><i class="fas fa-trash-alt fa-2x" title="Deletar"></i></a>
+                            </td>
+
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

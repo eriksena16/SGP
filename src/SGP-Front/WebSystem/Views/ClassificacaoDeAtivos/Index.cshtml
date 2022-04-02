@@ -1,0 +1,59 @@
+﻿@model IEnumerable<SGP.Model.Entity.ClassificacaoDeAtivos>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="mt-4">Tabela de Depreciação</h1>
+
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item"><a asp-action="Create">Adicionar</a></li>
+    <li class="breadcrumb-item active">Tabela de Depreciação</li>
+</ol>
+
+<div class="card mb-4">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.Nome)</th>
+                        <th>@Html.DisplayNameFor(model => model.TaxaDeDepreciacao)</th>
+                        <th>@Html.DisplayNameFor(model => model.VidaUtil)</th>
+                        <th>Ação</th>
+
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.Nome)</th>
+                        <th>@Html.DisplayNameFor(model => model.TaxaDeDepreciacao)</th>
+                        <th>@Html.DisplayNameFor(model => model.VidaUtil)</th>
+                        <th>Ação</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+
+                            <td>@Html.DisplayFor(modelItem => item.Nome)</td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TaxaDeDepreciacao)%
+                            </td>
+                            <td>@Html.DisplayFor(modelItem => item.VidaUtil) Anos</td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.Id"><i class="fas fa-edit fa-2x" title="Editar"></i></a> |
+                                <a asp-action="Details" asp-route-id="@item.Id"><i class="fas fa-info fa-2x" title="Deletar"></i></a> |
+                                <a asp-action="Delete" asp-route-id="@item.Id"><i class="fas fa-trash-alt fa-2x" title="Deletar"></i></a>
+                            </td>
+
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

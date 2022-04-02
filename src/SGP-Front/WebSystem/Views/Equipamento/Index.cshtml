@@ -1,0 +1,70 @@
+﻿@model IEnumerable<SGP.Model.Entity.Equipamento>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="mt-4">Equipamentos</h1>
+   
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item"><a asp-action="Create">Adicionar</a></li>
+    <li class="breadcrumb-item active">Lista de Equipamentos</li>
+</ol>
+
+<div class="card mb-4">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.NumeroDePatrmonio)</th>
+                        <th>@Html.DisplayNameFor(model => model.CategoriaDoItem
+                        
+                        )</th>
+                        <th>@Html.DisplayNameFor(model => model.ClassificacaoDeAtivosId)</th>
+                        @*<th>@Html.DisplayNameFor(model => model.FabricanteId)</th>*@
+                        <th>@Html.DisplayNameFor(model => model.NumeroDeSerie)</th>
+                        <th>@Html.DisplayNameFor(model => model.EquipamentoStatus)</th>
+                        <th>@Html.DisplayNameFor(model => model.ResponsavelDoEquipamentoId)</th>
+                        <th>@Html.DisplayNameFor(model => model.SetorId)</th>
+                        <th>@Html.DisplayNameFor(model => model.EstadoDeConservacao)</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.NumeroDePatrmonio)</th>
+                        <th>@Html.DisplayNameFor(model => model.CategoriaDoItemId)</th>
+                        <th>@Html.DisplayNameFor(model => model.ClassificacaoDeAtivosId)</th>
+                        @*<th>@Html.DisplayNameFor(model => model.FabricanteId)</th>*@
+                        <th>@Html.DisplayNameFor(model => model.NumeroDeSerie)</th>
+                        <th>@Html.DisplayNameFor(model => model.EquipamentoStatus)</th>
+                        <th>@Html.DisplayNameFor(model => model.ResponsavelDoEquipamentoId)</th>
+                        <th>@Html.DisplayNameFor(model => model.SetorId)</th>
+                        <th>@Html.DisplayNameFor(model => model.EstadoDeConservacao)</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+
+                    @foreach(var item in Model)
+                    {
+                    <tr>
+                        <td>
+                            @{var numero = item.NumeroDePatrmonio; }
+                            <a asp-action="Details" asp-route-id="@item.Id">@Html.Raw(numero.ToString("000000"))</a>
+                        </td>
+                        <td>@Html.DisplayFor(modelItem => item.CategoriaDoItem.Nome)</td>
+                        <td>@Html.DisplayFor(modelItem => item.ClassificacaoDeAtivos.Nome)</td>
+                        @*<td>@Html.DisplayFor(modelItem => item.Fabricante.Nome)</td>*@
+                        <td>@Html.DisplayFor(modelItem => item.NumeroDeSerie)</td>
+                        <td>@Html.DisplayFor(modelItem => item.EquipamentoStatus)</td>
+                        <td>@Html.DisplayFor(modelItem => item.ResponsavelDoEquipamento.Nome)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Setor.Nome)</td>
+                        <td>@Html.DisplayFor(modelItem => item.EstadoDeConservacao)</td>
+                    </tr>
+                    }
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
