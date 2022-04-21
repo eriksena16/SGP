@@ -52,16 +52,16 @@
                                 <span asp-validation-for="CategoriaDoItemId" class="text-danger" />
                             </div>
                             <div class="form-group">
-                                <label asp-for="NumeroDeSerie" class="control-label"></label>
-                                <input asp-for="NumeroDeSerie" class="form-control" />
-                                <span asp-validation-for="NumeroDeSerie" class="text-danger"></span>
+                                <label asp-for="Serie" class="control-label"></label>
+                                <input asp-for="Serie" class="form-control" />
+                                <span asp-validation-for="Serie" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="EquipamentoStatus" class="control-label"></label>
-                                <select asp-for="EquipamentoStatus" class="form-control" asp-items="Html.GetEnumSelectList<EquipamentoStatus>()">
+                                <label asp-for="Status" class="control-label"></label>
+                                <select asp-for="Status" class="form-control" asp-items="Html.GetEnumSelectList<EquipamentoStatus>()">
                                     <option value="">-- Selecione o Status --</option>
                                 </select>
-                                <span asp-validation-for="EquipamentoStatus" class="text-danger"></span>
+                                <span asp-validation-for="Status" class="text-danger"></span>
                             </div>
                             
                         </div>

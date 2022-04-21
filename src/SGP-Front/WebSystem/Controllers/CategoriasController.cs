@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using SGP.Code;
 using SGP.Contract.Service.PatrimonyContract;
 using SGP.Model.Entity;
+using SGP.Model.Entity.ViewModels;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -14,7 +15,7 @@ namespace SGP.Controllers
 
         public async Task<IActionResult> Index()
         {
-            List<CategoriaDoItem> categoriaDoItem = await this.GatewayServiceProvider.Get<ICategoriaDoItemService>().Get();
+            var categoriaDoItem = await this.GatewayServiceProvider.Get<ICategoriaDoItemService>().Get();
 
             return View(categoriaDoItem);
         }
@@ -44,11 +45,11 @@ namespace SGP.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(CategoriaDoItem categoriaDoItem)
+        public async Task<IActionResult> Create(CategoriaDoItemViewModel categoriaDoItem)
         {
             if (ModelState.IsValid)
             {
-                CategoriaDoItem CategoriaDoItem = await this.GatewayServiceProvider.Get<ICategoriaDoItemService>().Create(categoriaDoItem);
+                var CategoriaDoItem = await this.GatewayServiceProvider.Get<ICategoriaDoItemService>().Add(categoriaDoItem);
                 return RedirectToAction(nameof(Index));
             }
             return View(categoriaDoItem);
@@ -61,7 +62,7 @@ namespace SGP.Controllers
                 return NotFound();
             }
 
-            CategoriaDoItem categoriaDoItem = await GatewayServiceProvider.Get<ICategoriaDoItemService>().Get(id.Value);
+            var categoriaDoItem = await GatewayServiceProvider.Get<ICategoriaDoItemService>().Get(id.Value);
 
             if (categoriaDoItem == null)
             {
@@ -73,7 +74,7 @@ namespace SGP.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(long id, CategoriaDoItem categoriaDoItem)
+        public async Task<IActionResult> Edit(long id, CategoriaDoItemViewModel categoriaDoItem)
         {
             if (id != categoriaDoItem.Id)
             {
@@ -84,7 +85,7 @@ namespace SGP.Controllers
             {
                 try
                 {
-                    CategoriaDoItem ItemCategory = await GatewayServiceProvider.Get<ICategoriaDoItemService>().Update(categoriaDoItem);
+                    var ItemCategory = await GatewayServiceProvider.Get<ICategoriaDoItemService>().Update(categoriaDoItem);
                 }
                 catch (DbUpdateConcurrencyException)
                 {

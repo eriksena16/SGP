@@ -7,7 +7,7 @@ namespace SGP.Model.Entity.ViewModels
 {
    public class EquipamentoViewModel
     {
-        public long NumeroDePatrmonio { get; set; }
+        public long NumeroDePatrimonio { get; set; }
         public int CategoriaDoItemId { get; set; }
         public string CategoriaDoItemNome { get; set; }
         public int? Idade { get; set; }

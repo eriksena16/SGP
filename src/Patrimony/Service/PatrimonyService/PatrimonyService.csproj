@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\..\Contract\Service\PatrimonyContract\PatrimonyContract.csproj" />
     <ProjectReference Include="..\..\..\Model\Entity\Entity.csproj" />
     <ProjectReference Include="..\..\Repository\PatrimonyRepository\PatrimonyRepository.csproj" />

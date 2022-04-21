@@ -1,6 +1,8 @@
-﻿using SGP.Contract.Service.PatrimonyContract;
+﻿using AutoMapper;
+using SGP.Contract.Service.PatrimonyContract;
 using SGP.Contract.Service.PatrimonyContract.Repositories;
 using SGP.Model.Entity;
+using SGP.Model.Entity.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -11,17 +13,20 @@ namespace SGP.Patrimony.Service.PatrimonyService
     {
 
         private readonly ICategoriaRepository _repository;
-
-        public CategoriaDoItemService(ICategoriaRepository repository)
+        private readonly IMapper _mapper;
+        public CategoriaDoItemService(ICategoriaRepository repository, IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
         }
 
-        public async Task<CategoriaDoItem> Create(CategoriaDoItem obj)
+        public async Task<CategoriaDoItemViewModel> Add(CategoriaDoItemViewModel obj)
         {
             try
             {
-                await _repository.Create(obj);
+                var categoria = _mapper.Map<CategoriaDoItem>(obj);
+
+                await _repository.Create(categoria);
             }
             catch (Exception ex)
             {
@@ -33,15 +38,15 @@ namespace SGP.Patrimony.Service.PatrimonyService
             return obj;
         }
 
-        public virtual async Task Delete(CategoriaDoItem obj)
+        public async Task Delete(CategoriaDoItemViewModel obj)
         {
-            var result = Get(obj.Id);
+            var categoria = _mapper.Map<CategoriaDoItem>(Get(obj.Id));
 
-            if (result != null)
+            if (categoria != null)
             {
                 try
                 {
-                    await _repository.Delete(obj);
+                    await _repository.Delete(categoria);
                 }
                 catch (Exception ex)
                 {
@@ -52,24 +57,24 @@ namespace SGP.Patrimony.Service.PatrimonyService
 
         }
 
-        public virtual async Task<CategoriaDoItem> Get(long id)
+        public async Task<CategoriaDoItemViewModel> Get(long id)
         {
-            CategoriaDoItem obj = await _repository.Get(id);
+            var categoria = _mapper.Map<CategoriaDoItemViewModel>(await _repository.Get(id));
 
-            return obj;
+            return categoria;
 
         }
 
-        public async Task<List<CategoriaDoItem>> Get()
+        public async Task<List<CategoriaDoItemViewModel>> Get()
         {
-            var objs = await _repository.Get();
+            var categoria = _mapper.Map<List<CategoriaDoItemViewModel>>(await _repository.Get());
 
-            return objs;
+            return categoria;
         }
 
-        public async Task<CategoriaDoItem> Update(CategoriaDoItem obj)
+        public async Task<CategoriaDoItemViewModel> Update(CategoriaDoItemViewModel obj)
         {
-            if (!await _repository.Exists(obj.Id)) return new CategoriaDoItem();
+            if (!await _repository.Exists(obj.Id)) return new CategoriaDoItemViewModel();
 
             var result = Get(obj.Id);
 
@@ -77,7 +82,9 @@ namespace SGP.Patrimony.Service.PatrimonyService
             {
                 try
                 {
-                    await _repository.Update(obj);
+                    var categoria = _mapper.Map<CategoriaDoItemViewModel, CategoriaDoItem>(obj);
+
+                    await _repository.Update(categoria);
                 }
                 catch (Exception ex)
                 {

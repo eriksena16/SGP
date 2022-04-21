@@ -1,6 +1,8 @@
-﻿using SGP.Contract.Service.PatrimonyContract;
+﻿using AutoMapper;
+using SGP.Contract.Service.PatrimonyContract;
 using SGP.Contract.Service.PatrimonyContract.Repositories;
 using SGP.Model.Entity;
+using SGP.Model.Entity.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -10,17 +12,20 @@ namespace SGP.Patrimony.Service.PatrimonyService
     public class SetorService : ISetorService
     {
         private readonly ISetorRepository _setorRepository;
-
-        public SetorService(ISetorRepository setorRepository)
+        private readonly IMapper _mapper;
+        public SetorService(ISetorRepository setorRepository, IMapper mapper)
         {
             _setorRepository = setorRepository;
+            _mapper = mapper;
         }
 
-        public async Task<Setor> Create(Setor obj)
+        public async Task<SetorViewModel> Add(SetorViewModel obj)
         {
             try
             {
-                await _setorRepository.Create(obj);
+                var setor = _mapper.Map<Setor>(obj);
+
+                await _setorRepository.Create(setor);
             }
             catch (Exception ex)
             {
@@ -31,15 +36,16 @@ namespace SGP.Patrimony.Service.PatrimonyService
             return obj;
         }
 
-        public async Task Delete(Setor obj)
+        public async Task Delete(SetorViewModel obj)
         {
-            var result = Get(obj.Id);
+            var setor = _mapper.Map<Setor>(Get(obj.Id));
 
-            if (result != null)
+
+            if (setor != null)
             {
                 try
                 {
-                    await _setorRepository.Delete(obj);
+                    await _setorRepository.Delete(setor);
                 }
                 catch (Exception ex)
                 {
@@ -50,24 +56,24 @@ namespace SGP.Patrimony.Service.PatrimonyService
         }
 
 
-        public virtual async Task<Setor> Get(long id)
+        public virtual async Task<SetorViewModel> Get(long id)
         {
-            Setor setor = await _setorRepository.Get(id);
+            var setor = _mapper.Map<SetorViewModel>(await _setorRepository.Get(id));
 
             return setor;
         }
 
-        public async Task<List<Setor>> Get()
+        public async Task<List<SetorViewModel>> Get()
         {
-            List<Setor> setor = await _setorRepository.Get();
+            List<SetorViewModel> setor = _mapper.Map<List<SetorViewModel>>(await _setorRepository.Get());
 
             return setor;
         }
 
 
-        public async Task<Setor> Update(Setor obj)
+        public async Task<SetorViewModel> Update(SetorViewModel obj)
         {
-            if (!await _setorRepository.Exists(obj.Id)) return new Setor();
+            if (!await _setorRepository.Exists(obj.Id)) return new SetorViewModel();
 
             var result = Get(obj.Id);
 
@@ -75,7 +81,9 @@ namespace SGP.Patrimony.Service.PatrimonyService
             {
                 try
                 {
-                    await _setorRepository.Update(obj);
+                    var setor = _mapper.Map<SetorViewModel, Setor>(obj);
+
+                    await _setorRepository.Update(setor);
                 }
                 catch (Exception ex)
                 {

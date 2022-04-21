@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31005.135
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repository", "Repository", "{9363A6EC-D70E-4D76-A277-3CB90A9BB98D}"
 EndProject
@@ -39,11 +39,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PatrimonyContract", "..\src
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GatewayService", "..\src\Gateway\Service\GatewayService\GatewayService.csproj", "{72105F00-D0A4-4DAF-9725-913606821C45}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SGP.API", "SGP.API", "{3FEBED5F-2576-4335-B90C-B24620846E92}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SGP.API", "..\src\SGP.API\SGP.API.csproj", "{3FA613D1-3C4D-4C12-8D33-5CE136FC9F27}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SGP.FRONT-END", "..\src\SGP-Front\WebSystem\SGP.FRONT-END.csproj", "{FCB9DB47-BD8B-41BA-AF0B-CDD735B8BF93}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SGP.API", "..\src\SGP.API\SGP.API.csproj", "{30E1A287-F9DD-41F1-949F-1848D8651014}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -83,14 +81,14 @@ Global
 		{72105F00-D0A4-4DAF-9725-913606821C45}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{72105F00-D0A4-4DAF-9725-913606821C45}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{72105F00-D0A4-4DAF-9725-913606821C45}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3FA613D1-3C4D-4C12-8D33-5CE136FC9F27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3FA613D1-3C4D-4C12-8D33-5CE136FC9F27}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3FA613D1-3C4D-4C12-8D33-5CE136FC9F27}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3FA613D1-3C4D-4C12-8D33-5CE136FC9F27}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FCB9DB47-BD8B-41BA-AF0B-CDD735B8BF93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FCB9DB47-BD8B-41BA-AF0B-CDD735B8BF93}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FCB9DB47-BD8B-41BA-AF0B-CDD735B8BF93}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FCB9DB47-BD8B-41BA-AF0B-CDD735B8BF93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30E1A287-F9DD-41F1-949F-1848D8651014}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30E1A287-F9DD-41F1-949F-1848D8651014}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30E1A287-F9DD-41F1-949F-1848D8651014}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30E1A287-F9DD-41F1-949F-1848D8651014}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -110,7 +108,6 @@ Global
 		{221206A3-5DF0-4908-A89D-74848AC6ECB4} = {CA6FB34E-AED1-4A72-B268-4F3311B193F4}
 		{BA6FED91-CA1F-4B91-8976-ECBA603E9EF7} = {A2BCBCB5-F842-4726-ACDB-1269C66E45AE}
 		{72105F00-D0A4-4DAF-9725-913606821C45} = {432C2187-D638-4EAF-8928-4CDD2AE80BC8}
-		{3FA613D1-3C4D-4C12-8D33-5CE136FC9F27} = {3FEBED5F-2576-4335-B90C-B24620846E92}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FC2073FE-6138-48FA-8AF7-416164B858EB}

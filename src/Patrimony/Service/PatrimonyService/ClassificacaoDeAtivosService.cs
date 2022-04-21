@@ -1,6 +1,8 @@
-﻿using SGP.Contract.Service.PatrimonyContract;
+﻿using AutoMapper;
+using SGP.Contract.Service.PatrimonyContract;
 using SGP.Contract.Service.PatrimonyContract.Repositories;
 using SGP.Model.Entity;
+using SGP.Model.Entity.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -11,17 +13,20 @@ namespace SGP.Patrimony.Service.PatrimonyService
     {
 
         private readonly IClassificacaoDeAtivosRepository _repository;
-
-        public ClassificacaoDeAtivosService(IClassificacaoDeAtivosRepository repository)
+        private readonly IMapper _mapper;
+        public ClassificacaoDeAtivosService(IClassificacaoDeAtivosRepository repository, IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
         }
 
-        public async Task<ClassificacaoDeAtivos> Create(ClassificacaoDeAtivos obj)
+        public async Task<ClassificacaoDeAtivosViewModel> Add(ClassificacaoDeAtivosViewModel obj)
         {
             try
             {
-                await _repository.Create(obj);
+                var classificacao = _mapper.Map<ClassificacaoDeAtivos>(obj);
+
+                await _repository.Create(classificacao);
             }
             catch (Exception ex)
             {
@@ -33,15 +38,15 @@ namespace SGP.Patrimony.Service.PatrimonyService
             return obj;
         }
 
-        public async Task Delete(ClassificacaoDeAtivos obj)
+        public async Task Delete(ClassificacaoDeAtivosViewModel obj)
         {
-            var result = Get(obj.Id);
+            var classificacao = _mapper.Map<ClassificacaoDeAtivos>(Get(obj.Id));
 
-            if (result != null)
+            if (classificacao != null)
             {
                 try
                 {
-                    await _repository.Delete(obj);
+                    await _repository.Delete(classificacao);
                 }
                 catch (Exception ex)
                 {
@@ -52,24 +57,25 @@ namespace SGP.Patrimony.Service.PatrimonyService
 
         }
 
-        public virtual async Task<ClassificacaoDeAtivos> Get(long id)
+        public async Task<ClassificacaoDeAtivosViewModel> Get(long id)
         {
-            ClassificacaoDeAtivos obj = await _repository.Get(id);
+            var classificacao = _mapper.Map<ClassificacaoDeAtivosViewModel>(await _repository.Get(id));
 
-            return obj;
+            return classificacao;
 
         }
 
-        public async Task<List<ClassificacaoDeAtivos>> Get()
+        public async Task<List<ClassificacaoDeAtivosViewModel>> Get()
         {
-            var objs = await _repository.Get();
+            var classificacao = _mapper.Map<List<ClassificacaoDeAtivosViewModel>>(await _repository.Get());
 
-            return objs;
+            return classificacao;
         }
 
-        public async Task<ClassificacaoDeAtivos> Update(ClassificacaoDeAtivos obj)
+        public async Task<ClassificacaoDeAtivosViewModel> Update(ClassificacaoDeAtivosViewModel obj)
         {
-            if (!await _repository.Exists(obj.Id)) return new ClassificacaoDeAtivos();
+
+            if (!await _repository.Exists(obj.Id)) return new ClassificacaoDeAtivosViewModel();
 
             var result = Get(obj.Id);
 
@@ -77,7 +83,9 @@ namespace SGP.Patrimony.Service.PatrimonyService
             {
                 try
                 {
-                    await _repository.Update(obj);
+                    var categoria = _mapper.Map<ClassificacaoDeAtivosViewModel, ClassificacaoDeAtivos>(obj);
+
+                    await _repository.Update(categoria);
                 }
                 catch (Exception ex)
                 {

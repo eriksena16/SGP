@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using SGP.Code;
 using SGP.Contract.Service.PatrimonyContract;
 using SGP.Model.Entity;
+using SGP.Model.Entity.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -27,25 +28,20 @@ namespace SGP.Controllers
         public async Task<IActionResult> Index()
         {
 
-            List<Equipamento> equipamento = await this.GatewayServiceProvider.Get<IEquipamentoService>().GetAll();
+            List<EquipamentoViewModel> equipamento = await this.GatewayServiceProvider.Get<IEquipamentoService>().Get();
             return View(equipamento);
         }
 
         // GET: Equipamentos/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(long id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
+          
             Equipamento equipamento = await this.GatewayServiceProvider.Get<IEquipamentoService>().Get(id);
 
             if (equipamento == null)
             {
                 return NotFound();
             }
-
 
 
 
@@ -81,13 +77,13 @@ namespace SGP.Controllers
 
                 try
                 {
-                    if (equipamento.NotaFiscal.Length > 0)
-                    {
-                        string folder = "uploads/notas/";
-                        equipamento.NotaFiscalUrl = await Upload(folder, equipamento.NotaFiscal);
-                    }
+                    //if (equipamento.NotaFiscal.Length > 0)
+                    //{
+                    //    string folder = "uploads/notas/";
+                    //    equipamento.NotaFiscalUrl = await Upload(folder, equipamento.NotaFiscal);
+                    //}
 
-                    equipamento = await this.GatewayServiceProvider.Get<IEquipamentoService>().Create(equipamento);
+                    equipamento = await this.GatewayServiceProvider.Get<IEquipamentoService>().Add(equipamento);
                 }
                 catch (Exception ex)
                 {
@@ -112,14 +108,14 @@ namespace SGP.Controllers
 
 
         // GET: Equipamentos/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(long? id)
         {
             if (id == null)
             {
                 return View();
             }
 
-            var equipamentos = await this.GatewayServiceProvider.Get<IEquipamentoService>().GetUpdate(id.Value);
+            var equipamentos = await this.GatewayServiceProvider.Get<IEquipamentoService>().Get(id.Value);
 
             if (equipamentos == null)
 
@@ -127,12 +123,12 @@ namespace SGP.Controllers
                 return NotFound();
             }
 
-            if (equipamentos.NotaFiscal != null)
-            {
+            //if (equipamentos.NotaFiscal != null)
+            //{
 
-                equipamentos.NotaFiscalUrl = equipamentos.NotaFiscalUrl;
+            //    equipamentos.NotaFiscalUrl = equipamentos.NotaFiscalUrl;
 
-            }
+            //}
 
             DropdownListCategoriaDoItem(equipamentos.CategoriaDoItemId);
             DropdownListClassificacaoDeAtivos(equipamentos.ClassificacaoDeAtivosId);
@@ -159,26 +155,20 @@ namespace SGP.Controllers
 
                 try
                 {
-                    if (equipamentos.NotaFiscal.Length > 0)
-                    {
-                        string folder = "uploads/notas/";
-                        equipamentos.NotaFiscalUrl = await Upload(folder, equipamentos.NotaFiscal);
+                    //if (equipamentos.NotaFiscal.Length > 0)
+                    //{
+                    //    string folder = "uploads/notas/";
+                    //    equipamentos.NotaFiscalUrl = await Upload(folder, equipamentos.NotaFiscal);
 
 
-                    }
+                    //}
 
-                    await this.GatewayServiceProvider.Get<IEquipamentoService>().Update(id, equipamentos);
+                    await this.GatewayServiceProvider.Get<IEquipamentoService>().Update(equipamentos);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!await Exists(equipamentos.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
+                    
                         throw;
-                    }
                 }
                 return RedirectToAction(nameof(Index));
             }
@@ -195,24 +185,16 @@ namespace SGP.Controllers
         }
 
         // GET: Equipamentos/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(long id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
 
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            Equipamento equipamento = await this.GatewayServiceProvider.Get<IEquipamentoService>().Delete(id);
+            Equipamento equipamento = await this.GatewayServiceProvider.Get<IEquipamentoService>().Get(id);
 
             if (equipamento == null)
             {
                 return NotFound();
-            }
+            }else
+                await this.GatewayServiceProvider.Get<IEquipamentoService>().Delete(equipamento);
 
             return View(equipamento);
         }
@@ -222,15 +204,10 @@ namespace SGP.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            Equipamento equipamentos = await this.GatewayServiceProvider.Get<IEquipamentoService>().DeleteConfirmed(id);
+            Equipamento equipamentos = await this.GatewayServiceProvider.Get<IEquipamentoService>().Get(id);
             return RedirectToAction(nameof(Index));
         }
 
-        private async Task<bool> Exists(long id)
-        {
-            bool exists = await this.GatewayServiceProvider.Get<IEquipamentoService>().Exists(id);
-            return exists;
-        }
         private async Task<string> Upload(string folderPath, IFormFile file)
         {
             folderPath += Guid.NewGuid().ToString() + "_" + file.FileName;

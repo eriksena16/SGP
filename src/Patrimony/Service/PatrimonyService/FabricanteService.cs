@@ -1,6 +1,7 @@
 ﻿using SGP.Contract.Service.PatrimonyContract;
 using SGP.Contract.Service.PatrimonyContract.Repositories;
 using SGP.Model.Entity;
+using SGP.Model.Entity.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -17,7 +18,7 @@ namespace SGP.Patrimony.Service.PatrimonyService
             _repository = repository;
         }
 
-        public async Task<Fabricante> Create(Fabricante obj)
+        public async Task<FabricanteViewModel> Add(FabricanteViewModel obj)
         {
             try
             {
@@ -33,7 +34,7 @@ namespace SGP.Patrimony.Service.PatrimonyService
             return obj;
         }
 
-        public async Task Delete(Fabricante obj)
+        public async Task Delete(FabricanteViewModel obj)
         {
             var result = Get(obj.Id);
 
@@ -52,7 +53,7 @@ namespace SGP.Patrimony.Service.PatrimonyService
 
         }
 
-        public virtual async Task<Fabricante> Get(long id)
+        public virtual async Task<FabricanteViewModel> Get(long id)
         {
             Fabricante obj = await _repository.Get(id);
 
@@ -60,16 +61,16 @@ namespace SGP.Patrimony.Service.PatrimonyService
 
         }
 
-        public async Task<List<Fabricante>> Get()
+        public async Task<List<FabricanteViewModel>> Get()
         {
             var objs = await _repository.Get();
 
             return objs;
         }
 
-        public async Task<Fabricante> Update(Fabricante obj)
+        public async Task<FabricanteViewModel> Update(FabricanteViewModel obj)
         {
-            if (!await _repository.Exists(obj.Id)) return new Fabricante();
+            if (!await _repository.Exists(obj.Id)) return new FabricanteViewModel();
 
             var result = Get(obj.Id);
 

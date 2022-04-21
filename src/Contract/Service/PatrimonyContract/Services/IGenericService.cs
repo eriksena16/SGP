@@ -6,7 +6,7 @@ namespace SGP.Contract.Service.PatrimonyContract
 {
     public interface IGenericService<TEntity>
     {
-        Task<TEntity> Create(TEntity obj);
+        Task<TEntity> Add(TEntity obj);
         Task<List<TEntity>> Get();
         Task<TEntity> Get(long id);
         Task<TEntity> Update(TEntity obj);
