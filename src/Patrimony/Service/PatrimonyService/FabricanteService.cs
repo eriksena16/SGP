@@ -1,4 +1,5 @@
-﻿using SGP.Contract.Service.PatrimonyContract;
+﻿using AutoMapper;
+using SGP.Contract.Service.PatrimonyContract;
 using SGP.Contract.Service.PatrimonyContract.Repositories;
 using SGP.Model.Entity;
 using SGP.Model.Entity.ViewModels;
@@ -12,17 +13,20 @@ namespace SGP.Patrimony.Service.PatrimonyService
     {
 
         private readonly IFabricanteRepository _repository;
-
-        public FabricanteService(IFabricanteRepository repository)
+        private readonly IMapper _mapper;
+        public FabricanteService(IFabricanteRepository repository, IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
         }
 
         public async Task<FabricanteViewModel> Add(FabricanteViewModel obj)
         {
             try
             {
-                await _repository.Create(obj);
+                var fabricante = _mapper.Map<Fabricante>(obj);
+
+                await _repository.Create(fabricante);
             }
             catch (Exception ex)
             {
@@ -36,13 +40,13 @@ namespace SGP.Patrimony.Service.PatrimonyService
 
         public async Task Delete(FabricanteViewModel obj)
         {
-            var result = Get(obj.Id);
+            var fabricante = _mapper.Map<Fabricante>(Get(obj.Id));
 
-            if (result != null)
+            if (fabricante != null)
             {
                 try
                 {
-                    await _repository.Delete(obj);
+                    await _repository.Delete(fabricante);
                 }
                 catch (Exception ex)
                 {
@@ -55,17 +59,17 @@ namespace SGP.Patrimony.Service.PatrimonyService
 
         public virtual async Task<FabricanteViewModel> Get(long id)
         {
-            Fabricante obj = await _repository.Get(id);
+            var fabricante = _mapper.Map<FabricanteViewModel>(await _repository.Get(id));
 
-            return obj;
+            return fabricante;
 
         }
 
         public async Task<List<FabricanteViewModel>> Get()
         {
-            var objs = await _repository.Get();
+            var fabricantes = _mapper.Map<List<FabricanteViewModel>>(await _repository.Get());
 
-            return objs;
+            return fabricantes;
         }
 
         public async Task<FabricanteViewModel> Update(FabricanteViewModel obj)
@@ -78,7 +82,8 @@ namespace SGP.Patrimony.Service.PatrimonyService
             {
                 try
                 {
-                    await _repository.Update(obj);
+                    var fabricante = _mapper.Map<FabricanteViewModel, Fabricante>(obj);
+                    await _repository.Update(fabricante);
                 }
                 catch (Exception ex)
                 {

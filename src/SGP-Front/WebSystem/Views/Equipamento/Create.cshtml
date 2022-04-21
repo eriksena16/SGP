@@ -1,5 +1,5 @@
 ﻿@using SGP.Model.Entity
-@model SGP.Model.Entity.Equipamento
+@model SGP.Model.Entity.ViewModels.EquipamentoViewModel
 
 @{
     Layout = "_LayoutPrincipal";
@@ -24,9 +24,9 @@
                     <div class="row">
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label asp-for="NumeroDePatrmonio" class="control-label"></label>
-                                <input asp-for="NumeroDePatrmonio" class="form-control" />
-                                <span asp-validation-for="NumeroDePatrmonio" class="text-danger"></span>
+                                <label asp-for="NumeroDePatrimonio" class="control-label"></label>
+                                <input asp-for="NumeroDePatrimonio" class="form-control" />
+                                <span asp-validation-for="NumeroDePatrimonio" class="text-danger"></span>
                             </div>
                             <div class="form-group">
                                 <label asp-for="ModeloDeEquipamentoId" class="control-label"></label>
@@ -52,9 +52,9 @@
                                 <span asp-validation-for="CategoriaDoItemId" class="text-danger" />
                             </div>
                             <div class="form-group">
-                                <label asp-for="Serie" class="control-label"></label>
-                                <input asp-for="Serie" class="form-control" />
-                                <span asp-validation-for="Serie" class="text-danger"></span>
+                                <label asp-for="NumeroDeSerie" class="control-label"></label>
+                                <input asp-for="NumeroDeSerie" class="form-control" />
+                                <span asp-validation-for="NumeroDeSerie" class="text-danger"></span>
                             </div>
                             <div class="form-group">
                                 <label asp-for="Status" class="control-label"></label>
@@ -132,11 +132,11 @@
                             </div>
                             
                             <div class="form-group">
-                                <label asp-for="EstadoDeConservacao" class="control-label"></label>
-                                <select asp-for="EstadoDeConservacao" class="form-control" asp-items="Html.GetEnumSelectList<EstadoDeConservacao>()">
+                                <label asp-for="Conservacao" class="control-label"></label>
+                                <select asp-for="Conservacao" class="form-control" asp-items="Html.GetEnumSelectList<EstadoDeConservacao>()">
                                     <option value="">-- Selecione o Estado --</option>
                                 </select>
-                                <span asp-validation-for="EstadoDeConservacao" class="text-danger"></span>
+                                <span asp-validation-for="Conservacao" class="text-danger"></span>
                             </div>
                         </div>
                         <hr />

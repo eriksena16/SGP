@@ -28,7 +28,7 @@ namespace SGP.Controllers
         public async Task<IActionResult> Index()
         {
 
-            List<EquipamentoViewModel> equipamento = await this.GatewayServiceProvider.Get<IEquipamentoService>().Get();
+            var equipamento = await this.GatewayServiceProvider.Get<IEquipamentoService>().Get();
             return View(equipamento);
         }
 

@@ -1,0 +1,43 @@
+﻿@model IEnumerable<SGP.Model.Entity.ViewModels.CategoriaDoItemViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="mt-4">Tabela de Categorias</h1>
+
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item"><a asp-action="Create">Adicionar</a></li>
+    <li class="breadcrumb-item active">Tabela de Categorias</li>
+</ol>
+
+<div class="card mb-4">
+    <div class="card-body">
+        <div class="table-responsive p-2">
+            <table class="table align-items-center mb-0" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th class = "text-center text-uppercase text-secondary font-weight-bolder">@Html.DisplayNameFor(model => model.Nome)</th>
+                        <th class = "text-center text-uppercase text-secondary font-weight-bolder">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+
+                            <td>@Html.DisplayFor(modelItem => item.Nome)</td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.Id"><i class="fas fa-edit fa" title="Editar" data-target="#form"></i></a> &nbsp;&nbsp;&nbsp;&nbsp;
+                                <a asp-action="Details" asp-route-id="@item.Id"><i class="fas fa-info fa" title="Detalhes"></i></a> &nbsp;&nbsp;&nbsp;&nbsp;
+                                <a asp-action="Delete" asp-route-id="@item.Id"><i class="fas fa-trash-alt fa" title="Deletar"></i></a>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

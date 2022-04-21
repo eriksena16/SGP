@@ -1,5 +1,4 @@
-﻿@model SGP.Model.Entity.Equipamento
-
+﻿@model SGP.Model.Entity.ViewModels.EquipamentoViewModel
 @{
     Layout = "_LayoutPrincipal";
     ViewData["Title"] = "Delete";
@@ -16,13 +15,13 @@
             @Html.DisplayNameFor(model => model.CategoriaDoItemId)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.CategoriaDoItem.Nome)
+            @Html.DisplayFor(model => model.CategoriaDoItemNome)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.ClassificacaoDeAtivosId)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ClassificacaoDeAtivos.Nome)
+            @Html.DisplayFor(model => model.ClassificacaoDeAtivosNome)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.NotaFiscal)
@@ -46,7 +45,7 @@
             @Html.DisplayNameFor(model => model.ModeloDeEquipamentoId)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ModeloDeEquipamento)
+            @Html.DisplayFor(model => model.ModeloDeEquipamentoNome)
         </dd>
         <dt class="col-sm-2">
             @*@Html.DisplayNameFor(model => model.FabricanteId)*@
@@ -61,28 +60,28 @@
             @Html.DisplayFor(model => model.NumeroDeSerie)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.EquipamentoStatus)
+            @Html.DisplayNameFor(model => model.Status)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.EquipamentoStatus)
+            @Html.DisplayFor(model => model.Status)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.ResponsavelDoEquipamentoId)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ResponsavelDoEquipamento.Nome)
+            @Html.DisplayFor(model => model.ResponsavelDoEquipamentoNome)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.SetorId)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Setor.Nome)
+            @Html.DisplayFor(model => model.SetorNome)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.EstadoDeConservacao)
+            @Html.DisplayNameFor(model => model.Conservacao)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.EstadoDeConservacao)
+            @Html.DisplayFor(model => model.Conservacao)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Observacao)

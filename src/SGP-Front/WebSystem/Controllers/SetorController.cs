@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using SGP.Code;
 using SGP.Contract.Service.PatrimonyContract;
 using SGP.Model.Entity;
+using SGP.Model.Entity.ViewModels;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -13,7 +14,7 @@ namespace SGP.Controllers
     {
         public async Task<IActionResult> Index()
         {
-            List<Setor> setor = await this.GatewayServiceProvider.Get<ISetorService>().Get();
+            var setor = await this.GatewayServiceProvider.Get<ISetorService>().Get();
 
             return View(setor);
         }
@@ -25,7 +26,7 @@ namespace SGP.Controllers
                 return NotFound();
             }
 
-            Setor setor = await this.GatewayServiceProvider.Get<ISetorService>().Get(id.Value);
+            var setor = await this.GatewayServiceProvider.Get<ISetorService>().Get(id.Value);
             if (setor == null)
             {
                 return NotFound();
@@ -43,14 +44,14 @@ namespace SGP.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Setor setor)
+        public async Task<IActionResult> Create(SetorViewModel obj)
         {
             if (ModelState.IsValid)
             {
-                Setor Sector = await this.GatewayServiceProvider.Get<ISetorService>().Add(setor);
+                var setor = await this.GatewayServiceProvider.Get<ISetorService>().Add(obj);
                 return RedirectToAction(nameof(Index));
             }
-            return View(setor);
+            return View(obj);
         }
 
         public async Task<IActionResult> Edit(long? id)
@@ -60,7 +61,7 @@ namespace SGP.Controllers
                 return NotFound();
             }
 
-            Setor setor = await GatewayServiceProvider.Get<ISetorService>().Get(id.Value);
+            var setor = await GatewayServiceProvider.Get<ISetorService>().Get(id.Value);
 
             if (setor == null)
             {
@@ -72,14 +73,14 @@ namespace SGP.Controllers
 
         [HttpPatch]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Setor setor)
+        public async Task<IActionResult> Edit(SetorViewModel obj)
         {
 
             if (ModelState.IsValid)
             {
                 try
                 {
-                    Setor Sector = await GatewayServiceProvider.Get<ISetorService>().Update(setor);
+                    var setor = await GatewayServiceProvider.Get<ISetorService>().Update(obj);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -88,7 +89,7 @@ namespace SGP.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(setor);
+            return View(obj);
         }
 
         public async Task<IActionResult> Delete(long id)

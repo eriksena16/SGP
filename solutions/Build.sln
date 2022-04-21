@@ -41,8 +41,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GatewayService", "..\src\Ga
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SGP.FRONT-END", "..\src\SGP-Front\WebSystem\SGP.FRONT-END.csproj", "{FCB9DB47-BD8B-41BA-AF0B-CDD735B8BF93}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SGP.API", "..\src\SGP.API\SGP.API.csproj", "{30E1A287-F9DD-41F1-949F-1848D8651014}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -85,10 +83,6 @@ Global
 		{FCB9DB47-BD8B-41BA-AF0B-CDD735B8BF93}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FCB9DB47-BD8B-41BA-AF0B-CDD735B8BF93}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FCB9DB47-BD8B-41BA-AF0B-CDD735B8BF93}.Release|Any CPU.Build.0 = Release|Any CPU
-		{30E1A287-F9DD-41F1-949F-1848D8651014}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{30E1A287-F9DD-41F1-949F-1848D8651014}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{30E1A287-F9DD-41F1-949F-1848D8651014}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{30E1A287-F9DD-41F1-949F-1848D8651014}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,11 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SGP.Model.Entity.ViewModels
 {
-   public class EquipamentoViewModel
+    public class EquipamentoViewModel : BaseEntity
     {
         public long NumeroDePatrimonio { get; set; }
         public int CategoriaDoItemId { get; set; }
@@ -13,8 +11,7 @@ namespace SGP.Model.Entity.ViewModels
         public int? Idade { get; set; }
         public int ClassificacaoDeAtivosId { get; set; }
         public string ClassificacaoDeAtivosNome { get; set; }
-        //[NotMapped]
-        //public IFormFile NotaFiscal { get; set; }
+        public IFormFile NotaFiscal { get; set; }
         public string NotaFiscalUrl { get; set; }
         public decimal ValorDeCompra { get; set; }
         public decimal? ValorAtual { get; set; }

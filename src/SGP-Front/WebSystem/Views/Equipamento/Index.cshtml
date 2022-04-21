@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SGP.Model.Entity.Equipamento>
+﻿@model IEnumerable<SGP.Model.Entity.ViewModels.EquipamentoViewModel>
 
 @{
     ViewData["Title"] = "Index";
@@ -17,30 +17,30 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <th>@Html.DisplayNameFor(model => model.NumeroDePatrmonio)</th>
-                        <th>@Html.DisplayNameFor(model => model.CategoriaDoItem
+                        <th>@Html.DisplayNameFor(model => model.NumeroDePatrimonio)</th>
+                        <th>@Html.DisplayNameFor(model => model.CategoriaDoItemNome
                         
                         )</th>
                         <th>@Html.DisplayNameFor(model => model.ClassificacaoDeAtivosId)</th>
                         @*<th>@Html.DisplayNameFor(model => model.FabricanteId)</th>*@
                         <th>@Html.DisplayNameFor(model => model.NumeroDeSerie)</th>
-                        <th>@Html.DisplayNameFor(model => model.EquipamentoStatus)</th>
+                        <th>@Html.DisplayNameFor(model => model.Status)</th>
                         <th>@Html.DisplayNameFor(model => model.ResponsavelDoEquipamentoId)</th>
                         <th>@Html.DisplayNameFor(model => model.SetorId)</th>
-                        <th>@Html.DisplayNameFor(model => model.EstadoDeConservacao)</th>
+                        <th>@Html.DisplayNameFor(model => model.Conservacao)</th>
                     </tr>
                 </thead>
                 <tfoot>
                     <tr>
-                        <th>@Html.DisplayNameFor(model => model.NumeroDePatrmonio)</th>
+                        <th>@Html.DisplayNameFor(model => model.NumeroDePatrimonio)</th>
                         <th>@Html.DisplayNameFor(model => model.CategoriaDoItemId)</th>
                         <th>@Html.DisplayNameFor(model => model.ClassificacaoDeAtivosId)</th>
                         @*<th>@Html.DisplayNameFor(model => model.FabricanteId)</th>*@
                         <th>@Html.DisplayNameFor(model => model.NumeroDeSerie)</th>
-                        <th>@Html.DisplayNameFor(model => model.EquipamentoStatus)</th>
+                        <th>@Html.DisplayNameFor(model => model.NumeroDePatrimonio)</th>
                         <th>@Html.DisplayNameFor(model => model.ResponsavelDoEquipamentoId)</th>
                         <th>@Html.DisplayNameFor(model => model.SetorId)</th>
-                        <th>@Html.DisplayNameFor(model => model.EstadoDeConservacao)</th>
+                        <th>@Html.DisplayNameFor(model => model.NumeroDePatrimonio)</th>
                     </tr>
                 </tfoot>
                 <tbody>
@@ -49,17 +49,17 @@
                     {
                     <tr>
                         <td>
-                            @{var numero = item.NumeroDePatrmonio; }
-                            <a asp-action="Details" asp-route-id="@item.Id">@Html.Raw(numero.ToString("000000"))</a>
+                            @{var numero = item.NumeroDePatrimonio; }
+                            <a asp-action="Details" asp-route-id="@item.NumeroDePatrimonio">@Html.Raw(numero.ToString("000000"))</a>
                         </td>
-                        <td>@Html.DisplayFor(modelItem => item.CategoriaDoItem.Nome)</td>
-                        <td>@Html.DisplayFor(modelItem => item.ClassificacaoDeAtivos.Nome)</td>
+                        <td>@Html.DisplayFor(modelItem => item.CategoriaDoItemNome)</td>
+                        <td>@Html.DisplayFor(modelItem => item.ClassificacaoDeAtivosNome)</td>
                         @*<td>@Html.DisplayFor(modelItem => item.Fabricante.Nome)</td>*@
                         <td>@Html.DisplayFor(modelItem => item.NumeroDeSerie)</td>
-                        <td>@Html.DisplayFor(modelItem => item.EquipamentoStatus)</td>
-                        <td>@Html.DisplayFor(modelItem => item.ResponsavelDoEquipamento.Nome)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Setor.Nome)</td>
-                        <td>@Html.DisplayFor(modelItem => item.EstadoDeConservacao)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                        <td>@Html.DisplayFor(modelItem => item.ResponsavelDoEquipamentoNome)</td>
+                        <td>@Html.DisplayFor(modelItem => item.SetorNome)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Conservacao)</td>
                     </tr>
                     }
                     

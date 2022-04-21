@@ -1,5 +1,5 @@
 ﻿@using SGP.Model.Entity
-@model SGP.Model.Entity.Equipamento
+@model SGP.Model.Entity.ViewModels.EquipamentoViewModel
 
 @{
     ViewData["Title"] = "Edit";
@@ -24,9 +24,9 @@
                     <div class="row">
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label asp-for="NumeroDePatrmonio" class="control-label"></label>
-                                <input asp-for="NumeroDePatrmonio" class="form-control" />
-                                <span asp-validation-for="NumeroDePatrmonio" class="text-danger"></span>
+                                <label asp-for="NumeroDePatrimonio" class="control-label"></label>
+                                <input asp-for="NumeroDePatrimonio" class="form-control" />
+                                <span asp-validation-for="NumeroDePatrimonio" class="text-danger"></span>
                             </div>
                             <div class="form-group">
                                 <label asp-for="ModeloDeEquipamentoId" class="control-label"></label>
@@ -57,11 +57,11 @@
                                 <span asp-validation-for="NumeroDeSerie" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="EquipamentoStatus" class="control-label"></label>
-                                <select asp-for="EquipamentoStatus" class="form-control" asp-items="Html.GetEnumSelectList<EquipamentoStatus>()">
+                                <label asp-for="Status" class="control-label"></label>
+                                <select asp-for="Status" class="form-control" asp-items="Html.GetEnumSelectList<EquipamentoStatus>()">
                                     <option value="">-- Selecione o Status --</option>
                                 </select>
-                                <span asp-validation-for="EquipamentoStatus" class="text-danger"></span>
+                                <span asp-validation-for="Status" class="text-danger"></span>
                             </div>
 
                         </div>
@@ -132,9 +132,9 @@
                             </div>
 
                             <div class="form-group">
-                                <label asp-for="EstadoDeConservacao" class="control-label"></label>
-                                <input asp-for="EstadoDeConservacao" class="form-control" />
-                                <span asp-validation-for="EstadoDeConservacao" class="text-danger"></span>
+                                <label asp-for="Conservacao" class="control-label"></label>
+                                <input asp-for="Conservacao" class="form-control" />
+                                <span asp-validation-for="Conservacao" class="text-danger"></span>
                             </div>
                         </div>
                         <hr />
