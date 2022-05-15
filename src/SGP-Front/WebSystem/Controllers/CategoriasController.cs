@@ -96,6 +96,20 @@ namespace SGP.Controllers
             }
             return View(categoriaDoItem);
         }
+        public async Task<IActionResult> Delete(long id)
+        {
+
+            var categoria = await this.GatewayServiceProvider.Get<ICategoriaDoItemService>().GetCategoriaEquipamentos(id);
+
+            if (categoria is null)
+            {
+                return NotFound();
+            }
+
+            await this.GatewayServiceProvider.Get<ICategoriaDoItemService>().Delete(id);
+
+            return RedirectToAction(nameof(Index));
+        }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -108,7 +122,7 @@ namespace SGP.Controllers
                 return NotFound();
             }
 
-            await this.GatewayServiceProvider.Get<ICategoriaDoItemService>().Delete(categoria);
+            await this.GatewayServiceProvider.Get<ICategoriaDoItemService>().DeleteOld(categoria);
 
             return RedirectToAction(nameof(Index));
         }

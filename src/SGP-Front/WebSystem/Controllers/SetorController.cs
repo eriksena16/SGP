@@ -101,7 +101,7 @@ namespace SGP.Controllers
             if (setor == null)
                 return NotFound();
             else
-                await this.GatewayServiceProvider.Get<ISetorService>().Delete(setor);
+                await this.GatewayServiceProvider.Get<ISetorService>().DeleteOld(setor);
 
             return View(setor);
         }
@@ -113,7 +113,7 @@ namespace SGP.Controllers
             var setor = await this.GatewayServiceProvider.Get<ISetorService>().Get(id);
 
             if (setor != null)
-                await this.GatewayServiceProvider.Get<ISetorService>().Delete(setor);
+                await this.GatewayServiceProvider.Get<ISetorService>().DeleteOld(setor);
 
             return RedirectToAction(nameof(Index));
         }

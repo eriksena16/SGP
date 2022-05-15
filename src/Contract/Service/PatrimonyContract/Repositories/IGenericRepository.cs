@@ -1,6 +1,7 @@
 ﻿using SGP.Model.Entity;
 using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace SGP.Contract.Service.PatrimonyContract.Repositories
@@ -11,8 +12,10 @@ namespace SGP.Contract.Service.PatrimonyContract.Repositories
         Task<TEntity> Get(long id);
         Task<List<TEntity>> Get();
         Task Update( TEntity obj);
-        Task Delete(TEntity obj);
+        Task DeleteOld(TEntity obj);
+        Task Delete(long id);
         Task<bool> Exists(long id);
-
+        Task<IEnumerable<TEntity>> Search(Expression<Func<TEntity, bool>> predicate);
+        Task<int> SaveChanges();
     }
 }

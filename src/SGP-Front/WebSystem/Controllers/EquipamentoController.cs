@@ -194,7 +194,7 @@ namespace SGP.Controllers
             {
                 return NotFound();
             }else
-                await this.GatewayServiceProvider.Get<IEquipamentoService>().Delete(equipamento);
+                await this.GatewayServiceProvider.Get<IEquipamentoService>().DeleteOld(equipamento);
 
             return View(equipamento);
         }

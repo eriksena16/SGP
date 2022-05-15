@@ -46,7 +46,7 @@ namespace SGP.Patrimony.Service.PatrimonyService
             {
                 try
                 {
-                    await _repository.Delete(classificacao);
+                    await _repository.DeleteOld(classificacao);
                 }
                 catch (Exception ex)
                 {
@@ -100,6 +100,16 @@ namespace SGP.Patrimony.Service.PatrimonyService
         public void Dispose()
         {
             _repository?.Dispose();
+        }
+
+        public Task DeleteOld(ClassificacaoDeAtivosViewModel obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task Delete(long id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

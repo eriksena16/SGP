@@ -6,6 +6,6 @@ namespace SGP.Patrimony.Repository.PatrimonyRepository.Service
 {
     public class FabricanteRepository : GenericRepository<Fabricante>, IFabricanteRepository
     {
-        public FabricanteRepository(DbContext context) : base(context) { }
+        public FabricanteRepository(SGPContext context) : base(context) { }
     }
 }

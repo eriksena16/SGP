@@ -6,7 +6,7 @@ namespace SGP.Patrimony.Repository.PatrimonyRepository.Service
 {
     public class SetorRepository : GenericRepository<Setor>, ISetorRepository
     {
-        public SetorRepository(DbContext context) : base(context) { }
+        public SetorRepository(SGPContext context) : base(context) { }
     }
 }
 

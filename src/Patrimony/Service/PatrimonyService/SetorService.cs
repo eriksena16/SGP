@@ -45,7 +45,7 @@ namespace SGP.Patrimony.Service.PatrimonyService
             {
                 try
                 {
-                    await _setorRepository.Delete(setor);
+                    await _setorRepository.DeleteOld(setor);
                 }
                 catch (Exception ex)
                 {
@@ -99,6 +99,16 @@ namespace SGP.Patrimony.Service.PatrimonyService
         public void Dispose()
         {
             _setorRepository?.Dispose();
+        }
+
+        public Task DeleteOld(SetorViewModel obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task Delete(long id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

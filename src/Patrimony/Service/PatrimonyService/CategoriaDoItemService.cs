@@ -5,11 +5,12 @@ using SGP.Model.Entity;
 using SGP.Model.Entity.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace SGP.Patrimony.Service.PatrimonyService
 {
-    public class CategoriaDoItemService : ICategoriaDoItemService
+    public class CategoriaDoItemService:  ICategoriaDoItemService
     {
 
         private readonly ICategoriaRepository _repository;
@@ -38,7 +39,7 @@ namespace SGP.Patrimony.Service.PatrimonyService
             return obj;
         }
 
-        public async Task Delete(CategoriaDoItemViewModel obj)
+        public async Task DeleteOld(CategoriaDoItemViewModel obj)
         {
             var categoria = _mapper.Map<CategoriaDoItem>(Get(obj.Id));
 
@@ -46,7 +47,7 @@ namespace SGP.Patrimony.Service.PatrimonyService
             {
                 try
                 {
-                    await _repository.Delete(categoria);
+                    await _repository.DeleteOld(categoria);
                 }
                 catch (Exception ex)
                 {
@@ -74,11 +75,8 @@ namespace SGP.Patrimony.Service.PatrimonyService
 
         public async Task<CategoriaDoItemViewModel> Update(CategoriaDoItemViewModel obj)
         {
-            if (!await _repository.Exists(obj.Id)) return new CategoriaDoItemViewModel();
-
-            var result = Get(obj.Id);
-
-            if (result != null)
+            if (_repository.Search(c => c.Nome == obj.Nome && c.Id != obj.Id ).Result.Any()) throw new ArgumentException("já existe uma categoria com este nome!"); 
+            else
             {
                 try
                 {
@@ -91,14 +89,25 @@ namespace SGP.Patrimony.Service.PatrimonyService
 
                     throw new Exception(ex + "Aconteceu um erro!");
                 }
-            }
 
-            return obj;
+                return obj;
+            }
+           
+        }
+
+        public async Task Delete(long id)
+        {
+           await _repository.Delete(id);
         }
 
         public void Dispose()
         {
             _repository?.Dispose();
+        }
+
+        public Task<CategoriaDoItem> GetCategoriaEquipamentos(long id)
+        {
+            return _repository.GetCategoriaEquipamentos(id);
         }
     }
 }

@@ -6,6 +6,6 @@ namespace SGP.Patrimony.Repository.PatrimonyRepository.Service
 {
     public class ClassificacaoDeAtivosRepository : GenericRepository<ClassificacaoDeAtivos>, IClassificacaoDeAtivosRepository
     {
-        public ClassificacaoDeAtivosRepository(DbContext context) : base(context) { }
+        public ClassificacaoDeAtivosRepository(SGPContext context) : base(context) { }
     }
 }

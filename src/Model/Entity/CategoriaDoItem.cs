@@ -9,8 +9,6 @@ namespace SGP.Model.Entity
     {
         public string Nome { get; set; }
 
-        [JsonIgnore]
-        [NotMapped]
-        public ICollection<Equipamento> Equipamento { get; set; }
+        public IEnumerable<Equipamento> Equipamentos { get; set; }
     }
 }

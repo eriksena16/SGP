@@ -46,7 +46,7 @@ namespace SGP.Patrimony.Service.PatrimonyService
             {
                 try
                 {
-                    await _repository.Delete(fabricante);
+                    await _repository.DeleteOld(fabricante);
                 }
                 catch (Exception ex)
                 {
@@ -98,6 +98,16 @@ namespace SGP.Patrimony.Service.PatrimonyService
         public void Dispose()
         {
             _repository?.Dispose();
+        }
+
+        public Task DeleteOld(FabricanteViewModel obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task Delete(long id)
+        {
+            throw new NotImplementedException();
         }
     }
 }
