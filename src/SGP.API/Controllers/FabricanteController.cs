@@ -52,12 +52,12 @@ namespace SGP.API.Controllers
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.NoContent)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(List<FabricanteViewModel>), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> Post([FromBody] Fabricante obj)
+        public async Task<IActionResult> Post([FromBody] FabricanteViewModel obj)
         {
             if (obj is null)
                 return BadRequest();
 
-            return Ok(_mapper.Map<FabricanteViewModel>(await this.GatewayServiceProvider.Get<IFabricanteService>().Create(obj)));
+            return Ok(_mapper.Map<FabricanteViewModel>(await this.GatewayServiceProvider.Get<IFabricanteService>().Add(obj)));
         }
 
         [HttpPatch]
@@ -65,7 +65,7 @@ namespace SGP.API.Controllers
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.NoContent)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(List<FabricanteViewModel>), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> Patch([FromBody] Fabricante obj)
+        public async Task<IActionResult> Patch([FromBody] FabricanteViewModel obj)
         {
             if (obj is null)
                 return BadRequest();
@@ -78,21 +78,10 @@ namespace SGP.API.Controllers
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.NoContent)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(List<FabricanteViewModel>), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<FabricanteViewModel>> Delete(long? id)
+        public async Task<ActionResult<FabricanteViewModel>> Delete(long id)
         {
-            if (id is null)
-            {
-                return NotFound();
-            }
-
-            var obj = await this.GatewayServiceProvider.Get<IFabricanteService>().Get(id.Value);
-
-            if (obj is null)
-            {
-                return NotFound();
-            }
-
-            await this.GatewayServiceProvider.Get<IFabricanteService>().Delete(obj);
+           
+            await this.GatewayServiceProvider.Get<IFabricanteService>().Delete(id);
 
             return NoContent();
         }

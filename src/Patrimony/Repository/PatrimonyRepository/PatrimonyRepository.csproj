@@ -14,6 +14,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\Contract\Service\PatrimonyContract\PatrimonyContract.csproj" />
     <ProjectReference Include="..\..\..\Model\Entity\Entity.csproj" />
+    <ProjectReference Include="..\PatrimonyFilters\PatrimonyFilters\PatrimonyFilters.csproj" />
   </ItemGroup>
 
 </Project>

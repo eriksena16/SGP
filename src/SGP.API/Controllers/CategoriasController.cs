@@ -4,6 +4,8 @@ using SGP.API.Code;
 using SGP.Contract.Service.PatrimonyContract;
 using SGP.Model.Entity;
 using SGP.Model.Entity.ViewModels;
+using SGP.Patrimony.Repository.PatrimonyFilters;
+using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
@@ -21,17 +23,24 @@ namespace SGP.API.Controllers
             _mapper = mapper;
         }
 
-        
         [HttpGet]
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.NoContent)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.InternalServerError)]
-        [ProducesResponseType(typeof(List<CategoriaDoItemViewModel>), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<IEnumerable<CategoriaDoItemViewModel>>> Get()
+        [ProducesResponseType(typeof(QueryResult<CategoriaDoItemViewModel>), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<QueryResult<CategoriaDoItemViewModel>>> Get(CategoriaFilter filter)
         {
-            var categoriaDoItems = _mapper.Map<IEnumerable<CategoriaDoItemViewModel>>(await this.GatewayServiceProvider.Get<ICategoriaDoItemService>().Get());
+            try
+            {
+               return _mapper.Map<QueryResult<CategoriaDoItemViewModel>>(await this.GatewayServiceProvider.Get<ICategoriaDoItemService>().Get(filter));
+            }
+            catch (Exception ex)
+            {
 
-            return Ok(categoriaDoItems);
+                throw ex;
+            }
+           
+
         }
 
         /// <summary>
@@ -64,12 +73,12 @@ namespace SGP.API.Controllers
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.NoContent)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(List<CategoriaDoItemViewModel>), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> Post([FromBody] CategoriaDoItem categoriaItem)
+        public async Task<IActionResult> Post([FromBody] CategoriaDoItemViewModel categoriaItem)
         {
             if (categoriaItem is null)
                 return BadRequest();
 
-            return Ok(_mapper.Map<CategoriaDoItemViewModel>(await this.GatewayServiceProvider.Get<ICategoriaDoItemService>().Create(categoriaItem)));
+            return Ok(_mapper.Map<CategoriaDoItemViewModel>(await this.GatewayServiceProvider.Get<ICategoriaDoItemService>().Add(categoriaItem)));
         }
 
         /// <summary>
@@ -109,14 +118,7 @@ namespace SGP.API.Controllers
         public async Task<ActionResult<CategoriaDoItemViewModel>> Delete(long id)
         {
 
-            var categoria = await this.GatewayServiceProvider.Get<ICategoriaDoItemService>().Get(id);
-
-            if (categoria is null)
-            {
-                return NotFound();
-            }
-
-            await this.GatewayServiceProvider.Get<ICategoriaDoItemService>().Delete(categoria);
+            await this.GatewayServiceProvider.Get<ICategoriaDoItemService>().Delete(id);
 
             return NoContent();
         }

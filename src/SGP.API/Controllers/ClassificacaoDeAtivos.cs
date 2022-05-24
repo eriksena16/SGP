@@ -52,12 +52,12 @@ namespace SGP.Patrimony.Service.PatrimonyService
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.NoContent)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(List<ClassificacaoDeAtivosViewModel>), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> Post([FromBody] ClassificacaoDeAtivos obj)
+        public async Task<IActionResult> Post([FromBody] ClassificacaoDeAtivosViewModel obj)
         {
             if (obj is null)
                 return BadRequest();
 
-            return Ok(_mapper.Map<ClassificacaoDeAtivosViewModel>(await this.GatewayServiceProvider.Get<IClassificacaoDeAtivosService>().Create(obj)));
+            return Ok(_mapper.Map<ClassificacaoDeAtivosViewModel>(await this.GatewayServiceProvider.Get<IClassificacaoDeAtivosService>().Add(obj)));
         }
 
         [HttpPatch]
@@ -65,7 +65,7 @@ namespace SGP.Patrimony.Service.PatrimonyService
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.NoContent)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(List<ClassificacaoDeAtivosViewModel>), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> Patch([FromBody] ClassificacaoDeAtivos obj)
+        public async Task<IActionResult> Patch([FromBody] ClassificacaoDeAtivosViewModel obj)
         {
             if (obj is null)
                 return BadRequest();
@@ -78,21 +78,9 @@ namespace SGP.Patrimony.Service.PatrimonyService
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.NoContent)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(List<ClassificacaoDeAtivosViewModel>), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<ClassificacaoDeAtivosViewModel>> Delete(long? id)
+        public async Task<ActionResult<ClassificacaoDeAtivosViewModel>> Delete(long id)
         {
-            if (id is null)
-            {
-                return NotFound();
-            }
-
-            var obj = await this.GatewayServiceProvider.Get<IClassificacaoDeAtivosService>().Get(id.Value);
-
-            if (obj is null)
-            {
-                return NotFound();
-            }
-
-            await this.GatewayServiceProvider.Get<IClassificacaoDeAtivosService>().Delete(obj);
+            await this.GatewayServiceProvider.Get<IClassificacaoDeAtivosService>().Delete(id);
 
             return NoContent();
         }

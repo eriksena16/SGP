@@ -11,7 +11,7 @@
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:SGP.API.Controllers.CategoriasController.Post(SGP.Model.Entity.CategoriaDoItem)">
+        <member name="M:SGP.API.Controllers.CategoriasController.Post(SGP.Model.Entity.ViewModels.CategoriaDoItemViewModel)">
             <summary>
             
             </summary>

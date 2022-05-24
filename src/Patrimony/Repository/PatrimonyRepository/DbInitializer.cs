@@ -45,8 +45,8 @@ namespace SGP.Patrimony.Repository.PatrimonyRepository
 
             var manufacturers = new Fabricante[]
             {
-                new Fabricante{Nome = "Sena Corp", Cnpj ="06414576506", Cep = 40270440, Endereco ="Travessa Portugal, 23", Cidade = "Salvador", UF = "BA", Telefone ="71992257224", Email = "eriksena16@gmail.com"},
-                new Fabricante{Nome = "Culinaria Brandão", Cnpj ="72629878520", Cep = 40270440, Endereco ="Rua cirilo Barbosa, 34", Cidade = "Salvador", UF = "BA", Telefone ="7188516589", Email = "culinaria@gmail.com"}
+                new Fabricante{Nome = "Sena Corp", Cnpj ="06941212406", Cep = 40270440, Endereco ="Travessa Amazonas", Cidade = "Salvador", UF = "BA", Telefone ="71992257224", Email = "eriksena16@gmail.com"},
+                new Fabricante{Nome = "Culinaria Brandão", Cnpj ="72669852420", Cep = 40270870, Endereco ="Rua Salvador", Cidade = "Salvador", UF = "BA", Telefone ="718898789", Email = "culinaria@gmail.com"}
             };
             foreach (Fabricante manufacturer in manufacturers)
             {

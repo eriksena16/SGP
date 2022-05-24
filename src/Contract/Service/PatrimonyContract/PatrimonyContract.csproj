@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Model\Entity\Entity.csproj" />
+    <ProjectReference Include="..\..\..\Patrimony\Repository\PatrimonyFilters\PatrimonyFilters\PatrimonyFilters.csproj" />
   </ItemGroup>
 
 </Project>

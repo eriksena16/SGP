@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <Nullable>enable</Nullable>
+    <RootNamespace>SGP.Patrimony.Repository.PatrimonyFilters</RootNamespace>
+    <AssemblyName>SGP.Patrimony.Repository.PatrimonyFilters</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Model\Entity\Entity.csproj" />
+    <ProjectReference Include="..\..\..\Util\PatrimonyUtil\PatrimonyUtil.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SGP.Contract.Service.PatrimonyContract.Repositories
 {
-    public interface IGenericRepository<TEntity> : IDisposable where TEntity : BaseEntity
+    public interface IGenericRepository<TEntity, G> : IDisposable where TEntity : BaseEntity
     {
         Task Create(TEntity obj);
         Task<TEntity> Get(long id);
@@ -16,6 +16,7 @@ namespace SGP.Contract.Service.PatrimonyContract.Repositories
         Task Delete(long id);
         Task<bool> Exists(long id);
         Task<IEnumerable<TEntity>> Search(Expression<Func<TEntity, bool>> predicate);
+        Task<QueryResult<TEntity>> Get(G filter);
         Task<int> SaveChanges();
     }
 }

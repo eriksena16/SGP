@@ -3,6 +3,7 @@ using SGP.Contract.Service.PatrimonyContract;
 using SGP.Contract.Service.PatrimonyContract.Repositories;
 using SGP.Model.Entity;
 using SGP.Model.Entity.ViewModels;
+using SGP.Patrimony.Repository.PatrimonyFilters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -69,6 +70,12 @@ namespace SGP.Patrimony.Service.PatrimonyService
         public async Task<List<CategoriaDoItemViewModel>> Get()
         {
             var categoria = _mapper.Map<List<CategoriaDoItemViewModel>>(await _repository.Get());
+
+            return categoria;
+        }
+        public async Task<QueryResult<CategoriaDoItemViewModel>> Get(CategoriaFilter filter)
+        {
+            var categoria = _mapper.Map<QueryResult<CategoriaDoItemViewModel>>(await _repository.Get(filter));
 
             return categoria;
         }

@@ -53,12 +53,12 @@ namespace SGP.API.Controllers
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.NoContent)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(List<SetorViewModel>), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> Post([FromBody] Setor obj)
+        public async Task<IActionResult> Post([FromBody] SetorViewModel obj)
         {
             if (obj is null)
                 return BadRequest();
 
-            return Ok(_mapper.Map<SetorViewModel>(await this.GatewayServiceProvider.Get<ISetorService>().Create(obj)));
+            return Ok(_mapper.Map<SetorViewModel>(await this.GatewayServiceProvider.Get<ISetorService>().Add(obj)));
         }
 
         [HttpDelete("{id:long}")]
@@ -69,14 +69,7 @@ namespace SGP.API.Controllers
         public async Task<ActionResult<SetorViewModel>> Delete(long id)
         {
 
-            var setor = await this.GatewayServiceProvider.Get<ISetorService>().Get(id);
-
-            if (setor is null)
-            {
-                return NotFound();
-            }
-
-            await this.GatewayServiceProvider.Get<ISetorService>().Delete(setor);
+            await this.GatewayServiceProvider.Get<ISetorService>().Delete(id);
 
             return NoContent();
         }
@@ -86,7 +79,7 @@ namespace SGP.API.Controllers
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.NoContent)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(List<SetorViewModel>), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<SetorViewModel>> Patch(Setor obj)
+        public async Task<ActionResult<SetorViewModel>> Patch(SetorViewModel obj)
         {
 
             if (obj is null)
