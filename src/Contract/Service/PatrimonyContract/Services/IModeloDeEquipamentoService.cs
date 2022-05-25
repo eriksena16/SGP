@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SGP.Contract.Service.PatrimonyContract
 {
-    public interface IModeloDeEquipamentoService : IGenericService<ModeloDeEquipamento>
-    {
-    }
+    //public interface IModeloDeEquipamentoService : IGenericService<ModeloDeEquipamento>
+    //{
+    //}
 }

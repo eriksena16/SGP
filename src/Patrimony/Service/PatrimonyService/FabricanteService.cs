@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using LuxERP.Services.SGP.Patrimony.Repository.PatrimonyFilters;
 using SGP.Contract.Service.PatrimonyContract;
 using SGP.Contract.Service.PatrimonyContract.Repositories;
 using SGP.Model.Entity;
@@ -106,6 +107,11 @@ namespace SGP.Patrimony.Service.PatrimonyService
         }
 
         public Task Delete(long id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<QueryResult<FabricanteViewModel>> Get(FabricanteFilter filter)
         {
             throw new NotImplementedException();
         }

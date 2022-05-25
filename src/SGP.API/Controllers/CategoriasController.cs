@@ -28,11 +28,11 @@ namespace SGP.API.Controllers
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.NoContent)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(QueryResult<CategoriaDoItemViewModel>), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<QueryResult<CategoriaDoItemViewModel>>> Get(CategoriaFilter filter)
+        public async Task<IActionResult> Get([FromQuery]CategoriaFilter filter)
         {
             try
             {
-               return _mapper.Map<QueryResult<CategoriaDoItemViewModel>>(await this.GatewayServiceProvider.Get<ICategoriaDoItemService>().Get(filter));
+               return Ok(_mapper.Map<QueryResult<CategoriaDoItemViewModel>>(await this.GatewayServiceProvider.Get<ICategoriaDoItemService>().Get(filter)));
             }
             catch (Exception ex)
             {

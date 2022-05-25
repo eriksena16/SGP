@@ -8,6 +8,8 @@ namespace SGP.API.Configuration
     {
         public AutoMapperConfig()
         {
+            CreateMap(typeof(QueryResult<>), typeof(QueryResult<>));
+
             CreateMap<CategoriaDoItem, CategoriaDoItemViewModel>().ReverseMap();
 
             CreateMap<Equipamento, EquipamentoViewModel>().ReverseMap();

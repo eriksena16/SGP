@@ -41,8 +41,6 @@ namespace SGP.Model.Entity
             }
         }
         public IEnumerable<T> Items { get; set; }
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public Total Totals { get; set; }
     }
     public class QueryResponse<T>
     {
