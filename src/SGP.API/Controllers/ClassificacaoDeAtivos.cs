@@ -4,6 +4,7 @@ using SGP.API.Code;
 using SGP.Contract.Service.PatrimonyContract;
 using SGP.Model.Entity;
 using SGP.Model.Entity.ViewModels;
+using SGP.Patrimony.Repository.PatrimonyFilters;
 using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
@@ -24,12 +25,21 @@ namespace SGP.Patrimony.Service.PatrimonyService
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.NoContent)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.InternalServerError)]
-        [ProducesResponseType(typeof(List<ClassificacaoDeAtivosViewModel>), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<IEnumerable<ClassificacaoDeAtivosViewModel>>> Get()
+        [ProducesResponseType(typeof(QueryResult<ClassificacaoDeAtivosViewModel>), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> Get([FromQuery] ClassificacaoDeAtivosFilter filter)
         {
-            var objDoItems = _mapper.Map<IEnumerable<ClassificacaoDeAtivosViewModel>>(await this.GatewayServiceProvider.Get<IClassificacaoDeAtivosService>().Get());
+            try
+            {
+                var objDoItems = _mapper.Map<QueryResult<ClassificacaoDeAtivosViewModel>>(await this.GatewayServiceProvider.Get<IClassificacaoDeAtivosService>().Get(filter));
 
-            return Ok(objDoItems);
+                return Ok(objDoItems);
+            }
+            catch (System.Exception)
+            {
+
+                throw;
+            }
+           
         }
 
         [HttpGet("{id}")]

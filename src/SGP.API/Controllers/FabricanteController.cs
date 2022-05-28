@@ -4,6 +4,7 @@ using SGP.API.Code;
 using SGP.Contract.Service.PatrimonyContract;
 using SGP.Model.Entity;
 using SGP.Model.Entity.ViewModels;
+using SGP.Patrimony.Repository.PatrimonyFilters;
 using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
@@ -24,12 +25,21 @@ namespace SGP.API.Controllers
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.NoContent)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.InternalServerError)]
-        [ProducesResponseType(typeof(List<FabricanteViewModel>), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<IEnumerable<FabricanteViewModel>>> Get()
+        [ProducesResponseType(typeof(QueryResult<FabricanteViewModel>), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> Get([FromQuery] FabricanteFilter filter)
         {
-            var objDoItems = _mapper.Map<IEnumerable<FabricanteViewModel>>(await this.GatewayServiceProvider.Get<IFabricanteService>().Get());
+            try
+            {
+                var fabricante = _mapper.Map<QueryResult<FabricanteViewModel>>(await this.GatewayServiceProvider.Get<IFabricanteService>().Get(filter));
 
-            return Ok(objDoItems);
+                return Ok(fabricante);
+            }
+            catch (System.Exception)
+            {
+
+                throw;
+            }
+           
         }
 
         [HttpGet("{id}")]
@@ -77,7 +87,7 @@ namespace SGP.API.Controllers
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.NoContent)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.InternalServerError)]
-        [ProducesResponseType(typeof(List<FabricanteViewModel>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(int), (int)HttpStatusCode.NoContent)]
         public async Task<ActionResult<FabricanteViewModel>> Delete(long id)
         {
            

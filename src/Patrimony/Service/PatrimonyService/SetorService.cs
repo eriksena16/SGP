@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using LuxERP.Services.SGP.Patrimony.Repository.PatrimonyFilters;
 using SGP.Contract.Service.PatrimonyContract;
 using SGP.Contract.Service.PatrimonyContract.Repositories;
 using SGP.Model.Entity;
 using SGP.Model.Entity.ViewModels;
+using SGP.Patrimony.Repository.PatrimonyFilters;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -112,9 +112,11 @@ namespace SGP.Patrimony.Service.PatrimonyService
             throw new NotImplementedException();
         }
 
-        public Task<QueryResult<SetorViewModel>> Get(SetorFilter filter)
+        public async Task<QueryResult<SetorViewModel>> Get(SetorFilter filter)
         {
-            throw new NotImplementedException();
+            var setor = _mapper.Map<QueryResult<SetorViewModel>>(await _setorRepository.Get(filter));
+
+            return setor;
         }
     }
 }

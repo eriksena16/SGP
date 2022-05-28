@@ -4,6 +4,8 @@ using SGP.API.Code;
 using SGP.Contract.Service.PatrimonyContract;
 using SGP.Model.Entity;
 using SGP.Model.Entity.ViewModels;
+using SGP.Patrimony.Repository.PatrimonyFilters;
+using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
@@ -25,12 +27,20 @@ namespace SGP.API.Controllers
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.NoContent)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.InternalServerError)]
-        [ProducesResponseType(typeof(List<SetorViewModel>), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<IEnumerable<SetorViewModel>>> Get()
+        [ProducesResponseType(typeof(QueryResult<SetorViewModel>), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> Get([FromQuery] SetorFilter filter)
         {
-            var categoriaDoItems = _mapper.Map<IEnumerable<SetorViewModel>>(await this.GatewayServiceProvider.Get<ISetorService>().Get());
+            try
+            {
 
-            return Ok(categoriaDoItems);
+                return Ok(_mapper.Map<QueryResult<SetorViewModel>>(await this.GatewayServiceProvider.Get<ISetorService>().Get(filter)));
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
         }
 
         [HttpGet("{id}")]

@@ -4,11 +4,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
-namespace LuxERP.Services.SGP.Patrimony.Repository.PatrimonyFilters
+namespace SGP.Patrimony.Repository.PatrimonyFilters
 {
     public class FabricanteFilter : GenericFilter<Fabricante>, IQueryObject<Fabricante>
     {
-        public string Nome { get; set; }
+        public string? Nome { get; set; }
 
         public Dictionary<string, Expression<Func<Fabricante, object>>> Map()
         {
