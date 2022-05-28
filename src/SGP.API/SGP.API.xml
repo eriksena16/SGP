@@ -11,14 +11,14 @@
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:SGP.API.Controllers.CategoriasController.Post(SGP.Model.Entity.ViewModels.CategoriaDoItemViewModel)">
+        <member name="M:SGP.API.Controllers.CategoriasController.Post(SGP.Model.Entity.CategoriaDoItemDTQ)">
             <summary>
             
             </summary>
-            <param name="categoriaItem"></param>
+            <param name="categoriaItemDtq"></param>
             <returns></returns>
         </member>
-        <member name="M:SGP.API.Controllers.CategoriasController.Patch(System.Int64,SGP.Model.Entity.ViewModels.CategoriaDoItemViewModel)">
+        <member name="M:SGP.API.Controllers.CategoriasController.Patch(System.Int64,SGP.Model.Entity.CategoriaDoItemDTO)">
             <summary>
             
             </summary>

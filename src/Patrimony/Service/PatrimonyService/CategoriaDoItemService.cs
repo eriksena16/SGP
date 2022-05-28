@@ -2,7 +2,7 @@
 using SGP.Contract.Service.PatrimonyContract;
 using SGP.Contract.Service.PatrimonyContract.Repositories;
 using SGP.Model.Entity;
-using SGP.Model.Entity.ViewModels;
+using SGP.Model.Entity;
 using SGP.Patrimony.Repository.PatrimonyFilters;
 using System;
 using System.Collections.Generic;
@@ -22,7 +22,7 @@ namespace SGP.Patrimony.Service.PatrimonyService
             _mapper = mapper;
         }
 
-        public async Task<CategoriaDoItemViewModel> Add(CategoriaDoItemViewModel obj)
+        public async Task<CategoriaDoItemDTO> Add(CategoriaDoItemDTO obj)
         {
             try
             {
@@ -40,54 +40,30 @@ namespace SGP.Patrimony.Service.PatrimonyService
             return obj;
         }
 
-        public async Task DeleteOld(CategoriaDoItemViewModel obj)
+
+        public async Task<CategoriaDoItemDTO> Get(long id)
         {
-            var categoria = _mapper.Map<CategoriaDoItem>(Get(obj.Id));
-
-            if (categoria != null)
-            {
-                try
-                {
-                    await _repository.DeleteOld(categoria);
-                }
-                catch (Exception ex)
-                {
-
-                    throw new Exception(ex + "Aconteceu um erro!");
-                }
-            }
-
-        }
-
-        public async Task<CategoriaDoItemViewModel> Get(long id)
-        {
-            var categoria = _mapper.Map<CategoriaDoItemViewModel>(await _repository.Get(id));
+            var categoria = _mapper.Map<CategoriaDoItemDTO>(await _repository.Get(id));
 
             return categoria;
 
         }
 
-        public async Task<List<CategoriaDoItemViewModel>> Get()
+        public async Task<QueryResult<CategoriaDoItemDTO>> Get(CategoriaFilter filter)
         {
-            var categoria = _mapper.Map<List<CategoriaDoItemViewModel>>(await _repository.Get());
-
-            return categoria;
-        }
-        public async Task<QueryResult<CategoriaDoItemViewModel>> Get(CategoriaFilter filter)
-        {
-            var categoria = _mapper.Map<QueryResult<CategoriaDoItemViewModel>>(await _repository.Get(filter));
+            var categoria = _mapper.Map<QueryResult<CategoriaDoItemDTO>>(await _repository.Get(filter));
 
             return categoria;
         }
 
-        public async Task<CategoriaDoItemViewModel> Update(CategoriaDoItemViewModel obj)
+        public async Task<CategoriaDoItemDTO> Update(CategoriaDoItemDTO obj)
         {
             if (_repository.Search(c => c.Nome == obj.Nome && c.Id != obj.Id ).Result.Any()) throw new ArgumentException("já existe uma categoria com este nome!"); 
             else
             {
                 try
                 {
-                    var categoria = _mapper.Map<CategoriaDoItemViewModel, CategoriaDoItem>(obj);
+                    var categoria = _mapper.Map<CategoriaDoItemDTO, CategoriaDoItem>(obj);
 
                     await _repository.Update(categoria);
                 }

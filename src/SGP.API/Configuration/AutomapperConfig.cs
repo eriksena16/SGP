@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using SGP.Model.Entity;
-using SGP.Model.Entity.ViewModels;
+using SGP.Model.Entity;
 
 namespace SGP.API.Configuration
 {
@@ -10,13 +10,14 @@ namespace SGP.API.Configuration
         {
             CreateMap(typeof(QueryResult<>), typeof(QueryResult<>));
 
-            CreateMap<CategoriaDoItem, CategoriaDoItemViewModel>().ReverseMap();
+            CreateMap<CategoriaDoItem, CategoriaDoItemDTO>().ReverseMap();
+            CreateMap<CategoriaDoItemDTO, CategoriaDoItemDTQ>().ReverseMap();
 
-            CreateMap<Equipamento, EquipamentoViewModel>().ReverseMap();
+            CreateMap<Equipamento, EquipamentoDTO>().ReverseMap();
 
-            CreateMap<Setor, SetorViewModel>().ReverseMap();
-            CreateMap<Fabricante, FabricanteViewModel>().ReverseMap();
-            CreateMap<ClassificacaoDeAtivos, ClassificacaoDeAtivosViewModel>().ReverseMap();
+            CreateMap<Setor, SetorDTO>().ReverseMap();
+            CreateMap<Fabricante, FabricanteDTO>().ReverseMap();
+            CreateMap<ClassificacaoDeAtivos, ClassificacaoDeAtivosDTO>().ReverseMap();
 
         }
     }

@@ -2,10 +2,10 @@
 using SGP.Contract.Service.PatrimonyContract;
 using SGP.Contract.Service.PatrimonyContract.Repositories;
 using SGP.Model.Entity;
-using SGP.Model.Entity.ViewModels;
+using SGP.Model.Entity;
 using SGP.Patrimony.Repository.PatrimonyFilters;
 using System;
-using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace SGP.Patrimony.Service.PatrimonyService
@@ -21,7 +21,7 @@ namespace SGP.Patrimony.Service.PatrimonyService
             _mapper = mapper;
         }
 
-        public async Task<FabricanteViewModel> Add(FabricanteViewModel obj)
+        public async Task<FabricanteDTO> Add(FabricanteDTO obj)
         {
             try
             {
@@ -39,51 +39,32 @@ namespace SGP.Patrimony.Service.PatrimonyService
             return obj;
         }
 
-        public async Task Delete(FabricanteViewModel obj)
+        public async Task<QueryResult<FabricanteDTO>> Get(FabricanteFilter filter)
         {
-            var fabricante = _mapper.Map<Fabricante>(Get(obj.Id));
+            var fabricante = _mapper.Map<QueryResult<FabricanteDTO>>(await _repository.Get(filter));
 
-            if (fabricante != null)
-            {
-                try
-                {
-                    await _repository.DeleteOld(fabricante);
-                }
-                catch (Exception ex)
-                {
-
-                    throw new Exception(ex + "Aconteceu um erro!");
-                }
-            }
-
+            return fabricante;
         }
 
-        public virtual async Task<FabricanteViewModel> Get(long id)
+        public virtual async Task<FabricanteDTO> Get(long id)
         {
-            var fabricante = _mapper.Map<FabricanteViewModel>(await _repository.Get(id));
+            var fabricante = _mapper.Map<FabricanteDTO>(await _repository.Get(id));
 
             return fabricante;
 
         }
 
-        public async Task<List<FabricanteViewModel>> Get()
+        public async Task<FabricanteDTO> Update(FabricanteDTO obj)
         {
-            var fabricantes = _mapper.Map<List<FabricanteViewModel>>(await _repository.Get());
+            if (_repository.Search(c => c.Nome == obj.Nome
+            && c.Cnpj == obj.Cnpj).Result.Any())
+                throw new ArgumentException("já existe um fabricante com este nome!");
 
-            return fabricantes;
-        }
-
-        public async Task<FabricanteViewModel> Update(FabricanteViewModel obj)
-        {
-            if (!await _repository.Exists(obj.Id)) return new FabricanteViewModel();
-
-            var result = Get(obj.Id);
-
-            if (result != null)
+            else
             {
                 try
                 {
-                    var fabricante = _mapper.Map<FabricanteViewModel, Fabricante>(obj);
+                    var fabricante = _mapper.Map<FabricanteDTO, Fabricante>(obj);
                     await _repository.Update(fabricante);
                 }
                 catch (Exception ex)
@@ -91,9 +72,15 @@ namespace SGP.Patrimony.Service.PatrimonyService
 
                     throw new Exception(ex + "Aconteceu um erro!");
                 }
+
+                return obj;
             }
 
-            return obj;
+
+        }
+        public async Task Delete(long id)
+        {
+            await _repository.Delete(id);
         }
 
         public void Dispose()
@@ -101,21 +88,5 @@ namespace SGP.Patrimony.Service.PatrimonyService
             _repository?.Dispose();
         }
 
-        public Task DeleteOld(FabricanteViewModel obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task Delete(long id)
-        {
-            await _repository.Delete(id);
-        }
-
-        public async Task<QueryResult<FabricanteViewModel>> Get(FabricanteFilter filter)
-        {
-           var fabricante =  _mapper.Map<QueryResult<FabricanteViewModel>>(await _repository.Get(filter));
-
-            return fabricante;
-        }
     }
 }

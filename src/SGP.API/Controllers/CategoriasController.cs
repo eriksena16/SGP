@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using SGP.API.Code;
 using SGP.Contract.Service.PatrimonyContract;
 using SGP.Model.Entity;
-using SGP.Model.Entity.ViewModels;
+using SGP.Model.Entity;
 using SGP.Patrimony.Repository.PatrimonyFilters;
 using System;
 using System.Collections.Generic;
@@ -27,12 +27,12 @@ namespace SGP.API.Controllers
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.NoContent)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.InternalServerError)]
-        [ProducesResponseType(typeof(QueryResult<CategoriaDoItemViewModel>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(QueryResult<CategoriaDoItemDTO>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> Get([FromQuery]CategoriaFilter filter)
         {
             try
             {
-               return Ok(_mapper.Map<QueryResult<CategoriaDoItemViewModel>>(await this.GatewayServiceProvider.Get<ICategoriaDoItemService>().Get(filter)));
+               return Ok(_mapper.Map<QueryResult<CategoriaDoItemDTO>>(await this.GatewayServiceProvider.Get<ICategoriaDoItemService>().Get(filter)));
             }
             catch (Exception ex)
             {
@@ -52,10 +52,10 @@ namespace SGP.API.Controllers
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.NoContent)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.InternalServerError)]
-        [ProducesResponseType(typeof(List<CategoriaDoItemViewModel>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(List<CategoriaDoItemDTO>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> Get(int? id)
         {
-            var categoria = _mapper.Map<CategoriaDoItemViewModel>(await this.GatewayServiceProvider.Get<ICategoriaDoItemService>().Get(id.Value));
+            var categoria = _mapper.Map<CategoriaDoItemDTO>(await this.GatewayServiceProvider.Get<ICategoriaDoItemService>().Get(id.Value));
 
             if (categoria is null)
                 return NotFound();
@@ -66,19 +66,21 @@ namespace SGP.API.Controllers
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="categoriaItem"></param>
+        /// <param name="categoriaItemDtq"></param>
         /// <returns></returns>
         [HttpPost]
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.NoContent)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.InternalServerError)]
-        [ProducesResponseType(typeof(List<CategoriaDoItemViewModel>), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> Post([FromBody] CategoriaDoItemViewModel categoriaItem)
+        [ProducesResponseType(typeof(CategoriaDoItemDTQ), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> Post([FromBody] CategoriaDoItemDTQ categoriaItemDtq)
         {
-            if (categoriaItem is null)
+            if (categoriaItemDtq is null)
                 return BadRequest();
 
-            return Ok(_mapper.Map<CategoriaDoItemViewModel>(await this.GatewayServiceProvider.Get<ICategoriaDoItemService>().Add(categoriaItem)));
+            var categoria = _mapper.Map<CategoriaDoItemDTQ, CategoriaDoItemDTO>(categoriaItemDtq);
+
+            return Ok(await this.GatewayServiceProvider.Get<ICategoriaDoItemService>().Add(categoria));
         }
 
         /// <summary>
@@ -91,8 +93,8 @@ namespace SGP.API.Controllers
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.NoContent)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.InternalServerError)]
-        [ProducesResponseType(typeof(List<CategoriaDoItemViewModel>), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> Patch( long id, CategoriaDoItemViewModel categoriaDoItemViewModel)
+        [ProducesResponseType(typeof(List<CategoriaDoItemDTO>), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> Patch( long id, CategoriaDoItemDTO categoriaDoItemViewModel)
         {
             if (id != categoriaDoItemViewModel.Id)
                 return BadRequest();
@@ -102,7 +104,7 @@ namespace SGP.API.Controllers
             categoria.Id = categoriaDoItemViewModel.Id;
             categoria.Nome = categoriaDoItemViewModel.Nome;
 
-            return Ok(_mapper.Map<CategoriaDoItemViewModel>(await this.GatewayServiceProvider.Get<ICategoriaDoItemService>().Update(categoria)));
+            return Ok(_mapper.Map<CategoriaDoItemDTO>(await this.GatewayServiceProvider.Get<ICategoriaDoItemService>().Update(categoria)));
         }
 
         /// <summary>
@@ -114,8 +116,8 @@ namespace SGP.API.Controllers
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.NoContent)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.InternalServerError)]
-        [ProducesResponseType(typeof(List<CategoriaDoItemViewModel>), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<CategoriaDoItemViewModel>> Delete(long id)
+        [ProducesResponseType(typeof(List<CategoriaDoItemDTO>), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<CategoriaDoItemDTO>> Delete(long id)
         {
 
             await this.GatewayServiceProvider.Get<ICategoriaDoItemService>().Delete(id);

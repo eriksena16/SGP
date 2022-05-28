@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using SGP.API.Code;
 using SGP.Contract.Service.PatrimonyContract;
 using SGP.Model.Entity;
-using SGP.Model.Entity.ViewModels;
+using SGP.Model.Entity;
 using SGP.Patrimony.Repository.PatrimonyFilters;
 using System;
 using System.Collections.Generic;
@@ -27,13 +27,13 @@ namespace SGP.API.Controllers
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.NoContent)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.InternalServerError)]
-        [ProducesResponseType(typeof(QueryResult<SetorViewModel>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(QueryResult<SetorDTO>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> Get([FromQuery] SetorFilter filter)
         {
             try
             {
 
-                return Ok(_mapper.Map<QueryResult<SetorViewModel>>(await this.GatewayServiceProvider.Get<ISetorService>().Get(filter)));
+                return Ok(_mapper.Map<QueryResult<SetorDTO>>(await this.GatewayServiceProvider.Get<ISetorService>().Get(filter)));
             }
             catch (Exception ex)
             {
@@ -47,10 +47,10 @@ namespace SGP.API.Controllers
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.NoContent)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.InternalServerError)]
-        [ProducesResponseType(typeof(List<SetorViewModel>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(List<SetorDTO>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> Get(int? id)
         {
-            var categoria = _mapper.Map<SetorViewModel>(await this.GatewayServiceProvider.Get<ISetorService>().Get(id.Value));
+            var categoria = _mapper.Map<SetorDTO>(await this.GatewayServiceProvider.Get<ISetorService>().Get(id.Value));
 
             if (categoria is null)
                 return NotFound();
@@ -62,21 +62,21 @@ namespace SGP.API.Controllers
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.NoContent)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.InternalServerError)]
-        [ProducesResponseType(typeof(List<SetorViewModel>), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> Post([FromBody] SetorViewModel obj)
+        [ProducesResponseType(typeof(List<SetorDTO>), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> Post([FromBody] SetorDTO obj)
         {
             if (obj is null)
                 return BadRequest();
 
-            return Ok(_mapper.Map<SetorViewModel>(await this.GatewayServiceProvider.Get<ISetorService>().Add(obj)));
+            return Ok(_mapper.Map<SetorDTO>(await this.GatewayServiceProvider.Get<ISetorService>().Add(obj)));
         }
 
         [HttpDelete("{id:long}")]
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.NoContent)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.InternalServerError)]
-        [ProducesResponseType(typeof(List<SetorViewModel>), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<SetorViewModel>> Delete(long id)
+        [ProducesResponseType(typeof(List<SetorDTO>), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<SetorDTO>> Delete(long id)
         {
 
             await this.GatewayServiceProvider.Get<ISetorService>().Delete(id);
@@ -88,8 +88,8 @@ namespace SGP.API.Controllers
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.NoContent)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.InternalServerError)]
-        [ProducesResponseType(typeof(List<SetorViewModel>), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<SetorViewModel>> Patch(SetorViewModel obj)
+        [ProducesResponseType(typeof(List<SetorDTO>), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<SetorDTO>> Patch(SetorDTO obj)
         {
 
             if (obj is null)
@@ -97,7 +97,7 @@ namespace SGP.API.Controllers
                 return NotFound();
             }
 
-            return Ok(_mapper.Map<SetorViewModel>(await this.GatewayServiceProvider.Get<ISetorService>().Update(obj)));
+            return Ok(_mapper.Map<SetorDTO>(await this.GatewayServiceProvider.Get<ISetorService>().Update(obj)));
 
         }
 

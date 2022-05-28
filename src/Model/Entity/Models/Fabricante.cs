@@ -4,6 +4,6 @@ namespace SGP.Model.Entity
 {
     public class Fabricante : Empresa
     {
-        public IList<ModeloDeEquipamento> ModeloDeEquipamento { get; set; }
+        public IList<ModeloDeEquipamento> ModeloDeEquipamentos { get; set; }
     }
 }

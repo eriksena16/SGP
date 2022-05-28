@@ -22,15 +22,11 @@ namespace SGP.Patrimony.Repository.PatrimonyRepository.Mappings
                 .IsRequired()
                 .HasColumnType("bigint");
 
-            builder.Property(p => p.ClassificacaoDeAtivosId)
-                .IsRequired()
-                .HasColumnType("bigint");
-
             builder.Property(p => p.ModeloDeEquipamentoId)
                 .IsRequired()
                 .HasColumnType("bigint");
 
-            builder.Property(p => p.ResponsavelDoEquipamentoId)
+            builder.Property(p => p.ResponsavelId)
                 .IsRequired()
                 .HasColumnType("bigint");
 
@@ -39,23 +35,15 @@ namespace SGP.Patrimony.Repository.PatrimonyRepository.Mappings
                 .HasColumnType("bigint");
 
             builder.Property(p => p.NotaFiscalUrl)
-                .IsRequired()
                 .HasColumnType("varchar(200)");
 
             builder.Property(p => p.Serie)
-                .IsRequired()
                 .HasColumnType("varchar(100)");
-
-            builder.Property(p => p.Observacao)
-                .IsRequired()
-                .HasColumnType("varchar(MAX)");
-
+          
             builder.Property(p => p.ValorAtual)
-                .IsRequired()
                 .HasColumnType("decimal(18,4)");
 
             builder.Property(p => p.ValorDeCompra)
-                .IsRequired()
                 .HasColumnType("decimal(18,4)");
 
             builder.HasOne(m => m.ModeloDeEquipamento)

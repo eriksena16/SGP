@@ -17,6 +17,7 @@ namespace SGP.Patrimony.Repository.PatrimonyRepository
         public DbSet<ModeloDeEquipamento> ModeloDeEquipamento { get; set; }
         public DbSet<Fabricante> Fabricante { get; set; }
         public DbSet<ResponsavelDoEquipamento> ResponsavelDoEquipamento { get; set; }
+        public DbSet<Observacao> Observacao { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -29,13 +30,6 @@ namespace SGP.Patrimony.Repository.PatrimonyRepository
                 .SelectMany(e => e.GetProperties()
                     .Where(p => p.ClrType == typeof(decimal))))
                 property.SetColumnType("decimal(18,2)");
-
-            modelBuilder.Entity<ModeloDeEquipamento>()
-                .HasOne(s => s.Fabricante)
-                .WithMany(t => t.ModeloDeEquipamento)
-                .OnDelete(DeleteBehavior.Cascade);
-
-            
 
             base.OnModelCreating(modelBuilder);
         }

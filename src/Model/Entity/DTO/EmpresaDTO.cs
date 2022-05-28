@@ -1,6 +1,6 @@
 ﻿namespace SGP.Model.Entity
 {
-    public abstract class EmpresaViewModel : BaseEntity
+    public abstract class EmpresaDTO : BaseEntity
     {
         public string Nome { get; set; }
         public string Cnpj { get; set; }

@@ -12,7 +12,7 @@ namespace SGP.Patrimony.Repository.PatrimonyRepository.Mappings
 
             builder.Property(c => c.Cnpj)
                 .IsRequired()
-                .HasColumnType("varchar(15)");
+                .HasColumnType("varchar(14)");
         }
     }
 }

@@ -31,14 +31,6 @@ namespace SGP.Patrimony.Repository.PatrimonyRepository.Service
             return await DbSet.FindAsync(id);
         }
 
-        public virtual async Task DeleteOld(TEntity obj)
-        {
-            DbSet.Remove(obj);
-
-            await SaveChanges();
-
-        }
-
         public virtual async Task Delete(long id)
         {
             DbSet.Remove(new TEntity { Id = id });
@@ -62,10 +54,6 @@ namespace SGP.Patrimony.Repository.PatrimonyRepository.Service
             return await Db.SaveChangesAsync();
         }
 
-        public virtual Task<bool> Exists(long id)
-        {
-            return DbSet.AnyAsync(c => c.Id.Equals(id));
-        }
         public async Task<IEnumerable<TEntity>> Search(Expression<Func<TEntity, bool>> predicate)
         {
 

@@ -2,10 +2,10 @@
 using SGP.Contract.Service.PatrimonyContract;
 using SGP.Contract.Service.PatrimonyContract.Repositories;
 using SGP.Model.Entity;
-using SGP.Model.Entity.ViewModels;
+using SGP.Model.Entity;
 using SGP.Patrimony.Repository.PatrimonyFilters;
 using System;
-using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace SGP.Patrimony.Service.PatrimonyService
@@ -21,7 +21,7 @@ namespace SGP.Patrimony.Service.PatrimonyService
             _mapper = mapper;
         }
 
-        public async Task<ClassificacaoDeAtivosViewModel> Add(ClassificacaoDeAtivosViewModel obj)
+        public async Task<ClassificacaoDeAtivosDTO> Add(ClassificacaoDeAtivosDTO obj)
         {
             try
             {
@@ -39,54 +39,35 @@ namespace SGP.Patrimony.Service.PatrimonyService
             return obj;
         }
 
-        public async Task Delete(ClassificacaoDeAtivosViewModel obj)
+        public async Task<QueryResult<ClassificacaoDeAtivosDTO>> Get(ClassificacaoDeAtivosFilter filter)
         {
-            var classificacao = _mapper.Map<ClassificacaoDeAtivos>(Get(obj.Id));
+            var classificacao = _mapper.Map<QueryResult<ClassificacaoDeAtivosDTO>>(await _repository.Get(filter));
 
-            if (classificacao != null)
-            {
-                try
-                {
-                    await _repository.DeleteOld(classificacao);
-                }
-                catch (Exception ex)
-                {
-
-                    throw new Exception(ex + "Aconteceu um erro!");
-                }
-            }
-
+            return classificacao;
         }
 
-        public async Task<ClassificacaoDeAtivosViewModel> Get(long id)
+
+        public async Task<ClassificacaoDeAtivosDTO> Get(long id)
         {
-            var classificacao = _mapper.Map<ClassificacaoDeAtivosViewModel>(await _repository.Get(id));
+            var classificacao = _mapper.Map<ClassificacaoDeAtivosDTO>(await _repository.Get(id));
 
             return classificacao;
 
         }
 
-        public async Task<List<ClassificacaoDeAtivosViewModel>> Get()
-        {
-            var classificacao = _mapper.Map<List<ClassificacaoDeAtivosViewModel>>(await _repository.Get());
 
-            return classificacao;
-        }
-
-        public async Task<ClassificacaoDeAtivosViewModel> Update(ClassificacaoDeAtivosViewModel obj)
+        public async Task<ClassificacaoDeAtivosDTO> Update(ClassificacaoDeAtivosDTO obj)
         {
 
-            if (!await _repository.Exists(obj.Id)) return new ClassificacaoDeAtivosViewModel();
+            if (_repository.Search(c => c.Nome == obj.Nome && c.Id != obj.Id).Result.Any()) throw new ArgumentException("já existe uma classificacao com este nome!");
 
-            var result = Get(obj.Id);
-
-            if (result != null)
+            else
             {
                 try
                 {
-                    var categoria = _mapper.Map<ClassificacaoDeAtivosViewModel, ClassificacaoDeAtivos>(obj);
+                    ClassificacaoDeAtivos classificacao = _mapper.Map<ClassificacaoDeAtivosDTO, ClassificacaoDeAtivos>(obj);
 
-                    await _repository.Update(categoria);
+                    await _repository.Update(classificacao);
                 }
                 catch (Exception ex)
                 {
@@ -98,26 +79,19 @@ namespace SGP.Patrimony.Service.PatrimonyService
             return obj;
         }
 
+        public async Task Delete(long id)
+        {
+            await _repository.Delete(id);
+        }
+
         public void Dispose()
         {
             _repository?.Dispose();
         }
 
-        public Task DeleteOld(ClassificacaoDeAtivosViewModel obj)
-        {
-            throw new NotImplementedException();
-        }
 
-        public Task Delete(long id)
-        {
-            throw new NotImplementedException();
-        }
 
-        public async Task<QueryResult<ClassificacaoDeAtivosViewModel>> Get(ClassificacaoDeAtivosFilter filter)
-        {
-            var classificacao = _mapper.Map<QueryResult<ClassificacaoDeAtivosViewModel>>(await _repository.Get(filter));
 
-            return classificacao;
-        }
+
     }
 }

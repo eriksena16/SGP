@@ -1,9 +1,9 @@
-﻿using SGP.Model.Entity.ViewModels;
+﻿using SGP.Model.Entity;
 using SGP.Patrimony.Repository.PatrimonyFilters;
 
 namespace SGP.Contract.Service.PatrimonyContract
 {
-    public interface IFabricanteService : IGenericService<FabricanteViewModel, FabricanteFilter>
+    public interface IFabricanteService : IGenericService<FabricanteDTO, FabricanteFilter>
     {
     }
 }

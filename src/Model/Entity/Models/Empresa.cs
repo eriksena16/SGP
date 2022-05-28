@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace SGP.Model.Entity
+﻿namespace SGP.Model.Entity
 {
     public abstract class Empresa : BaseEntity
     {

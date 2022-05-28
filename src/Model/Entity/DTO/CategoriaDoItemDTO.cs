@@ -1,6 +1,6 @@
 ﻿namespace SGP.Model.Entity
 {
-    public class Setor : BaseEntity
+    public class CategoriaDoItemDTO : BaseEntity
     {
         public string Nome { get; set; }
     }

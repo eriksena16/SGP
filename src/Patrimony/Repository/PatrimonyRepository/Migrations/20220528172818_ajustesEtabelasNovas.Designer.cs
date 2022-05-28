@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SGP.Patrimony.Repository.PatrimonyRepository;
 
 namespace SGP.Patrimony.Repository.PatrimonyRepository.Migrations
 {
     [DbContext(typeof(SGPContext))]
-    partial class SGPContextModelSnapshot : ModelSnapshot
+    [Migration("20220528172818_ajustesEtabelasNovas")]
+    partial class ajustesEtabelasNovas
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -95,7 +97,7 @@ namespace SGP.Patrimony.Repository.PatrimonyRepository.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<decimal?>("ValorAtual")
+                    b.Property<decimal>("ValorAtual")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("ValorDeCompra")
@@ -179,16 +181,10 @@ namespace SGP.Patrimony.Repository.PatrimonyRepository.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("Data")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("Descricao")
                         .HasColumnType("varchar(100)");
 
                     b.Property<long>("EquipamentoId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("UsuarioId")
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");

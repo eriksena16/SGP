@@ -2,31 +2,31 @@
 using SGP.Contract.Service.PatrimonyContract;
 using SGP.Contract.Service.PatrimonyContract.Repositories;
 using SGP.Model.Entity;
-using SGP.Model.Entity.ViewModels;
+using SGP.Model.Entity;
 using SGP.Patrimony.Repository.PatrimonyFilters;
 using System;
-using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace SGP.Patrimony.Service.PatrimonyService
 {
     public class SetorService : ISetorService
     {
-        private readonly ISetorRepository _setorRepository;
+        private readonly ISetorRepository _repository;
         private readonly IMapper _mapper;
         public SetorService(ISetorRepository setorRepository, IMapper mapper)
         {
-            _setorRepository = setorRepository;
+            _repository = setorRepository;
             _mapper = mapper;
         }
 
-        public async Task<SetorViewModel> Add(SetorViewModel obj)
+        public async Task<SetorDTO> Add(SetorDTO obj)
         {
             try
             {
-                var setor = _mapper.Map<Setor>(obj);
+                Setor setor = _mapper.Map<Setor>(obj);
 
-                await _setorRepository.Create(setor);
+                await _repository.Create(setor);
             }
             catch (Exception ex)
             {
@@ -36,55 +36,32 @@ namespace SGP.Patrimony.Service.PatrimonyService
 
             return obj;
         }
-
-        public async Task Delete(SetorViewModel obj)
+        public async Task<QueryResult<SetorDTO>> Get(SetorFilter filter)
         {
-            var setor = _mapper.Map<Setor>(Get(obj.Id));
-
-
-            if (setor != null)
-            {
-                try
-                {
-                    await _setorRepository.DeleteOld(setor);
-                }
-                catch (Exception ex)
-                {
-
-                    throw new Exception(ex + "Aconteceu um erro!");
-                }
-            }
-        }
-
-
-        public virtual async Task<SetorViewModel> Get(long id)
-        {
-            var setor = _mapper.Map<SetorViewModel>(await _setorRepository.Get(id));
+            QueryResult<SetorDTO> setor = _mapper.Map<QueryResult<SetorDTO>>(await _repository.Get(filter));
 
             return setor;
         }
 
-        public async Task<List<SetorViewModel>> Get()
+        public virtual async Task<SetorDTO> Get(long id)
         {
-            List<SetorViewModel> setor = _mapper.Map<List<SetorViewModel>>(await _setorRepository.Get());
+            SetorDTO setor = _mapper.Map<SetorDTO>(await _repository.Get(id));
 
             return setor;
         }
 
 
-        public async Task<SetorViewModel> Update(SetorViewModel obj)
+        public async Task<SetorDTO> Update(SetorDTO obj)
         {
-            if (!await _setorRepository.Exists(obj.Id)) return new SetorViewModel();
+            if (_repository.Search(c=> c.Nome == obj.Nome && c.Id != obj.Id).Result.Any()) throw new ArgumentException("já existe um setor com este nome!");
 
-            var result = Get(obj.Id);
-
-            if (result != null)
+            else
             {
                 try
                 {
-                    var setor = _mapper.Map<SetorViewModel, Setor>(obj);
+                    Setor setor = _mapper.Map<SetorDTO, Setor>(obj);
 
-                    await _setorRepository.Update(setor);
+                    await _repository.Update(setor);
                 }
                 catch (Exception ex)
                 {
@@ -97,26 +74,15 @@ namespace SGP.Patrimony.Service.PatrimonyService
 
         }
 
+        public async Task Delete(long id)
+        {
+            await _repository.Delete(id);
+        }
+
         public void Dispose()
         {
-            _setorRepository?.Dispose();
+            _repository?.Dispose();
         }
 
-        public Task DeleteOld(SetorViewModel obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task Delete(long id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<QueryResult<SetorViewModel>> Get(SetorFilter filter)
-        {
-            var setor = _mapper.Map<QueryResult<SetorViewModel>>(await _setorRepository.Get(filter));
-
-            return setor;
-        }
     }
 }

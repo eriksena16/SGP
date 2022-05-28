@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SGP.Model.Entity
@@ -8,12 +7,11 @@ namespace SGP.Model.Entity
     public class ModeloDeEquipamento : BaseEntity
     {
         public string Nome { get; set; }
-        [Display(Name = "Fabricante")]
         public long FabricanteId { get; set; }
-        public Fabricante Fabricante { get; set; }
-
         [JsonIgnore]
-        [NotMapped]
+        [ForeignKey("FabricanteId")]
+        public Fabricante Fabricante { get; set; }
+        [JsonIgnore]
         public IList<Equipamento> Equipamentos { get; set; }
 
 

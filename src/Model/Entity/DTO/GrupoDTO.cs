@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SGP.Model.Entity.ViewModels
+namespace SGP.Model.Entity
 {
-    public class GrupoViewModel : BaseEntity
+    public class GrupoDTO : BaseEntity
     {
         public string Nome { get; set; }
     }
