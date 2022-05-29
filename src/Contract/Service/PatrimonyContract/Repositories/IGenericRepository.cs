@@ -10,7 +10,8 @@ namespace SGP.Contract.Service.PatrimonyContract.Repositories
     {
         Task Create(TEntity obj);
         Task<TEntity> Get(long id);
-        Task Update( TEntity obj);
+        TEntity GetAsNoTrackingId(long id);
+        Task Update(TEntity obj);
         Task Delete(long id);
         Task<IEnumerable<TEntity>> Search(Expression<Func<TEntity, bool>> predicate);
         Task<QueryResult<TEntity>> Get(G filter);

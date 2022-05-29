@@ -21,7 +21,7 @@ namespace SGP.Patrimony.Repository.PatrimonyRepository.Service
 
         public async Task<CategoriaDoItem> GetCategoriaEquipamentos(long id)
         {
-            return await Db.Categoria.Include(c => c.Equipamentos).AsNoTracking().FirstOrDefaultAsync(c => c.Id == id);
+            return await Db.Categoria.AsNoTracking().FirstOrDefaultAsync(c => c.Id == id);
         }
     }
 }

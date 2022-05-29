@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using SGP.API.Code;
 using SGP.Contract.Service.PatrimonyContract;
 using SGP.Model.Entity;
-using SGP.Model.Entity;
 using SGP.Patrimony.Repository.PatrimonyFilters;
 using System.Collections.Generic;
 using System.Net;
@@ -74,13 +73,14 @@ namespace SGP.API.Controllers
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.NoContent)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.InternalServerError)]
-        [ProducesResponseType(typeof(List<FabricanteDTO>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(FabricanteDTO), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> Patch([FromBody] FabricanteDTO obj)
         {
             if (obj is null)
                 return BadRequest();
 
-            return Ok(_mapper.Map<FabricanteDTO>(await this.GatewayServiceProvider.Get<IFabricanteService>().Update(obj)));
+            return Ok();
+            //_mapper.Map<FabricanteDTO>(await this.GatewayServiceProvider.Get<IFabricanteService>().Update(obj)));
         }
 
         [HttpDelete("{id:long}")]

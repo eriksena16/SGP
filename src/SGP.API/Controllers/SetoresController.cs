@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using SGP.API.Code;
 using SGP.Contract.Service.PatrimonyContract;
 using SGP.Model.Entity;
-using SGP.Model.Entity;
 using SGP.Patrimony.Repository.PatrimonyFilters;
 using System;
 using System.Collections.Generic;
@@ -97,7 +96,8 @@ namespace SGP.API.Controllers
                 return NotFound();
             }
 
-            return Ok(_mapper.Map<SetorDTO>(await this.GatewayServiceProvider.Get<ISetorService>().Update(obj)));
+            //return Ok(_mapper.Map<SetorDTO>(await this.GatewayServiceProvider.Get<ISetorService>().Update(obj)));
+            return new SetorDTO();
 
         }
 

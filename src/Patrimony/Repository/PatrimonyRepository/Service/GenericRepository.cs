@@ -30,6 +30,10 @@ namespace SGP.Patrimony.Repository.PatrimonyRepository.Service
         {
             return await DbSet.FindAsync(id);
         }
+        public virtual TEntity GetAsNoTrackingId(long id)
+        {
+            return DbSet.AsNoTracking().FirstOrDefault(c => c.Id == id);
+        }
 
         public virtual async Task Delete(long id)
         {
@@ -106,6 +110,6 @@ namespace SGP.Patrimony.Repository.PatrimonyRepository.Service
             Db?.Dispose();
         }
 
-
+        
     }
 }

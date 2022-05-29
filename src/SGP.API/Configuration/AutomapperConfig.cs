@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using SGP.Model.Entity;
-using SGP.Model.Entity;
 
 namespace SGP.API.Configuration
 {

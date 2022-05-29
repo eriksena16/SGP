@@ -1,12 +1,14 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using SGP.API.Code;
 using SGP.Contract.Service.PatrimonyContract;
 using SGP.Model.Entity;
-using SGP.Model.Entity;
 using SGP.Patrimony.Repository.PatrimonyFilters;
+using SGP.Patrimony.Repository.PatrimonyRepository;
 using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Net;
 using System.Threading.Tasks;
 
@@ -18,9 +20,11 @@ namespace SGP.API.Controllers
     public class CategoriasController : ApplicationController
     {
         private readonly IMapper _mapper;
-        public CategoriasController(IMapper mapper)
+        private readonly IUnitOfWork _unitOfWork;
+        public CategoriasController(IMapper mapper, IUnitOfWork unitOfWork)
         {
             _mapper = mapper;
+            _unitOfWork = unitOfWork;
         }
 
         [HttpGet]
@@ -28,18 +32,18 @@ namespace SGP.API.Controllers
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.NoContent)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(QueryResult<CategoriaDoItemDTO>), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> Get([FromQuery]CategoriaFilter filter)
+        public async Task<IActionResult> Get([FromQuery] CategoriaFilter filter)
         {
             try
             {
-               return Ok(_mapper.Map<QueryResult<CategoriaDoItemDTO>>(await this.GatewayServiceProvider.Get<ICategoriaDoItemService>().Get(filter)));
+                return Ok(_mapper.Map<QueryResult<CategoriaDoItemDTO>>(await this.GatewayServiceProvider.Get<ICategoriaDoItemService>().Get(filter)));
             }
             catch (Exception ex)
             {
 
                 throw ex;
             }
-           
+
 
         }
 
@@ -72,39 +76,42 @@ namespace SGP.API.Controllers
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.NoContent)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.InternalServerError)]
-        [ProducesResponseType(typeof(CategoriaDoItemDTQ), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> Post([FromBody] CategoriaDoItemDTQ categoriaItemDtq)
+        [ProducesResponseType(typeof(CategoriaDoItemDTO), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> Post([FromBody] CategoriaDoItemDTO categoriaItemDtq)
         {
             if (categoriaItemDtq is null)
                 return BadRequest();
 
-            var categoria = _mapper.Map<CategoriaDoItemDTQ, CategoriaDoItemDTO>(categoriaItemDtq);
+            var categoria = _mapper.Map<CategoriaDoItemDTO>(categoriaItemDtq);
 
             return Ok(await this.GatewayServiceProvider.Get<ICategoriaDoItemService>().Add(categoria));
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="categoriaDoItemViewModel"></param>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        [HttpPatch("{id:long}")]
+        [HttpPatch("{id}")]
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(int), (int)HttpStatusCode.NoContent)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.InternalServerError)]
-        [ProducesResponseType(typeof(List<CategoriaDoItemDTO>), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> Patch( long id, CategoriaDoItemDTO categoriaDoItemViewModel)
+        [ProducesResponseType(typeof(CategoriaDoItemDTO), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> Patch(int id, [FromBody] ExpandoObject patch)
         {
-            if (id != categoriaDoItemViewModel.Id)
-                return BadRequest();
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
 
-            var categoria = await this.GatewayServiceProvider.Get<ICategoriaDoItemService>().Get(id);
+            try
+            {
 
-            categoria.Id = categoriaDoItemViewModel.Id;
-            categoria.Nome = categoriaDoItemViewModel.Nome;
+                await this.GatewayServiceProvider.Get<ICategoriaDoItemService>().Patch(id, patch);
 
-            return Ok(_mapper.Map<CategoriaDoItemDTO>(await this.GatewayServiceProvider.Get<ICategoriaDoItemService>().Update(categoria)));
+                var categoria = _mapper.Map<CategoriaDoItemDTO>(await this.GatewayServiceProvider.Get<ICategoriaDoItemService>().Get(id));
+
+                return Ok(categoria);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
         }
 
         /// <summary>

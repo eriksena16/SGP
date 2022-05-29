@@ -2,9 +2,9 @@
 using SGP.Contract.Service.PatrimonyContract;
 using SGP.Contract.Service.PatrimonyContract.Repositories;
 using SGP.Model.Entity;
-using SGP.Model.Entity;
 using SGP.Patrimony.Repository.PatrimonyFilters;
 using System;
+using System.Dynamic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -89,9 +89,15 @@ namespace SGP.Patrimony.Service.PatrimonyService
             _repository?.Dispose();
         }
 
+        public Task Patch(long id, ExpandoObject patch)
+        {
+            throw new NotImplementedException();
+        }
 
 
-
-
+        public ClassificacaoDeAtivosDTO GetAsnotrack(long id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

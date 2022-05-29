@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using SGP.API.Code;
 using SGP.Contract.Service.PatrimonyContract;
 using SGP.Model.Entity;
-using SGP.Model.Entity;
 using SGP.Patrimony.Repository.PatrimonyFilters;
 using System.Collections.Generic;
 using System.Net;
@@ -80,7 +79,8 @@ namespace SGP.Patrimony.Service.PatrimonyService
             if (obj is null)
                 return BadRequest();
 
-            return Ok(_mapper.Map<ClassificacaoDeAtivosDTO>(await this.GatewayServiceProvider.Get<IClassificacaoDeAtivosService>().Update(obj)));
+            return Ok();
+            //_mapper.Map<ClassificacaoDeAtivosDTO>(await this.GatewayServiceProvider.Get<IClassificacaoDeAtivosService>().Update(obj)));
         }
 
         [HttpDelete("{id:long}")]

@@ -9,7 +9,7 @@ using SGP.Patrimony.Service.PatrimonyService;
 
 namespace SGP.Patrimony.Infrastructure.PatrimonyLocator
 {
-    public static class PatrimonyServicelocator
+    public static class PatrimonyServiceLocator
     {
         public static void ConfigurePatrimonyService(this IServiceCollection services)
         {
@@ -19,6 +19,7 @@ namespace SGP.Patrimony.Infrastructure.PatrimonyLocator
             services.AddScoped<IFabricanteRepository, FabricanteRepository>();
             services.AddScoped<ISetorRepository, SetorRepository>();
             services.AddScoped<IClassificacaoDeAtivosRepository, ClassificacaoDeAtivosRepository>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             //SERVICES
             services.AddScoped<ICategoriaDoItemService, CategoriaDoItemService>();

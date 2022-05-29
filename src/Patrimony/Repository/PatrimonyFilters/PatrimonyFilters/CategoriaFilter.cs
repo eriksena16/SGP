@@ -1,5 +1,4 @@
 using SGP.Model.Entity;
-using SGP.Model.Entity;
 using SGP.Patrimony.Util.PatrimonyUtil;
 using System;
 using System.Collections.Generic;

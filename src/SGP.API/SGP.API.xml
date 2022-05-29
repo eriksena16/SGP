@@ -18,11 +18,11 @@
             <param name="categoriaItemDtq"></param>
             <returns></returns>
         </member>
-        <member name="M:SGP.API.Controllers.CategoriasController.Patch(System.Int64,SGP.Model.Entity.CategoriaDoItemDTO)">
+        <member name="M:SGP.API.Controllers.CategoriasController.Patch(System.Int32,System.Dynamic.ExpandoObject)">
             <summary>
             
             </summary>
-            <param name="categoriaDoItemViewModel"></param>
+            <param name="patch"></param>
             <param name="id"></param>
             <returns></returns>
         </member>
